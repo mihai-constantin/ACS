@@ -25,8 +25,7 @@
         android:layout_gravity="center"
         android:ems="10"
         android:inputType="text"
-        android:hint="@string/username"
-        android:saveEnabled="false">
+        android:hint="@string/username">
         <requestFocus/>
     </EditText>
 
@@ -37,15 +36,13 @@
         android:layout_gravity="center"
         android:ems="10"
         android:inputType="textPassword"
-        android:hint="@string/password"
-        android:saveEnabled="false"/>
+        android:hint="@string/password"/>
 
     <CheckBox
         android:id="@+id/remember_me_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/remember_me_checkbox"
-        android:saveEnabled="false"/>
+        android:text="@string/remember_me_checkbox"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
