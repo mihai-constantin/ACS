@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">BoundedServiceActivity</string>
+    <string name="get_message_from_service">Get Message From Service</string>
+</resources>
