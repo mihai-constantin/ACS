@@ -6,7 +6,7 @@
 	  case "addition":
 	    echo $operator1+$operator2;
 		break;
-	  case "substraction":
+	  case "subtraction":
 	  	echo $operator1-$operator2;
 		break;
 	  case "multiplication":
