@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Calculator Web Service</string>
+    <string name="operator1">Operator 1</string>
+    <string name="operator2">Operator 2</string>
+    <string name="operation">Operation</string>
+    <string name="method">Method</string>
+    <string name="display_result">Display Result</string>
+    <string-array name="operations">
+        <item>addition</item>
+        <item>subtraction</item>
+        <item>multiplication</item>
+        <item>division</item>
+    </string-array>
+    <string-array name="methods">
+        <item>GET</item>
+        <item>POST</item>
+    </string-array>
+</resources>
