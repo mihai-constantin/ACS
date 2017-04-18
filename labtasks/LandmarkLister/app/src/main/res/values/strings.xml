@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Landmark Lister</string>
+    <string name="north">North</string>
+    <string name="south">South</string>
+    <string name="east">East</string>
+    <string name="west">West</string>
+    <string name="show_results">Show Results</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="toponym_name">Toponym Name</string>
+    <string name="population">Population</string>
+    <string name="code_name">Code Name</string>
+    <string name="name">Name</string>
+    <string name="wikipedia_web_page_address">Wikipedia Web Page Address</string>
+    <string name="country_code">Country Code</string>
+</resources>
