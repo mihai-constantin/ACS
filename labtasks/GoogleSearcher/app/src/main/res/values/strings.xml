@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Google Searcher</string>
+    <string name="keyword">Keyword</string>
+    <string name="search_google">Search Google</string>
+</resources>
