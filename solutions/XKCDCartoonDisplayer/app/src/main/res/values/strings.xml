@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">XKCD Cartoon Displayer</string>
+    <string name="xkcd_cartoon_content_description">Latest cartoon on xkcd!</string>
+    <string name="previous">&lt;| Previous</string>
+    <string name="next">Next |&gt;</string>
+    <string name="an_error_has_occurred">An error has occurred!</string>
+</resources>
