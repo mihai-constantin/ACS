@@ -18,8 +18,9 @@ public interface Constants {
     final public static String DATA = "ro.pub.cs.systems.eim.lab05.startedservice.data";
 
     final public static String STRING_DATA = "EIM";
-    final public static int INTEGER_DATA = 2017;
-    final public static ArrayList<String> ARRAY_LIST_DATA = new ArrayList<>(Arrays.asList("EIM", "2017"));
+    final public static int INTEGER_DATA = Integer.parseInt(new SimpleDateFormat("yyyy").format(Calendar.getInstance().getTime()));
+   
+    final public static ArrayList<String> ARRAY_LIST_DATA = new ArrayList<>(Arrays.asList("EIM", "laborator"));
 
     final public static long SLEEP_TIME = 5000;
 

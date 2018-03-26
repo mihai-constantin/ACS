@@ -7,7 +7,7 @@ public interface Constants {
 
     final public static String TAG = "[Bounded Service]";
 
-    final public static ArrayList<String> MESSAGES = new ArrayList<>(Arrays.asList("EIM", "2017"));
+    final public static ArrayList<String> MESSAGES = new ArrayList<>(Arrays.asList("EIM", "laborator"));
 
     final public static int SERVICE_STATUS_UNBOUND = 0;
     final public static int SERVICE_STATUS_BOUND = 1;
