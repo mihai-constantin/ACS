@@ -6,8 +6,9 @@ public interface Constants {
 
     final public static String TAG = "[CalculatorWebService]";
 
-    final public static String GET_WEB_SERVICE_ADDRESS = "http://eim2017.andreirosucojocaru.ro/exemple/laboratoare/laborator07/calculator/calculator_get.php";
-    final public static String POST_WEB_SERVICE_ADDRESS = "http://eim2017.andreirosucojocaru.ro/exemple/laboratoare/laborator07/calculator/calculator_post.php";
+    final public static String GET_WEB_SERVICE_ADDRESS = "http://wi-fi.cs.pub.ro/~dniculescu/didactic/eim/expr/expr_get.php";
+    final public static String POST_WEB_SERVICE_ADDRESS = "http://wi-fi.cs.pub.ro/~dniculescu/didactic/eim/expr/expr_post.php";
+
 
     final public static String ERROR_MESSAGE_EMPTY = "Operator fields cannot be empty!";
 
@@ -15,7 +16,7 @@ public interface Constants {
     final public static int POST_OPERATION = 1;
 
     final public static String OPERATION_ATTRIBUTE = "operation";
-    final public static String OPERATOR1_ATTRIBUTE = "operator1";
-    final public static String OPERATOR2_ATTRIBUTE = "operator2";
+    final public static String OPERATOR1_ATTRIBUTE = "t1";
+    final public static String OPERATOR2_ATTRIBUTE = "t2";
 
 }

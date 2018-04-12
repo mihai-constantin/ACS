@@ -6,10 +6,10 @@
     <string name="method">Method</string>
     <string name="display_result">Display Result</string>
     <string-array name="operations">
-        <item>addition</item>
-        <item>subtraction</item>
-        <item>multiplication</item>
-        <item>division</item>
+        <item>plus</item>
+        <item>minus</item>
+        <item>times</item>
+        <item>divide</item>
     </string-array>
     <string-array name="methods">
         <item>GET</item>
