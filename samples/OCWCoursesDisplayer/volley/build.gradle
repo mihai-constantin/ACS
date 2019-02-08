@@ -1,5 +1,5 @@
 // NOTE: The only changes that belong in this file are the definitions
-// of tool versions (gradle plugin, compile SDK, build tools), so that
+// of tool versions (gradle plugin, implementation SDK, build tools), so that
 // Volley can be built via gradle as a standalone project.
 //
 // Any other changes to the build config belong in rules.gradle, which
@@ -31,7 +31,7 @@ repositories {
 
 android {
     compileSdkVersion 25
-    buildToolsVersion = '25.0.2'
+    buildToolsVersion = '28.0.3'
 
     useLibrary 'org.apache.http.legacy'
 }
