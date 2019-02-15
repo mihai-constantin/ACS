@@ -6,7 +6,7 @@ public interface Constants {
 
     public final static boolean DEBUG = true;
 
-    public final static String NIST_SERVER_HOST = "time-b.nist.gov";
+    public final static String NIST_SERVER_HOST = "time-d.nist.gov";
     public final static int NIST_SERVER_PORT = 13;
 
 }
