@@ -17,12 +17,14 @@ public class ProcessingThread extends Thread {
     @Override
     public void run() {
         Log.d(Constants.TAG, "Thread.run() was invoked, PID: " + android.os.Process.myPid() + " TID: " + android.os.Process.myTid());
-        sendMessage(Constants.MESSAGE_STRING);
-        sleep();
-        sendMessage(Constants.MESSAGE_INTEGER);
-        sleep();
-        sendMessage(Constants.MESSAGE_ARRAY_LIST);
-        sleep();
+        while(true) {
+            sendMessage(Constants.MESSAGE_STRING);
+            sleep();
+            sendMessage(Constants.MESSAGE_INTEGER);
+            sleep();
+            sendMessage(Constants.MESSAGE_ARRAY_LIST);
+            sleep();
+        }
     }
 
     private void sendMessage(int messageType) {
