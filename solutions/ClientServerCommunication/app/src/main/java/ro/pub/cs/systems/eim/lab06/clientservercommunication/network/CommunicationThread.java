@@ -23,11 +23,11 @@ public class CommunicationThread extends Thread {
     @Override
     public void run() {
         try {
-            Log.v(Constants.TAG, "Connection opened with " + socket.getInetAddress() + ":" + socket.getLocalPort());
+            Log.v(Constants.TAG, "Connection opened to " + socket.getLocalAddress() + ":" + socket.getLocalPort()+ " from " + socket.getInetAddress());
             PrintWriter printWriter = Utilities.getWriter(socket);
             printWriter.println(serverTextEditText.getText().toString());
             socket.close();
-            Log.v(Constants.TAG, "Conenction closed");
+            Log.v(Constants.TAG, "Connection closed");
         } catch (IOException ioException) {
             Log.e(Constants.TAG, "An exception has occurred: " + ioException.getMessage());
             if (Constants.DEBUG) {

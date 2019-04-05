@@ -4,6 +4,7 @@ import android.util.Log;
 import android.widget.EditText;
 
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -43,9 +44,10 @@ public class ServerThread extends Thread {
     @Override
     public void run() {
         try {
-            serverSocket = new ServerSocket(Constants.SERVER_PORT);
+            serverSocket = new ServerSocket(Constants.SERVER_PORT, 50, InetAddress.getByName("0.0.0.0"));
             while (isRunning) {
                 Socket socket = serverSocket.accept();
+                Log.v(Constants.TAG, "accept()-ed: " + socket.getInetAddress());
                 if (socket != null) {
                     CommunicationThread communicationThread = new CommunicationThread(socket, serverTextEditText);
                     communicationThread.start();
