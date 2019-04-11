@@ -6,8 +6,8 @@ public interface Constants {
 
     final public static String TAG = "[CalculatorWebService]";
 
-    final public static String GET_WEB_SERVICE_ADDRESS = "http://wi-fi.cs.pub.ro/~dniculescu/didactic/eim/expr/expr_get.php";
-    final public static String POST_WEB_SERVICE_ADDRESS = "http://wi-fi.cs.pub.ro/~dniculescu/didactic/eim/expr/expr_post.php";
+    final public static String GET_WEB_SERVICE_ADDRESS = "https://wi-fi.cs.pub.ro/~dniculescu/didactic/eim/expr/expr_get.php";
+    final public static String POST_WEB_SERVICE_ADDRESS = "https://wi-fi.cs.pub.ro/~dniculescu/didactic/eim/expr/expr_post.php";
 
 
     final public static String ERROR_MESSAGE_EMPTY = "Operator fields cannot be empty!";
