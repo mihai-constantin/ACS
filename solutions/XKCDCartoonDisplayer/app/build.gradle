@@ -21,7 +21,6 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:25.2.0'
-    implementation project(':volley')
     implementation project(':jsoup-1.10.2')
     implementation group: 'cz.msebera.android' , name: 'httpclient', version: '4.4.1.2'
 }

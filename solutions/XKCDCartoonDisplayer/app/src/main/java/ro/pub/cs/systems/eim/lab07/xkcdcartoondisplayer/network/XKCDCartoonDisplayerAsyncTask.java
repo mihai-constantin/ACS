@@ -10,10 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.ImageRequest;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -141,29 +137,7 @@ public class XKCDCartoonDisplayerAsyncTask extends AsyncTask<String, Void, XKCDC
             String cartoonUrl = xkcdCartoonInformation.getCartoonUrl();
             if (cartoonUrl != null) {
                 xkcdCartoonUrlTextView.setText(cartoonUrl);
-                /*ImageRequest cartoonRequest = new ImageRequest(
-                        cartoonUrl,
-                        new Response.Listener<Bitmap>() {
-                            @Override
-                            public void onResponse(Bitmap bitmap) {
-                                xkcdCartoonImageView.setImageBitmap(bitmap);
-                            }
-                        },
-                        0,
-                        0,
-                        null,
-                        Bitmap.Config.RGB_565,
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError volleyError) {
-                                Log.d(Constants.TAG, volleyError.toString());
-                                if (Constants.DEBUG) {
-                                    Toast.makeText(xkcdCartoonTitleTextView.getContext(), xkcdCartoonTitleTextView.getResources().getString(R.string.an_error_has_occurred), Toast.LENGTH_LONG).show();
-                                }
-                            }
-                        }
-                );
-                VolleyController.getInstance(xkcdCartoonTitleTextView.getContext()).addToRequestQueue(cartoonRequest);*/
+
             }
             String previousCartoonUrl = xkcdCartoonInformation.getPreviousCartoonUrl();
             if (previousCartoonUrl != null) {

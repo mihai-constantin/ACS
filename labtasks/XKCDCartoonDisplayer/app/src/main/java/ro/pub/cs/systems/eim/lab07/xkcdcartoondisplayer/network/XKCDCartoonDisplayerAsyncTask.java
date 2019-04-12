@@ -83,7 +83,7 @@ public class XKCDCartoonDisplayerAsyncTask extends AsyncTask<String, Void, XKCDC
         // cartoonTitle -> xkcdCartoonTitleTextView
         // cartoonBitmap -> xkcdCartoonImageView (only if using Apache HTTP Components)
         // cartoonUrl -> xkcdCartoonUrlTextView
-        // based on cartoonUrl fetch the bitmap using Volley (using an ImageRequest object added to the queue)
+        // based on cartoonUrl fetch the bitmap
         // and put it into xkcdCartoonImageView
         // previousCartoonUrl, nextCartoonUrl -> set the XKCDCartoonUrlButtonClickListener for previousButton, nextButton
 
