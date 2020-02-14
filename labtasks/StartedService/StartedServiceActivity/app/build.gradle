@@ -2,10 +2,10 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 27
-    buildToolsVersion "28.0.3"
+    buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "ro.pub.cs.systems.eim.lab05.startedserviceactivity"
-        minSdkVersion 16
+        minSdkVersion 24
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -21,5 +21,5 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:25.2.0'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
 }
