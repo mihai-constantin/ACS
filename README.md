@@ -2,5 +2,5 @@
 
 * Adaugare dashboard harcodat - Picasso
 
-![Dashboard Example](/demo/dashboard.png =158x252)
+<img src="demo/dashboard.png" alt="drawing" width="158" height="252" />
 
