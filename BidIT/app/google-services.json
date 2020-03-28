@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1046400377984",
+    "firebase_url": "https://bidit-5e8c3.firebaseio.com",
+    "project_id": "bidit-5e8c3",
+    "storage_bucket": "bidit-5e8c3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1046400377984:android:f8ffe6862cf00eb6aa3265",
+        "android_client_info": {
+          "package_name": "com.joker.bidit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1046400377984-g6ja88hna0qa3i4bkd6mkqcqd5piet56.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.joker.bidit",
+            "certificate_hash": "324410d44c7b7ba111f11b30ca099a2d3e053459"
+          }
+        },
+        {
+          "client_id": "1046400377984-h0jfccpbjqbugtd1ls6tn3q02s94p97d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1SyMZM8_G2xE_JqmSoVqz2KZgGvVx3U8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1046400377984-h0jfccpbjqbugtd1ls6tn3q02s94p97d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,45 +1,50 @@
 package com.joker.bidit.dashboard;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 
 import com.joker.bidit.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecyclerViewerActivity extends AppCompatActivity {
+public class ProductsActivity extends AppCompatActivity {
 
-    private RecyclerView mRecyclerViewProducts;
+    private List<Product> mProducts;
+
+    private RecyclerView recyclerViewProducts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recycler_viewer);
+        setContentView(R.layout.activity_products);
 
         initView();
+        getProducts();
+        setLayoutManager();
+        setAdapter();
+        // setRecyclerViewListener();
     }
 
     private void initView() {
-        mRecyclerViewProducts = findViewById(R.id.recyclerview_products);
-
-        //set the layout manager for the current recycler view
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        mRecyclerViewProducts.setLayoutManager(layoutManager);
-
-        //create the adapter
-        ProductAdapter giftAdapter = new ProductAdapter(getGiftsList());
-
-        //set the adapter to the recycler view
-        mRecyclerViewProducts.setAdapter(giftAdapter);
+        recyclerViewProducts = findViewById(R.id.recyclerViewProducts);
     }
 
-    //get the data source
-    private List<Product> getGiftsList() {
-        List<Product> products = new ArrayList<>();
+    private void setLayoutManager() {
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerViewProducts.setLayoutManager(layoutManager);
+    }
 
+    private void setAdapter() {
+        ProductAdaptor fruitsAdapter = new ProductAdaptor(mProducts);
+        recyclerViewProducts.setAdapter(fruitsAdapter);
+    }
+
+    private void getProducts() {
+        mProducts = new ArrayList<>();
         Product product1 = new Product("red", 3.0, "Book", 200,
                 "https://images.unsplash.com/photo-1510546462255-979b0e0ca1b5?w=800&q=60");
         Product product2 = new Product("pink", 2.0, "Scarf", 20,
@@ -61,17 +66,15 @@ public class RecyclerViewerActivity extends AppCompatActivity {
         Product product10 = new Product("orange", 7.0, "Shoes", 720,
                 "https://images.unsplash.com/photo-1480632563560-30f503c09195?w=800&q=60");
 
-        products.add(product1);
-        products.add(product2);
-        products.add(product3);
-        products.add(product4);
-        products.add(product5);
-        products.add(product6);
-        products.add(product7);
-        products.add(product8);
-        products.add(product9);
-        products.add(product10);
-
-        return products;
+        mProducts.add(product1);
+        mProducts.add(product2);
+        mProducts.add(product3);
+        mProducts.add(product4);
+        mProducts.add(product5);
+        mProducts.add(product6);
+        mProducts.add(product7);
+        mProducts.add(product8);
+        mProducts.add(product9);
+        mProducts.add(product10);
     }
 }

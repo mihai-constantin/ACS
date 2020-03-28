@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_8"
         android:background="@color/colorPrimary"
-        android:onClick="btnSubmitOnClick"
+        android:onClick="recyclerViewOnClick"
         android:text="@string/submit"
         android:textColor="@android:color/white" />
 
