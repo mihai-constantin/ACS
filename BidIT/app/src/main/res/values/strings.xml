@@ -1,4 +1,22 @@
 <resources>
     <string name="app_name">BidIT</string>
     <string name="dashboard_button">DASHBOARD</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="login">LOGIN</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone</string>
+    <string name="accept"><![CDATA[I accept T&C]]></string>
+    <string name="submit">submit</string>
+    <string name="error_email_input">Fill the input with a valid email address</string>
+    <string name="error_phone_input">Fill the input with a phone number</string>
+    <string name="error_is_accepted_input">Check should be accepted</string>
+
 </resources>
