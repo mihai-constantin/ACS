@@ -13,4 +13,5 @@
     <color name="yellow_green">#C3FF6B</color>
     <color name="neon_green">#47FF14</color>
     <color name="red">#FF0000</color>
+    <color name="black">#000000</color>
 </resources>

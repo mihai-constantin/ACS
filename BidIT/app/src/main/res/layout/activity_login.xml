@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="@dimen/space_16"
-    tools:context=".login.LoginActivity">
+    tools:context=".MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
@@ -47,6 +47,23 @@
         android:onClick="recyclerViewOnClick"
         android:text="@string/submit"
         android:textColor="@android:color/white" />
+
+    <TextView
+        android:layout_marginTop="@dimen/space_16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/or"
+        android:textColor="@color/black"
+        android:textSize="@dimen/medium_text"/>
+
+    <com.google.android.gms.common.SignInButton
+        android:layout_marginTop="@dimen/space_16"
+        android:id="@+id/sign_in_button"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:colorScheme="dark" />
 
 
 </LinearLayout>
