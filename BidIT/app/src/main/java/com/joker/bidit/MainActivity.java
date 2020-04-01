@@ -20,7 +20,6 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -42,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private static final int RC_SIGN_IN = 9001;
     private static final String TAG = "SignInActivity";
+    private GoogleSignInOptions gso;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +51,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mAuthentication = new Authentication();
         initView();
 
+        setGooglePlusButtonText(findViewById(R.id.sign_in_button),
+                getString(R.string.continueWithGoogle));
+
+        mAuth = FirebaseAuth.getInstance();
+
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
@@ -62,9 +67,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         findViewById(R.id.sign_in_button).setOnClickListener(this);
 
-        mAuth = FirebaseAuth.getInstance();
-
-        setGooglePlusButtonText(findViewById(R.id.sign_in_button), getString(R.string.continueWithGoogle));
+        findViewById(R.id.sign_out_button).setOnClickListener(v -> revokeAccess());
     }
 
     // get the views from the layout based on an unique id defined in the xml file
@@ -140,9 +143,57 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+
+    private void updateUI(FirebaseUser account) {
+        if (account != null) {
+//            startActivity(new Intent(MainActivity.this, ProductsActivity.class));
+
+            Toast.makeText(MainActivity.this,
+                    String.format("Hello, %s", account.getDisplayName()),
+                    Toast.LENGTH_LONG).show();
+        }
+    }
+
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
+    private void revokeAccess() {
+        // Firebase sign out
+
+        Toast.makeText(MainActivity.this,
+                String.format("Goodbye, %s", FirebaseAuth.getInstance().getCurrentUser().getDisplayName()),
+                Toast.LENGTH_SHORT).show();
+
+        mAuth.signOut();
+
+        // Google revoke access
+        mGoogleSignInClient.revokeAccess().addOnCompleteListener(this,
+                new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        updateUI(null);
+                    }
+                });
+    }
+
+    public void signOut() {
+        // [START auth_sign_out]
+        try {
+            Toast.makeText(MainActivity.this,
+                    String.format("Goodbye, %s", FirebaseAuth.getInstance().getCurrentUser().getDisplayName()),
+                    Toast.LENGTH_SHORT).show();
+
+        } catch (NullPointerException e) {
+            Toast.makeText(MainActivity.this,
+                    "No user signed in",
+                    Toast.LENGTH_SHORT).show();
+        }
+
+        FirebaseAuth.getInstance().signOut();
+
+        // [END auth_sign_out]
     }
 
     @Override
@@ -176,19 +227,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-//                            updateUI(user);
-
-                            Toast.makeText(MainActivity.this,
-                                    String.format("Hello, %s", user.getDisplayName()),
-                                    Toast.LENGTH_LONG).show();
-
-                            startActivity(new Intent(MainActivity.this, ProductsActivity.class));
-
+                            updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
-//                            Snackbar.make(findViewById(R.id.main_layout), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
-//                            updateUI(null);
+//                            Snackbar.make(findViewById(R.id.nav_contact), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
+                            updateUI(null);
                         }
 
                         // ...
