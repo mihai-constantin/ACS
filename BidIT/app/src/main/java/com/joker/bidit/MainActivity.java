@@ -115,9 +115,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void recyclerViewOnClick(View view) {
         if (isEmailValid() && isPhoneValid() && isAccepted()) {
-            Toast.makeText(MainActivity.this, mAuthentication.toString(),
-                    Toast.LENGTH_LONG).show();
-            startActivity(new Intent(MainActivity.this, ProductsActivity.class));
+
+            //startActivity(new Intent(MainActivity.this, ProductsActivity.class));
+            firebaseAuthWithEmail();
         }
     }
 
@@ -149,7 +149,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //            startActivity(new Intent(MainActivity.this, ProductsActivity.class));
 
             Toast.makeText(MainActivity.this,
-                    String.format("Hello, %s", account.getDisplayName()),
+                    String.format("Hello, %s", account.getEmail()),
+                    Toast.LENGTH_LONG).show();
+        }
+        else {
+            Toast.makeText(MainActivity.this,
+                    String.format("Invalid email or password!"),
                     Toast.LENGTH_LONG).show();
         }
     }
@@ -213,6 +218,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 // ...
             }
         }
+    }
+
+    private void firebaseAuthWithEmail(){
+        String email = mEditTextEmail.getText().toString();
+        String password = mEditTextPhone.getText().toString();
+
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user);
+                            startActivity(new Intent(MainActivity.this, ProductsActivity.class));
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            /*Toast.makeText(EmailPasswordActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();*/
+                            updateUI(null);
+
+                        }
+                    }
+                });
+
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
