@@ -29,8 +29,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_8"
-        android:hint="@string/phone"
-        android:inputType="phone" />
+        android:hint="@string/password"
+        android:inputType="textPassword"/>
 
     <CheckBox
         android:id="@+id/checkbox_accept"
