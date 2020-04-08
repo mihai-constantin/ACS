@@ -14,7 +14,6 @@ import java.util.List;
 public class ProductsActivity extends AppCompatActivity {
 
     private List<Product> mProducts;
-
     private RecyclerView recyclerViewProducts;
 
     @Override
