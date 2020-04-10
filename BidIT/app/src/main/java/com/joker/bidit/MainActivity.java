@@ -27,6 +27,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.joker.bidit.dashboard.ProductsActivity;
 import com.joker.bidit.login.Authentication;
+import com.joker.bidit.navigationDrawer.NavigationDrawerActivity;
 import com.joker.bidit.utils.EmailHelper;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -42,6 +43,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final int RC_SIGN_IN = 9001;
     private static final String TAG = "SignInActivity";
     private GoogleSignInOptions gso;
+
+    public GoogleSignInOptions getGso() {
+        return gso;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -183,24 +188,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 });
     }
 
-    public void signOut() {
-        // [START auth_sign_out]
-        try {
-            Toast.makeText(MainActivity.this,
-                    String.format("Goodbye, %s", FirebaseAuth.getInstance().getCurrentUser().getDisplayName()),
-                    Toast.LENGTH_SHORT).show();
-
-        } catch (NullPointerException e) {
-            Toast.makeText(MainActivity.this,
-                    "No user signed in",
-                    Toast.LENGTH_SHORT).show();
-        }
-
-        FirebaseAuth.getInstance().signOut();
-
-        // [END auth_sign_out]
-    }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -260,6 +247,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
+
+                            // TODO
+                            // start a new activity
+                            startActivity(new Intent(MainActivity.this, NavigationDrawerActivity.class));
+
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
