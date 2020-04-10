@@ -27,6 +27,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.joker.bidit.dashboard.ProductsActivity;
 import com.joker.bidit.login.Authentication;
+import com.joker.bidit.navigationDrawer.NavigationDrawerActivity;
 import com.joker.bidit.utils.EmailHelper;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -260,6 +261,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
+
+                            // TODO
+                            // start a new activity
+                            startActivity(new Intent(MainActivity.this, NavigationDrawerActivity.class));
+
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());

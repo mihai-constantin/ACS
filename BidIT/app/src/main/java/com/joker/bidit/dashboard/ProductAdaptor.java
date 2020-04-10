@@ -1,5 +1,6 @@
 package com.joker.bidit.dashboard;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +16,15 @@ import java.util.List;
 public class ProductAdaptor extends RecyclerView.Adapter<ProductsViewHolder> {
 
     private List<Product> products;
+    private Context context;
 
     public ProductAdaptor(List<Product> products) {
         this.products = products;
+    }
+
+    public ProductAdaptor(Context context, List<Product> data) {
+        this.context = context;
+        this.products = data;
     }
 
     @NonNull
