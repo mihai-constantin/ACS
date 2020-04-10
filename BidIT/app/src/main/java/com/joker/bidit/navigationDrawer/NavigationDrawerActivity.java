@@ -1,5 +1,6 @@
 package com.joker.bidit.navigationDrawer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.joker.bidit.Advertisement.AddAdvertisementActivity;
 import com.joker.bidit.MainActivity;
 import com.joker.bidit.R;
 import com.squareup.picasso.Picasso;
@@ -51,8 +53,11 @@ public class NavigationDrawerActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+
+                startActivity(new Intent(NavigationDrawerActivity.this, AddAdvertisementActivity.class));
+
             }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

@@ -44,10 +44,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final String TAG = "SignInActivity";
     private GoogleSignInOptions gso;
 
-    public GoogleSignInOptions getGso() {
-        return gso;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
