@@ -28,10 +28,11 @@
     <string name="password">Password</string>
     <string name="title_activity_navigation_drawer">NavigationDrawerActivity</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
+    <string name="menu_home">Dashboard</string>
+    <string name="menu_gallery">Favorites</string>
     <string name="menu_slideshow">Slideshow</string>
 
     <string name="home_second">Home Second</string>
+    <string name="sign_out">Sign out</string>
 
 </resources>

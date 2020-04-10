@@ -44,6 +44,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final String TAG = "SignInActivity";
     private GoogleSignInOptions gso;
 
+    public GoogleSignInOptions getGso() {
+        return gso;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -182,24 +186,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         // updateUI(null);
                     }
                 });
-    }
-
-    public void signOut() {
-        // [START auth_sign_out]
-        try {
-            Toast.makeText(MainActivity.this,
-                    String.format("Goodbye, %s", FirebaseAuth.getInstance().getCurrentUser().getDisplayName()),
-                    Toast.LENGTH_SHORT).show();
-
-        } catch (NullPointerException e) {
-            Toast.makeText(MainActivity.this,
-                    "No user signed in",
-                    Toast.LENGTH_SHORT).show();
-        }
-
-        FirebaseAuth.getInstance().signOut();
-
-        // [END auth_sign_out]
     }
 
     @Override
