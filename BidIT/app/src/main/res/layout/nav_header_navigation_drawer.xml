@@ -24,6 +24,9 @@
         android:id="@+id/imageViewUser"
         android:paddingTop="@dimen/space_32"
         android:layout_width="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="getUserInfo"
         android:layout_height="96dp" />
 
     <TextView

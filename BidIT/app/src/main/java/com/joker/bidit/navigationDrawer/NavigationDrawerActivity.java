@@ -23,6 +23,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.joker.bidit.Advertisement.AddAdvertisementActivity;
 import com.joker.bidit.MainActivity;
 import com.joker.bidit.R;
+import com.joker.bidit.accountInfo.getInfoActivity;
+import com.joker.bidit.test.TestActivity;
 import com.squareup.picasso.Picasso;
 
 import androidx.annotation.NonNull;
@@ -144,5 +146,9 @@ public class NavigationDrawerActivity extends AppCompatActivity {
                 });
 
         finish();
+    }
+
+    public void getUserInfo(View view) {
+        startActivity(new Intent(NavigationDrawerActivity.this, getInfoActivity.class));
     }
 }
