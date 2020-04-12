@@ -34,5 +34,14 @@
 
     <string name="home_second">Home Second</string>
     <string name="sign_out">Sign out</string>
+    <string name="gallery_photo">Gallery Photo</string>
+    <string name="select">Select</string>
+    <string name="take_picture">Take Picture</string>
+    <string name="product_name">Product Name</string>
+    <string name="product_color">Product Color</string>
+    <string name="product_weight">Product Weight</string>
+    <string name="product_price">Product Price</string>
+    <string name="_0_ron">0 RON</string>
+    <string name="save">Save</string>
 
 </resources>

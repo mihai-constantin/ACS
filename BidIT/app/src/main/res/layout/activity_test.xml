@@ -6,4 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".test.TestActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="test"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
