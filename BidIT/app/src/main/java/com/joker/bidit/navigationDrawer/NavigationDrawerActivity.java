@@ -20,6 +20,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.joker.bidit.Advertisement.AddAdvertisementActivity;
 import com.joker.bidit.MainActivity;
 import com.joker.bidit.R;
@@ -100,7 +101,21 @@ public class NavigationDrawerActivity extends AppCompatActivity {
                     .centerCrop()
                     .into(mImageViewUser);
         }
+        else {
 
+            // TODO - email & password authentication
+            FirebaseAuth mAuth = FirebaseAuth.getInstance();
+            FirebaseUser user = mAuth.getCurrentUser();
+
+            assert user != null;
+            mTextViewEmailUser.setText(user.getEmail());
+
+            Picasso.get()
+                    .load("https://www.freepngimg.com/thumb/google/66726-customer-account-google-service-button-search-logo.png")
+                    .resize(300,300)
+                    .centerCrop()
+                    .into(mImageViewUser);
+        }
     }
 
     @Override
@@ -123,7 +138,7 @@ public class NavigationDrawerActivity extends AppCompatActivity {
         GoogleSignInClient mGoogleSignInClient;
 
         Toast.makeText(NavigationDrawerActivity.this,
-                String.format("Goodbye, %s", FirebaseAuth.getInstance().getCurrentUser().getDisplayName()),
+                String.format("Goodbye, %s", FirebaseAuth.getInstance().getCurrentUser().getEmail()),
                 Toast.LENGTH_SHORT).show();
 
         mAuth.signOut();

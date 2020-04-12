@@ -67,15 +67,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         findViewById(R.id.sign_in_button).setOnClickListener(this);
-
-        findViewById(R.id.sign_out_button).setOnClickListener(v -> revokeAccess());
     }
 
     // get the views from the layout based on an unique id defined in the xml file
     private void initView() {
+
         mEditTextEmail = findViewById(R.id.edittext_email);
         mEditTextPhone = findViewById(R.id.edittext_phone);
         mCheckBoxAccept = findViewById(R.id.checkbox_accept);
+
+        mEditTextEmail.setText("");
+        mEditTextPhone.setText("");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        mEditTextEmail.setText("");
+        mEditTextPhone.setText("");
+        if (mCheckBoxAccept.isChecked()) {
+            mCheckBoxAccept.toggle();
+        }
+
     }
 
     // validate the content from the email EditText
@@ -163,25 +177,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
-
-    private void revokeAccess() {
-        // Firebase sign out
-
-        Toast.makeText(MainActivity.this,
-                String.format("Goodbye, %s", FirebaseAuth.getInstance().getCurrentUser().getDisplayName()),
-                Toast.LENGTH_SHORT).show();
-
-        mAuth.signOut();
-
-        // Google revoke access
-        mGoogleSignInClient.revokeAccess().addOnCompleteListener(this,
-                new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        // updateUI(null);
-                    }
-                });
     }
 
     @Override

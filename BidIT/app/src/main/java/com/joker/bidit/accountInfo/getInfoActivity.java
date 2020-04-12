@@ -10,6 +10,8 @@ import android.widget.TextView;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.joker.bidit.R;
 import com.squareup.picasso.Picasso;
 
@@ -44,6 +46,19 @@ public class getInfoActivity extends AppCompatActivity {
             Picasso.get()
                     .load(photo)
                     .resize(300, 300)
+                    .centerCrop()
+                    .into(mImageViewUser);
+        }
+        else {
+            FirebaseAuth mAuth = FirebaseAuth.getInstance();
+            FirebaseUser user = mAuth.getCurrentUser();
+
+            assert user != null;
+            mTextViewEmailUser.setText(user.getEmail());
+
+            Picasso.get()
+                    .load("https://www.freepngimg.com/thumb/google/66726-customer-account-google-service-button-search-logo.png")
+                    .resize(300,300)
                     .centerCrop()
                     .into(mImageViewUser);
         }
