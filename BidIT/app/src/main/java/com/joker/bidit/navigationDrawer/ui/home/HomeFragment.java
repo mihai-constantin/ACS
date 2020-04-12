@@ -24,6 +24,8 @@ import com.joker.bidit.dashboard.RecyclerTouchListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Double.parseDouble;
+
 public class HomeFragment extends Fragment {
 
     public static final String NAME = "PRODUCT_NAME";
@@ -31,6 +33,8 @@ public class HomeFragment extends Fragment {
     public static final String WEIGHT = "PRODUCT_WEIGHT";
     public static final String PRICE = "PRODUCT_PRICE";
     public static final String PHOTO_URL = "PRODUCT_PHOTO_URL";
+
+    public static Integer POSITION = -1;
 
     View root;
 
@@ -56,11 +60,22 @@ public class HomeFragment extends Fragment {
 
         Toast.makeText(context, "I'm back",
                 Toast.LENGTH_LONG).show();
+
+        if (HomeFragment.POSITION != -1) {
+
+            // update info product
+            mProducts.get(HomeFragment.POSITION).setName(AddProductActivity.updated_name);
+            mProducts.get(HomeFragment.POSITION).setColour(AddProductActivity.updated_color);
+            mProducts.get(HomeFragment.POSITION).setPrice(parseDouble(AddProductActivity.updated_price));
+            mProducts.get(HomeFragment.POSITION).setWeight(parseDouble(AddProductActivity.updated_weight));
+
+            HomeFragment.POSITION = -1;
+        }
     }
 
     private void populateRecyclerView() {
        recyclerViewProducts = root.findViewById(R.id.recyclerViewProducts);
-       recyclerViewProducts.setHasFixedSize(true);
+       // recyclerViewProducts.setHasFixedSize(true);
 
        recyclerViewProducts.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -88,6 +103,8 @@ public class HomeFragment extends Fragment {
 
 //                Toast.makeText(context, getString(R.string.single_click) + message,
 //                        Toast.LENGTH_SHORT).show();
+
+                POSITION = position;
 
                 Intent secondActivity = new Intent(adapter.getContext(), AddProductActivity.class);
                 secondActivity.putExtra(HomeFragment.NAME, name);
