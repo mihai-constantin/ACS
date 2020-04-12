@@ -1,24 +1,36 @@
 package com.joker.bidit.navigationDrawer.ui.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.joker.bidit.R;
+import com.joker.bidit.addProduct.AddProductActivity;
 import com.joker.bidit.dashboard.Product;
 import com.joker.bidit.dashboard.ProductAdaptor;
+import com.joker.bidit.dashboard.ProductsClickListener;
+import com.joker.bidit.dashboard.RecyclerTouchListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
+
+    public static final String NAME = "PRODUCT_NAME";
+    public static final String COLOR = "PRODUCT_COLOR";
+    public static final String WEIGHT = "PRODUCT_WEIGHT";
+    public static final String PRICE = "PRODUCT_PRICE";
+    public static final String PHOTO_URL = "PRODUCT_PHOTO_URL";
 
     View root;
 
@@ -38,6 +50,14 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        Toast.makeText(context, "I'm back",
+                Toast.LENGTH_LONG).show();
+    }
+
     private void populateRecyclerView() {
        recyclerViewProducts = root.findViewById(R.id.recyclerViewProducts);
        recyclerViewProducts.setHasFixedSize(true);
@@ -49,6 +69,41 @@ public class HomeFragment extends Fragment {
        adapter = new ProductAdaptor(getActivity(), mProducts);
        recyclerViewProducts.setAdapter(adapter);
        adapter.notifyDataSetChanged();
+
+        setRecyclerViewListener();
+    }
+
+    private void setRecyclerViewListener() {
+        recyclerViewProducts.addOnItemTouchListener(new RecyclerTouchListener(context,
+                recyclerViewProducts, new ProductsClickListener() {
+            @Override
+            public void onClick(View view, final int position) {
+
+                Product product = mProducts.get(position);
+                String name = product.getName();
+                String color = product.getColor();
+                String weight = product.getWeight().toString();
+                String photo = product.getPicture();
+                String price = product.getPrice().toString();
+
+//                Toast.makeText(context, getString(R.string.single_click) + message,
+//                        Toast.LENGTH_SHORT).show();
+
+                Intent secondActivity = new Intent(adapter.getContext(), AddProductActivity.class);
+                secondActivity.putExtra(HomeFragment.NAME, name);
+                secondActivity.putExtra(HomeFragment.COLOR, color);
+                secondActivity.putExtra(HomeFragment.WEIGHT, weight);
+                secondActivity.putExtra(HomeFragment.PHOTO_URL, photo);
+                secondActivity.putExtra(HomeFragment.PRICE, price);
+                startActivity(secondActivity);
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+                Toast.makeText(context, getString(R.string.long_click) + position,
+                        Toast.LENGTH_LONG).show();
+            }
+        }));
     }
 
     private void getProducts() {
@@ -85,4 +140,6 @@ public class HomeFragment extends Fragment {
 //        mProducts.add(product9);
 //        mProducts.add(product10);
     }
+
+
 }

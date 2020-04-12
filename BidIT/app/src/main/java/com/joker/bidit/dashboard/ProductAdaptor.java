@@ -18,6 +18,11 @@ public class ProductAdaptor extends RecyclerView.Adapter<ProductsViewHolder> {
     private List<Product> products;
     private Context context;
 
+
+    public Context getContext() {
+        return context;
+    }
+
     public ProductAdaptor(List<Product> products) {
         this.products = products;
     }

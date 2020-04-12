@@ -43,5 +43,7 @@
     <string name="product_price">Product Price</string>
     <string name="_0_ron">0 RON</string>
     <string name="save">Save</string>
+    <string name="single_click">Single click</string>
+    <string name="long_click">Long Click</string>
 
 </resources>
