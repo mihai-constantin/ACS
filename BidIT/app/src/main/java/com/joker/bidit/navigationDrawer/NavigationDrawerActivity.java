@@ -17,15 +17,13 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.joker.bidit.Advertisement.AddAdvertisementActivity;
-import com.joker.bidit.MainActivity;
 import com.joker.bidit.R;
 import com.joker.bidit.accountInfo.getInfoActivity;
-import com.joker.bidit.test.TestActivity;
+import com.joker.bidit.addProduct.AddProductActivity;
 import com.squareup.picasso.Picasso;
 
 import androidx.annotation.NonNull;
@@ -59,8 +57,7 @@ public class NavigationDrawerActivity extends AppCompatActivity {
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
 
-                startActivity(new Intent(NavigationDrawerActivity.this, AddAdvertisementActivity.class));
-
+                startActivity(new Intent(NavigationDrawerActivity.this, AddProductActivity.class));
             }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -102,8 +99,6 @@ public class NavigationDrawerActivity extends AppCompatActivity {
                     .into(mImageViewUser);
         }
         else {
-
-            // TODO - email & password authentication
             FirebaseAuth mAuth = FirebaseAuth.getInstance();
             FirebaseUser user = mAuth.getCurrentUser();
 
