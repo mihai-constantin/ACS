@@ -69,7 +69,23 @@ public class HomeFragment extends Fragment {
             mProducts.get(HomeFragment.POSITION).setPrice(parseDouble(AddProductActivity.updated_price));
             mProducts.get(HomeFragment.POSITION).setWeight(parseDouble(AddProductActivity.updated_weight));
 
+            adapter.notifyDataSetChanged();
+
             HomeFragment.POSITION = -1;
+        }
+        else {
+            if (AddProductActivity.ADD_NEW_PRODUCT == 1) {
+//            Toast.makeText(context, "TODO - add new product",
+//                    Toast.LENGTH_LONG).show();
+                Product new_product = new Product(AddProductActivity.updated_color,
+                        parseDouble(AddProductActivity.updated_weight),
+                        AddProductActivity.updated_name,
+                        parseDouble(AddProductActivity.updated_price),
+                        "https://images.unsplash.com/photo-1514192631-251f5f0b14f2?w=800&q=60");
+                mProducts.add(new_product);
+
+                adapter.notifyDataSetChanged();
+            }
         }
     }
 
@@ -85,7 +101,7 @@ public class HomeFragment extends Fragment {
        recyclerViewProducts.setAdapter(adapter);
        adapter.notifyDataSetChanged();
 
-        setRecyclerViewListener();
+       setRecyclerViewListener();
     }
 
     private void setRecyclerViewListener() {

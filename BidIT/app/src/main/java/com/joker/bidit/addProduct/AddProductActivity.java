@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.joker.bidit.R;
 import com.joker.bidit.navigationDrawer.ui.home.HomeFragment;
@@ -28,6 +29,10 @@ public class AddProductActivity extends AppCompatActivity {
     public static String updated_weight;
     public static String updated_price;
 
+    public static Integer ADD_NEW_PRODUCT = 0;
+
+    public String price;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +43,7 @@ public class AddProductActivity extends AppCompatActivity {
         String color = intent.getStringExtra(HomeFragment.COLOR);
         String weight = intent.getStringExtra(HomeFragment.WEIGHT);
         String photo = intent.getStringExtra(HomeFragment.PHOTO_URL);
-        String price = intent.getStringExtra(HomeFragment.PRICE);
+        price = intent.getStringExtra(HomeFragment.PRICE);
 
         initView();
 
@@ -54,26 +59,26 @@ public class AddProductActivity extends AppCompatActivity {
 
             Double initialPrice = Double.parseDouble(price);
             seek_bar.setProgress(initialPrice.intValue());
-
-            seek_bar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-                @Override
-                public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                    int price = seekBar.getProgress();
-                    String priceEuro = price + " RON";
-                    price_ron.setText(priceEuro);
-                }
-
-                @Override
-                public void onStartTrackingTouch(SeekBar seekBar) {
-
-                }
-
-                @Override
-                public void onStopTrackingTouch(SeekBar seekBar) {
-
-                }
-            });
         }
+
+        seek_bar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                int price = seekBar.getProgress();
+                String priceEuro = price + " RON";
+                price_ron.setText(priceEuro);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
 
     }
 
@@ -95,11 +100,24 @@ public class AddProductActivity extends AppCompatActivity {
     }
 
     public void bntOnClick(View view) {
-        if (productNameEditText != null) {
+        if (price != null) {
             updated_name = productNameEditText.getText().toString();
             updated_color = productColorEditText.getText().toString();
             updated_weight = productWeightEditText.getText().toString();
             updated_price = Integer.toString(seek_bar.getProgress());
+
+            ADD_NEW_PRODUCT = 0;
+        }
+        else {
+            Toast.makeText(AddProductActivity.this, "TODO - aici intra",
+                    Toast.LENGTH_LONG).show();
+
+            updated_name = productNameEditText.getText().toString();
+            updated_color = productColorEditText.getText().toString();
+            updated_weight = productWeightEditText.getText().toString();
+            updated_price = Integer.toString(seek_bar.getProgress());
+
+            ADD_NEW_PRODUCT = 1;
         }
 
         finish();
