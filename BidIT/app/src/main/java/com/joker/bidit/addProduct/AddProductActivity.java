@@ -40,6 +40,7 @@ public class AddProductActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_product);
 
         pressSaveButton = 0;
+        ADD_NEW_PRODUCT = 0;
 
         Intent intent = getIntent();
         String name = intent.getStringExtra(HomeFragment.NAME);
