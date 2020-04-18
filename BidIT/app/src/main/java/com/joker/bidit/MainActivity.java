@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -25,8 +26,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.joker.bidit.dashboard.ProductsActivity;
 import com.joker.bidit.login.Authentication;
+import com.joker.bidit.login.EditProfileActivity;
 import com.joker.bidit.navigationDrawer.NavigationDrawerActivity;
 import com.joker.bidit.utils.EmailHelper;
 
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText mEditTextEmail;
     private EditText mEditTextPhone;
     private CheckBox mCheckBoxAccept;
+    private Button mLogginButton;
 
     private Authentication mAuthentication;
     private GoogleSignInClient mGoogleSignInClient;
@@ -75,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mEditTextEmail = findViewById(R.id.edittext_email);
         mEditTextPhone = findViewById(R.id.edittext_phone);
         mCheckBoxAccept = findViewById(R.id.checkbox_accept);
+        mLogginButton = findViewById(R.id.loginButton);
 
         mEditTextEmail.setText("");
         mEditTextPhone.setText("");
@@ -130,9 +133,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void recyclerViewOnClick(View view) {
         if (isEmailValid() && isPhoneValid() && isAccepted()) {
+            if (mLogginButton.getText().equals("SIGN IN")) {
+                firebaseAuthWithEmail();
+            }
+            else {
+                Toast.makeText(MainActivity.this,
+                        String.format("TODO - SIGN UP"),
+                        Toast.LENGTH_SHORT).show();
 
-            //startActivity(new Intent(MainActivity.this, ProductsActivity.class));
-            firebaseAuthWithEmail();
+                // TODO - SIGN UP
+                String email = mEditTextEmail.getText().toString();
+                String password = mEditTextPhone.getText().toString();
+
+                mAuth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(MainActivity.this, task -> {
+
+                            if (!task.isSuccessful()) {
+                                Toast.makeText(MainActivity.this, "ERROR",Toast.LENGTH_LONG).show();
+                            }
+                            else {
+                                // successful sign up
+                                startActivity(new Intent(MainActivity.this, EditProfileActivity.class));
+                            }
+                        });
+            }
         }
     }
 
@@ -157,7 +181,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
-
 
     private void updateUI(FirebaseUser account) {
         if (account != null) {
@@ -198,7 +221,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void firebaseAuthWithEmail(){
+    private void firebaseAuthWithEmail() {
         String email = mEditTextEmail.getText().toString();
         String password = mEditTextPhone.getText().toString();
 
@@ -220,7 +243,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             /*Toast.makeText(EmailPasswordActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();*/
                             updateUI(null);
-
                         }
                     }
                 });
@@ -255,5 +277,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         // ...
                     }
                 });
+    }
+
+    public void loginMessageOnClick(View view) {
+        TextView textView = view.findViewById(R.id.loginMessage);
+        if(textView.getText().equals("Already a member?")) {
+            textView.setText("Don't have an account yet? Register now!");
+            mLogginButton.setText("SIGN IN");
+        }
+        else {
+            textView.setText("Already a member?");
+            mLogginButton.setText("SIGN UP");
+        }
     }
 }

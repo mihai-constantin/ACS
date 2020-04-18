@@ -14,8 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".addProduct.AddProductActivity"></activity>
-        <activity android:name=".accountInfo.getInfoActivity" />
+        <activity android:name=".login.EditProfileActivity"></activity>
+        <activity android:name=".addProduct.AddProductActivity" />
+        <activity android:name=".accountInfo.GetInfoActivity" />
         <activity android:name=".Advertisement.AddAdvertisementActivity" />
         <activity
             android:name=".navigationDrawer.NavigationDrawerActivity"

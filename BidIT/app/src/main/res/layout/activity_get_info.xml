@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".accountInfo.getInfoActivity">
+    tools:context=".accountInfo.GetInfoActivity">
 
     <com.mikhaellopez.circularimageview.CircularImageView
         android:id="@+id/imageViewUser"
