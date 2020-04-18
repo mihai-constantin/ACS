@@ -32,11 +32,14 @@ public class AddProductActivity extends AppCompatActivity {
     public static Integer ADD_NEW_PRODUCT = 0;
 
     public String price;
+    public static Integer pressSaveButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
+
+        pressSaveButton = 0;
 
         Intent intent = getIntent();
         String name = intent.getStringExtra(HomeFragment.NAME);
@@ -100,6 +103,7 @@ public class AddProductActivity extends AppCompatActivity {
     }
 
     public void bntOnClick(View view) {
+        pressSaveButton = 1;
         if (price != null) {
             updated_name = productNameEditText.getText().toString();
             updated_color = productColorEditText.getText().toString();
@@ -109,9 +113,6 @@ public class AddProductActivity extends AppCompatActivity {
             ADD_NEW_PRODUCT = 0;
         }
         else {
-            Toast.makeText(AddProductActivity.this, "TODO - aici intra",
-                    Toast.LENGTH_LONG).show();
-
             updated_name = productNameEditText.getText().toString();
             updated_color = productColorEditText.getText().toString();
             updated_weight = productWeightEditText.getText().toString();

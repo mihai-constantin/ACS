@@ -20,7 +20,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.joker.bidit.Advertisement.AddAdvertisementActivity;
 import com.joker.bidit.R;
 import com.joker.bidit.accountInfo.getInfoActivity;
 import com.joker.bidit.addProduct.AddProductActivity;
