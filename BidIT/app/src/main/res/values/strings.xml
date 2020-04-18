@@ -47,5 +47,14 @@
     <string name="long_click">Long Click</string>
     <string name="sign_up">Sign up</string>
     <string name="already_a_member">Already a member?</string>
+    <string name="create_profile">Create Profile</string>
+    <string name="name">Name</string>
+    <string name="enter_your_name">Enter your name</string>
+    <string name="surname">Surname</string>
+    <string name="enter_your_surname">Enter your surname</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="enter_your_phone_number">Enter your phone number</string>
+    <string name="e_mail">Email</string>
+    <string name="email_address">Email Address</string>
 
 </resources>

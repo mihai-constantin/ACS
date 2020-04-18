@@ -26,8 +26,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.joker.bidit.dashboard.ProductsActivity;
 import com.joker.bidit.login.Authentication;
+import com.joker.bidit.login.EditProfileActivity;
 import com.joker.bidit.navigationDrawer.NavigationDrawerActivity;
 import com.joker.bidit.utils.EmailHelper;
 
@@ -140,6 +140,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(MainActivity.this,
                         String.format("TODO - SIGN UP"),
                         Toast.LENGTH_SHORT).show();
+
+                // TODO - SIGN UP
+                String email = mEditTextEmail.getText().toString();
+                String password = mEditTextPhone.getText().toString();
+
+                mAuth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(MainActivity.this, task -> {
+
+                            if (!task.isSuccessful()) {
+                                Toast.makeText(MainActivity.this, "ERROR",Toast.LENGTH_LONG).show();
+                            }
+                            else {
+                                // successful sign up
+                                startActivity(new Intent(MainActivity.this, EditProfileActivity.class));
+                            }
+                        });
             }
         }
     }
@@ -165,7 +181,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
-
 
     private void updateUI(FirebaseUser account) {
         if (account != null) {

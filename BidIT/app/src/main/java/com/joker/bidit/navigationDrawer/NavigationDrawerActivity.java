@@ -1,6 +1,7 @@
 package com.joker.bidit.navigationDrawer;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -9,19 +10,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.joker.bidit.R;
-import com.joker.bidit.accountInfo.getInfoActivity;
+import com.joker.bidit.accountInfo.GetInfoActivity;
 import com.joker.bidit.addProduct.AddProductActivity;
 import com.squareup.picasso.Picasso;
 
@@ -41,6 +44,8 @@ public class NavigationDrawerActivity extends AppCompatActivity {
     private TextView mTextViewUserName;
     private TextView mTextViewEmailUser;
     private ImageView mImageViewUser;
+
+    private FirebaseStorage firebaseStorage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,11 +109,21 @@ public class NavigationDrawerActivity extends AppCompatActivity {
             assert user != null;
             mTextViewEmailUser.setText(user.getEmail());
 
-            Picasso.get()
-                    .load("https://www.freepngimg.com/thumb/google/66726-customer-account-google-service-button-search-logo.png")
-                    .resize(300,300)
-                    .centerCrop()
-                    .into(mImageViewUser);
+//            Picasso.get()
+//                    .load("https://www.freepngimg.com/thumb/google/66726-customer-account-google-service-button-search-logo.png")
+//                    .resize(300,300)
+//                    .centerCrop()
+//                    .into(mImageViewUser);
+
+            firebaseStorage = FirebaseStorage.getInstance();
+            StorageReference storageReference = firebaseStorage.getReference();
+            // Get the image stored on Firebase via "User id/Images/Profile Pic.jpg".
+            storageReference.child(mAuth.getUid()).child("Images").child("Profile Pic").getDownloadUrl().addOnSuccessListener(uri -> {
+                // Using "Picasso" (http://square.github.io/picasso/) after adding the dependency in the Gradle.
+                // ".fit().centerInside()" fits the entire image into the specified area.
+                // Finally, add "READ" and "WRITE" external storage permissions in the Manifest.
+                Picasso.get().load(uri).fit().centerInside().into(mImageViewUser);
+            });
         }
     }
 
@@ -158,6 +173,6 @@ public class NavigationDrawerActivity extends AppCompatActivity {
     }
 
     public void getUserInfo(View view) {
-        startActivity(new Intent(NavigationDrawerActivity.this, getInfoActivity.class));
+        startActivity(new Intent(NavigationDrawerActivity.this, GetInfoActivity.class));
     }
 }
