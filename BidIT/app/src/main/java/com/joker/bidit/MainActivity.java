@@ -211,8 +211,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
-                            startActivity(new Intent(MainActivity.this, ProductsActivity.class));
-//                            startActivity(new Intent(MainActivity.this, NavigationDrawerActivity.class));
+//                            startActivity(new Intent(MainActivity.this, ProductsActivity.class));
+                            startActivity(new Intent(MainActivity.this, NavigationDrawerActivity.class));
 
                         } else {
                             // If sign in fails, display a message to the user.
