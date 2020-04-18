@@ -1,24 +1,40 @@
 package com.joker.bidit.navigationDrawer.ui.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.joker.bidit.R;
+import com.joker.bidit.addProduct.AddProductActivity;
 import com.joker.bidit.dashboard.Product;
 import com.joker.bidit.dashboard.ProductAdaptor;
+import com.joker.bidit.dashboard.ProductsClickListener;
+import com.joker.bidit.dashboard.RecyclerTouchListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Double.parseDouble;
+
 public class HomeFragment extends Fragment {
+
+    public static final String NAME = "PRODUCT_NAME";
+    public static final String COLOR = "PRODUCT_COLOR";
+    public static final String WEIGHT = "PRODUCT_WEIGHT";
+    public static final String PRICE = "PRODUCT_PRICE";
+    public static final String PHOTO_URL = "PRODUCT_PHOTO_URL";
+
+    public static Integer POSITION = -1;
 
     View root;
 
@@ -38,9 +54,44 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        Toast.makeText(context, "I'm back",
+                Toast.LENGTH_LONG).show();
+
+        if (HomeFragment.POSITION != -1) {
+
+            // update info product
+            mProducts.get(HomeFragment.POSITION).setName(AddProductActivity.updated_name);
+            mProducts.get(HomeFragment.POSITION).setColour(AddProductActivity.updated_color);
+            mProducts.get(HomeFragment.POSITION).setPrice(parseDouble(AddProductActivity.updated_price));
+            mProducts.get(HomeFragment.POSITION).setWeight(parseDouble(AddProductActivity.updated_weight));
+
+            adapter.notifyDataSetChanged();
+
+            HomeFragment.POSITION = -1;
+        }
+        else {
+            if (AddProductActivity.ADD_NEW_PRODUCT == 1) {
+//            Toast.makeText(context, "TODO - add new product",
+//                    Toast.LENGTH_LONG).show();
+                Product new_product = new Product(AddProductActivity.updated_color,
+                        parseDouble(AddProductActivity.updated_weight),
+                        AddProductActivity.updated_name,
+                        parseDouble(AddProductActivity.updated_price),
+                        "https://images.unsplash.com/photo-1514192631-251f5f0b14f2?w=800&q=60");
+                mProducts.add(new_product);
+
+                adapter.notifyDataSetChanged();
+            }
+        }
+    }
+
     private void populateRecyclerView() {
        recyclerViewProducts = root.findViewById(R.id.recyclerViewProducts);
-       recyclerViewProducts.setHasFixedSize(true);
+       // recyclerViewProducts.setHasFixedSize(true);
 
        recyclerViewProducts.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -49,6 +100,43 @@ public class HomeFragment extends Fragment {
        adapter = new ProductAdaptor(getActivity(), mProducts);
        recyclerViewProducts.setAdapter(adapter);
        adapter.notifyDataSetChanged();
+
+       setRecyclerViewListener();
+    }
+
+    private void setRecyclerViewListener() {
+        recyclerViewProducts.addOnItemTouchListener(new RecyclerTouchListener(context,
+                recyclerViewProducts, new ProductsClickListener() {
+            @Override
+            public void onClick(View view, final int position) {
+
+                Product product = mProducts.get(position);
+                String name = product.getName();
+                String color = product.getColor();
+                String weight = product.getWeight().toString();
+                String photo = product.getPicture();
+                String price = product.getPrice().toString();
+
+//                Toast.makeText(context, getString(R.string.single_click) + message,
+//                        Toast.LENGTH_SHORT).show();
+
+                POSITION = position;
+
+                Intent secondActivity = new Intent(adapter.getContext(), AddProductActivity.class);
+                secondActivity.putExtra(HomeFragment.NAME, name);
+                secondActivity.putExtra(HomeFragment.COLOR, color);
+                secondActivity.putExtra(HomeFragment.WEIGHT, weight);
+                secondActivity.putExtra(HomeFragment.PHOTO_URL, photo);
+                secondActivity.putExtra(HomeFragment.PRICE, price);
+                startActivity(secondActivity);
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+                Toast.makeText(context, getString(R.string.long_click) + position,
+                        Toast.LENGTH_LONG).show();
+            }
+        }));
     }
 
     private void getProducts() {
@@ -59,30 +147,32 @@ public class HomeFragment extends Fragment {
                 "https://images.unsplash.com/photo-1514207994142-98522b5a2b23?w=800&q=60");
         Product product3 = new Product("blue", 5.0, "T-shirt", 160,
                 "https://images.unsplash.com/photo-1512909481869-0eaa1e9817ba?w=800&q=60");
-        Product product4 = new Product("white", 1.0, "Scarf", 80,
-                "https://images.unsplash.com/photo-1514192631-251f5f0b14f2?w=800&q=60");
-        Product product5 = new Product("green", 2.0, "Book", 250,
-                "https://images.unsplash.com/photo-1519894520384-1ee1adbe7bd8?w=800&q=60");
-        Product product6 = new Product("yellow", 1.5, "Toy car", 400,
-                "https://images.unsplash.com/photo-1511837008003-71eca36ceb70?w=800&q=60");
-        Product product7 = new Product("blue", 1.5, "Chocolate", 560,
-                "https://images.unsplash.com/photo-1481391319762-47dff72954d9?w=800&q=60");
-        Product product8 = new Product("magenta", 1.5, "Phone", 530,
-                "https://images.unsplash.com/photo-1480717846107-87837abec1e9?w=800&q=60");
-        Product product9 = new Product("black", 3.5, "Blazer", 520,
-                "https://images.unsplash.com/photo-1513796430146-c91cf8e4d65c?w=800&q=60");
-        Product product10 = new Product("orange", 7.0, "Shoes", 720,
-                "https://images.unsplash.com/photo-1480632563560-30f503c09195?w=800&q=60");
+//        Product product4 = new Product("white", 1.0, "Scarf", 80,
+//                "https://images.unsplash.com/photo-1514192631-251f5f0b14f2?w=800&q=60");
+//        Product product5 = new Product("green", 2.0, "Book", 250,
+//                "https://images.unsplash.com/photo-1519894520384-1ee1adbe7bd8?w=800&q=60");
+//        Product product6 = new Product("yellow", 1.5, "Toy car", 400,
+//                "https://images.unsplash.com/photo-1511837008003-71eca36ceb70?w=800&q=60");
+//        Product product7 = new Product("blue", 1.5, "Chocolate", 560,
+//                "https://images.unsplash.com/photo-1481391319762-47dff72954d9?w=800&q=60");
+//        Product product8 = new Product("magenta", 1.5, "Phone", 530,
+//                "https://images.unsplash.com/photo-1480717846107-87837abec1e9?w=800&q=60");
+//        Product product9 = new Product("black", 3.5, "Blazer", 520,
+//                "https://images.unsplash.com/photo-1513796430146-c91cf8e4d65c?w=800&q=60");
+//        Product product10 = new Product("orange", 7.0, "Shoes", 720,
+//                "https://images.unsplash.com/photo-1480632563560-30f503c09195?w=800&q=60");
 
         mProducts.add(product1);
         mProducts.add(product2);
         mProducts.add(product3);
-        mProducts.add(product4);
-        mProducts.add(product5);
-        mProducts.add(product6);
-        mProducts.add(product7);
-        mProducts.add(product8);
-        mProducts.add(product9);
-        mProducts.add(product10);
+//        mProducts.add(product4);
+//        mProducts.add(product5);
+//        mProducts.add(product6);
+//        mProducts.add(product7);
+//        mProducts.add(product8);
+//        mProducts.add(product9);
+//        mProducts.add(product10);
     }
+
+
 }

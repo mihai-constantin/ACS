@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import com.joker.bidit.R;
 
@@ -25,7 +27,24 @@ public class ProductsActivity extends AppCompatActivity {
         getProducts();
         setLayoutManager();
         setAdapter();
-        // setRecyclerViewListener();
+        setRecyclerViewListener();
+    }
+
+    private void setRecyclerViewListener() {
+        recyclerViewProducts.addOnItemTouchListener(new RecyclerTouchListener(this,
+                recyclerViewProducts, new ProductsClickListener() {
+            @Override
+            public void onClick(View view, final int position) {
+                Toast.makeText(ProductsActivity.this, getString(R.string.single_click) + position,
+                        Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+                Toast.makeText(ProductsActivity.this, getString(R.string.long_click) + position,
+                        Toast.LENGTH_LONG).show();
+            }
+        }));
     }
 
     private void initView() {
