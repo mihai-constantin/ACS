@@ -45,5 +45,7 @@
     <string name="save">Save</string>
     <string name="single_click">Single click</string>
     <string name="long_click">Long Click</string>
+    <string name="sign_up">Sign up</string>
+    <string name="already_a_member">Already a member?</string>
 
 </resources>
