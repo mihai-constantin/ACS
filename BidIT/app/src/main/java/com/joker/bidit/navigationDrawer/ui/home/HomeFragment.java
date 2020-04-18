@@ -61,7 +61,7 @@ public class HomeFragment extends Fragment {
         Toast.makeText(context, "I'm back",
                 Toast.LENGTH_LONG).show();
 
-        if (HomeFragment.POSITION != -1) {
+        if (HomeFragment.POSITION != -1 && AddProductActivity.pressSaveButton == 1) {
 
             // update info product
             mProducts.get(HomeFragment.POSITION).setName(AddProductActivity.updated_name);
@@ -74,7 +74,7 @@ public class HomeFragment extends Fragment {
             HomeFragment.POSITION = -1;
         }
         else {
-            if (AddProductActivity.ADD_NEW_PRODUCT == 1) {
+            if (AddProductActivity.ADD_NEW_PRODUCT == 1 && AddProductActivity.pressSaveButton == 1) {
 //            Toast.makeText(context, "TODO - add new product",
 //                    Toast.LENGTH_LONG).show();
                 Product new_product = new Product(AddProductActivity.updated_color,
