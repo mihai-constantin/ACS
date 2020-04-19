@@ -83,7 +83,12 @@ public class AddProductActivity extends AppCompatActivity {
 
             }
         });
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ADD_NEW_PRODUCT = 0;
     }
 
     private void initView() {
@@ -92,20 +97,25 @@ public class AddProductActivity extends AppCompatActivity {
         productWeightEditText = findViewById(R.id.productWeightEditText);
         cover_image = findViewById(R.id.cover_image);
         price_ron = findViewById(R.id.price_ron);
-
         seek_bar = findViewById(R.id.seek_bar);
+
         seek_bar.setMax(1000);
     }
 
     public void btnTakePictureFromGalleryOnClick(View view) {
+
+        // TODO
     }
 
     public void bntTakePictureFromCameraOnClick(View view) {
+
+        // TODO
     }
 
     public void bntOnClick(View view) {
         pressSaveButton = 1;
         if (price != null) {
+            // update info product
             updated_name = productNameEditText.getText().toString();
             updated_color = productColorEditText.getText().toString();
             updated_weight = productWeightEditText.getText().toString();
@@ -114,6 +124,7 @@ public class AddProductActivity extends AppCompatActivity {
             ADD_NEW_PRODUCT = 0;
         }
         else {
+            // add new product
             updated_name = productNameEditText.getText().toString();
             updated_color = productColorEditText.getText().toString();
             updated_weight = productWeightEditText.getText().toString();

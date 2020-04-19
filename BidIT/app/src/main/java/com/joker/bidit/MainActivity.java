@@ -142,11 +142,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 firebaseAuthWithEmail();
             }
             else {
-                Toast.makeText(MainActivity.this,
-                        String.format("TODO - SIGN UP"),
-                        Toast.LENGTH_SHORT).show();
-
-                // TODO - SIGN UP
                 String email = mEditTextEmail.getText().toString();
                 String password = mEditTextPhone.getText().toString();
 
@@ -259,28 +254,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCredential:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        // Sign in success, update UI with the signed-in user's information
+                        Log.d(TAG, "signInWithCredential:success");
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        updateUI(user);
 
-                            // TODO
-                            // start a new activity
-                            GOOGLE_AUTH = 1;
-                            startActivity(new Intent(MainActivity.this, NavigationDrawerActivity.class));
+                        GOOGLE_AUTH = 1;
+                        startActivity(new Intent(MainActivity.this, NavigationDrawerActivity.class));
 
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
-//                            Snackbar.make(findViewById(R.id.nav_contact), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
-                            updateUI(null);
-                        }
-
-                        // ...
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Log.w(TAG, "signInWithCredential:failure", task.getException());
+                        updateUI(null);
                     }
                 });
     }
