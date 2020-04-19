@@ -83,8 +83,9 @@ public class HomeFragment extends Fragment {
                         parseDouble(AddProductActivity.updated_price),
                         "https://images.unsplash.com/photo-1514192631-251f5f0b14f2?w=800&q=60");
                 mProducts.add(new_product);
-
                 adapter.notifyDataSetChanged();
+
+                AddProductActivity.ADD_NEW_PRODUCT = 0;
             }
         }
     }
