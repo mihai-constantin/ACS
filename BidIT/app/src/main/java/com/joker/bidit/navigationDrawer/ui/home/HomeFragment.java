@@ -75,8 +75,7 @@ public class HomeFragment extends Fragment {
         }
         else {
             if (AddProductActivity.ADD_NEW_PRODUCT == 1 && AddProductActivity.pressSaveButton == 1) {
-//            Toast.makeText(context, "TODO - add new product",
-//                    Toast.LENGTH_LONG).show();
+                // TODO - select imagine
                 Product new_product = new Product(AddProductActivity.updated_color,
                         parseDouble(AddProductActivity.updated_weight),
                         AddProductActivity.updated_name,

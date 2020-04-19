@@ -103,9 +103,13 @@ public class AddProductActivity extends AppCompatActivity {
     }
 
     public void btnTakePictureFromGalleryOnClick(View view) {
+
+        // TODO
     }
 
     public void bntTakePictureFromCameraOnClick(View view) {
+
+        // TODO
     }
 
     public void bntOnClick(View view) {

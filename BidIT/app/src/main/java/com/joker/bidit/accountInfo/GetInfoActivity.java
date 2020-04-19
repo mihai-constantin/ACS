@@ -83,9 +83,7 @@ public class GetInfoActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                 }
             });
-
         }
-
     }
 
     private void setNavigationCredentials() {

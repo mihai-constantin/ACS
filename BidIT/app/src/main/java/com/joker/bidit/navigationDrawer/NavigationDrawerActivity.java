@@ -156,13 +156,9 @@ public class NavigationDrawerActivity extends AppCompatActivity {
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        // TODO - revoke
         mGoogleSignInClient.revokeAccess().addOnCompleteListener(this,
-                new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        // updateUI(null);
-                    }
+                task -> {
+                    // updateUI(null);
                 });
 
         finish();
