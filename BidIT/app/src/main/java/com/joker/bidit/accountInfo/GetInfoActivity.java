@@ -20,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.joker.bidit.MainActivity;
 import com.joker.bidit.R;
 import com.joker.bidit.login.UserInformation;
 import com.squareup.picasso.Picasso;
@@ -52,35 +53,39 @@ public class GetInfoActivity extends AppCompatActivity {
         DatabaseReference databaseReference = firebaseDatabase.getReference(firebaseAuth.getUid());
         StorageReference storageReference = firebaseStorage.getReference();
 
-        // Get the image stored on Firebase via "User id/Images/Profile Pic.jpg".
-        storageReference.child(firebaseAuth.getUid()).child("Images").child("Profile Pic").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
+        if(MainActivity.GOOGLE_AUTH == 1) {
+            setNavigationCredentials();
+        }
+        else {
+            // Get the image stored on Firebase via "User id/Images/Profile Pic.jpg".
+            storageReference.child(firebaseAuth.getUid()).child("Images").child("Profile Pic")
+                    .getDownloadUrl().addOnSuccessListener(uri -> {
                 // Using "Picasso" (http://square.github.io/picasso/) after adding the dependency in the Gradle.
                 // ".fit().centerInside()" fits the entire image into the specified area.
                 // Finally, add "READ" and "WRITE" external storage permissions in the Manifest.
                 Picasso.get().load(uri).fit().centerInside().into(mImageViewUser);
-            }
-        });
+            });
 
-        final FirebaseUser user = firebaseAuth.getCurrentUser();
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange( DataSnapshot dataSnapshot) {
-                UserInformation userProfile = dataSnapshot.getValue(UserInformation.class);
-                mTextViewUserName.setText(userProfile.getUserName());
+            final FirebaseUser user = firebaseAuth.getCurrentUser();
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    UserInformation userProfile = dataSnapshot.getValue(UserInformation.class);
+                    mTextViewUserName.setText(userProfile.getUserName());
 //                profileSurnameTextView.setText(userProfile.getUserSurname());
 //                profilePhonenoTextView.setText(userProfile.getUserPhoneno());
-                mTextViewEmailUser.setText(user.getEmail());
-            }
-            @Override
-            public void onCancelled( DatabaseError databaseError) {
-                Toast.makeText(GetInfoActivity.this, databaseError.getCode(),
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
+                    mTextViewEmailUser.setText(user.getEmail());
+                }
 
-        // setNavigationCredentials();
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    Toast.makeText(GetInfoActivity.this, databaseError.getCode(),
+                            Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        }
+
     }
 
     private void setNavigationCredentials() {
@@ -100,19 +105,5 @@ public class GetInfoActivity extends AppCompatActivity {
                     .centerCrop()
                     .into(mImageViewUser);
         }
-        else {
-            FirebaseAuth mAuth = FirebaseAuth.getInstance();
-            FirebaseUser user = mAuth.getCurrentUser();
-
-            assert user != null;
-            mTextViewEmailUser.setText(user.getEmail());
-
-            Picasso.get()
-                    .load("https://www.freepngimg.com/thumb/google/66726-customer-account-google-service-button-search-logo.png")
-                    .resize(300,300)
-                    .centerCrop()
-                    .into(mImageViewUser);
-        }
-
     }
 }

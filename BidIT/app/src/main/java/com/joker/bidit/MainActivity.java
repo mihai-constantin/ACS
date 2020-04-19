@@ -45,11 +45,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final int RC_SIGN_IN = 9001;
     private static final String TAG = "SignInActivity";
     private GoogleSignInOptions gso;
+    public static int GOOGLE_AUTH = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        GOOGLE_AUTH = 0;
 
         mAuthentication = new Authentication();
         initView();
@@ -86,6 +89,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
+
+        GOOGLE_AUTH = 0;
 
         mEditTextEmail.setText("");
         mEditTextPhone.setText("");
@@ -265,6 +270,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                             // TODO
                             // start a new activity
+                            GOOGLE_AUTH = 1;
                             startActivity(new Intent(MainActivity.this, NavigationDrawerActivity.class));
 
                         } else {
