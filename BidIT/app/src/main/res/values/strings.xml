@@ -56,5 +56,8 @@
     <string name="enter_your_phone_number">Enter your phone number</string>
     <string name="e_mail">Email</string>
     <string name="email_address">Email Address</string>
+    <string name="mail_address">Mail Address</string>
+    <string name="profile">Profile</string>
+    <string name="dies">###</string>
 
 </resources>

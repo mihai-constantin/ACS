@@ -2,7 +2,6 @@ package com.joker.bidit.accountInfo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -10,7 +9,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -29,6 +27,7 @@ public class GetInfoActivity extends AppCompatActivity {
 
     private TextView mTextViewUserName;
     private TextView mTextViewEmailUser;
+    private TextView mTextViewPhoneNo;
     private ImageView mImageViewUser;
 
     private DatabaseReference databaseReference;
@@ -44,6 +43,7 @@ public class GetInfoActivity extends AppCompatActivity {
         mTextViewUserName = findViewById(R.id.textViewUserName);
         mTextViewEmailUser = findViewById(R.id.textViewEmailUser);
         mImageViewUser = findViewById(R.id.imageViewUser);
+        mTextViewPhoneNo = findViewById(R.id.textViewPhoneNo);
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
         firebaseAuth = FirebaseAuth.getInstance();
@@ -73,7 +73,7 @@ public class GetInfoActivity extends AppCompatActivity {
                     UserInformation userProfile = dataSnapshot.getValue(UserInformation.class);
                     mTextViewUserName.setText(userProfile.getUserName());
 //                profileSurnameTextView.setText(userProfile.getUserSurname());
-//                profilePhonenoTextView.setText(userProfile.getUserPhoneno());
+                    mTextViewPhoneNo.setText(userProfile.getUserPhoneNo());
                     mTextViewEmailUser.setText(user.getEmail());
                 }
 
