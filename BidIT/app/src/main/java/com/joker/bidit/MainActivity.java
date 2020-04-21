@@ -1,5 +1,6 @@
 package com.joker.bidit;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText mEditTextPhone;
     private CheckBox mCheckBoxAccept;
     private Button mLogginButton;
+    private TextView mForgotPasswordButton;
 
     private Authentication mAuthentication;
     private GoogleSignInClient mGoogleSignInClient;
@@ -46,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final String TAG = "SignInActivity";
     private GoogleSignInOptions gso;
     public static int GOOGLE_AUTH = 0;
+    private int times = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +76,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         findViewById(R.id.sign_in_button).setOnClickListener(this);
+
+        // forgot password
+
     }
 
     // get the views from the layout based on an unique id defined in the xml file
@@ -81,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mEditTextPhone = findViewById(R.id.edittext_phone);
         mCheckBoxAccept = findViewById(R.id.checkbox_accept);
         mLogginButton = findViewById(R.id.loginButton);
+        mForgotPasswordButton = findViewById(R.id.forgotPasswordButton);
 
         mEditTextEmail.setText("");
         mEditTextPhone.setText("");
@@ -130,8 +138,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             mAuthentication.setAccepted(true);
             return true;
         } else {
-            Toast.makeText(MainActivity.this, getResources().getString(R.string
-                    .error_is_accepted_input), Toast.LENGTH_SHORT).show();
+            /*Toast.makeText(MainActivity.this, getResources().getString(R.string
+                    .error_is_accepted_input), Toast.LENGTH_SHORT).show();*/
+            AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
+
+            dlgAlert.setMessage("Terms and conditions should be accepted.");
+            dlgAlert.setTitle("Authentication failed");
+            dlgAlert.setPositiveButton("OK", null);
+            dlgAlert.setCancelable(true);
+            dlgAlert.create().show();
+
+            dlgAlert.setPositiveButton("Ok",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
             return false;
         }
     }
@@ -187,13 +209,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //            startActivity(new Intent(MainActivity.this, ProductsActivity.class));
 
             Toast.makeText(MainActivity.this,
-                    String.format("Hello, %s", account.getEmail()),
+                    String.format("Hello, %s!", account.getEmail().substring(0, account.getEmail().indexOf("@"))),
                     Toast.LENGTH_LONG).show();
+
         }
         else {
-            Toast.makeText(MainActivity.this,
+            /*Toast.makeText(MainActivity.this,
                     String.format("Invalid email or password!"),
-                    Toast.LENGTH_LONG).show();
+                    Toast.LENGTH_LONG).show();*/
+            AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
+
+            dlgAlert.setMessage("Wrong password or username. Please, try again");
+            dlgAlert.setTitle("Authentication failed");
+            dlgAlert.setPositiveButton("OK", null);
+            dlgAlert.setCancelable(true);
+            dlgAlert.create().show();
+
+            dlgAlert.setPositiveButton("Ok",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+
         }
     }
 
@@ -216,7 +254,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
                 Log.w(TAG, "Google sign in failed", e);
-                // ...
+
+                AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
+
+                dlgAlert.setMessage("Cannot establish connection with this Google account." +
+                        " Please try again.");
+                dlgAlert.setTitle("Authentication failed");
+                dlgAlert.setPositiveButton("OK", null);
+                dlgAlert.setCancelable(true);
+                dlgAlert.create().show();
+
+                dlgAlert.setPositiveButton("Ok",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
             }
         }
     }

@@ -142,8 +142,9 @@ public class NavigationDrawerActivity extends AppCompatActivity {
         GoogleSignInOptions gso;
         GoogleSignInClient mGoogleSignInClient;
 
+        String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
         Toast.makeText(NavigationDrawerActivity.this,
-                String.format("Goodbye, %s", FirebaseAuth.getInstance().getCurrentUser().getEmail()),
+                String.format("Goodbye, %s", email.substring(0, email.indexOf("@"))),
                 Toast.LENGTH_SHORT).show();
 
         mAuth.signOut();
