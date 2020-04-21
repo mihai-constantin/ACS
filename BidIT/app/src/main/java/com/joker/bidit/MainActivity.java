@@ -30,6 +30,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.joker.bidit.login.Authentication;
 import com.joker.bidit.login.EditProfileActivity;
+import com.joker.bidit.login.ResetPasswordActivity;
 import com.joker.bidit.navigationDrawer.NavigationDrawerActivity;
 import com.joker.bidit.utils.EmailHelper;
 
@@ -78,6 +79,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.sign_in_button).setOnClickListener(this);
 
         // forgot password
+        mForgotPasswordButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ResetPasswordActivity.class));
+            }
+        });
 
     }
 
@@ -104,6 +111,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mEditTextPhone.setText("");
         if (mCheckBoxAccept.isChecked()) {
             mCheckBoxAccept.toggle();
+
+
         }
 
     }
