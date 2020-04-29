@@ -106,8 +106,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:text="@string/email_address"
+            android:hint="Enter your email address"
             android:textColor="@color/colorPrimaryDark"/>
+
 
         <Button
             android:layout_width="match_parent"

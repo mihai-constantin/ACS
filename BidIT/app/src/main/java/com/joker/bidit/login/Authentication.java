@@ -32,6 +32,6 @@ public class Authentication {
 
     @Override
     public String toString() {
-        return "Welcome " + mEmail + "!";
+        return "Welcome, " + mEmail.substring(0, mEmail.indexOf("@")) + "!";
     }
 }

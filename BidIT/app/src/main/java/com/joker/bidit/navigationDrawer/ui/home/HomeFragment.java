@@ -58,8 +58,8 @@ public class HomeFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        Toast.makeText(context, "I'm back",
-                Toast.LENGTH_LONG).show();
+
+        //Toast.makeText(context, "I'm back", Toast.LENGTH_LONG).show();
 
         if (HomeFragment.POSITION != -1 && AddProductActivity.pressSaveButton == 1) {
 

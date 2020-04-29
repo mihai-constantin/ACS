@@ -70,5 +70,15 @@
         android:layout_height="wrap_content"
         app:colorScheme="dark" />
 
+    <Button
+        android:id="@+id/forgotPasswordButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_8"
+        android:background="@color/colorPrimary"
+        android:onClick="recyclerViewOnClick"
+        android:text="Forgot password?"
+        android:textColor="@android:color/white" />
+
 
 </LinearLayout>
