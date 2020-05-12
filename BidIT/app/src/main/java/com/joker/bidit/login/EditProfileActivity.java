@@ -125,9 +125,6 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void sendUserData() {
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        // Get "User UID" from Firebase > Authentication > Users.
-        DatabaseReference databaseReference = firebaseDatabase.getReference(firebaseAuth.getUid());
         //User id/Images/Profile Pic.jpg
         StorageReference imageReference = storageReference.child(firebaseAuth.getUid()).child("Images").child("Profile Pic");
         UploadTask uploadTask = imageReference.putFile(imagePath);

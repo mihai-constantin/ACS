@@ -3,7 +3,10 @@ package com.joker.bidit.addProduct;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -11,9 +14,18 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.joker.bidit.R;
+import com.joker.bidit.login.EditProfileActivity;
 import com.joker.bidit.navigationDrawer.ui.home.HomeFragment;
 import com.squareup.picasso.Picasso;
+
+import java.io.IOException;
 
 public class AddProductActivity extends AppCompatActivity {
 
@@ -33,6 +45,9 @@ public class AddProductActivity extends AppCompatActivity {
 
     public String price;
     public static Integer pressSaveButton;
+
+    private static int PICK_IMAGE = 123;
+    Uri imagePath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +71,22 @@ public class AddProductActivity extends AppCompatActivity {
             productColorEditText.setText(color);
             productWeightEditText.setText(weight);
 
-            Picasso.get().load(photo)
-                    .into(cover_image);
+//            Picasso.get().load(photo)
+//                    .into(cover_image);
+
+            // TODO - search image and load into activity
+            FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+            FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+            StorageReference storageReference = firebaseStorage.getReference();
+            // Get the image stored on Firebase via "User id/Products/name_product.jpg".
+
+            storageReference.child(firebaseAuth.getUid()).child("Products").child(name)
+                    .getDownloadUrl().addOnSuccessListener(uri -> {
+                // Using "Picasso" (http://square.github.io/picasso/) after adding the dependency in the Gradle.
+                // ".fit().centerInside()" fits the entire image into the specified area.
+                // Finally, add "READ" and "WRITE" external storage permissions in the Manifest.
+                Picasso.get().load(uri).fit().into(cover_image);
+            });
 
             price_ron.setText(price + " RON");
 
@@ -103,8 +132,23 @@ public class AddProductActivity extends AppCompatActivity {
     }
 
     public void btnTakePictureFromGalleryOnClick(View view) {
+        Intent profileIntent = new Intent();
+        profileIntent.setType("image/*");
+        profileIntent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(profileIntent, "Select Image."), PICK_IMAGE);
+    }
 
-        // TODO
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == PICK_IMAGE && resultCode == RESULT_OK && data.getData() != null) {
+            imagePath = data.getData();
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imagePath);
+                cover_image.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     public void bntTakePictureFromCameraOnClick(View view) {
@@ -130,7 +174,27 @@ public class AddProductActivity extends AppCompatActivity {
             updated_weight = productWeightEditText.getText().toString();
             updated_price = Integer.toString(seek_bar.getProgress());
 
+            FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+            FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+            StorageReference storageReference = firebaseStorage.getReference();
+
+            // User id/Products/updated_name.jpg
+            StorageReference imageReference = storageReference.child(firebaseAuth.getUid()).child("Products").child(updated_name);
+            UploadTask uploadTask = imageReference.putFile(imagePath);
+            uploadTask.addOnFailureListener(
+                    e -> Toast.makeText(AddProductActivity.this, "Error: Uploading product picture", Toast.LENGTH_SHORT).show())
+                    .addOnSuccessListener
+                            (taskSnapshot -> Toast.makeText(AddProductActivity.this, "Product picture uploaded", Toast.LENGTH_SHORT).show());
+
             ADD_NEW_PRODUCT = 1;
+
+            // TODO - ASTA E O MIZERIE
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
         }
 
         finish();
