@@ -8,6 +8,10 @@ public class Product {
     private double mPrice;
     private String mPicture;
 
+    public Product() {
+        
+    }
+
     public Product(String mColor, Double mWeight, String mName, double mPrice, String mPicture) {
         this.mColor = mColor;
         this.mWeight = mWeight;
