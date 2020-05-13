@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".login.ResetPasswordActivity"></activity>
+        <activity android:name=".dashboard.ViewProductActivity"></activity>
+        <activity android:name=".login.ResetPasswordActivity" />
         <activity android:name=".login.EditProfileActivity" />
         <activity android:name=".addProduct.AddProductActivity" />
         <activity android:name=".accountInfo.GetInfoActivity" />

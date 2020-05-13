@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".addProduct.AddProductActivity">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".dashboard.ViewProductActivity">
+
+        <!--    <TextView-->
+        <!--        android:id="@+id/text_info"-->
+        <!--        android:layout_width="212dp"-->
+        <!--        android:layout_height="99dp"-->
+        <!--        android:text="@string/complete_with_the_email_you_want_us_to_receive_the_reset_link_to"-->
+        <!--        tools:layout_editor_absoluteX="99dp"-->
+        <!--        tools:layout_editor_absoluteY="116dp"/>-->
+
+        <EditText
+            android:id="@+id/productName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="1000"
+            android:inputType="textEmailAddress"
+            tools:layout_editor_absoluteX="199dp"
+            tools:layout_editor_absoluteY="579dp" />
+
+        <!--    <EditText-->
+        <!--        android:id="@+id/productName"-->
+        <!--        android:layout_width="wrap_content"-->
+        <!--        android:layout_height="10dp"-->
+        <!--        android:layout_weight="1"-->
+        <!--        android:ems="10"-->
+        <!--        android:inputType="textPersonName"-->
+        <!--        android:text="Name" />-->
+
+        <ImageView
+            android:id="@+id/productPicture"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:scaleType="centerCrop"
+            tools:layout_editor_absoluteX="99dp"
+            tools:layout_editor_absoluteY="516dp"
+            app:srcCompat="@drawable/no_image_selected" />
+
+        <TextView
+            android:id="@+id/text_info_color"
+            android:layout_width="100dp"
+            android:layout_height="29dp"
+            android:text="Product color"
+            tools:layout_editor_absoluteX="199dp"
+            tools:layout_editor_absoluteY="579dp"/>
+
+        <EditText
+            android:id="@+id/productColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="1000"
+            tools:layout_editor_absoluteX="199dp"
+            tools:layout_editor_absoluteY="579dp" />
+
+        <TextView
+            android:id="@+id/text_info_weight"
+            android:layout_width="100dp"
+            android:layout_height="29dp"
+            android:text="Product color"
+            tools:layout_editor_absoluteX="199dp"
+            tools:layout_editor_absoluteY="579dp"/>
+
+        <EditText
+            android:id="@+id/productWeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="1000"
+            tools:layout_editor_absoluteX="199dp"
+            tools:layout_editor_absoluteY="579dp" />
+
+        <TextView
+            android:id="@+id/text_info_current_price"
+            android:layout_width="100dp"
+            android:layout_height="29dp"
+            android:text="Product color"
+            tools:layout_editor_absoluteX="199dp"
+            tools:layout_editor_absoluteY="579dp"/>
+
+        <EditText
+            android:id="@+id/productCurrentPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="1000"
+            tools:layout_editor_absoluteX="199dp"
+            tools:layout_editor_absoluteY="579dp" />
+
+        <TextView
+            android:id="@+id/time_remaining_info"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="2dp"
+            android:text="TIME LEFT UNTIL THE BID ENDS"
+            android:textColor="#F00"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/chronometer"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Large Text"
+            android:textColor="#cf1d1d"
+            android:shadowColor="#cf1d1d"
+            android:shadowDx="0.0"
+            android:shadowDy="0.0"
+            android:shadowRadius="8"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <SeekBar
+            android:id="@+id/seek_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="5000"
+            android:paddingTop="@dimen/space_16"
+            android:paddingBottom="@dimen/space_8"
+            android:progress="0" />
+
+        <Button
+            android:id="@id/placeBidButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@color/colorPrimary"
+            android:onClick="bntOnClick"
+            android:text="PLACE BID"
+            android:textColor="@color/white" />
+
+
+    </LinearLayout>
+
+
+
+</ScrollView>

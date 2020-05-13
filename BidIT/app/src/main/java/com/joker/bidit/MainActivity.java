@@ -152,21 +152,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else {
             /*Toast.makeText(MainActivity.this, getResources().getString(R.string
                     .error_is_accepted_input), Toast.LENGTH_SHORT).show();*/
-            AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
 
-            dlgAlert.setMessage("Terms and conditions should be accepted.");
-            dlgAlert.setTitle("Authentication failed");
-            dlgAlert.setPositiveButton("OK", null);
-            dlgAlert.setCancelable(true);
-            dlgAlert.create().show();
+            if (mCheckBoxAccept.getVisibility() == View.GONE) {
+                mAuthentication.setAccepted(true);
+                return true;
+            } else {
+                AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
 
-            dlgAlert.setPositiveButton("Ok",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
+                dlgAlert.setMessage("Terms and conditions should be accepted.");
+                dlgAlert.setTitle("Authentication failed");
+                dlgAlert.setPositiveButton("OK", null);
+                dlgAlert.setCancelable(true);
+                dlgAlert.create().show();
 
-                        }
-                    });
-            return false;
+                dlgAlert.setPositiveButton("Ok",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+                return false;
+            }
+
+
         }
     }
 
@@ -348,6 +356,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void loginMessageOnClick(View view) {
         TextView textView = view.findViewById(R.id.loginMessage);
         if(textView.getText().equals("Already a member?")) {
+            mCheckBoxAccept.setVisibility(View.GONE);
             textView.setText("Don't have an account yet? Register now!");
             mLogginButton.setText("SIGN IN");
         }
