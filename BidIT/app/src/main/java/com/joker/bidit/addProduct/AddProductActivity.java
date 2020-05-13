@@ -178,7 +178,7 @@ public class AddProductActivity extends AppCompatActivity {
             FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
             StorageReference storageReference = firebaseStorage.getReference();
 
-            // User id/Products/updated_name.jpg
+            // User id/Products/updated_name.jpg upload pic in db
             StorageReference imageReference = storageReference.child(firebaseAuth.getUid()).child("Products").child(updated_name);
             UploadTask uploadTask = imageReference.putFile(imagePath);
             uploadTask.addOnFailureListener(
