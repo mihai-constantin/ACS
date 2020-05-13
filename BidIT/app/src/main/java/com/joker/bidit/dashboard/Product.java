@@ -6,18 +6,16 @@ public class Product {
     private Double mWeight;
     private String mName;
     private double mPrice;
-    private String mPicture;
 
     public Product() {
 
     }
 
-    public Product(String mColor, Double mWeight, String mName, double mPrice, String mPicture) {
+    public Product(String mColor, Double mWeight, String mName, double mPrice) {
         this.mColor = mColor;
         this.mWeight = mWeight;
         this.mName = mName;
         this.mPrice = mPrice;
-        this.mPicture = mPicture;
     }
 
     public String getName() {
@@ -51,14 +49,5 @@ public class Product {
     public void setColour(String mColour) {
         this.mColor = mColour;
     }
-
-    public String getPicture() {
-        return mPicture;
-    }
-
-    public void setPicture(String mPicture) {
-        this.mPicture = mPicture;
-    }
-
 
 }

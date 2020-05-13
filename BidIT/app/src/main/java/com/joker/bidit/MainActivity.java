@@ -28,9 +28,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.joker.bidit.login.Authentication;
 import com.joker.bidit.login.EditProfileActivity;
 import com.joker.bidit.login.ResetPasswordActivity;
+import com.joker.bidit.login.UserInformation;
 import com.joker.bidit.navigationDrawer.NavigationDrawerActivity;
 import com.joker.bidit.utils.EmailHelper;
 
@@ -296,6 +299,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
+
+//                            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+//                            databaseReference.orderByChild("")
+
+                            // todo  - sign in get data from db
+
+                            //UserInformation userInformation = UserInformation.getInstance();
+
 //                            startActivity(new Intent(MainActivity.this, ProductsActivity.class));
                             startActivity(new Intent(MainActivity.this, NavigationDrawerActivity.class));
 

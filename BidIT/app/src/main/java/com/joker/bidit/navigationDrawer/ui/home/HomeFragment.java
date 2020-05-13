@@ -13,15 +13,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.joker.bidit.R;
 import com.joker.bidit.addProduct.AddProductActivity;
 import com.joker.bidit.dashboard.Product;
 import com.joker.bidit.dashboard.ProductAdaptor;
 import com.joker.bidit.dashboard.ProductsClickListener;
 import com.joker.bidit.dashboard.RecyclerTouchListener;
+import com.joker.bidit.login.UserInformation;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Double.parseDouble;
@@ -32,13 +31,12 @@ public class HomeFragment extends Fragment {
     public static final String COLOR = "PRODUCT_COLOR";
     public static final String WEIGHT = "PRODUCT_WEIGHT";
     public static final String PRICE = "PRODUCT_PRICE";
-    public static final String PHOTO_URL = "PRODUCT_PHOTO_URL";
 
     public static Integer POSITION = -1;
 
     View root;
 
-    private List<Product> mProducts;
+    private List<Product> mProducts = UserInformation.getInstance().getProducts();
     private RecyclerView recyclerViewProducts;
     private ProductAdaptor adapter;
 
@@ -72,16 +70,13 @@ public class HomeFragment extends Fragment {
             adapter.notifyDataSetChanged();
 
             HomeFragment.POSITION = -1;
-        }
-        else {
+        } else {
             if (AddProductActivity.ADD_NEW_PRODUCT == 1 && AddProductActivity.pressSaveButton == 1) {
-                // TODO - select imagine
                 Product new_product = new Product(AddProductActivity.updated_color,
                         parseDouble(AddProductActivity.updated_weight),
                         AddProductActivity.updated_name,
-                        parseDouble(AddProductActivity.updated_price),
-                        "https://images.unsplash.com/photo-1514192631-251f5f0b14f2?w=800&q=60");
-                mProducts.add(new_product);
+                        parseDouble(AddProductActivity.updated_price));
+//                mProducts.add(new_product);
                 adapter.notifyDataSetChanged();
 
                 AddProductActivity.ADD_NEW_PRODUCT = 0;
@@ -90,18 +85,16 @@ public class HomeFragment extends Fragment {
     }
 
     private void populateRecyclerView() {
-       recyclerViewProducts = root.findViewById(R.id.recyclerViewProducts);
-       // recyclerViewProducts.setHasFixedSize(true);
+        recyclerViewProducts = root.findViewById(R.id.recyclerViewProducts);
+        // recyclerViewProducts.setHasFixedSize(true);
 
-       recyclerViewProducts.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerViewProducts.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-       getProducts();
+        adapter = new ProductAdaptor(getActivity(), mProducts);
+        recyclerViewProducts.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
 
-       adapter = new ProductAdaptor(getActivity(), mProducts);
-       recyclerViewProducts.setAdapter(adapter);
-       adapter.notifyDataSetChanged();
-
-       setRecyclerViewListener();
+        setRecyclerViewListener();
     }
 
     private void setRecyclerViewListener() {
@@ -114,10 +107,7 @@ public class HomeFragment extends Fragment {
                 String name = product.getName();
                 String color = product.getColor();
                 String weight = product.getWeight().toString();
-                String photo = product.getPicture();
                 String price = product.getPrice().toString();
-
-                // TODO - get image from database
 
                 Toast.makeText(context, getString(R.string.single_click) + " " + position,
                         Toast.LENGTH_SHORT).show();
@@ -128,7 +118,6 @@ public class HomeFragment extends Fragment {
                 secondActivity.putExtra(HomeFragment.NAME, name);
                 secondActivity.putExtra(HomeFragment.COLOR, color);
                 secondActivity.putExtra(HomeFragment.WEIGHT, weight);
-                secondActivity.putExtra(HomeFragment.PHOTO_URL, photo);
                 secondActivity.putExtra(HomeFragment.PRICE, price);
                 startActivity(secondActivity);
             }
@@ -140,20 +129,4 @@ public class HomeFragment extends Fragment {
             }
         }));
     }
-
-    private void getProducts() {
-        mProducts = new ArrayList<>();
-//        Product product1 = new Product("red", 3.0, "Book", 200,
-//                "https://images.unsplash.com/photo-1510546462255-979b0e0ca1b5?w=800&q=60");
-//        Product product2 = new Product("pink", 2.0, "Scarf", 20,
-//                "https://images.unsplash.com/photo-1514207994142-98522b5a2b23?w=800&q=60");
-//        Product product3 = new Product("blue", 5.0, "T-shirt", 160,
-//                "https://images.unsplash.com/photo-1512909481869-0eaa1e9817ba?w=800&q=60");
-//
-//        mProducts.add(product1);
-//        mProducts.add(product2);
-//        mProducts.add(product3);
-
-    }
-
 }

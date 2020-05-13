@@ -15,17 +15,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.joker.bidit.R;
+import com.joker.bidit.dashboard.Product;
 import com.joker.bidit.login.EditProfileActivity;
+import com.joker.bidit.login.UserInformation;
 import com.joker.bidit.navigationDrawer.ui.home.HomeFragment;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddProductActivity extends AppCompatActivity {
 
@@ -61,7 +66,6 @@ public class AddProductActivity extends AppCompatActivity {
         String name = intent.getStringExtra(HomeFragment.NAME);
         String color = intent.getStringExtra(HomeFragment.COLOR);
         String weight = intent.getStringExtra(HomeFragment.WEIGHT);
-        String photo = intent.getStringExtra(HomeFragment.PHOTO_URL);
         price = intent.getStringExtra(HomeFragment.PRICE);
 
         initView();
@@ -70,9 +74,6 @@ public class AddProductActivity extends AppCompatActivity {
             productNameEditText.setText(name);
             productColorEditText.setText(color);
             productWeightEditText.setText(weight);
-
-//            Picasso.get().load(photo)
-//                    .into(cover_image);
 
             // TODO - search image and load into activity
             FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
@@ -187,6 +188,17 @@ public class AddProductActivity extends AppCompatActivity {
                             (taskSnapshot -> Toast.makeText(AddProductActivity.this, "Product picture uploaded", Toast.LENGTH_SHORT).show());
 
             ADD_NEW_PRODUCT = 1;
+
+            // TODO - update user info
+            UserInformation userInformation = UserInformation.getInstance();
+            List<Product> products = userInformation.getProducts();
+
+            products.add(new Product(updated_color, Double.parseDouble(updated_weight), updated_name,
+                    Double.parseDouble(updated_price)));
+
+            FirebaseUser user = firebaseAuth.getCurrentUser();
+            FirebaseDatabase.getInstance().getReference().child(user.getUid()).setValue(userInformation);
+            Toast.makeText(getApplicationContext(),"User information updated",Toast.LENGTH_LONG).show();
 
             // TODO - ASTA E O MIZERIE
             try {
