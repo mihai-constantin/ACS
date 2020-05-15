@@ -28,8 +28,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.joker.bidit.login.Authentication;
 import com.joker.bidit.login.EditProfileActivity;
 import com.joker.bidit.login.ResetPasswordActivity;
@@ -226,12 +229,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void updateUI(FirebaseUser account) {
         if (account != null) {
-//            startActivity(new Intent(MainActivity.this, ProductsActivity.class));
-
             Toast.makeText(MainActivity.this,
                     String.format("Hello, %s!", account.getEmail().substring(0, account.getEmail().indexOf("@"))),
                     Toast.LENGTH_LONG).show();
-
         }
         else {
             /*Toast.makeText(MainActivity.this,
@@ -308,14 +308,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
 
-//                            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-//                            databaseReference.orderByChild("")
-
                             // todo  - sign in get data from db
+                            final FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            DatabaseReference ref = database.getReference().child(mAuth.getCurrentUser().getUid());
+                            ref.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    UserInformation userInfo = dataSnapshot.getValue(UserInformation.class);
 
-                            //UserInformation userInformation = UserInformation.getInstance();
+                                    UserInformation.getInstance(userInfo.getUserName(),
+                                            userInfo.getUserSurname(),
+                                            userInfo.getUserPhoneNo(),
+                                            userInfo.getProducts());
+                                }
 
-//                            startActivity(new Intent(MainActivity.this, ProductsActivity.class));
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+
                             startActivity(new Intent(MainActivity.this, NavigationDrawerActivity.class));
 
                         } else {
