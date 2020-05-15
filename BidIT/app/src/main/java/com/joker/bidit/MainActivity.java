@@ -40,6 +40,8 @@ import com.joker.bidit.login.UserInformation;
 import com.joker.bidit.navigationDrawer.NavigationDrawerActivity;
 import com.joker.bidit.utils.EmailHelper;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText mEditTextEmail;
@@ -316,10 +318,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     UserInformation userInfo = dataSnapshot.getValue(UserInformation.class);
 
-                                    UserInformation.getInstance(userInfo.getUserName(),
-                                            userInfo.getUserSurname(),
-                                            userInfo.getUserPhoneNo(),
-                                            userInfo.getProducts());
+                                    if (userInfo.getProducts() == null) {
+                                        UserInformation.getInstance(userInfo.getUserName(),
+                                                userInfo.getUserSurname(),
+                                                userInfo.getUserPhoneNo(),
+                                                new ArrayList<>());
+                                    }
+                                    else {
+                                        UserInformation.getInstance(userInfo.getUserName(),
+                                                userInfo.getUserSurname(),
+                                                userInfo.getUserPhoneNo(),
+                                                userInfo.getProducts());
+                                    }
                                 }
 
                                 @Override

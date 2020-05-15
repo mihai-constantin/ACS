@@ -54,4 +54,8 @@ public class UserInformation {
     public void setProducts(List<Product> products) {
         this.products = products;
     }
+
+    public static void setSingle_instance(UserInformation single_instance) {
+        UserInformation.single_instance = single_instance;
+    }
 }

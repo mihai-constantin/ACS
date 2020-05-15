@@ -25,6 +25,7 @@ import com.google.firebase.storage.StorageReference;
 import com.joker.bidit.R;
 import com.joker.bidit.accountInfo.GetInfoActivity;
 import com.joker.bidit.addProduct.AddProductActivity;
+import com.joker.bidit.login.UserInformation;
 import com.squareup.picasso.Picasso;
 
 import androidx.annotation.NonNull;
@@ -148,6 +149,9 @@ public class NavigationDrawerActivity extends AppCompatActivity {
                 Toast.LENGTH_SHORT).show();
 
         mAuth.signOut();
+
+        // todo - set userInformation instance to null
+        UserInformation.setSingle_instance(null);
 
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
