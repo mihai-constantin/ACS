@@ -40,7 +40,7 @@ public class ProductAdaptor extends RecyclerView.Adapter<ProductsViewHolder> {
     @Override
     public ProductsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.product_item, parent, false);
+                .inflate(R.layout.destination_item, parent, false);
         return new ProductsViewHolder(itemView);
     }
 
@@ -49,8 +49,7 @@ public class ProductAdaptor extends RecyclerView.Adapter<ProductsViewHolder> {
         Product currentProduct = products.get(position);
 
         holder.mTextViewName.setText(currentProduct.getName());
-        holder.mTextViewColorAndWeight.setText(currentProduct.getColor() + " /" +
-                currentProduct.getWeight());
+        holder.mTextViewColorAndWeight.setText(currentProduct.getColor() + " /" +currentProduct.getWeight());
         holder.mTextViewPrice.setText(currentProduct.getPrice() + " RON");
 
         // TODO - get image from db by name

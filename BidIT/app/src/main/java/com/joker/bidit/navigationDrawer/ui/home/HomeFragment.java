@@ -38,7 +38,7 @@ public class HomeFragment extends Fragment {
 
     View root;
 
-    private List<Product> mProducts;
+    public static List<Product> mProducts;
     private RecyclerView recyclerViewProducts;
     private ProductAdaptor adapter;
 
@@ -84,12 +84,14 @@ public class HomeFragment extends Fragment {
                         parseDouble(AddProductActivity.updated_weight),
                         AddProductActivity.updated_name,
                         parseDouble(AddProductActivity.updated_price));
-//                mProducts.add(new_product);
-                adapter.notifyDataSetChanged();
 
+                mProducts.add(new_product);
+                adapter.notifyDataSetChanged();
                 AddProductActivity.ADD_NEW_PRODUCT = 0;
             }
         }
+
+
     }
 
     private void populateRecyclerView() {

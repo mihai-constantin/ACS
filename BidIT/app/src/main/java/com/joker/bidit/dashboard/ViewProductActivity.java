@@ -16,10 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.joker.bidit.R;
-import com.joker.bidit.addProduct.AddProductActivity;
-import com.joker.bidit.navigationDrawer.ui.gallery.GalleryFragment;
+import com.joker.bidit.navigationDrawer.ui.gallery.DashboardFragment;
 import com.squareup.picasso.Picasso;
 
 import java.util.concurrent.TimeUnit;
@@ -57,11 +55,11 @@ public class ViewProductActivity extends AppCompatActivity {
         bidOver = false;
 
         Intent intent = getIntent();
-        String name = intent.getStringExtra(GalleryFragment.NAME);
-        String color = intent.getStringExtra(GalleryFragment.COLOR);
-        String weight = intent.getStringExtra(GalleryFragment.WEIGHT);
+        String name = intent.getStringExtra(DashboardFragment.NAME);
+        String color = intent.getStringExtra(DashboardFragment.COLOR);
+        String weight = intent.getStringExtra(DashboardFragment.WEIGHT);
         //String photo = intent.getStringExtra(GalleryFragment.PHOTO_URL);
-        price = intent.getStringExtra(GalleryFragment.PRICE);
+        price = intent.getStringExtra(DashboardFragment.PRICE);
 
         initView();
 

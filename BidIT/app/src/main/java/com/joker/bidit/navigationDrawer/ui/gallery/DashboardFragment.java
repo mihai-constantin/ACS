@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.joker.bidit.R;
-import com.joker.bidit.addProduct.AddProductActivity;
 import com.joker.bidit.dashboard.Product;
 import com.joker.bidit.dashboard.ProductAdaptor;
 import com.joker.bidit.dashboard.ProductsClickListener;
@@ -26,7 +25,7 @@ import java.util.List;
 
 import static java.lang.Double.parseDouble;
 
-public class GalleryFragment extends Fragment {
+public class DashboardFragment extends Fragment {
 
     public static final String NAME = "PRODUCT_NAME";
     public static final String COLOR = "PRODUCT_COLOR";
@@ -50,14 +49,14 @@ public class GalleryFragment extends Fragment {
     public void onResume() {
         super.onResume();
         //Toast.makeText(context, "I'm back", Toast.LENGTH_LONG).show();
-        if (GalleryFragment.POSITION != -1 && ViewProductActivity.pressBidButton == 1) {
+        if (DashboardFragment.POSITION != -1 && ViewProductActivity.pressBidButton == 1) {
             // update info product
             //mProducts.get(GalleryFragment.POSITION).setName(ViewProductActivity.updated_name);
             //mProducts.get(GalleryFragment.POSITION).setColour(ViewProductActivity.updated_color);
-            mProducts.get(GalleryFragment.POSITION).setPrice(parseDouble(ViewProductActivity.updated_price));
+            mProducts.get(DashboardFragment.POSITION).setPrice(parseDouble(ViewProductActivity.updated_price));
             //mProducts.get(GalleryFragment.POSITION).setWeight(parseDouble(ViewProductActivity.updated_weight));
             adapter.notifyDataSetChanged();
-            GalleryFragment.POSITION = -1;
+            DashboardFragment.POSITION = -1;
         }
 //        else {
 //            if (AddProductActivity.ADD_NEW_PRODUCT == 1 && AddProductActivity.pressSaveButton == 1) {
@@ -97,10 +96,10 @@ public class GalleryFragment extends Fragment {
 //                        Toast.LENGTH_SHORT).show();
                 POSITION = position;
                 Intent viewProductActivity = new Intent(adapter.getContext(), ViewProductActivity.class);
-                viewProductActivity.putExtra(GalleryFragment.NAME, name);
-                viewProductActivity.putExtra(GalleryFragment.COLOR, color);
-                viewProductActivity.putExtra(GalleryFragment.WEIGHT, weight);
-                viewProductActivity.putExtra(GalleryFragment.PRICE, price);
+                viewProductActivity.putExtra(DashboardFragment.NAME, name);
+                viewProductActivity.putExtra(DashboardFragment.COLOR, color);
+                viewProductActivity.putExtra(DashboardFragment.WEIGHT, weight);
+                viewProductActivity.putExtra(DashboardFragment.PRICE, price);
                 startActivity(viewProductActivity);
             }
             @Override
