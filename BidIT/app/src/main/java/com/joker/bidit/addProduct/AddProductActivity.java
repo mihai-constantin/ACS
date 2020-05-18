@@ -190,12 +190,12 @@ public class AddProductActivity extends AppCompatActivity {
 
             // TODO - update user info
             UserInformation userInformation = UserInformation.getInstance();
-//            List<Product> products = userInformation.getProducts();
-//
-//            products.add(new Product(updated_color, Double.parseDouble(updated_weight), updated_name,
-//                    Double.parseDouble(updated_price)));
+            List<Product> products = userInformation.getProducts();
 
-            userInformation.setProducts(HomeFragment.mProducts);
+            products.add(new Product(updated_color, Double.parseDouble(updated_weight), updated_name,
+                    Double.parseDouble(updated_price)));
+
+//            userInformation.setProducts(HomeFragment.mProducts);
 
             FirebaseUser user = firebaseAuth.getCurrentUser();
             FirebaseDatabase.getInstance().getReference().child(user.getUid()).setValue(userInformation);

@@ -38,8 +38,10 @@ public class DashboardFragment extends Fragment {
     private RecyclerView recyclerViewProducts;
     private ProductAdaptor adapter;
     Context context;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
         root = inflater.inflate(R.layout.activity_dashboard, container, false);
         context = getActivity();
         populateRecyclerView();

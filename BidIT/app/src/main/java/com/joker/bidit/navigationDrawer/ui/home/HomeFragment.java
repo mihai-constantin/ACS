@@ -38,7 +38,7 @@ public class HomeFragment extends Fragment {
 
     View root;
 
-    public static List<Product> mProducts;
+    private List<Product> mProducts;
     private RecyclerView recyclerViewProducts;
     private ProductAdaptor adapter;
 
@@ -80,12 +80,12 @@ public class HomeFragment extends Fragment {
             HomeFragment.POSITION = -1;
         } else {
             if (AddProductActivity.ADD_NEW_PRODUCT == 1 && AddProductActivity.pressSaveButton == 1) {
-                Product new_product = new Product(AddProductActivity.updated_color,
-                        parseDouble(AddProductActivity.updated_weight),
-                        AddProductActivity.updated_name,
-                        parseDouble(AddProductActivity.updated_price));
+//                Product new_product = new Product(AddProductActivity.updated_color,
+//                        parseDouble(AddProductActivity.updated_weight),
+//                        AddProductActivity.updated_name,
+//                        parseDouble(AddProductActivity.updated_price));
 
-                mProducts.add(new_product);
+//                mProducts.add(new_product);
                 adapter.notifyDataSetChanged();
                 AddProductActivity.ADD_NEW_PRODUCT = 0;
             }
