@@ -134,5 +134,12 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         UploadTask uploadTask = imageReference.putFile(imagePath);
         uploadTask.addOnFailureListener(e -> Toast.makeText(EditProfileActivity.this, "Error: Uploading profile picture", Toast.LENGTH_SHORT).show())
                 .addOnSuccessListener(taskSnapshot -> Toast.makeText(EditProfileActivity.this, "Profile picture uploaded", Toast.LENGTH_SHORT).show());
+
+        // todo - wait image to be uploaded
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

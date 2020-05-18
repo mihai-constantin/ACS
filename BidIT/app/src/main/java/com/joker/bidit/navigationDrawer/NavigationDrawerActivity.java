@@ -106,12 +106,6 @@ public class NavigationDrawerActivity extends AppCompatActivity {
             assert user != null;
             mTextViewEmailUser.setText(user.getEmail());
 
-//            Picasso.get()
-//                    .load("https://www.freepngimg.com/thumb/google/66726-customer-account-google-service-button-search-logo.png")
-//                    .resize(300,300)
-//                    .centerCrop()
-//                    .into(mImageViewUser);
-
             firebaseStorage = FirebaseStorage.getInstance();
             StorageReference storageReference = firebaseStorage.getReference();
             // Get the image stored on Firebase via "User id/Images/Profile Pic.jpg".
