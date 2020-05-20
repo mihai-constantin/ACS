@@ -50,4 +50,13 @@ public class Product {
         this.mColor = mColour;
     }
 
+    @Override
+    public String toString() {
+        return "Product{" +
+                "mColor='" + mColor + '\'' +
+                ", mWeight=" + mWeight +
+                ", mName='" + mName + '\'' +
+                ", mPrice=" + mPrice +
+                '}';
+    }
 }

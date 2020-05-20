@@ -3,22 +3,33 @@ package com.joker.bidit.navigationDrawer.ui.gallery;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.UserInfo;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.joker.bidit.R;
+import com.joker.bidit.addProduct.AddProductActivity;
 import com.joker.bidit.dashboard.Product;
 import com.joker.bidit.dashboard.ProductAdaptor;
 import com.joker.bidit.dashboard.ProductsClickListener;
 import com.joker.bidit.dashboard.RecyclerTouchListener;
 import com.joker.bidit.dashboard.ViewProductActivity;
+import com.joker.bidit.login.UserInformation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,10 +45,12 @@ public class DashboardFragment extends Fragment {
     public static final String PHOTO_URL = "PRODUCT_PHOTO_URL";
     public static Integer POSITION = -1;
     View root;
-    private List<Product> mProducts;
+    private List<Product> mProducts = new ArrayList<>();
     private RecyclerView recyclerViewProducts;
     private ProductAdaptor adapter;
     Context context;
+
+    private static final String TAG = "TAG";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -50,6 +63,7 @@ public class DashboardFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
         //Toast.makeText(context, "I'm back", Toast.LENGTH_LONG).show();
         if (DashboardFragment.POSITION != -1 && ViewProductActivity.pressBidButton == 1) {
             // update info product
@@ -63,27 +77,28 @@ public class DashboardFragment extends Fragment {
 //        else {
 //            if (AddProductActivity.ADD_NEW_PRODUCT == 1 && AddProductActivity.pressSaveButton == 1) {
 //                // TODO - select imagine
-//                Product new_product = new Product(AddProductActivity.updated_color,
-//                        parseDouble(AddProductActivity.updated_weight),
-//                        AddProductActivity.updated_name,
-//                        parseDouble(AddProductActivity.updated_price),
-//                        "https://images.unsplash.com/photo-1514192631-251f5f0b14f2?w=800&q=60");
+//                Product new_product = new Product("culoare", 2.4, "name", 100.0);
 //                mProducts.add(new_product);
 //                adapter.notifyDataSetChanged();
 //                AddProductActivity.ADD_NEW_PRODUCT = 0;
 //            }
 //        }
     }
+
     private void populateRecyclerView() {
         recyclerViewProducts = root.findViewById(R.id.recyclerViewProducts);
         // recyclerViewProducts.setHasFixedSize(true);
+
         recyclerViewProducts.setLayoutManager(new LinearLayoutManager(getActivity()));
+
         getProducts();
+
         adapter = new ProductAdaptor(getActivity(), mProducts);
         recyclerViewProducts.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         setRecyclerViewListener();
     }
+
     private void setRecyclerViewListener() {
         recyclerViewProducts.addOnItemTouchListener(new RecyclerTouchListener(context,
                 recyclerViewProducts, new ProductsClickListener() {
@@ -111,20 +126,24 @@ public class DashboardFragment extends Fragment {
             }
         }));
     }
+
     private void getProducts() {
+
         mProducts = new ArrayList<>();
+//        Product product1 = new Product("rosu", 3.0, "book.png", 200);
+//        Product product2 = new Product("negru", 100.0, "pian.jpg", 800);
+//        Product product3 = new Product("gri", 1.0, "prajitor.jpg", 100);
+//        Product product4 = new Product("gri", 3.5, "Laptop", 580);
+//        Product product5 = new Product("negru", 2.5, "televizor.jpg", 600);
+//        mProducts.add(product1);
+//        mProducts.add(product2);
+//        mProducts.add(product3);
+//        mProducts.add(product4);
+//        mProducts.add(product5);
 
-        Product product1 = new Product("rosu", 3.0, "book.png", 200);
-        Product product2 = new Product("negru", 100.0, "pian.jpg", 800);
-        Product product3 = new Product("gri", 1.0, "prajitor.jpg", 100);
-        Product product4 = new Product("gri", 3.5, "Laptop", 580);
-        Product product5 = new Product("negru", 2.5, "televizor.jpg", 600);
-
-        mProducts.add(product1);
-        mProducts.add(product2);
-        mProducts.add(product3);
-        mProducts.add(product4);
-        mProducts.add(product5);
-
+        GetProductsFromDB getProductsFromDB = new GetProductsFromDB();
+        mProducts = getProductsFromDB.getProducts();
+        Log.d(DashboardFragment.TAG, "SIZE: " + mProducts.size());
     }
+
 }

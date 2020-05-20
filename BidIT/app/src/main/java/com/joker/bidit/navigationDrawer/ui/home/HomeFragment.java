@@ -43,6 +43,7 @@ public class HomeFragment extends Fragment {
     private ProductAdaptor adapter;
 
     Context context;
+    public static List<Product> mFavoriteProducts = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -90,8 +91,6 @@ public class HomeFragment extends Fragment {
                 AddProductActivity.ADD_NEW_PRODUCT = 0;
             }
         }
-
-
     }
 
     private void populateRecyclerView() {
@@ -136,6 +135,10 @@ public class HomeFragment extends Fragment {
             public void onLongClick(View view, int position) {
                 Toast.makeText(context, getString(R.string.long_click) + position,
                         Toast.LENGTH_LONG).show();
+
+                Product product = mProducts.get(position);
+
+                mFavoriteProducts.add(product);
             }
         }));
     }

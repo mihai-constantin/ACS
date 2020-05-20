@@ -383,6 +383,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             mLogginButton.setText("SIGN IN");
         }
         else {
+            mCheckBoxAccept.setVisibility(View.VISIBLE);
             textView.setText("Already a member?");
             mLogginButton.setText("SIGN UP");
         }

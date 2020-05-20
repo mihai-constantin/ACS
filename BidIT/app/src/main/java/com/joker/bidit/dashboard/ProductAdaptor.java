@@ -22,7 +22,6 @@ public class ProductAdaptor extends RecyclerView.Adapter<ProductsViewHolder> {
     private List<Product> products;
     private Context context;
 
-
     public Context getContext() {
         return context;
     }

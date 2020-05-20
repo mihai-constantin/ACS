@@ -58,4 +58,14 @@ public class UserInformation {
     public static void setSingle_instance(UserInformation single_instance) {
         UserInformation.single_instance = single_instance;
     }
+
+    @Override
+    public String toString() {
+        return "UserInformation{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", phoneNo='" + phoneNo + '\'' +
+                ", products=" + products +
+                '}';
+    }
 }
