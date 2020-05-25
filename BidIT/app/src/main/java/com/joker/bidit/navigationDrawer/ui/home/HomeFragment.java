@@ -7,13 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.auth.UserInfo;
 import com.joker.bidit.R;
 import com.joker.bidit.addProduct.AddProductActivity;
 import com.joker.bidit.dashboard.Product;
@@ -38,7 +38,7 @@ public class HomeFragment extends Fragment {
 
     View root;
 
-    private List<Product> mProducts;
+    private static List<Product> mProducts;
     private RecyclerView recyclerViewProducts;
     private ProductAdaptor adapter;
 
@@ -64,11 +64,9 @@ public class HomeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        //Toast.makeText(context, "I'm back", Toast.LENGTH_LONG).show();
 
         if (HomeFragment.POSITION != -1 && AddProductActivity.pressSaveButton == 1) {
 
-            Toast.makeText(context, "AICI INTRA", Toast.LENGTH_LONG).show();
 
             // update info product
             mProducts.get(HomeFragment.POSITION).setName(AddProductActivity.updated_name);
@@ -112,34 +110,53 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view, final int position) {
 
-                Product product = mProducts.get(position);
-                String name = product.getName();
-                String color = product.getColor();
-                String weight = product.getWeight().toString();
-                String price = product.getPrice().toString();
+                    Product product = mProducts.get(position);
+                    String name = product.getName();
+                    String color = product.getColor();
+                    String weight = product.getWeight().toString();
+                    String price = product.getPrice().toString();
 
-                Toast.makeText(context, getString(R.string.single_click) + " " + position,
-                        Toast.LENGTH_SHORT).show();
+                    POSITION = position;
 
-                POSITION = position;
-
-                Intent secondActivity = new Intent(adapter.getContext(), AddProductActivity.class);
-                secondActivity.putExtra(HomeFragment.NAME, name);
-                secondActivity.putExtra(HomeFragment.COLOR, color);
-                secondActivity.putExtra(HomeFragment.WEIGHT, weight);
-                secondActivity.putExtra(HomeFragment.PRICE, price);
-                startActivity(secondActivity);
+                    Intent secondActivity = new Intent(adapter.getContext(), AddProductActivity.class);
+                    secondActivity.putExtra(HomeFragment.NAME, name);
+                    secondActivity.putExtra(HomeFragment.COLOR, color);
+                    secondActivity.putExtra(HomeFragment.WEIGHT, weight);
+                    secondActivity.putExtra(HomeFragment.PRICE, price);
+                    startActivity(secondActivity);
             }
 
             @Override
             public void onLongClick(View view, int position) {
-                Toast.makeText(context, getString(R.string.long_click) + position,
-                        Toast.LENGTH_LONG).show();
+                boolean fav = mProducts.get(position).isFavourite();
 
-                Product product = mProducts.get(position);
+                if (!fav) {
+                    mProducts.get(position).setFavourite(true);
+                    ToggleButton fav_button2 = view.findViewById(R.id.button_favorite_full);
+                    fav_button2.setVisibility(View.VISIBLE);
 
-                mFavoriteProducts.add(product);
+                    ToggleButton fav_button = view.findViewById(R.id.button_favorite);
+                    fav_button.setVisibility(View.INVISIBLE);
+
+                    Product product = mProducts.get(position);
+                    mFavoriteProducts.add(product);
+                }
+                else {
+                    mProducts.get(position).setFavourite(false);
+                    ToggleButton fav_button2 = view.findViewById(R.id.button_favorite_full);
+                    fav_button2.setVisibility(View.INVISIBLE);
+
+                    ToggleButton fav_button = view.findViewById(R.id.button_favorite);
+                    fav_button.setVisibility(View.VISIBLE);
+
+                    Product product = mProducts.get(position);
+                    mFavoriteProducts.remove(product);
+                }
             }
         }));
+    }
+
+    public static List<Product> getProducts() {
+        return mProducts;
     }
 }

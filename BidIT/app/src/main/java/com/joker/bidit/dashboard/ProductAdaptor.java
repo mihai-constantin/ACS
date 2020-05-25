@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -48,7 +47,7 @@ public class ProductAdaptor extends RecyclerView.Adapter<ProductsViewHolder> {
         Product currentProduct = products.get(position);
 
         holder.mTextViewName.setText(currentProduct.getName());
-        holder.mTextViewColorAndWeight.setText(currentProduct.getColor() + " /" +currentProduct.getWeight());
+        holder.mTextViewColorAndWeight.setText("" + currentProduct.getWeight());
         holder.mTextViewPrice.setText(currentProduct.getPrice() + " RON");
 
         // TODO - get image from db by name
@@ -57,10 +56,7 @@ public class ProductAdaptor extends RecyclerView.Adapter<ProductsViewHolder> {
         StorageReference storageReference = firebaseStorage.getReference();
         // Get the image stored on Firebase via "User id/Products/name_product.jpg".
 
-        Toast.makeText(context, "Searching for " + currentProduct.getName(),
-                Toast.LENGTH_LONG).show();
-
-        storageReference.child(firebaseAuth.getUid()).child("Products").child(currentProduct.getName())
+        storageReference.child("ProductsPicturesAllUsers").child(currentProduct.getName())
                 .getDownloadUrl().addOnSuccessListener(uri -> {
             // Using "Picasso" (http://square.github.io/picasso/) after adding the dependency in the Gradle.
             // ".fit().centerInside()" fits the entire image into the specified area.
@@ -68,6 +64,14 @@ public class ProductAdaptor extends RecyclerView.Adapter<ProductsViewHolder> {
             Picasso.get().load(uri).fit().into(holder.getImageView());
         });
 
+        if (!currentProduct.isFavourite()) {
+            holder.mToggleButton.setVisibility(View.VISIBLE);
+            holder.mToggleButton_full.setVisibility(View.INVISIBLE);
+        }
+        else {
+            holder.mToggleButton.setVisibility(View.INVISIBLE);
+            holder.mToggleButton_full.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

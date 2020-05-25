@@ -21,7 +21,7 @@
 
             <ImageView
                 android:id="@+id/imageview_product"
-                android:layout_width="@dimen/space_128"
+                android:layout_width="160dp"
                 android:layout_height="@dimen/space_128"
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -74,6 +74,25 @@
                 android:layout_marginBottom="@dimen/space_4"
                 android:background="@drawable/ic_favorite_border_black_24dp"
                 android:checked="false"
+                android:clickable="true"
+                android:focusable="true"
+                android:text=""
+                android:textOff=""
+                android:textOn=""
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <ToggleButton
+                android:id="@+id/button_favorite_full"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginRight="@dimen/space_4"
+                android:layout_marginEnd="@dimen/space_4"
+                android:layout_marginBottom="@dimen/space_4"
+                android:background="@drawable/ic_favorite_red_full_24dp"
+                android:checked="false"
+                android:clickable="true"
+                android:focusable="true"
                 android:text=""
                 android:textOff=""
                 android:textOn=""

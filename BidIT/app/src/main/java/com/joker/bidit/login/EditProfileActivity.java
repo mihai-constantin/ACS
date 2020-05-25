@@ -1,5 +1,6 @@
 package com.joker.bidit.login;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -18,14 +19,18 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.joker.bidit.R;
 import com.joker.bidit.dashboard.Product;
 import com.joker.bidit.navigationDrawer.NavigationDrawerActivity;
+import com.joker.bidit.navigationDrawer.ui.gallery.DashboardFragment;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -141,5 +146,36 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+        // todo - get all products from all users from db
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference().child(firebaseAuth.getCurrentUser().getUid());
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                UserInformation userInfo = dataSnapshot.getValue(UserInformation.class);
+
+                if (userInfo.getProducts() == null) {
+                    UserInformation.getInstance(userInfo.getUserName(),
+                            userInfo.getUserSurname(),
+                            userInfo.getUserPhoneNo(),
+                            new ArrayList<>());
+                }
+                else {
+                    UserInformation.getInstance(userInfo.getUserName(),
+                            userInfo.getUserSurname(),
+                            userInfo.getUserPhoneNo(),
+                            userInfo.getProducts());
+
+                    DashboardFragment.productsDashboard = userInfo.getProducts();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 }

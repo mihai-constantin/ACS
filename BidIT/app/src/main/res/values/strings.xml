@@ -15,7 +15,7 @@
     <string name="accept"><![CDATA[I accept T&C]]></string>
     <string name="submit">submit</string>
     <string name="error_email_input">Fill the input with a valid email address</string>
-    <string name="error_phone_input">Fill the input with a phone number</string>
+    <string name="error_phone_input">Fill the input with a valid password</string>
     <string name="error_is_accepted_input">Check should be accepted</string>
     <string name="continueWithGoogle">Continue with Google</string>
     <string name="or">or</string>

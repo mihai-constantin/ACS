@@ -155,8 +155,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             mAuthentication.setAccepted(true);
             return true;
         } else {
-            /*Toast.makeText(MainActivity.this, getResources().getString(R.string
-                    .error_is_accepted_input), Toast.LENGTH_SHORT).show();*/
 
             if (mCheckBoxAccept.getVisibility() == View.GONE) {
                 mAuthentication.setAccepted(true);
@@ -236,9 +234,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Toast.LENGTH_LONG).show();
         }
         else {
-            /*Toast.makeText(MainActivity.this,
-                    String.format("Invalid email or password!"),
-                    Toast.LENGTH_LONG).show();*/
             AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
 
             dlgAlert.setMessage("Wrong password or username. Please, try again");
@@ -343,8 +338,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            /*Toast.makeText(EmailPasswordActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();*/
                             updateUI(null);
                         }
                     }

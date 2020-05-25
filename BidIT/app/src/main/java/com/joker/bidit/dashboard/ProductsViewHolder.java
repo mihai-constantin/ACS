@@ -3,6 +3,7 @@ package com.joker.bidit.dashboard;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +16,8 @@ public class ProductsViewHolder extends RecyclerView.ViewHolder {
     public TextView mTextViewName;
     public TextView mTextViewColorAndWeight;
     public TextView mTextViewPrice;
+    public ToggleButton mToggleButton;
+    public ToggleButton mToggleButton_full;
 
     public ProductsViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -23,6 +26,9 @@ public class ProductsViewHolder extends RecyclerView.ViewHolder {
         mTextViewName = itemView.findViewById(R.id.textview_name);
         mTextViewColorAndWeight = itemView.findViewById(R.id.textview_color_and_weight);
         mTextViewPrice = itemView.findViewById(R.id.textview_price);
+        mToggleButton = itemView.findViewById(R.id.button_favorite);
+        mToggleButton_full = itemView.findViewById(R.id.button_favorite_full);
+
     }
 
     public ImageView getImageView() {

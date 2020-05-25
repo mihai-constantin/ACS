@@ -54,7 +54,7 @@
             android:id="@+id/text_info_color"
             android:layout_width="100dp"
             android:layout_height="29dp"
-            android:text="Product color"
+            android:text="Product name"
             tools:layout_editor_absoluteX="199dp"
             tools:layout_editor_absoluteY="579dp"/>
 
@@ -70,7 +70,7 @@
             android:id="@+id/text_info_weight"
             android:layout_width="100dp"
             android:layout_height="29dp"
-            android:text="Product color"
+            android:text="Product price"
             tools:layout_editor_absoluteX="199dp"
             tools:layout_editor_absoluteY="579dp"/>
 
@@ -86,7 +86,7 @@
             android:id="@+id/text_info_current_price"
             android:layout_width="100dp"
             android:layout_height="29dp"
-            android:text="Product color"
+            android:text="Product weight"
             tools:layout_editor_absoluteX="199dp"
             tools:layout_editor_absoluteY="579dp"/>
 

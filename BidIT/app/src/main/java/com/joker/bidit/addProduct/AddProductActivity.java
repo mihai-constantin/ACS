@@ -186,6 +186,13 @@ public class AddProductActivity extends AppCompatActivity {
                     .addOnSuccessListener
                             (taskSnapshot -> Toast.makeText(AddProductActivity.this, "Product picture uploaded", Toast.LENGTH_SHORT).show());
 
+            StorageReference imageReference2 = storageReference.child("ProductsPicturesAllUsers").child(updated_name);
+            UploadTask uploadTask2 = imageReference2.putFile(imagePath);
+            uploadTask2.addOnFailureListener(
+                    e -> Toast.makeText(AddProductActivity.this, "Error: Uploading product picture", Toast.LENGTH_SHORT).show())
+                    .addOnSuccessListener
+                            (taskSnapshot -> Toast.makeText(AddProductActivity.this, "Product picture uploaded", Toast.LENGTH_SHORT).show());
+
             ADD_NEW_PRODUCT = 1;
 
             // TODO - update user info
@@ -193,7 +200,7 @@ public class AddProductActivity extends AppCompatActivity {
             List<Product> products = userInformation.getProducts();
 
             products.add(new Product(updated_color, Double.parseDouble(updated_weight), updated_name,
-                    Double.parseDouble(updated_price)));
+                    Double.parseDouble(updated_price), false));
 
 //            userInformation.setProducts(HomeFragment.mProducts);
 

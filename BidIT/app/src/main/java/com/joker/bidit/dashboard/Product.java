@@ -6,16 +6,18 @@ public class Product {
     private Double mWeight;
     private String mName;
     private double mPrice;
+    private boolean isFavourite;
 
     public Product() {
 
     }
 
-    public Product(String mColor, Double mWeight, String mName, double mPrice) {
+    public Product(String mColor, Double mWeight, String mName, double mPrice, boolean isFavourite) {
         this.mColor = mColor;
         this.mWeight = mWeight;
         this.mName = mName;
         this.mPrice = mPrice;
+        this.isFavourite = isFavourite;
     }
 
     public String getName() {
@@ -48,6 +50,14 @@ public class Product {
 
     public void setColour(String mColour) {
         this.mColor = mColour;
+    }
+
+    public boolean isFavourite() {
+        return isFavourite;
+    }
+
+    public void setFavourite(boolean favourite) {
+        isFavourite = favourite;
     }
 
     @Override

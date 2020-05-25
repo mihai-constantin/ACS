@@ -70,18 +70,18 @@ public class ViewProductActivity extends AppCompatActivity {
             productCurrentPrice.setText(price);
 
             // TODO - search image and load into activity
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
-        StorageReference storageReference = firebaseStorage.getReference();
-        // Get the image stored on Firebase via "User id/Products/name_product.jpg".
+            FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+            FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+            StorageReference storageReference = firebaseStorage.getReference();
+            // Get the image stored on Firebase via "User id/Products/name_product.jpg".
 
-        storageReference.child(firebaseAuth.getUid()).child("Products").child(name)
-                .getDownloadUrl().addOnSuccessListener(uri -> {
-            // Using "Picasso" (http://square.github.io/picasso/) after adding the dependency in the Gradle.
-            // ".fit().centerInside()" fits the entire image into the specified area.
-            // Finally, add "READ" and "WRITE" external storage permissions in the Manifest.
-            Picasso.get().load(uri).fit().into(productPicture);
-        });
+            storageReference.child("ProductsPicturesAllUsers").child(name)
+                    .getDownloadUrl().addOnSuccessListener(uri -> {
+                // Using "Picasso" (http://square.github.io/picasso/) after adding the dependency in the Gradle.
+                // ".fit().centerInside()" fits the entire image into the specified area.
+                // Finally, add "READ" and "WRITE" external storage permissions in the Manifest.
+                Picasso.get().load(uri).fit().into(productPicture);
+            });
 
             bidPrice = Double.parseDouble(price);
             seek_bar.setProgress(bidPrice.intValue());

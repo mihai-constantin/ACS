@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,7 +29,7 @@ import com.joker.bidit.navigationDrawer.ui.home.HomeFragment;
 
 import java.util.ArrayList;
 
-public class SlideshowFragment extends Fragment {
+public class FavoritesFragment extends Fragment {
 
     View root;
     Context context;
@@ -51,7 +52,6 @@ public class SlideshowFragment extends Fragment {
 
     private void populateRecyclerView() {
         recyclerViewProducts = root.findViewById(R.id.recyclerViewProducts);
-        // recyclerViewProducts.setHasFixedSize(true);
 
         recyclerViewProducts.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -74,9 +74,6 @@ public class SlideshowFragment extends Fragment {
                 String weight = product.getWeight().toString();
                 String price = product.getPrice().toString();
 
-                Toast.makeText(context, getString(R.string.single_click) + " " + position,
-                        Toast.LENGTH_SHORT).show();
-
                 POSITION = position;
 
                 Intent secondActivity = new Intent(adapter.getContext(), AddProductActivity.class);
@@ -89,11 +86,22 @@ public class SlideshowFragment extends Fragment {
 
             @Override
             public void onLongClick(View view, int position) {
-                Toast.makeText(context, getString(R.string.long_click) + position,
-                        Toast.LENGTH_LONG).show();
 
-                HomeFragment.mFavoriteProducts.remove(position);
-                adapter.notifyDataSetChanged();
+                boolean fav = HomeFragment.mFavoriteProducts.get(position).isFavourite();
+
+                if (fav) {
+
+                    HomeFragment.mFavoriteProducts.get(position).setFavourite(false);
+
+                    ToggleButton fav_button2 = view.findViewById(R.id.button_favorite_full);
+                    fav_button2.setVisibility(View.INVISIBLE);
+
+                    ToggleButton fav_button = view.findViewById(R.id.button_favorite);
+                    fav_button.setVisibility(View.VISIBLE);
+
+                    HomeFragment.mFavoriteProducts.remove(position);
+                    adapter.notifyDataSetChanged();
+                }
             }
         }));
     }
