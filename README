@@ -1,0 +1,81 @@
+------------------------
+CONSTANTIN MIHAI - 336CA
+------------------------
+TEMA 1 ASC - Marketplace
+------------------------
+
+----------
+Organizare
+----------
+Tema este alcatuita din 3 fisiere: consumer.py, producer.py si marketplace.py.
+Arhiva contine si un script verify.sh, care testeaza corectitudinea solutiei
+pentru un numar de iteratii primit ca argument.
+
+--------------
+Clasa Producer
+--------------
+In clasa Producer, producatorul va produce la infinit produsele din lista 
+proprie in cantitatea corespunzatoare. Dupa extragerea elementului curent din
+lista, producatorul va incerca sa "publice" produsul. Daca operatia esueaza,
+acesta va astepta republish_wait_time, dupa care va incerca din nou.
+Dupa fiecare produs pus in marketplace (o operatie de publish reusita),
+producatorul va astepta un waiting_time pentru a putea initia o alta operatie
+de publish in marketplace.
+
+--------------
+Clasa Consumer
+--------------
+In clasa Consumer, consumatorul va dori sa-si efectueze listele de cumparaturi.
+Pentru fiecare cart, acesta va itera prin operatiile curente si va efectua
+operatiile necesare. Daca operatia este una de add, va apela metoda
+add_to_cart. Daca operatia esueaza, consumatorul asteapta retry_wait_time, dupa
+care va incerca din nou sa adauge produsul in cosul de cumparaturi.
+In schimb, daca operatia este una de remove, va apela metoda remove_from_cart.
+La terminarea tuturor operatiilor din cadrul unui cart, se va apela metoda
+place_order (clientul cumpara toate produsele din cosul curent).
+
+-----------------
+Clasa Marketplace
+-----------------
+In clasa Marketplace sunt definite metodele pe care atat producatorii, cat si
+consumatorii le folosesc in clasele proprii. 
+
+Pentru a gestiona datele din cadrul temei, am folosit urmatoarele structuri:
+
+- products: un dictionar in care pentru fiecare producer_id avem o lista a
+			produselor care se afla in marketplace in momentul curent
+
+- carts:	un dictionar in care pentru fiecare cart_id avem o lista de perechi
+			a produselor care se afla in cosul curent, plus id-ul 
+			producatorului fiecarul element
+
+- marketplace:	o lista de perechi in care fiecare produs aflat in marketplace
+				are asociat id-ul producatorului
+
+- consumer_names:	un dictionar in care pentru fiecare cart_id avem asociat
+					numele consumatorului
+
+In momentul in care un consumator adauga un anumit produs in cosul de
+cumparaturi, acesta devine indisponibil pentru ceilalti consumatori,
+fiind eliminat din lista produselor producatorului respectiv, si de asemenea
+din marketplace.
+
+In momentul in care un consumator elimina un anumit produs din cosul de
+cumparaturi, acesta devine disponibil pentru ceilalti consumatori,
+fiind adaugat in lista produselor producatorului respectiv, si de asemenea
+in marketplace.
+
+------------
+Sincronizare
+------------
+Deoarece operatiile pe liste si dictionare sunt atomice, am folosit doar
+lock-uri in situatia in care am incrementat id-ul producatorului, respectiv
+id-ul unui cart.
+
+--------------
+Timp de rulare
+--------------
+Pentru a verifica corectitudinea, am folosit scriptul verify.sh din arhiva.
+Timpul de rulare mediu la 100 de rulari a fost de 1.32s, cu o medie de 24.991s 
+la ultimul test.
+
