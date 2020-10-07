@@ -11,3 +11,5 @@
 * copiere fisiere de pe local pe fep: scp file_name mihai.constantin98@fep.grid.pub.ro:~/APP (rulat de pe host - mac)
 
 * copiere fisiere de pe fep pe local: scp mihai.constantin98@fep.grid.pub.ro:~/file . (rulat de pe host - mac)
+
+* Output-urile rularilor se gasesc in directorul output/
