@@ -1,0 +1,19 @@
+[mihai.constantin98@fep7-1 lab01]$ ./hello-world 
+Outside of the pragma, the number of threads is 1
+
+Inside the pragma, the number of threads is 4
+
+Inside the pragma, the number of threads is 4
+
+Inside the pragma, the number of threads is 4
+
+Hello(3) world from process 3!
+
+Hello(2) world from process 2!
+
+Hello(0) world from process 0!
+
+Inside the pragma, the number of threads is 4
+
+Hello(1) world from process 1!
+

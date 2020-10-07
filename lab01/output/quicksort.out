@@ -1,0 +1,23 @@
+[mihai.constantin98@fep7-1 app_profiling]$ make
+cc -xO3 -g -o app_lab4 openmp_stack_quicksort.c
+[mihai.constantin98@fep7-1 app_profiling]$ ./app_lab4 10 13
+Contents of array:
+0.0229 0.1919 0.4264 0.6418 0.5593 0.9754 0.3599 0.6055 0.3428 0.6882 
+Contents of array:
+0.0229 0.1919 0.3428 0.3599 0.4264 0.5593 0.6055 0.6418 0.6882 0.9754 
+Elements are sorted
+
+[mihai.constantin98@fep7-1 app_profiling]$ make build_omp
+cc -xO3 -xopenmp -g -xloopinfo -L/opt/sun/sunstudio12.1/rtlibs/amd64 -o app_lab4_omp openmp_stack_quicksort.c
+"openmp_stack_quicksort.c", line 53: not parallelized, call may be unsafe
+"openmp_stack_quicksort.c", line 76: not parallelized, not a recognized for loop
+"openmp_stack_quicksort.c", line 81: not parallelized, not a recognized for loop
+"openmp_stack_quicksort.c", line 105: not parallelized, call may be unsafe
+"openmp_stack_quicksort.c", line 116: not parallelized, loop has multiple exits
+"openmp_stack_quicksort.c", line 142: not parallelized, not a recognized for loop
+[mihai.constantin98@fep7-1 app_profiling]$ ./app_lab4_omp 10 13
+Contents of array:
+0.0229 0.1919 0.4264 0.6418 0.5593 0.9754 0.3599 0.6055 0.3428 0.6882 
+Contents of array:
+0.0229 0.1919 0.3428 0.3599 0.4264 0.5593 0.6055 0.6418 0.6882 0.9754 
+Elements are sorted
