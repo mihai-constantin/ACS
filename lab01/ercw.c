@@ -1,5 +1,5 @@
 /**
- * Algoritmul CRCW-PRAM cu n^3 procesoare pentru inmultire de matrici
+ * Algoritmul ERCW-PRAM cu n^3 procesoare pentru inmultire de matrici
  * C <- A * B
  */
 #include <stdio.h>
@@ -10,7 +10,9 @@
  * Se considera un numar de procesoare egal cu n^3, unde n este dimensiunea matricei.
  * 
  * Algoritmul consta in 2 etape
- * 1. Fiecare procesor P(i,j,k) calculeaza in paralel produsul A[i][j] * B[j][k].
+ * 1. Fiecare procesor P(i,j,k) calculeaza in paralel produsul A[i][j] * B[j][k]
+ *    A[i][j], respectiv B[j][k] se citesc la un moment de timp diferit, fiind extrase
+ *    in variabilele a si b.
  * 2. Se face scrierea concurenta a procesoarelor in locatia C[i][j] 
  *    a termenilor A[i][k] * B[k][j], k = [0...n-1], care se insumeaza.
  */
@@ -21,13 +23,16 @@ typedef struct Index {
     int k;
 } Index;
 
-#define n 3
+#define n 2
 
 int A[n][n];
 int B[n][n];
 int C[n][n];
 
 pthread_mutex_t mutex[n][n];
+pthread_mutex_t mutexA[n][n];
+pthread_mutex_t mutexB[n][n];
+
 
 void read() {
     int i;
@@ -47,8 +52,16 @@ void* threadFunction(void* var) {
 
     Index thread_id = *(Index*) var;
 
+    pthread_mutex_lock(&mutexA[thread_id.i][thread_id.j]);
+    int a = A[thread_id.i][thread_id.k];
+    pthread_mutex_unlock(&mutexA[thread_id.i][thread_id.j]);
+
+    pthread_mutex_lock(&mutexB[thread_id.i][thread_id.j]);
+    int b = B[thread_id.k][thread_id.j];
+    pthread_mutex_unlock(&mutexB[thread_id.i][thread_id.j]);
+
     // 1. partial result
-    int sum = A[thread_id.i][thread_id.k] * B[thread_id.k][thread_id.j];
+    int sum = a * b;
     printf("Thread [%d %d %d]: %d\n", thread_id.i, thread_id.j, thread_id.k, sum);
 
     // 2. add to final result
@@ -94,6 +107,8 @@ int main()
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
            pthread_mutex_init(&mutex[i][j], NULL);
+           pthread_mutex_init(&mutexA[i][j], NULL);
+           pthread_mutex_init(&mutexB[i][j], NULL);
         }
     }
 
@@ -111,6 +126,9 @@ int main()
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
             pthread_mutex_destroy(&mutex[i][j]);
+            pthread_mutex_destroy(&mutexA[i][j]);
+            pthread_mutex_destroy(&mutexB[i][j]);
+
         }
     }
 

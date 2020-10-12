@@ -1,5 +1,5 @@
 /**
- * Algoritmul CREW-PRAM cu n3 procesoare pentru inmultire de matrici
+ * Algoritmul CREW-PRAM cu n^3 procesoare pentru inmultire de matrici
  * C <- A * B
  */
 #include <stdio.h>
