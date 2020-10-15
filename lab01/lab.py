@@ -1,10 +1,15 @@
 import requests
 import json
 
-def task1():
+def get_args():
+    nume = input('Nume: ') 
+    grupa = input('Grupa: ')
+    return [nume, grupa]
+
+def task1(nume, grupa):
     print('===== Exercise 1 =====')
     # create args for requests
-    params = 'nume=Constantin Mihai&grupa=341C1'
+    params = {'nume': nume, 'grupa': grupa}
     data = {'secret': 'SPRCisNice'}
     headers = {'secret2': 'SPRCisBest'}
     
@@ -18,21 +23,20 @@ def task1():
 
     return response.json()
 
-def task2():
+def task2(nume):
     print('===== Exercise 2 =====')
     url = 'https://sprc.dfilip.xyz/lab1/task2'
     payload = {
         'username': 'sprc',
         'password': 'admin',
-        'nume': 'Constantin Mihai'
+        'nume': nume
     }
 
     response = requests.post(url, json = payload)
     return response.json()
 
-def task3():
+def task3(nume):
     print('===== Exercise 3 =====')
-
     # create session
     session = requests.Session()
 
@@ -41,7 +45,7 @@ def task3():
     payload = {
         'username': 'sprc',
         'password': 'admin',
-        'nume': 'Constantin Mihai'
+        'nume': nume
     }
     session.post(url, json = payload)
 
@@ -50,6 +54,7 @@ def task3():
     return session.get(url_check).json()
 
 if __name__ == "__main__":
-    print(json.dumps(task1(), indent = 4))
-    print(json.dumps(task2(), indent = 4))
-    print(json.dumps(task3(), indent = 4))
+    [nume, grupa] = get_args()
+    print(json.dumps(task1(nume, grupa), indent = 4))
+    print(json.dumps(task2(nume), indent = 4))
+    print(json.dumps(task3(nume), indent = 4))

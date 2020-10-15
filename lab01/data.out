@@ -1,0 +1,17 @@
+Nume: Constantin Mihai
+Grupa: 341C1
+===== Exercise 1 =====
+{
+    "status": "ok",
+    "proof": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ3aG8iOnsibnVtZSI6WyJDb25zdGFudGluIE1paGFpIl0sImdydXBhIjpbIjM0MUMxIl19LCJkaWQiOiJ0YXNrMSJ9.kI37Br6kaQ-VRUtUeP22hbixNQKHezcTWNUm0PZ-mHc"
+}
+===== Exercise 2 =====
+{
+    "status": "ok",
+    "proof": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ3aG8iOnsibnVtZSI6IkNvbnN0YW50aW4gTWloYWkifSwiZGlkIjoidGFzazIifQ.knG_9SzfDzoP3dbyHJ9WlrOxQd93PkVXEWdkb8Y0Ddc"
+}
+===== Exercise 3 =====
+{
+    "status": "ok",
+    "proof": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ3aG8iOnsibnVtZSI6IkNvbnN0YW50aW4gTWloYWkifSwiZGlkIjoidGFzazMifQ.UGKCNEPyqdVlCXiqE7pC-kkjeYoTSAMzVlN5sCLz0bY"
+}
