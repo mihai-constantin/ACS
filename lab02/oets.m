@@ -1,16 +1,16 @@
 # Laborator 2 SM - Evaluarea performantelor programelor paralele
-# Exercitiul 8
+# Odd-Even-Transposition-Sort
 
 # n - valoare simbolica
 syms n
 
 # numar de operatii
-O1 = n^3;
-On = n^3 + n^2 * log2(n);
+O1 = n * log2(n);
+On = n^2/2;
 
 # timp
-T1 = n^3;
-Tn = 4*n^3/(n+3);
+T1 = n * log2(n);
+Tn = n;
 
 # numarul de procesoare
 x = [1:32];
@@ -35,18 +35,15 @@ U = function_handle(u);
 q = s * e / r;
 Q = function_handle(q);
 
-# S, R, Q in functie de numarul de procesoare
+# S, R, Q E si U in functie de numarul de procesoare
 figure;
 plot(x, S(x));
 hold on;
 plot(x, R(x));
 hold on;
 plot(x, Q(x));
-legend('S','R', 'Q');
-
-# E, U in functie de numarul de procesoare
-figure;
+hold on;
 plot(x, E(x));
 hold on;
 plot(x, U(x));
-legend('E', 'U');
+legend('S','R', 'Q', 'E', 'U');
