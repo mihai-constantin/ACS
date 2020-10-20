@@ -16,6 +16,9 @@ baze: baze.c
 palindrom: palindrom.c
 	$(CC) -o palindrom palindrom.c $(CFLAGS)
 
+cmmdc: cmmdc.c
+	$(CC) -o cmmdc cmmdc.c $(CFLAGS)
+
 .PHONY : clean
 clean :
-	rm -f suma_div_max prim ecuatie baze palindrom
+	rm -f suma_div_max prim ecuatie baze palindrom cmmdc
