@@ -10,6 +10,7 @@ int main()
 {
     int x;
     srand((unsigned)time(NULL)); 
+    // srand(0x1234);
     for (int i = 0; i < 5; i++) {
         x = rand();
         printf("%d\n", x);

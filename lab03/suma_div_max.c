@@ -13,6 +13,7 @@ int main()
         // calculez suma divizorilor nebanali pentru i
         for (j = 2; j < i; j++) {
             if (i % j == 0) {
+                // j e divizor pentru i
                 s += j;
             }
         }
@@ -21,7 +22,6 @@ int main()
             s_max = s;
             maxim = i;
         }
-
     }
 
     printf("%d %d\n", maxim, s_max);
