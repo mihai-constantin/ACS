@@ -11,4 +11,16 @@
 * cel mai apropiat numar prim fata de un numar citit
 
 ## Exercitii
+* Pentru un număr dat, determinati cel mai mic numar palindrom mai mare sau egal decât acel numar. Un palindrom este un numar care citit de la stanga la dreapta sau de la dreapta la stanga rezulta acelasi numar.
 
+    | Input | Output |
+    |-------|--------|
+    | 120   | 121    |
+
+* Sa se realizeze o functie recursiva care intoarce cifra minima a unui numar.
+
+    | Input | Output |
+    |-------|--------|
+    | 8459  | 4      |
+
+* **Bonus**: Folosind declarații si definiri de variabile și funcții, creați două fișiere f1.c și f2.c, și apleați din funcția main din fișierul f1.c o funcție f definită în f2.c, iar în funcția f o variabilă g definită in fișierul f1.c. Compilați fișierele împreună și executați programul rezultat.
