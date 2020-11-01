@@ -1,0 +1,4 @@
+min = 2
+pos_max = 20
+ma = 49.22
+gt_ma = 30
