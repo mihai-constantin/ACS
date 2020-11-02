@@ -4,3 +4,4 @@
 * Laborator 2 - Evaluarea performantelor calculatoarelor paralele
 * Laborator 3 - Unitatea de comanda comutator grila 4x4
 * Laborator 5 - Reteaua Omega
+* Laborator 6 - Unitatea de comanda a dispozitivului CWPRAM
