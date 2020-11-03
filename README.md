@@ -5,3 +5,4 @@
 * Laborator 3 - Instructiunile limbajului C
 * Laborator 4 - Programare modulara. Functii in limbajul C. Dezvoltarea algoritmilor folosind functii
 * Laborator 5 - Vectori
+* Laborator 7 - Operatii pe biti
