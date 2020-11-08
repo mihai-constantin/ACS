@@ -6,3 +6,4 @@
 * Laborator 4 - Reteaua Benes
 * Laborator 5 - Reteaua Omega
 * Laborator 6 - Unitatea de comanda a dispozitivului CWPRAM
+* Laborator 7 - MPI
