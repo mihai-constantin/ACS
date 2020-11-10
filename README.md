@@ -7,3 +7,4 @@
 * Laborator 5 - Reteaua Omega
 * Laborator 6 - Unitatea de comanda a dispozitivului CWPRAM
 * Laborator 7 - MPI
+* Laborator 13 - OpenMP
