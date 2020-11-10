@@ -1,7 +1,7 @@
 # Laborator 13 - OpenMP
 
 * **Suma vector OpenMP**
-    * se ruleaza programul cu prim argument numarul de thread-uri, respectiv cu dimensiunea vectorului pentru care se calculeaza suma elementelor pentru al doilea argument
+    * se ruleaza programul cu prim argument numarul de thread-uri, respectiv cu dimensiunea vectorului pentru care se calculeaza suma elementelor
     * se initializeaza elementele vectorului
     * se seteaza numarul de thread-uri folosind metoda *omp_set_num_threads()*
     * se folosesc urmatoarele directive pentru paralelizare si evitarea conflictelor din zona critica:
