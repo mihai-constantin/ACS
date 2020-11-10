@@ -14,8 +14,10 @@
 
 #include "queue.h"
 
-#define dim 1048576
-int data[dim];
+#define dim 10
+int a[dim][dim];
+int b[dim][dim];
+int c[dim][dim];
 
 FILE *out;
 
@@ -88,8 +90,8 @@ void process_tasks() {
   (void) pthread_attr_init(&attr);
   /* ... */
 
-  /* create worker threads */
-  for (i = 1; (i < nthreads) && (i < MAX_THREADS); i++) {
+  /* create worker threads, inclusiv the boss ! */
+  for (i = 0; (i < nthreads) && (i < MAX_THREADS); i++) {
     ret = pthread_create(&threads[i], &attr, (void *(*)())worker, NULL);
     check_error(ret, "pthread_create()");
   }
@@ -113,18 +115,17 @@ void process_tasks() {
   /* perform any final processing and return */
 }
 
-int get_work(struct q_work_struct* w, int idx) {
-  if (idx >= dim) {
+int get_work(struct q_work_struct* w, int row) {
+  if (row == dim) {
     return 0;
   }
-  // printf("data[%d] = %d\n", idx, data[idx]);
-  w->number = data[idx];
+  w->row = row;
   return 1;
 }
 
 void boss() {
   struct q_work_struct *ptr;
-  int ret, idx = 0;
+  int ret, row = 0;
 
   /* obtain work, return when complete */
   for ( ; ; ) {
@@ -135,7 +136,7 @@ void boss() {
     }
     
     /* create/obtain work and fill in the work structure */
-    ret = get_work(ptr, idx);
+    ret = get_work(ptr, row/dim);
 
     if (ret == 0) {
       free((void *)ptr);
@@ -147,20 +148,8 @@ void boss() {
       fprintf(stderr, "enqueue() error\n");
       exit(-1);
     }
-    idx++;
+    row += dim;
   }
-}
-
-int prime(int x) {
-  if (x < 2) {
-    return 0;
-  }
-  for (int i = 2; i * i <= x; i++) {
-    if (x % i == 0) {
-      return 0;
-    }
-  }
-  return 1;
 }
 
 void worker() {
@@ -180,11 +169,9 @@ void worker() {
     
     /* process the work request */
     /* ... */
-    int x = ptr->number;
-    if (prime(x)) {
-      fprintf(out, "Number %d is prime\n", x);
-    } else {
-      fprintf(out, "Number %d is not prime\n", x);
+    int row = ptr->row;
+    for (int j = 0; j < dim; j++) {
+      c[row][j] = a[row][j] + b[row][j];
     }
 
     /* release memory for work request */
@@ -194,12 +181,42 @@ void worker() {
 
 int main()
 { 
-  out = fopen("boss-worker.out", "w");
+  out = fopen("work-crew.out", "w");
+
   srand(time(NULL));
   for (int i = 0; i < dim; ++i) {
-    data[i] = rand();
+    for (int j = 0; j < dim; j++) {
+      a[i][j] = rand() % 100;
+      b[i][j] = rand() % 100;
+    }
   }
-  fprintf(out, "----- Process tasks -----\n");
+  
   process_tasks();
+
+  fprintf(out, "----- Matrix Addition -----\n");
+  fprintf(out, "----- A -----\n");
+  for (int i = 0; i < dim; i++) {
+    for (int j = 0; j < dim; j++) {
+      fprintf(out, "%d ", a[i][j]);
+    }
+    fprintf(out, "\n");
+  }
+  fprintf(out, "\n");
+  fprintf(out, "----- B -----\n");
+  for (int i = 0; i < dim; i++) {
+    for (int j = 0; j < dim; j++) {
+      fprintf(out, "%d ", b[i][j]);
+    }
+    fprintf(out, "\n");
+  }
+  fprintf(out, "\n");
+  fprintf(out, "----- C -----\n");
+  for (int i = 0; i < dim; i++) {
+    for (int j = 0; j < dim; j++) {
+      fprintf(out, "%d ", c[i][j]);
+    }
+    fprintf(out, "\n");
+  }
+
   return 0;
 }

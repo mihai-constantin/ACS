@@ -12,4 +12,4 @@
         * 11.795s pentru 16 thread-uri si o capacitate de 16 pentru coada
 * Modelul work-crew
     * model similar cu modelul boss-workers, numai ca si thread-ul boss munceste
-    
+    * se simuleaza adunarea a doua matrici trimitand catre fiecare thread in parte (inclusiv worker)

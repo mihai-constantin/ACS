@@ -19,6 +19,7 @@ struct q_work_struct {
   /* place application specific task data here */
   /* ... */
   int number;
+  int row;
 };
 
 /* queue data structure passed to the queue management functions */
