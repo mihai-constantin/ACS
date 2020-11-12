@@ -22,6 +22,8 @@ int max(int x, int y) {
 
 void ssm(int v[N], int n) {
     int i, maxim, bst[N];
+    // bst[i] = valoarea maxima a unei subsecvente care se termina pe pozitia i
+    // bst[i] = max(v[i], bst[i - 1] + v[i])
     bst[0] = v[0];
     maxim = bst[0];
     for (i = 1; i < n; i++) {
