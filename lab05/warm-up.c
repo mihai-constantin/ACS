@@ -5,14 +5,14 @@
 void sum_right_neighbour(int v[N], int n) {
     int i;
     for (i = 0; i < n - 1; i++) {
-        v[i] += v[i + 1];
+        v[i] = v[i] + v[i + 1];
     }
 }
 
 void sum_left_neighbour(int v[N], int n) {
     int i;
-    for (i = n - 1; i > 0; i--) {
-        v[i] += v[i - 1];
+    for (i = n - 1; i >= 1; i--) {
+        v[i] = v[i] + v[i - 1];
     }
 }
 
@@ -20,7 +20,7 @@ void create_array(int v[N], int arr[N], int n) {
     int i;
     long long p = 1;
     for (i = 0; i < n; i++) {
-        p *= v[i];
+        p = p * v[i];
     }
     for (i = 0; i < n; i++) {
         arr[i] = p/v[i];
@@ -28,6 +28,7 @@ void create_array(int v[N], int arr[N], int n) {
 }
 
 void remove_min(int v[N], int n) {
+    // initializare minim
     int minim = v[0];
     int pos = 0;
     int i;
@@ -37,7 +38,8 @@ void remove_min(int v[N], int n) {
             pos = i;
         }
     }
-    for (i = pos; i < n; i++) {
+    // printf("%d %d\n", minim, pos);
+    for (i = pos; i < n - 1; i++) {
         v[i] = v[i + 1];
     }
 }
@@ -52,7 +54,17 @@ void remove_max(int v[N], int n) {
             pos = i;
         }
     }
-    for (i = pos; i < n; i++) {
+    /**
+     *  v: 1 2 3 4 5
+     *  min = 1; pos = 0
+     *  i = 0:4
+     *  i = 0 -> v[0] = v[1] -> v: 2 2 3 4 5
+     *  i = 1 -> v[1] = v[2] -> v: 2 3 3 4 5
+     *  i = 2 -> v[2] = v[3] -> v: 2 3 4 4 5
+     *  i = 3 -> v[3] = v[4] -> v: 2 3 4 5 5
+     * 
+     */
+    for (i = pos; i < n - 1; i++) {
         v[i] = v[i + 1];
     }
 }
@@ -73,13 +85,20 @@ int main()
     print_vector(v, n);
 
     // sum_right_neighbour(v, n);
-    // print_vector(v, n);
+    // print_vector(v, n); // 3 5 7 9 5
     
-    // sum_left_neighbour(v, n);
-    // print_vector(v, n);
+    //sum_left_neighbour(v, n);
+    //print_vector(v, n); // 1 3 5 7 9
     
-    create_array(v, arr, n);
-    print_vector(arr, n);
+    // create_array(v, arr, n);
+
+    // arr[0] = p / v[0]
+    // arr[1] = (1 * 2 * 3 * 4 * 5) / v[1]
+    // arr[2] = (1 * 2 * 3 * 4 * 5) / v[2]
+    // arr[3] = (1 * 2 * 3 * 4 * 5) / v[3]
+    // arr[4] = (1 * 2 * 3 * 4 * 5) / v[4]
+
+    // print_vector(arr, n);
 
     char c;
     while(scanf("%c", &c)) {
