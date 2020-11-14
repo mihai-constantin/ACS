@@ -11,6 +11,7 @@
 ### Echipă
 * Constantin Mihai - 341C1
 * Constantin Rareș - 341C1
+* Crosman Gabriel - 342C3
 
 ### Asistent
 * Despotovici Mihai
