@@ -223,7 +223,6 @@ int loadDataFromFile(Database** list, char* client_name, unsigned long client_id
             word = strtok(NULL, delims);
         }
         s_data.values.values_len = s_data.no_values;
-        printf("line: %s\n", line);
         insertDataFromUserIntoDatabase(list, &s_data);
     }
     // close file descriptor
