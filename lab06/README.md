@@ -15,4 +15,4 @@
     |-----------------------------------------------------------|----------|
     | 3 3<br>1 2 3<br>4 5 6<br>7 8 9<br>2<br>0 0 1 1<br>1 1 2 2 | 12<br>28 |
 
-* Bonus: Rezolvati problema precedenta, raspunzand la fiecare query in O(1).
+* Bonus: Rezolvati problema precedenta raspunzand la fiecare query in O(1).
