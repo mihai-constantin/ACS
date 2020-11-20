@@ -1,5 +1,10 @@
 # Laborator 6 - Matrice
 
+* citire, afisare matrice
+* transpusa matrice
+* elemente de pe diagonala secundara/principala
+* zone
+
 ## Exercitii lab
 
 ## Exercitii
