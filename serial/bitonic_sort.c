@@ -1,5 +1,4 @@
 // Bitonic Sort - Sequential version
-// Ascending sorting
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
@@ -8,6 +7,9 @@
 
 int *arr; // data array to be sorted
 int n; // data array size
+
+const int ASCENDING = 1;
+const int DESCENDING = 0;
 
 void init() {
     for (int i = 0; i < n; i++) {
@@ -49,8 +51,8 @@ void bitonic_sort(int low, int cnt, int direction) {
     bitonic_merge(low, cnt, direction); // merge
 }
 
-void sort(int up) {
-    bitonic_sort(0, n, up);
+void sort(int order_type) {
+    bitonic_sort(0, n, order_type);
 }
 
 void test() {
@@ -76,7 +78,7 @@ int main(int argc, char const *argv[])
 
     init();
     gettimeofday(&startwtime, NULL);
-    sort(1); // sort the array in ascending order
+    sort(ASCENDING); // sort the array in ascending order
     gettimeofday(&endwtime, NULL);
     seq_time = (double)((endwtime.tv_usec - startwtime.tv_usec)/1.0e6 + endwtime.tv_sec - startwtime.tv_sec);
     printf("Time taken = %f\n", seq_time);
