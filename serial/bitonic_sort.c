@@ -3,13 +3,12 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <sys/time.h>
 
-#define N 1048576
-
-void read_array(FILE *in, int arr[N], int n) {
+void init(int *arr, int n) {
     for (int i = 0; i < n; i++) {
-        fscanf(in, "%d", &arr[i]);
+        arr[i] = rand() % n;
     }
 }
 
@@ -19,13 +18,13 @@ void swap(int *a, int *b) {
     *b = temp;
 }
 
-void compareAndSwap(int arr[N], int i, int j, int direction) {
+void compareAndSwap(int *arr, int i, int j, int direction) {
     if ((arr[i] > arr[j]) == direction) {
         swap(&arr[i], &arr[j]);
     }
 }
 
-void bitonic_merge(int arr[N], int low, int cnt, int direction) {
+void bitonic_merge(int *arr, int low, int cnt, int direction) {
     if (cnt == 1) {
         return;
     }
@@ -37,7 +36,7 @@ void bitonic_merge(int arr[N], int low, int cnt, int direction) {
     bitonic_merge(arr, low + k, k, direction);
 }
 
-void bitonic_sort(int arr[N], int low, int cnt, int direction) {
+void bitonic_sort(int *arr, int low, int cnt, int direction) {
     if (cnt == 1) {
         return;
     }
@@ -47,29 +46,33 @@ void bitonic_sort(int arr[N], int low, int cnt, int direction) {
     bitonic_merge(arr, low, cnt, direction); // merge
 }
 
-void sort(int arr[N], int n, int up) {
+void sort(int *arr, int n, int up) {
     bitonic_sort(arr, 0, n, up);
 }
 
-void print_array(FILE *out, int arr[N], int n) {
-    for (int i = 0; i < n; i++) {
-        fprintf(out, "%d ", arr[i]);
+void test(int *arr, int n) {
+    bool pass = true;
+    for (int i = 1; i < n; i++) {
+        pass &= (arr[i - 1] <= arr[i]);
     }
-    fprintf(out, "\n");
+    printf("TEST %s\n", (pass) ? "PASSED!" : "FAILED!");
 }
 
-int main()
+int main(int argc, char const *argv[])
 {
-    int arr[N], n;
+    if (argc != 2) {
+        printf("Usage: %s <array length>\n", argv[0]);
+        exit(1);
+    }
+
+    int n = atoi(argv[1]);
+    int* arr = (int*) malloc(n * sizeof(int));
+
     struct timeval startwtime, endwtime;
     double seq_time;
 
-    FILE *in, *out;
-    in = fopen("data.in", "r");
-    out = fopen("data.out", "w");
-    
-    fscanf(in, "%d", &n); // array's dimension
-    read_array(in, arr, n);
+    init(arr, n);
+
     gettimeofday(&startwtime, NULL);
     sort(arr, n, 1); // sort the array in ascending order
     gettimeofday(&endwtime, NULL);
@@ -77,7 +80,8 @@ int main()
     seq_time = (double)((endwtime.tv_usec - startwtime.tv_usec)/1.0e6 + endwtime.tv_sec - startwtime.tv_sec);
     printf("Time taken = %f\n", seq_time);
 
-    print_array(out, arr, n);
+    test(arr, n);
+    free(arr);
 
     return 0;
 }
