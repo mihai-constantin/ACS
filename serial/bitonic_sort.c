@@ -72,14 +72,11 @@ int main(int argc, char const *argv[])
     double seq_time;
 
     init(arr, n);
-
     gettimeofday(&startwtime, NULL);
     sort(arr, n, 1); // sort the array in ascending order
     gettimeofday(&endwtime, NULL);
-
     seq_time = (double)((endwtime.tv_usec - startwtime.tv_usec)/1.0e6 + endwtime.tv_sec - startwtime.tv_sec);
     printf("Time taken = %f\n", seq_time);
-
     test(arr, n);
     free(arr);
 
