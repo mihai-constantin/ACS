@@ -1,10 +1,10 @@
-CC = g++
+CC = gcc
 CFLAGS = -Wall
 
 build: bitonic_sort
 
-bitonic_sort: bitonic_sort.cpp
-	$(CC) -o bitonic_sort bitonic_sort.cpp $(CFLAGS)
+bitonic_sort: bitonic_sort.c
+	$(CC) -o bitonic_sort bitonic_sort.c $(CFLAGS)
 
 .PHONY : clean
 clean :

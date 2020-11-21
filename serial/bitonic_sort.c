@@ -1,24 +1,27 @@
 // Bitonic Sort - Sequential version
 // Ascending sorting
-#include <iostream>
-#include <cmath>
-#include <fstream>
-using namespace std;
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+#include <time.h>
 
 #define N 1048576
 
-ifstream in("data.in");
-ofstream out("data.out");
-
-void read_array(int arr[N], int n) {
+void read_array(FILE *in, int arr[N], int n) {
     for (int i = 0; i < n; i++) {
-        in >> arr[i];
+        fscanf(in, "%d", &arr[i]);
     }
+}
+
+void swap(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
 }
 
 void compareAndSwap(int arr[N], int i, int j, int direction) {
     if ((arr[i] > arr[j]) == direction) {
-        swap(arr[i], arr[j]);
+        swap(&arr[i], &arr[j]);
     }
 }
 
@@ -48,21 +51,25 @@ void sort(int arr[N], int n, int up) {
     bitonic_sort(arr, 0, n, up);
 }
 
-void print_array(int arr[N], int n) {
+void print_array(FILE *out, int arr[N], int n) {
     for (int i = 0; i < n; i++) {
-        out << arr[i] << " ";
+        fprintf(out, "%d ", arr[i]);
     }
-    out << '\n';
+    fprintf(out, "\n");
 }
 
 int main()
 {
     int arr[N], n;
+
+    FILE *in, *out;
+    in = fopen("data.in", "r");
+    out = fopen("data.out", "w");
     
-    in >> n; // array's dimension
-    read_array(arr, n);
+    fscanf(in, "%d", &n); // array's dimension
+    read_array(in, arr, n);
     sort(arr, n, 1); // sort the array in ascending order
-    print_array(arr, n);
+    print_array(out, arr, n);
 
     return 0;
 }
