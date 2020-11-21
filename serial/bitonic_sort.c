@@ -21,7 +21,7 @@ void swap(int *a, int *b) {
     *b = temp;
 }
 
-void compareAndSwap(int i, int j, int direction) {
+void compare(int i, int j, int direction) {
     if ((arr[i] > arr[j]) == direction) {
         swap(&arr[i], &arr[j]);
     }
@@ -33,7 +33,7 @@ void bitonic_merge(int low, int cnt, int direction) {
     }
     int k = cnt/2;
     for (int i = low; i < low + k; i++) {
-        compareAndSwap(i, i + k, direction);
+        compare(i, i + k, direction);
     }
     bitonic_merge(low, k, direction);
     bitonic_merge(low + k, k, direction);
