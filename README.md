@@ -2,6 +2,14 @@
 
 ## Bitonic Sort
 
+### Etape proiect
+* Implementare seriala
+* Implementare OpenMP
+* Implementare MPI
+* Implementare pthreads
+* Profiling
+* **Bonus**: OpenMP + MPI; pthreads + MPI
+
 ### Descriere algoritm
 * Algoritm clasic pentru sortarea paralelă
 * Realizează sortarea elementelor unui vector, utilizând O(n*log2(n)) comparații
