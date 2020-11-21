@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
-#include <time.h>
+#include <sys/time.h>
 
 #define N 1048576
 
@@ -61,6 +61,8 @@ void print_array(FILE *out, int arr[N], int n) {
 int main()
 {
     int arr[N], n;
+    struct timeval startwtime, endwtime;
+    double seq_time;
 
     FILE *in, *out;
     in = fopen("data.in", "r");
@@ -68,7 +70,13 @@ int main()
     
     fscanf(in, "%d", &n); // array's dimension
     read_array(in, arr, n);
+    gettimeofday(&startwtime, NULL);
     sort(arr, n, 1); // sort the array in ascending order
+    gettimeofday(&endwtime, NULL);
+
+    seq_time = (double)((endwtime.tv_usec - startwtime.tv_usec)/1.0e6 + endwtime.tv_sec - startwtime.tv_sec);
+    printf("Time taken = %f\n", seq_time);
+
     print_array(out, arr, n);
 
     return 0;
