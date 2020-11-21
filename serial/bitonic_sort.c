@@ -1,4 +1,4 @@
-// Bitonic Sort - Sequential version
+// Bitonic Sort - Sequential implementation
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
