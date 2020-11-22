@@ -7,3 +7,4 @@
 * Laborator 5 - Vectori
 * Laborator 6 - Matrice
 * Laborator 7 - Operatii pe biti
+* Laborator 8 - Pointeri. Abordarea lucrului cu tablouri folosind pointeri.
