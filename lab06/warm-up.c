@@ -9,6 +9,7 @@ void read_matrix(int matrix[N][N], int n) {
         }
     }
 }
+
 int sum(int matrix[N][N], int n) {
     // suma elementelor de deasupra diagonalei principale
     int s = 0;
@@ -45,7 +46,7 @@ void print_matrix(int matrix[N][N], int n) {
 void print_elemets(int matrix[N][N], int n) {
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
-            if (i + j >= n - 1) {
+            if (i + j > n - 1) {
                 printf("%d ", matrix[i][j]);
             } else {
                 printf("0 ");
