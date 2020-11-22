@@ -11,16 +11,14 @@
 ## Exercitii
 * Se da un vector de n elemente. Sa se roteasca vectorul cu k pozitii la stanga.
 
-    | Input         | Output    |
-    |---------------|-----------|
-    | 5 2           | 3 4 5 1 2 |
-    | 1 2 3 4 5     |           |
+    | Input            | Output    |
+    |------------------|-----------|
+    | 5 2<br>1 2 3 4 5 | 3 4 5 1 2 |
 
 * Sa se afiseze elementele de pe pozitiile pare ale unui vector, dupa care, pe o linie noua, cele de pe pozitii impare.
 
-    | Input         | Output      |
-    |---------------|-------------|
-    | 6             | 1 3 6       |
-    | 1 2 3 4 6 5   | 2 4 5       |
+    | Input            | Output         |
+    |------------------|----------------|
+    | 6<br>1 2 3 4 6 5 | 1 3 6<br>2 4 5 |
 
 * **Bonus**: Implementati adunarea a doua numere mari.
