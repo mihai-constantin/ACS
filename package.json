@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "main": "dist/server.js",
     "scripts": {
-        "start": "tsc && nodemon dist/sever.js"
+        "start": "tsc && nodemon dist/server.js"
     },
     "author": "Mihai Constantin",
     "license": "ISC",
