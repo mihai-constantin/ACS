@@ -22,6 +22,15 @@ export class CountryRoutes {
       this.country_controller.create_country(req, res);
     });
 
+    // -----    PUT    -----
+    app.put('/api/countries/:countryId', (req: Request, res: Response) => {
+      this.country_controller.update_country(req, res);
+    });
+
+     // -----    DELETE    -----
+     app.delete('/api/countries/:countryId', (req: Request, res: Response) => {
+      this.country_controller.delete_country(req, res);
+    });
 
   }
 
