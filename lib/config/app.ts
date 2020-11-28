@@ -6,7 +6,7 @@ import { CountryRoutes } from '../routes/countryRoutes';
 class App {
 
   public app: express.Application;
-  public mongoUrl: string = 'mongodb://localhost/db_sprc_dev';
+  public mongoUrl: string = 'mongodb://mongo:27017/db-sprc';
 
   private country_routes: CountryRoutes = new CountryRoutes();
 
