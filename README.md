@@ -18,7 +18,7 @@
   * 200 OK - se afiseaza tara cu id-ul countryId
   * 404 Not Found - situatie in care id-ul are un format invalid sau tara nu exista in baza de date; se afiseaza un mesaj corespunzator
 
-*  **PUT** (Update informatii tara): localhost:3000/api/countries/:countryId
+* **PUT** (Update informatii tara): localhost:3000/api/countries/:countryId
   * 200 OK - se updateaza field-urile corespunzatoare
   * 400 Bad Request - lipsesc unele field-uri din request
   * 404 Not Found - id-ul din request este invalid sau nu are niciun corespondent in baza de date
