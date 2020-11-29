@@ -32,7 +32,9 @@ export class CityRoutes {
       this.city_controller.update_city(req, res);
     });
 
-
+    // -----    DELETE    -----
+    app.delete('/api/cities/:cityId', (req: Request, res: Response) => {
+      this.city_controller.delete_city(req, res);
+    });
   }
-
 }

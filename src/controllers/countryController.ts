@@ -80,17 +80,22 @@ export class ContryController {
   // -----    DELETE    -----
   public async delete_country(req: Request, res: Response) {
     console.log('Deleting country from database...');
-    let country = await this.country_service.getCountryById(req.params.countryId);
-    if (country) {
-      country.remove((err) => {
-        if (err) {
-          res.json(`Unable ro delete contry from database, because ${err.message}`);
-        }
-        res.status(200).json(`Country ${country?.name} was successfully deleted from databse.`);
-      });
-    } else {
-      res.status(404).json('Country id not found into database.');
+    try {
+      let country = await this.country_service.getCountryById(req.params.countryId);
+      if (country) {
+        country.remove((err) => {
+          if (err) {
+            res.json(`Unable to delete country from database, because ${err.message}`);
+          }
+          res.status(200).json(`Country ${country?.name} was successfully deleted from databse.`);
+        });
+      } else {
+        res.status(404).json('Country id not found into database.');
+      }
+    } catch (err) {
+      res.status(500).json('Invalid country id format.');
     }
+    
   }
 
 }

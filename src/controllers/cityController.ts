@@ -115,4 +115,24 @@ export class CityController {
     }
   }
 
+  // -----    DELETE    -----
+  public async delete_city(req: Request, res: Response) {
+    console.log('Deleting city from database...');
+    try {
+      let city = await this.city_service.getCityById(req.params.cityId);
+      if (city) {
+        city.remove((err) => {
+          if (err) {
+            res.json(`Unable to delete city from database, because ${err.message}`);
+          }
+          res.status(200).json(`City ${city?.name} was successfully deleted from databse.`);
+        });
+      } else {
+        res.status(404).json('City id not found into database.');
+      }
+    } catch (err) {
+      res.status(500).json('Invalid city id format.');
+    }
+  }
+
 }
