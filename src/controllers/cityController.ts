@@ -18,7 +18,7 @@ export class CityController {
       let cities = await this.city_service.getCities(req.query);
       requestResponse(response_status_codes.success, cities, res);
     } catch (err) {
-      res.json(`Unable to get cities from database because ${err}`);
+      requestResponse(response_status_codes.internal_server_error, `Unable to get cities from database because ${err}`, res);
     }
   }
 
@@ -28,7 +28,7 @@ export class CityController {
     try {
       let city = await this.city_service.getCityById(req.params.cityId);
       if (city) {
-        res.json(city);
+        requestResponse(response_status_codes.success, city, res);
       } else {
         requestResponse(response_status_codes.not_found, 'City not found into database.', res);
       }
@@ -46,7 +46,7 @@ export class CityController {
         let cities = await this.city_service.getCities({country_id: req.params.countryId});
         requestResponse(response_status_codes.success, cities, res);
       } else {
-        requestResponse(response_status_codes.bad_request, 'Country not found into database.', res);
+        requestResponse(response_status_codes.not_found, 'Country not found into database.', res);
       }
     } catch (err) {
       requestResponse(response_status_codes.not_found, 'Invalid country id format.', res);
@@ -86,7 +86,6 @@ export class CityController {
           try {
             let country = await this.country_service.getCountryById(req.body.country_id);
             if (country) {
-              // console.log(JSON.stringify(country));
               let cities = await this.city_service.getCities({country_id: country._id});
               for (let c of cities) {
                 if (c.name == req.body.name) {
@@ -125,7 +124,7 @@ export class CityController {
       if (city) {
         city.remove((err) => {
           if (err) {
-            res.json(`Unable to delete city from database, because ${err.message}`);
+            requestResponse(response_status_codes.internal_server_error, `Unable to delete city from database, because ${err.message}`, res);
           }
           requestResponse(response_status_codes.success, `City ${city?.name} was successfully deleted from databse.`, res);
         });

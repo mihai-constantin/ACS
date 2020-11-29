@@ -56,27 +56,31 @@ export class ContryController {
   // -----    PUT    -----
   public async update_country(req: Request, res: Response) {
     console.log('Updating country into database...');
-    let country = await this.country_service.getCountryById(req.params.countryId);
-    if (country) {
-      if (req.body.name && req.body.latitude && req.body.longitude) {
-        let countries = await this.country_service.getCountries(req.query);
-        for (let c of countries) {
-          if (c.name == req.body.name && c._id != req.params.countryId) {
-            requestResponse(response_status_codes.conflict, `Country ${req.body.name} is already into database.`, res);
-            return;
+    try {
+      let country = await this.country_service.getCountryById(req.params.countryId);
+      if (country) {
+        if (req.body.name && req.body.latitude && req.body.longitude) {
+          let countries = await this.country_service.getCountries(req.query);
+          for (let c of countries) {
+            if (c.name == req.body.name && c._id != req.params.countryId) {
+              requestResponse(response_status_codes.conflict, `Country ${req.body.name} is already into database.`, res);
+              return;
+            }
           }
+          country.name = req.body.name;
+          country.latitude = req.body.latitude;
+          country.longitude = req.body.longitude;
+          country.save();
+          requestResponse(response_status_codes.success, country, res);
+        } else {
+          requestResponse(response_status_codes.bad_request, 'Unable to save country into database because some fields are missing in request body.', res);
         }
-        country.name = req.body.name;
-        country.latitude = req.body.latitude;
-        country.longitude = req.body.longitude;
-        country.save();
-        requestResponse(response_status_codes.success, country, res);
       } else {
-        requestResponse(response_status_codes.bad_request, 'Unable to save country into database because some fields are missing in request body.', res);
-      }
-    } else {
-      requestResponse(response_status_codes.not_found, 'Country id not found into database.', res);
-    } 
+        requestResponse(response_status_codes.not_found, 'Country id not found into database.', res);
+      } 
+    } catch (err) {
+      requestResponse(response_status_codes.not_found, 'Invalid country id format.', res);
+    }
   }
 
   // -----    DELETE    -----
@@ -87,7 +91,7 @@ export class ContryController {
       if (country) {
         country.remove((err) => {
           if (err) {
-            res.json(`Unable to delete country from database, because ${err.message}`);
+            requestResponse(response_status_codes.internal_server_error, `Unable to delete country from database, because ${err.message}`, res);
           }
           requestResponse(response_status_codes.success, `Country ${country?.name} was successfully deleted from databse.`, res);
         });
