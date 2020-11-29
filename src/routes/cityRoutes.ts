@@ -26,6 +26,13 @@ export class CityRoutes {
     app.post('/api/cities', (req: Request, res: Response) => {
       this.city_controller.create_city(req, res);
     });
+
+    // -----    PUT    -----
+    app.put('/api/cities/:cityId', (req: Request, res: Response) => {
+      this.city_controller.update_city(req, res);
+    });
+
+
   }
 
 }

@@ -74,4 +74,45 @@ export class CityController {
     }
   }
 
+  // -----    PUT    -----
+  public async update_city(req: Request, res: Response) {
+    console.log('Updating city into database...');
+    try {
+      let city = await this.city_service.getCityById(req.params.cityId);
+      if (city) {
+        if (req.body.name && req.body.latitude && req.body.longitude && req.body.country_id) {
+          try {
+            let country = await this.country_service.getCountryById(req.body.country_id);
+            if (country) {
+              // console.log(JSON.stringify(country));
+              let cities = await this.city_service.getCities({country_id: country._id});
+              for (let c of cities) {
+                if (c.name == req.body.name) {
+                  res.status(409).json(`Country ${country.name} already has ${c.name} city into database`);
+                  return;
+                }
+              }
+              city.name = req.body.name;
+              city.latitude = req.body.latitude;
+              city.longitude = req.body.longitude;
+              city.country_id = req.body.country_id;
+              city.save();
+              res.status(200).json(city);
+            } else {
+              res.status(404).json("Contry not found into database");
+            }
+          } catch (err) {
+            res.status(500).json("Invalid country id format.");
+          }
+        } else {
+          res.status(400).json(`Unable to save city into database because some fields are missing in request body.`);
+        }
+      } else {
+        res.status(404).json('City id not found into database.');
+      } 
+    } catch (err) {
+      res.status(500).json('Invalid city id format.');
+    }
+  }
+
 }

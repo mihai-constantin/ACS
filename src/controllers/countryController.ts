@@ -57,7 +57,6 @@ export class ContryController {
     let country = await this.country_service.getCountryById(req.params.countryId);
     if (country) {
       if (req.body.name && req.body.latitude && req.body.longitude) {
-        // if req.body.name exists already into database -> conflict
         let countries = await this.country_service.getCountries(req.query);
         for (let c of countries) {
           if (c.name == req.body.name && c._id != req.params.countryId) {
