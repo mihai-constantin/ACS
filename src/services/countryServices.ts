@@ -26,7 +26,7 @@ export default class ContryService {
   }
 
   // -----    POST    -----
-  public async createContry({ _id, name, latitude, longitude}: CreateQuery<ICountry>): Promise<ICountry> {
+  public async createCountry({_id, name, latitude, longitude}: CreateQuery<ICountry>): Promise<ICountry> {
     return Country.create({
       _id,
       name,

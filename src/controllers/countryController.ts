@@ -29,7 +29,7 @@ export class ContryController {
         res.status(404).json('Country not found into database.');
       }
     } catch (err) {
-      res.json(`Unable to retrieve country from database, because ${err.message}`);
+      res.status(500).json('Invalid country id format.');
     }
   }
 
@@ -38,7 +38,7 @@ export class ContryController {
     console.log('Saving country into database...');
     try {
       let country = new Country(req.body);
-      await this.country_service.createContry(country);
+      await this.country_service.createCountry(country);
       res.status(201).json(country);
     } catch(err) {
       if (err.name == "ValidationError") {
@@ -87,7 +87,7 @@ export class ContryController {
         if (err) {
           res.json(`Unable ro delete contry from database, because ${err.message}`);
         }
-        res.status(200).json(`Country ${country.name} was successfully deleted from databse.`);
+        res.status(200).json(`Country ${country?.name} was successfully deleted from databse.`);
       });
     } else {
       res.status(404).json('Country id not found into database.');

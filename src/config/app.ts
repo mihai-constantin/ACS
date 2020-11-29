@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose'
 import bodyParser from 'body-parser';
 import { CountryRoutes } from '../routes/countryRoutes';
+import { CityRoutes } from '../routes/cityRoutes';
 
 class App {
 
@@ -9,12 +10,14 @@ class App {
   public mongoUrl: string = 'mongodb://mongo:27017/db-sprc';
 
   private country_routes: CountryRoutes = new CountryRoutes();
+  private city_routes: CityRoutes = new CityRoutes();
 
   constructor() {
     this.app = express();
     this.config();
     this.mongoSetup();
     this.country_routes.route(this.app);
+    this.city_routes.route(this.app);
   }
 
   private config(): void {
