@@ -1,4 +1,6 @@
 import { Request, Response } from 'express';
+import { requestResponse } from '../errors';
+import { response_status_codes } from '../errors/model';
 import Country from '../models/countryModel';
 
 import ContryService from "../services/countryServices";
@@ -12,9 +14,9 @@ export class ContryController {
     console.log('Getting all countries from database...');
     try {
       let countries = await this.country_service.getCountries(req.query);
-      res.status(200).json(countries);
+      requestResponse(response_status_codes.success, countries, res);
     } catch (err) {
-      res.json(`Unable to get contries from database because ${err}`);
+      requestResponse(response_status_codes.internal_server_error, `Unable to get contries from database because ${err}`, res);
     }
   }
 
@@ -24,12 +26,12 @@ export class ContryController {
     try {
       let country = await this.country_service.getCountryById(req.params.countryId);
       if (country) {
-        res.json(country);
+        requestResponse(response_status_codes.success, country, res);
       } else {
-        res.status(404).json('Country not found into database.');
+        requestResponse(response_status_codes.not_found, 'Country not found into database.', res);
       }
     } catch (err) {
-      res.status(500).json('Invalid country id format.');
+      requestResponse(response_status_codes.not_found, 'Invalid country id format.', res);
     }
   }
 
@@ -39,14 +41,14 @@ export class ContryController {
     try {
       let country = new Country(req.body);
       await this.country_service.createCountry(country);
-      res.status(201).json(country);
+      requestResponse(response_status_codes.created, country, res);
     } catch(err) {
       if (err.name == "ValidationError") {
-        res.status(400).json(`Unable to save country into database because some fields are missing in request body.`);
+        requestResponse(response_status_codes.bad_request, 'Unable to save country into database because some fields are missing in request body.', res);
       } else if (err.code == 11000) {
-        res.status(409).json(`Unable to save country into database because the name is duplicate.`);
+        requestResponse(response_status_codes.conflict, 'Unable to save country into database because the name is duplicate.', res);
       } else {
-        res.status(500).json(`Internal server error.`);
+        requestResponse(response_status_codes.internal_server_error, 'Internal server error.', res);
       }
     }
   }
@@ -60,7 +62,7 @@ export class ContryController {
         let countries = await this.country_service.getCountries(req.query);
         for (let c of countries) {
           if (c.name == req.body.name && c._id != req.params.countryId) {
-            res.status(409).json(`Country ${req.body.name} is already into database.`);
+            requestResponse(response_status_codes.conflict, `Country ${req.body.name} is already into database.`, res);
             return;
           }
         }
@@ -68,12 +70,12 @@ export class ContryController {
         country.latitude = req.body.latitude;
         country.longitude = req.body.longitude;
         country.save();
-        res.status(200).json(country);
+        requestResponse(response_status_codes.success, country, res);
       } else {
-        res.status(400).json(`Unable to save country into database because some fields are missing in request body.`);
+        requestResponse(response_status_codes.bad_request, 'Unable to save country into database because some fields are missing in request body.', res);
       }
     } else {
-      res.status(404).json('Country id not found into database.');
+      requestResponse(response_status_codes.not_found, 'Country id not found into database.', res);
     } 
   }
 
@@ -87,13 +89,13 @@ export class ContryController {
           if (err) {
             res.json(`Unable to delete country from database, because ${err.message}`);
           }
-          res.status(200).json(`Country ${country?.name} was successfully deleted from databse.`);
+          requestResponse(response_status_codes.success, `Country ${country?.name} was successfully deleted from databse.`, res);
         });
       } else {
-        res.status(404).json('Country id not found into database.');
+        requestResponse(response_status_codes.not_found, 'Country id not found into database.', res);
       }
     } catch (err) {
-      res.status(500).json('Invalid country id format.');
+      requestResponse(response_status_codes.not_found, 'Invalid country id format.', res);
     }
     
   }

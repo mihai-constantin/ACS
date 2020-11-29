@@ -1,4 +1,6 @@
 import { Request, Response } from 'express';
+import { requestResponse } from '../errors';
+import { response_status_codes } from '../errors/model';
 import City from '../models/cityModel'
 
 import CityService from "../services/cityServices"
@@ -14,7 +16,7 @@ export class CityController {
     console.log('Getting all cities from database...');
     try {
       let cities = await this.city_service.getCities(req.query);
-      res.status(200).json(cities);
+      requestResponse(response_status_codes.success, cities, res);
     } catch (err) {
       res.json(`Unable to get cities from database because ${err}`);
     }
@@ -28,10 +30,10 @@ export class CityController {
       if (city) {
         res.json(city);
       } else {
-        res.status(404).json('City not found into database.');
+        requestResponse(response_status_codes.not_found, 'City not found into database.', res);
       }
     } catch (err) {
-      res.status(500).json('Invalid city id format.');
+      requestResponse(response_status_codes.not_found, 'Invalid city id format.', res);
     }
   }
 
@@ -42,12 +44,12 @@ export class CityController {
       let country = await this.country_service.getCountryById(req.params.countryId);
       if (country) {
         let cities = await this.city_service.getCities({country_id: req.params.countryId});
-        res.status(200).json(cities);
+        requestResponse(response_status_codes.success, cities, res);
       } else {
-        res.status(404).json('Country not found into database.');
+        requestResponse(response_status_codes.bad_request, 'Country not found into database.', res);
       }
     } catch (err) {
-      res.status(500).json('Invalid country id format.');
+      requestResponse(response_status_codes.not_found, 'Invalid country id format.', res);
     }
   }
 
@@ -59,17 +61,17 @@ export class CityController {
       if (country) {
         let city = new City(req.body);
         await this.city_service.createCity(city);
-        res.status(201).json(city);
+        requestResponse(response_status_codes.created, city, res);
       } else {
-        res.status(404).json('Country not found into database.');
+        requestResponse(response_status_codes.not_found, 'Country not found into database.', res);
       }
     } catch(err) {
       if (err.name == "ValidationError") {
-        res.status(400).json(`Unable to save city into database because some fields are missing in request body.`);
+        requestResponse(response_status_codes.bad_request, 'Unable to save city into database because some fields are missing in request body.', res);
       } else if (err.code == 11000) {
-        res.status(409).json(`Unable to save city into database because the tuple (country_id, name) is duplicate.`);
+        requestResponse(response_status_codes.conflict, 'Unable to save city into database because the tuple (country_id, name) is duplicate.', res);
       } else {
-        res.status(500).json('Invalid country id format.');
+        requestResponse(response_status_codes.not_found, 'Invalid country id format.', res);
       }
     }
   }
@@ -88,7 +90,7 @@ export class CityController {
               let cities = await this.city_service.getCities({country_id: country._id});
               for (let c of cities) {
                 if (c.name == req.body.name) {
-                  res.status(409).json(`Country ${country.name} already has ${c.name} city into database`);
+                  requestResponse(response_status_codes.conflict, `Country ${country.name} already has ${c.name} city into database`, res);
                   return;
                 }
               }
@@ -97,21 +99,21 @@ export class CityController {
               city.longitude = req.body.longitude;
               city.country_id = req.body.country_id;
               city.save();
-              res.status(200).json(city);
+              requestResponse(response_status_codes.success, city, res);
             } else {
-              res.status(404).json("Contry not found into database");
+              requestResponse(response_status_codes.not_found, 'Contry not found into database', res);
             }
           } catch (err) {
-            res.status(500).json("Invalid country id format.");
+            requestResponse(response_status_codes.not_found, 'Invalid country id format.', res);
           }
         } else {
-          res.status(400).json(`Unable to save city into database because some fields are missing in request body.`);
+          requestResponse(response_status_codes.bad_request, 'Unable to save city into database because some fields are missing in request body.', res);
         }
       } else {
-        res.status(404).json('City id not found into database.');
+        requestResponse(response_status_codes.not_found, 'City id not found into database.', res);
       } 
     } catch (err) {
-      res.status(500).json('Invalid city id format.');
+      requestResponse(response_status_codes.not_found, 'Invalid city id format.', res);
     }
   }
 
@@ -125,13 +127,13 @@ export class CityController {
           if (err) {
             res.json(`Unable to delete city from database, because ${err.message}`);
           }
-          res.status(200).json(`City ${city?.name} was successfully deleted from databse.`);
+          requestResponse(response_status_codes.success, `City ${city?.name} was successfully deleted from databse.`, res);
         });
       } else {
-        res.status(404).json('City id not found into database.');
+        requestResponse(response_status_codes.not_found, 'City id not found into database.', res);
       }
     } catch (err) {
-      res.status(500).json('Invalid city id format.');
+      requestResponse(response_status_codes.not_found, 'Invalid city id format.', res);
     }
   }
 
