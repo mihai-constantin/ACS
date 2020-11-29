@@ -59,5 +59,5 @@
   * 200 OK - se sterge intregistrarea orasului din tabelul corespunzator, precum si temperaturile asociate cu acesta
   * 404 Not Found - id-ul din request este invalid sau nu are niciun corespondent in baza de date
   * 500 Internal Server Error - eroare cauzata de mongoDB
-  
+
 ### Temperatures
