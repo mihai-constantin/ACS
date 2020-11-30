@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 import bodyParser from 'body-parser';
 import { CountryRoutes } from '../routes/countryRoutes';
 import { CityRoutes } from '../routes/cityRoutes';
+import { TemperatureRoutes } from '../routes/temperatureRoutes';
 
 class App {
 
@@ -11,6 +12,7 @@ class App {
 
   private country_routes: CountryRoutes = new CountryRoutes();
   private city_routes: CityRoutes = new CityRoutes();
+  private temperature_routes: TemperatureRoutes = new TemperatureRoutes();
 
   constructor() {
     this.app = express();
@@ -18,6 +20,7 @@ class App {
     this.mongoSetup();
     this.country_routes.route(this.app);
     this.city_routes.route(this.app);
+    this.temperature_routes.route(this.app);
   }
 
   private config(): void {
