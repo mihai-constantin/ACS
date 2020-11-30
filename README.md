@@ -85,6 +85,10 @@
   * 200 OK - Afisarea temperaturilor (filtrate eventual) dintr-o tara cu id-ul egal cu cel aflat in cerere
   * 404 Not Found - countryId-ul din request este invalid sau nu are niciun corespondent in baza de date
 
-* **PUT**
+* **PUT** (Update informatii temperatura): localhost:3000/api/temperatures/:temperatureId
+  * 200 OK - update la field-urile din cerere
+  * 400 Bad Request - lipsesc unele field-uri din request
+  * 404 Not Found - daca temperatureId din request sau city_id din cerere este invalid sau nu are corespondent in baza de date
+  * 409 Conflict - daca se doreste update la o temperatura la un city_id pentru care exista deja o temperatura la acea data si temperatureId-urile sunt diferite
 
 * **DELETE**

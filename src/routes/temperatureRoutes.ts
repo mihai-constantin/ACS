@@ -32,6 +32,11 @@ export class TemperatureRoutes {
       this.temperature_controller.create_temperature(req, res);
     });
 
+    // -----    PUT    -----
+    app.put('/api/temperatures/:temperatureId', (req: Request, res: Response) => {
+      this.temperature_controller.update_temperature(req, res);
+    });
+
   }
 
 }

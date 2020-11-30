@@ -149,4 +149,44 @@ export class TemperatureController {
     }
   }
 
+  // -----    PUT    -----
+  public async update_temperature(req: Request, res: Response) {
+    console.log('Updating temperature into database...');
+    try {
+      let temperature = await this.temperature_service.getTemperatureById(req.params.temperatureId);
+      if (temperature) {
+        if (req.body.value && req.body.city_id) {
+          try {
+            let temperature_data = new Date(temperature.timestamp);
+            let city = await this.city_service.getCityById(req.body.city_id);
+            if (city) {
+              let temperatures = await this.temperature_service.getTemperatures({city_id: city._id});
+              for (let t of temperatures) {
+                let t_data = new Date(t.timestamp);
+                if (t_data.getTime() == temperature_data.getTime() && req.params.temperatureId != t._id) {
+                  requestResponse(response_status_codes.conflict, 'Tuple (city_id, timestamp) already in database', res);
+                  return;
+                }
+              }
+              temperature.value = req.body.value;
+              temperature.city_id = req.body.city_id;
+              temperature.save();
+              requestResponse(response_status_codes.success, temperature, res);
+            } else {
+              requestResponse(response_status_codes.not_found, 'City not found into database', res);
+            }
+          } catch (err) {
+            requestResponse(response_status_codes.not_found, 'Invalid city id format.', res);
+          }
+        } else {
+          requestResponse(response_status_codes.bad_request, 'Unable to save temperature into database because some fields are missing in request body.', res);
+        }
+      } else {
+        requestResponse(response_status_codes.not_found, 'Temperature id not found into database.', res);
+      } 
+    } catch (err) {
+      requestResponse(response_status_codes.not_found, 'Invalid temperature id format.', res);
+    }
+  }
+
 }
