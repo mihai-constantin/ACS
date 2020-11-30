@@ -38,7 +38,7 @@ export class CityController {
   }
 
   // -----    GET BY COUNTRY    -----
-  public async get_city_by_country(req: Request, res: Response) {
+  public async get_cities_by_country(req: Request, res: Response) {
     console.log("Getting cities by contry...");
     try {
       let country = await this.country_service.getCountryById(req.params.countryId);

@@ -19,7 +19,7 @@ export class CityRoutes {
 
     // -----    GET BY COUNTRY    -----
     app.get('/api/cities/country/:countryId', (req: Request, res: Response) => {
-      this.city_controller.get_city_by_country(req, res);
+      this.city_controller.get_cities_by_country(req, res);
     });
 
     // -----    POST    -----
