@@ -69,7 +69,7 @@ export class CityController {
       if (err.name == "ValidationError") {
         requestResponse(response_status_codes.bad_request, 'Unable to save city into database because some fields are missing in request body.', res);
       } else if (err.code == 11000) {
-        requestResponse(response_status_codes.conflict, 'Unable to save city into database because the tuple (country_id, name) is duplicate.', res);
+        requestResponse(response_status_codes.conflict, `Unable to save city into database because the tuple (${req.body.country_id}, ${req.body.name}) is duplicate.`, res);
       } else {
         requestResponse(response_status_codes.not_found, 'Invalid country id format.', res);
       }

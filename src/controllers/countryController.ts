@@ -46,7 +46,7 @@ export class ContryController {
       if (err.name == "ValidationError") {
         requestResponse(response_status_codes.bad_request, 'Unable to save country into database because some fields are missing in request body.', res);
       } else if (err.code == 11000) {
-        requestResponse(response_status_codes.conflict, 'Unable to save country into database because the name is duplicate.', res);
+        requestResponse(response_status_codes.conflict, `Unable to save ${req.body.name} into database because the name is duplicate.`, res);
       } else {
         requestResponse(response_status_codes.internal_server_error, 'Internal server error.', res);
       }

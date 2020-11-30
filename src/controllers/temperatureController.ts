@@ -164,7 +164,7 @@ export class TemperatureController {
               for (let t of temperatures) {
                 let t_data = new Date(t.timestamp);
                 if (t_data.getTime() == temperature_data.getTime() && req.params.temperatureId != t._id) {
-                  requestResponse(response_status_codes.conflict, 'Tuple (city_id, timestamp) already in database', res);
+                  requestResponse(response_status_codes.conflict, `Tuple (${req.body.city_id}, ${t_data.toISOString().split('T')[0]}) already in database.`, res);
                   return;
                 }
               }
