@@ -61,3 +61,30 @@
   * 500 Internal Server Error - eroare cauzata de mongoDB
 
 ### Temperatures
+
+* **POST** (Adaugare temperatura in baza de date): localhost:3000/api/temperatures
+  * 201 Created - adauga o temperatura in baza de date
+  * 400 Bad Request - lipsesc unele field-uri din request
+  * 404 Not Found - valoarea lui city_id din request este invalida sau nu are niciun corespondent in baza de date
+  * 409 Conflict - situatie in care se doreste adaugarea unei temperaturi pentru un oras intr-o zi care exista deja in baza de date
+  
+* **GET** (Afisarea tuturor temperaturilor din baza de date): localhost:3000/api/temperatures?lat=double&lon=double&from=YYYY-MM-DD&until=YYYY-MM-DD
+  * 200 OK - afisarea tuturor temperaturilor din baza de date, filtrate dupa campurile din request
+    * latitudinea si longitudinea se cauta in functie de oras
+  * 500 Internal Server Error - eroare cauzata de mongoDB
+
+* **GET BY ID** (Afisarea temperaturii corespunzatoare id-ului din cerere): localhost:3000/api/temperatures/:temperatureId
+  * 200 OK - afisare temperatura cu id-ul din request
+  * 404 Not Found - situatie in care id-ul are un format invalid sau temperatura nu exista in baza de date; se afiseaza un mesaj corespunzator
+
+* **GET BY CITY** (Afisarea temperaturilor dintr-un oras): localhost:3000/api/temperatures/city/:cityId?from=YYYY-MM-DD&until=YYYY-MM-DD
+  * 200 OK - Afisarea temperaturilor (filtrate eventual) dintr-un oras cu id-ul egal cu cel aflat in cerere
+  * 404 Not Found - cityId-ul din request este invalid sau nu are niciun corespondent in baza de date
+
+* **GET BY COUNTRY** (Afisarea temperaturilor dintr-o tara): localhost:3000/api/temperatures/country/:countryId?from=YYYY-MM-DD&until=YYYY-MM-DD
+  * 200 OK - Afisarea temperaturilor (filtrate eventual) dintr-o tara cu id-ul egal cu cel aflat in cerere
+  * 404 Not Found - countryId-ul din request este invalid sau nu are niciun corespondent in baza de date
+
+* **PUT**
+
+* **DELETE**
