@@ -13,11 +13,11 @@ crea un overhead care nu este necesar).
       sortare a secventelor paralela, deoarece core-urile nu sunt ocupate cu
       alte computatii
 
-## Timp rulare
+## Timp rulare - testat pe fep
 * In urma rularii de un numar semnificativ de ori, s-au obtinut urmatoarele rezultate:
-    * dimensiune vector: 2^20 | timp mediu de executie: TODO | speedup: TODO
-    * dimensiune vector: 2^21 | timp mediu de executie: TODO | speedup: TODO
-    * dimensiune vector: 2^22 | timp mediu de executie: TODO | speedup: TODO
-    * dimensiune vector: 2^23 | timp mediu de executie: TODO | speedup: TODO
-    * dimensiune vector: 2^24 | timp mediu de executie: TODO | speedup: TODO
-    * dimensiune vector: 2^25 | timp mediu de executie: TODO | speedup: TODO
+    * dimensiune vector: 2^20 | timp mediu de executie: 0.585s | speedup: 2.252
+    * dimensiune vector: 2^21 | timp mediu de executie: 1.282s | speedup: 2.208
+    * dimensiune vector: 2^22 | timp mediu de executie: 2.523s | speedup: 2.450
+    * dimensiune vector: 2^23 | timp mediu de executie: 5.609s | speedup: 2.366
+    * dimensiune vector: 2^24 | timp mediu de executie: 12.148s | speedup: 2.349
+    * dimensiune vector: 2^25 | timp mediu de executie: 24.963s | speedup: 2.459
