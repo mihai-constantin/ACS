@@ -1,9 +1,10 @@
 import { Request, Response } from 'express';
 import { requestResponse } from '../errors';
 import { response_status_codes } from '../errors/model';
-import City from '../models/cityModel'
+import City from '../models/cityModel';
+import Temperature from '../models/temperatureModel';
 
-import CityService from "../services/cityServices"
+import CityService from "../services/cityServices";
 import ContryService from '../services/countryServices';
 
 export class CityController {
@@ -122,6 +123,8 @@ export class CityController {
     try {
       let city = await this.city_service.getCityById(req.params.cityId);
       if (city) {
+        /* delete all the temperatures from this city */
+        await Temperature.deleteMany({city_id: req.params.cityId});
         city.remove((err) => {
           if (err) {
             requestResponse(response_status_codes.internal_server_error, `Unable to delete city from database, because ${err.message}`, res);

@@ -2,12 +2,16 @@ import { Request, Response } from 'express';
 import { requestResponse } from '../errors';
 import { response_status_codes } from '../errors/model';
 import Country from '../models/countryModel';
+import City from '../models/cityModel';
+import Temperature from '../models/temperatureModel';
 
 import ContryService from "../services/countryServices";
+import CityService from '../services/cityServices';
 
 export class ContryController {
   
   private country_service: ContryService = new ContryService();
+  private city_service: CityService = new CityService();
 
   // -----    GET    -----
   public async get_all_countries(req: Request, res: Response) {
@@ -89,6 +93,11 @@ export class ContryController {
     try {
       let country = await this.country_service.getCountryById(req.params.countryId);
       if (country) {
+        let cities = await this.city_service.getCities({country_id: req.params.countryId});
+        for (let city of cities) {
+          await Temperature.deleteMany({city_id: city._id});
+        }
+        await City.deleteMany({country_id: req.params.countryId});
         country.remove((err) => {
           if (err) {
             requestResponse(response_status_codes.internal_server_error, `Unable to delete country from database, because ${err.message}`, res);
