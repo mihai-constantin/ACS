@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall
+CFLAGS = -fopenmp -Wall
 
 build: bitonic_sort_openmp
 
