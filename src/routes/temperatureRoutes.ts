@@ -37,6 +37,11 @@ export class TemperatureRoutes {
       this.temperature_controller.update_temperature(req, res);
     });
 
+    // -----    DELETE    -----
+    app.delete('/api/temperatures/:temperatureId', (req: Request, res: Response) => {
+      this.temperature_controller.delete_temperature(req, res);
+    });
+
   }
 
 }

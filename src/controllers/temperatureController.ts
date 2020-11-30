@@ -189,4 +189,24 @@ export class TemperatureController {
     }
   }
 
+   // -----    DELETE    -----
+   public async delete_temperature(req: Request, res: Response) {
+    console.log('Deleting temperature from database...');
+    try {
+      let temperature = await this.temperature_service.getTemperatureById(req.params.temperatureId);
+      if (temperature) {
+        temperature.remove((err) => {
+          if (err) {
+            requestResponse(response_status_codes.internal_server_error, `Unable to delete temperature from database, because ${err.message}`, res);
+          }
+          requestResponse(response_status_codes.success, `Temperature ${temperature?.value} was successfully deleted from databse.`, res);
+        });
+      } else {
+        requestResponse(response_status_codes.not_found, 'Temperature id not found into database.', res);
+      }
+    } catch (err) {
+      requestResponse(response_status_codes.not_found, 'Invalid temperature id format.', res);
+    }
+  }
+
 }

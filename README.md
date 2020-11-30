@@ -56,7 +56,7 @@
   * 409 Conflict - in situatia in care se doreste update la numele tarii, dar in tara respectiva exista deja orasul in cauza
 
 * **DELETE** (Stergerea unui oras): localhost:3000/api/cities/:cityId
-  * 200 OK - se sterge intregistrarea orasului din tabelul corespunzator, precum si temperaturile asociate cu acesta
+  * 200 OK - se sterge inregistrarea orasului din tabelul corespunzator, precum si temperaturile asociate cu acesta
   * 404 Not Found - id-ul din request este invalid sau nu are niciun corespondent in baza de date
   * 500 Internal Server Error - eroare cauzata de mongoDB
 
@@ -91,4 +91,8 @@
   * 404 Not Found - daca temperatureId din request sau city_id din cerere este invalid sau nu are corespondent in baza de date
   * 409 Conflict - daca se doreste update la o temperatura la un city_id pentru care exista deja o temperatura la acea data si temperatureId-urile sunt diferite
 
-* **DELETE**
+* **DELETE** (Stergerea unei temperaturi): localhost:3000/api/temperatures/city/:temperatureId
+  * 200 OK - se sterge inregistrarea temperaturii din tabelul corespunzator
+  * 404 Not Found - id-ul din request este invalid sau nu are niciun corespondent in baza de date
+  * 500 Internal Server Error - eroare cauzata de mongoDB
+  
