@@ -9,7 +9,6 @@ services:
     links:
       - mongo
     volumes:
-      - ./:/tema2-sprc
       - /tema2-sprc/node_modules
 
   mongo:

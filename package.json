@@ -1,11 +1,10 @@
 {
     "name": "app",
     "version": "1.0.0",
-    "main": "dist/server.js",
+    "main": "./dist/server.js",
     "scripts": {
-        "build": "tsc",
-        "start": "node dist/server.js",
-        "dev": "concurrently \"tsc -w\" \"nodemon dist/server.js\""
+        "start": "tsc && node ./dist/server.js",
+        "dev": "concurrently \"tsc -w\" \"nodemon ./dist/server.js\""
     },
     "author": "Mihai Constantin",
     "license": "ISC",
