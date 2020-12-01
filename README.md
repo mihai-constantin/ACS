@@ -5,12 +5,12 @@
 * se vor forma 3 containere
   * REST API-ul
   * baza de date (MongoDB)
-  * utlitar de gestiune baza de date (mongoexpress)
+  * utlitar de gestiune al bazei de date (mongoexpress)
     * localhost:8081 pe browser 
 * in momentul rularii, se va crea baza de date **db-sprc**; aceasta nu va contine nicio data
 * pentru o verificare mai usoara in directorul *tema2-sprc/data* sunt 3 fisiere care se pot importa in MongoDBCompass pentru o verificare mai usoara a rutelor
   * url-ul la care trebuie sa se conecteze din MongoDBCompass este *mongodb://localhost:27018*
-  * se selecteaza tabela *db-sprc* care in acest moment are 3 tabele goale: countries, cities si temperatures
+  * se selecteaza baza de date *db-sprc* care in acest moment are 3 tabele goale: countries, cities si temperatures
   * se selecteaza pe rand fiecare tabel si se da Collection->Import Data, alegandu-se fisierul corespunzator din directorul *tema2-sprc/data*
 
 ## Docker
@@ -19,11 +19,11 @@
     * ruleaza atat in container, cat si pe host pe portul 3000 
     * imaginea este creata pe baza fisierului Dockerfile aflat in radacina proiectului
   * **tema2-sprc_mongo** - baza de date
-    * este expusa in container pe portul 27017, in timp ce pe host pe portul 27018
+    * ruleaza in container pe portul 27017, in timp ce pe host pe portul 27018
   * **tema2-sprc_mongoexpress** - utilitarul de gestiune al bazei de date
     * ruleaza atat in container, cat si pe host pe portul 8081
     * *localhost:8081* din browser pentru a vizualiza grafic baza de date
-* Toate cele 3 containere se regasesc in reteaua app_internal.
+* Toate cele 3 containere se regasesc in reteaua *app_internal*.
 
 ## Implementare rute
 
@@ -121,3 +121,5 @@
   * 404 Not Found - id-ul din request este invalid sau nu are niciun corespondent in baza de date
   * 500 Internal Server Error - eroare cauzata de mongoDB
   
+## Testare
+* In directorul radacina se gaseste fisierul *postman.json* care poate fi importat direct in Postman pentru a se testa fiecare ruta in parte.
