@@ -11,6 +11,8 @@ services:
       - mongo
     volumes:
       - /tema2-sprc/node_modules
+    networks:
+      - app_internal
 
   mongo:
     image: mongo
@@ -21,6 +23,21 @@ services:
       - "27018:27017"
     volumes:
       - mongo_database:/data/db
+    networks:
+      - app_internal
+
+  mongoexpress:
+    image: mongo-express
+    container_name: "tema2-sprc_mongoexpress"
+    ports:
+      - "8081:8081"
+    links:
+      - mongo
+    networks:
+      - app_internal
 
 volumes:
   mongo_database:
+
+networks:
+  app_internal:
