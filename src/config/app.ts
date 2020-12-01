@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import { CountryRoutes } from '../routes/countryRoutes';
 import { CityRoutes } from '../routes/cityRoutes';
 import { TemperatureRoutes } from '../routes/temperatureRoutes';
+import * as dotenv from 'dotenv';
 
 class App {
 
@@ -24,6 +25,7 @@ class App {
   }
 
   private config(): void {
+    dotenv.config();
     // support application/json type post data
     this.app.use(bodyParser.json());
     //support application/x-www-form-urlencoded post data

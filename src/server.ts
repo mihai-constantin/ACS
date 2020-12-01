@@ -1,6 +1,7 @@
 import app from "./config/app";
+import endpoint from './endpoints.config';
 
-const PORT = 3000;
+const PORT = endpoint.PORT;
 
 app.listen(PORT, () => {
   console.log('Express server listening on port ' + PORT);
