@@ -1,0 +1,521 @@
+[{
+  "_id": {
+    "$oid": "5fc4de33f5c65b00ab503b3c"
+  },
+  "value": 2,
+  "timestamp": "2020-11-30",
+  "city_id": "5fc3a5fa3b320801fea7a99a",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4e0bef5c65b00ab503b44"
+  },
+  "value": 6,
+  "timestamp": "2020-11-30",
+  "city_id": "5fc3a5ef3b320801fea7a996",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4e0e7f5c65b00ab503b46"
+  },
+  "value": 3,
+  "timestamp": "2020-11-30",
+  "city_id": "5fc3a5833b320801fea7a984",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4e10cf5c65b00ab503b48"
+  },
+  "value": 3,
+  "timestamp": "2020-11-30",
+  "city_id": "5fc3a5a33b320801fea7a986",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4e123f5c65b00ab503b4a"
+  },
+  "value": 1,
+  "timestamp": "2020-11-30",
+  "city_id": "5fc3a5b63b320801fea7a988",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4e138f5c65b00ab503b4c"
+  },
+  "value": 3,
+  "timestamp": "2020-11-30",
+  "city_id": "5fc3a5be3b320801fea7a98a",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4e14ef5c65b00ab503b4e"
+  },
+  "value": 17,
+  "timestamp": "2020-11-30",
+  "city_id": "5fc3a5cf3b320801fea7a98c",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4e163f5c65b00ab503b50"
+  },
+  "value": 13,
+  "timestamp": "2020-11-30",
+  "city_id": "5fc3a5d63b320801fea7a98e",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4e178f5c65b00ab503b52"
+  },
+  "value": 16,
+  "timestamp": "2020-11-30",
+  "city_id": "5fc3a5db3b320801fea7a990",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4e192f5c65b00ab503b56"
+  },
+  "value": 12,
+  "timestamp": "2020-11-30",
+  "city_id": "5fc3a5e03b320801fea7a992",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4e663e0333b01516b7e92"
+  },
+  "value": 2,
+  "timestamp": "2020-11-29",
+  "city_id": "5fc40538fa87280100efe80c",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4e6ea491698016015e75a"
+  },
+  "value": 1,
+  "timestamp": "2020-11-28",
+  "city_id": "5fc40538fa87280100efe80c",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4e717f6a8ee017e42b709"
+  },
+  "value": 0,
+  "timestamp": "2020-11-27",
+  "city_id": "5fc40538fa87280100efe80c",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4e728597cef018d7a4232"
+  },
+  "value": 10,
+  "timestamp": "2020-11-26",
+  "city_id": "5fc40538fa87280100efe80c",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4e7399ed919019a3de4bb"
+  },
+  "value": 11,
+  "timestamp": "2020-11-25",
+  "city_id": "5fc40538fa87280100efe80c",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4e79329efc601a9b3c6c3"
+  },
+  "value": 0,
+  "timestamp": "2020-11-29",
+  "city_id": "5fc3a5fa3b320801fea7a99a",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4e7a1ae445801b7964244"
+  },
+  "value": 0,
+  "timestamp": "2020-11-28",
+  "city_id": "5fc3a5fa3b320801fea7a99a",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4e7afae794901c5aeb05a"
+  },
+  "value": -2,
+  "timestamp": "2020-11-27",
+  "city_id": "5fc3a5fa3b320801fea7a99a",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4e7bbebc13101d20d4043"
+  },
+  "value": 0,
+  "timestamp": "2020-11-26",
+  "city_id": "5fc3a5fa3b320801fea7a99a",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4e7d4e9cdcd01e0de5880"
+  },
+  "value": 1,
+  "timestamp": "2020-11-25",
+  "city_id": "5fc3a5fa3b320801fea7a99a",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4e80e56ff4f01efae28b0"
+  },
+  "value": 2,
+  "timestamp": "2020-11-29",
+  "city_id": "5fc3a5ef3b320801fea7a996",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4e8206f5c5d01fdf36d99"
+  },
+  "value": 8,
+  "timestamp": "2020-11-28",
+  "city_id": "5fc3a5ef3b320801fea7a996",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4e82e8ecb8f020acd4a2a"
+  },
+  "value": 5,
+  "timestamp": "2020-11-27",
+  "city_id": "5fc3a5ef3b320801fea7a996",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4e84824ba3b02189b48c7"
+  },
+  "value": 6,
+  "timestamp": "2020-11-26",
+  "city_id": "5fc3a5ef3b320801fea7a996",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4e85bbd204802274fd195"
+  },
+  "value": 8,
+  "timestamp": "2020-11-25",
+  "city_id": "5fc3a5ef3b320801fea7a996",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4ea255a469e023518bb0d"
+  },
+  "value": 11,
+  "timestamp": "2020-11-17",
+  "city_id": "5fc3a5ef3b320801fea7a996",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4ea5d8827eb02438cc2e3"
+  },
+  "value": 1,
+  "timestamp": "2020-11-29",
+  "city_id": "5fc3a5833b320801fea7a984",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4ea6b726f7d025354f0c8"
+  },
+  "value": 3,
+  "timestamp": "2020-11-28",
+  "city_id": "5fc3a5833b320801fea7a984",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4ea78193e8c02617c4382"
+  },
+  "value": 6,
+  "timestamp": "2020-11-27",
+  "city_id": "5fc3a5833b320801fea7a984",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4ea85c829fc0270bd8640"
+  },
+  "value": 5,
+  "timestamp": "2020-11-26",
+  "city_id": "5fc3a5833b320801fea7a984",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4ea9373f58c027d0ea3e7"
+  },
+  "value": 7,
+  "timestamp": "2020-11-25",
+  "city_id": "5fc3a5833b320801fea7a984",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4eaa27965e0028b21c46b"
+  },
+  "value": 11,
+  "timestamp": "2020-11-15",
+  "city_id": "5fc3a5833b320801fea7a984",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4eadd4bf1b0029940e470"
+  },
+  "value": 5,
+  "timestamp": "2020-11-29",
+  "city_id": "5fc3a5a33b320801fea7a986",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4eaeee7550e02a7bdef46"
+  },
+  "value": 2,
+  "timestamp": "2020-11-28",
+  "city_id": "5fc3a5a33b320801fea7a986",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4eafcde54a502b6de9572"
+  },
+  "value": 7,
+  "timestamp": "2020-11-27",
+  "city_id": "5fc3a5a33b320801fea7a986",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4eb0efc51e002c384e755"
+  },
+  "value": 10,
+  "timestamp": "2020-11-26",
+  "city_id": "5fc3a5a33b320801fea7a986",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4eb210886a502d1677e4f"
+  },
+  "value": 7,
+  "timestamp": "2020-11-25",
+  "city_id": "5fc3a5a33b320801fea7a986",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4eb2e30c41a02df6b75cb"
+  },
+  "value": 6,
+  "timestamp": "2020-11-10",
+  "city_id": "5fc3a5a33b320801fea7a986",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4eb5f0ca4eb02ed24221e"
+  },
+  "value": 1,
+  "timestamp": "2020-11-29",
+  "city_id": "5fc3a5b63b320801fea7a988",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4eb6b03f2c402fc4be350"
+  },
+  "value": 0,
+  "timestamp": "2020-11-28",
+  "city_id": "5fc3a5b63b320801fea7a988",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4eb78ddf9c9030ca8563a"
+  },
+  "value": 4,
+  "timestamp": "2020-11-27",
+  "city_id": "5fc3a5b63b320801fea7a988",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4eb8305ece6031b7c2703"
+  },
+  "value": 4,
+  "timestamp": "2020-11-26",
+  "city_id": "5fc3a5b63b320801fea7a988",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4eb8b54f3d9032953f563"
+  },
+  "value": 4,
+  "timestamp": "2020-11-25",
+  "city_id": "5fc3a5b63b320801fea7a988",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4eb9ab13ecd0336b6ea2e"
+  },
+  "value": 12,
+  "timestamp": "2020-11-16",
+  "city_id": "5fc3a5b63b320801fea7a988",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4ebc7cf32280344db5ac5"
+  },
+  "value": 5,
+  "timestamp": "2020-11-29",
+  "city_id": "5fc3a5be3b320801fea7a98a",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4ebd3c385b903535b54bb"
+  },
+  "value": 6,
+  "timestamp": "2020-11-28",
+  "city_id": "5fc3a5be3b320801fea7a98a",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4ebe1c956d80363b758b7"
+  },
+  "value": 7,
+  "timestamp": "2020-11-27",
+  "city_id": "5fc3a5be3b320801fea7a98a",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4ebeaa56e390372c69c29"
+  },
+  "value": 7,
+  "timestamp": "2020-11-26",
+  "city_id": "5fc3a5be3b320801fea7a98a",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4ebf9cd9b5d037fb959b9"
+  },
+  "value": 2,
+  "timestamp": "2020-11-25",
+  "city_id": "5fc3a5be3b320801fea7a98a",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4ec06dc23d2038eec88a8"
+  },
+  "value": 14,
+  "timestamp": "2020-11-15",
+  "city_id": "5fc3a5be3b320801fea7a98a",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4ec48aa40e0039bc745e4"
+  },
+  "value": 15,
+  "timestamp": "2020-11-29",
+  "city_id": "5fc3a5cf3b320801fea7a98c",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4ec558a778f03aa69353a"
+  },
+  "value": 16,
+  "timestamp": "2020-11-28",
+  "city_id": "5fc3a5cf3b320801fea7a98c",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4ec65e114c403b78ffbad"
+  },
+  "value": 14,
+  "timestamp": "2020-11-27",
+  "city_id": "5fc3a5cf3b320801fea7a98c",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4ec73e9072b03c57c1768"
+  },
+  "value": 13,
+  "timestamp": "2020-11-26",
+  "city_id": "5fc3a5cf3b320801fea7a98c",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4ec7fb84eb903d3deede3"
+  },
+  "value": 18,
+  "timestamp": "2020-11-25",
+  "city_id": "5fc3a5cf3b320801fea7a98c",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4ec9660610d03e2a46fdd"
+  },
+  "value": 21,
+  "timestamp": "2020-11-10",
+  "city_id": "5fc3a5cf3b320801fea7a98c",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4ecf4d7642903f059d39c"
+  },
+  "value": 16,
+  "timestamp": "2020-11-29",
+  "city_id": "5fc3a5d63b320801fea7a98e",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4ed02b4e07803fd0a9222"
+  },
+  "value": 15,
+  "timestamp": "2020-11-28",
+  "city_id": "5fc3a5d63b320801fea7a98e",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4ed105ca5a6040c6ad244"
+  },
+  "value": 14,
+  "timestamp": "2020-11-27",
+  "city_id": "5fc3a5d63b320801fea7a98e",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4ed1de4500b04199aee2e"
+  },
+  "value": 13,
+  "timestamp": "2020-11-26",
+  "city_id": "5fc3a5d63b320801fea7a98e",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4ed27bf85a704280197c1"
+  },
+  "value": 12,
+  "timestamp": "2020-11-25",
+  "city_id": "5fc3a5d63b320801fea7a98e",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4ed33a7330704359a8df5"
+  },
+  "value": 13,
+  "timestamp": "2020-11-14",
+  "city_id": "5fc3a5d63b320801fea7a98e",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4ed701fb739044383ae0d"
+  },
+  "value": 12,
+  "timestamp": "2020-11-29",
+  "city_id": "5fc3a5e03b320801fea7a992",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4ed7e6d10f60452724035"
+  },
+  "value": 17,
+  "timestamp": "2020-11-20",
+  "city_id": "5fc3a5e03b320801fea7a992",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc4ed89e0c5fe046062d57f"
+  },
+  "value": 16,
+  "timestamp": "2020-11-15",
+  "city_id": "5fc3a5e03b320801fea7a992",
+  "__v": 0
+}]
