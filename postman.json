@@ -1,0 +1,491 @@
+{
+	"info": {
+		"_postman_id": "d3660229-0346-401f-9806-b1b8d954333c",
+		"name": "Tema 2 SPRC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Country",
+			"item": [
+				{
+					"name": "1. ADD",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Tanzania\",\n    \"latitude\": -3.065653,\n    \"longitude\": 37.352013\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/countries",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"countries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2. GET All",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/countries",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"countries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2. 1  GET by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/countries/5fc3978ff0496f006f009e77",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"countries",
+								"5fc3978ff0496f006f009e77"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3. Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Tanzania\",\n    \"latitude\": -3.065653,\n    \"longitude\": 37.352013\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/countries/5fc3fd17e6d33400cd145adc",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"countries",
+								"5fc3fd17e6d33400cd145adc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4. DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/countries/5fc397e6f0496f006f009e89",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"countries",
+								"5fc397e6f0496f006f009e89"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "City",
+			"item": [
+				{
+					"name": "1. ADD",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"oras fantoma\",\n    \"latitude\": 44.439663,\n    \"longitude\": 20,\n    \"country_id\": \"5fc397e6f0496f006f009e89\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/cities",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2. GET All",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/cities",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2.1 GET by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/cities/5fc3a5be3b320801fea7a98a",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"cities",
+								"5fc3a5be3b320801fea7a98a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2.2 Get by Country",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/cities/country/5fc397e6f0496f006f009e89",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"cities",
+								"country",
+								"5fc397e6f0496f006f009e89"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3. Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Bucuresti\",\n    \"latitude\": 44.439663,\n    \"longitude\": 26.096306,\n    \"country_id\": \"5fc397e6f0496f006f009e89\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/cities/5fc40538fa87280100efe80c",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"cities",
+								"5fc40538fa87280100efe80c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4. DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/cities/5fc3a5b63b320801fea7a988",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"cities",
+								"5fc3a5b63b320801fea7a988"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Temperature",
+			"item": [
+				{
+					"name": "1. ADD",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"value\": 10,\n    \"city_id\": \"5fc3a5be3b320801fea7a98a\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/temperatures",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"temperatures"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2. GET All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/temperatures",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"temperatures"
+							],
+							"query": [
+								{
+									"key": "lat",
+									"value": "44.439663",
+									"disabled": true
+								},
+								{
+									"key": "lon",
+									"value": "26.096306",
+									"disabled": true
+								},
+								{
+									"key": "from",
+									"value": "2020-11-27",
+									"disabled": true
+								},
+								{
+									"key": "until",
+									"value": "2020-11-30",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2. 1 Get by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/temperatures/5fc506ff9f4ff20a0497e5fb",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"temperatures",
+								"5fc506ff9f4ff20a0497e5fb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2.2 GET by City",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/temperatures/city/5fc3a5be3b320801fea7a98a",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"temperatures",
+								"city",
+								"5fc3a5be3b320801fea7a98a"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "2020-11-27",
+									"disabled": true
+								},
+								{
+									"key": "until",
+									"value": "2020-11-29",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2.3 GET by Country",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/temperatures/country/5fc397b2f0496f006f009e85",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"temperatures",
+								"country",
+								"5fc397b2f0496f006f009e85"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "2020-11-26",
+									"disabled": true
+								},
+								{
+									"key": "until",
+									"value": "2020-11-29",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"value\": 50,\n    \"city_id\": \"5fc3a5fa3b320801fea7a99a\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/temperatures/5fc4e6ea491698016015e75a",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"temperatures",
+								"5fc4e6ea491698016015e75a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/temperatures/5fc4dcd9ddc5e0009ceea2b9",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"temperatures",
+								"5fc4dcd9ddc5e0009ceea2b9"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
