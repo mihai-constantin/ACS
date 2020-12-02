@@ -69,5 +69,5 @@ int main(int argc , char **argv)
 	printf("The SumOfElements Of The Array Using OpenMP Directives Is %lf\n", sum);
 	printf("The SumOfElements Of The Array By Serial Calculation Is %lf\n", serial_sum);
 
-    return 0;
+  return 0;
 }
