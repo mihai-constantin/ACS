@@ -4,3 +4,4 @@
 * Laborator 2 - RPC (Remote Procedure Call)
 * Laborator 3 - Servicii Web
 * Laborator 4 - Docker
+* Laborator 5 - Protocoale pentru IoT. MQTT
