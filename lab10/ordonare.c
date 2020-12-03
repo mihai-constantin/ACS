@@ -15,6 +15,7 @@ void ordCresc(char* words[], int n) {
     }
     printf("\n");
 
+    // sortare
     int i, j;
     char* aux = (char*)malloc(sizeof(N));
     for (i = 0; i < n - 1; i++) {
@@ -33,7 +34,6 @@ void ordCresc(char* words[], int n) {
         printf("%s ", words[i]);
     }
     printf("\n");
-
 }
 
 int main()

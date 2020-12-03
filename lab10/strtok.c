@@ -12,8 +12,8 @@ int main()
 {
     int nr = 0;
 
-    char *s = (char*) malloc(N * sizeof(char));
-    char *my_word = (char*) malloc(N * sizeof(char));
+    char *s = (char*) malloc(N * sizeof(char)); // sirul citit
+    char *my_word = (char*) malloc(N * sizeof(char)); // cuvantul pe care il caut in sir
 
     fgets(s, N, stdin);
     s[strlen(s) - 1] = '\0'; // scap de enter
@@ -29,6 +29,7 @@ int main()
         if (!strcmp(word, my_word)) {
             nr++;
         }
+        // deplasare la cuvantul urmator
         word = strtok(NULL, delims);
     }
     printf("\n");

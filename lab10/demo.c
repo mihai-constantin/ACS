@@ -10,7 +10,7 @@ int main()
     char *b="unsir";
     for (int i = 0; i < strlen(b); i++) {
         printf("%c", b[i]);
-        // b[i] = 'a'; seg. fault (nu avem drept de scriere)
+        // b[i] = 'a'; //seg. fault (nu avem drept de scriere)
     }
     printf("\n");
 
