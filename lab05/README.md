@@ -4,8 +4,7 @@
 * creare container pe baza imaginii de eclipse-mosquitto
     * docker pull eclipse-mosquitto
     * docker run -it -p 1883:1883 -p 9001:9001 eclipse-mosquitto
-* rulare container: docker container run --name container-task1 -p 8080:80 **<image-hash**
-
+    
 ## Task2 - Aplicatie de chat
 * conectare la container
 * subscribe la sprc/chat/#
