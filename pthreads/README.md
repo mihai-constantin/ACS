@@ -1,7 +1,10 @@
-# Varianta producer-consumer pthreads
+# Varianta single producer multiple consumers implementata cu pthreads POSIX
+
+## Rulare
+Se executa comanda **make**, dupa care **make run**. Rezultatul se va gasi in fisierul *data.out*.
 
 ## Producer
-* Producatorul va citi pe rand din fisier cate un caracter pe care il va introduce intr-o coada circulara daca are loc. Daca nu, va astepta ca consumatorul sa extraga un element din coada, pentru a face loc pentru inserarea noului element.
+* Producatorul va insera in coada element cu element. Daca coada este plina, se va astepta pana cand consumatorul va extrage un element pentru a se putea insera din nou.
 
-## Consumer
-* Va extrage pe rand din coada circulara cate un element si il va scrie in fisierul de iesire. Daca nu exista elemente de extras din coada, va astepta ca producatorul sa adauge unele noi.
+## Consumers
+* Fiecare consumator va extrage un element din coada. El va calcula radical din elementul respectiv si va notifica producatorul ca exista un slot liber in coada.

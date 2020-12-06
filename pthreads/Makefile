@@ -1,12 +1,19 @@
 CC = gcc
-CFLAGS = -lm -lpthread -Wall
+CFLAGS = -Wall -lm -lpthread
 
-build: pthreads
+all: pthreads
 
-pthreads: pthreads.c
-	$(CC) -o pthreads pthreads.c $(CFLAGS)
+pthreads: pthreads.o queue.o
+	$(CC) $? -o $@ $(CFLAGS)
 
-.PHONY : clean
-clean :
-	rm -f pthreads
-	
+pthreads.o: pthreads.c queue.h
+	$(CC) -c pthreads.c $(CFLAGS)
+
+queue.o: queue.c queue.h
+	$(CC) -c queue.c $(CFLAGS)
+
+run:
+	./pthreads
+
+clean:
+	rm -f *.o pthreads data.out
