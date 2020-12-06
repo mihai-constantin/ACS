@@ -1,6 +1,6 @@
 # Varianta single producer multiple consumers implementata cu pthreads POSIX
 
-## Rulare
+## Rulare - pe fep
 Se executa comanda **make**, dupa care **make run**. Rezultatul se va gasi in fisierul *data.out*.
 
 ## Producer
