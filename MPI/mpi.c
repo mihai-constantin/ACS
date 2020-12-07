@@ -8,6 +8,9 @@
 #define MASTER 0
 #define MAX_NUMBERS 100
 
+int pwork = 1;
+int cwork[4];
+
 int main(int argc, char** argv) 
 {
     int numbers[MAX_NUMBERS];
@@ -21,7 +24,7 @@ int main(int argc, char** argv)
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     /* Get the total number of threads */
     MPI_Comm_size(MPI_COMM_WORLD, &nthreads);
-   
+
     /* init data for all threads */
     for (int i = 0; i < MAX_NUMBERS; i++) {
         numbers[i] = i;
@@ -40,6 +43,7 @@ int main(int argc, char** argv)
                 roots[status.MPI_TAG] = root;
             }
 
+            pwork++;
             MPI_Send(&(numbers[idx]), 1, MPI_INT, status.MPI_SOURCE, idx, MPI_COMM_WORLD);
         }
 
@@ -72,6 +76,7 @@ int main(int argc, char** argv)
             if (!status.MPI_TAG) {
                 terminated = true;
             } else {
+                cwork[rank] += 1;
                 root = sqrt(num);
                 MPI_Send(&root, 1, MPI_DOUBLE, 0, status.MPI_TAG, MPI_COMM_WORLD);
             }
@@ -83,6 +88,15 @@ int main(int argc, char** argv)
     if (rank == MASTER) {
         for (int i = 0; i < MAX_NUMBERS; i++) {
             printf("sqrt(%i) = %f\n", numbers[i], roots[i]);
+        }
+        printf("work done by producer:  %d\n", pwork);
+        printf("work done by consumers:\n");
+    }
+    MPI_Barrier(MPI_COMM_WORLD);
+
+    for (int i = 1; i < nthreads; i++) {
+        if (rank == i) {
+            printf("%d\n", cwork[i]);
         }
     }
 
