@@ -10,6 +10,11 @@
 int data[dim];
 double ans[dim];
 
+int pwork;
+int *cwork;
+
+int nth = 4;
+
 FILE *out;
 
 /* global queue */
@@ -61,11 +66,14 @@ void* producer() {
             exit(-1);
         }
         idx++;
+        pwork++;
     }
     return NULL;
 }
 
-void* consumer() {
+void* consumer(void *var) {
+    int thread_id = *(int*)var;
+
     struct q_work_struct *ptr;
     while(1) {
         /* obtain the next work request */
@@ -79,6 +87,7 @@ void* consumer() {
         int x = ptr->number;
         int idx = ptr->idx;
         ans[idx] = sqrt(x);
+        cwork[thread_id]++;
 
         /* release memory for work request */
         free((void *)ptr);
@@ -97,8 +106,14 @@ void process_tasks() {
     }
 
     /* create consumers threads */
+    int thread_id[nconsumers];
+	for(i = 1; i < nconsumers; i++) {
+		thread_id[i] = i;
+    }
+    cwork = (int*) calloc(nconsumers, sizeof(int));
+
     for (i = 1; i < nconsumers; i++) {
-        ret = pthread_create(&consumers[i], NULL, consumer, NULL);
+        ret = pthread_create(&consumers[i], NULL, consumer, &thread_id[i]);
         if (ret != 0) {
             fprintf(stderr, "error: pthread_create\n");
             exit(-1);
@@ -133,6 +148,12 @@ int main(int argc, char const *argv[])
     process_tasks();
     for (int i = 0; i < dim; i++) {
         fprintf(out, "sqrt(%d): %lf\n", i, ans[i]);
+    }
+
+    printf("work done by producer:  %d\n", pwork);
+    printf("work done by consumers:\n");
+    for (int i = 1; i < nth; i++) {
+        printf("%d\n", cwork[i]);
     }
 
     return 0;
