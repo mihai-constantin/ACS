@@ -4,9 +4,10 @@
 #include <math.h>
 #include <pthread.h>
 #include <errno.h>
+#include <sys/time.h>
 #include "queue.h"
 
-#define dim 100
+#define dim 2097152
 int data[dim];
 double ans[dim];
 
@@ -141,19 +142,27 @@ void process_tasks() {
 
 int main(int argc, char const *argv[])
 { 
+    struct timeval startwtime, endwtime;
+    double arr_time;
+
     out = fopen("data.out", "w");
     for (int i = 0; i < dim; i++) {
         data[i] = i;
     }
+
+    gettimeofday(&startwtime, NULL);
     process_tasks();
+    gettimeofday(&endwtime, NULL);
+    arr_time = (double)((endwtime.tv_usec - startwtime.tv_usec)/1.0e6 + endwtime.tv_sec - startwtime.tv_sec);
+    printf("Time taken = %f\n", arr_time);
+    
     for (int i = 0; i < dim; i++) {
         fprintf(out, "sqrt(%d): %lf\n", i, ans[i]);
     }
-
-    printf("work done by producer:  %d\n", pwork);
-    printf("work done by consumers:\n");
+    fprintf(out, "work done by producer:  %d\n", pwork);
+    fprintf(out, "work done by consumers:\n");
     for (int i = 1; i < nth; i++) {
-        printf("%d\n", cwork[i]);
+        fprintf(out, "%d\n", cwork[i]);
     }
 
     return 0;
