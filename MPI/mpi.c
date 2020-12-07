@@ -4,17 +4,21 @@
 #include <stdlib.h>
 #include <math.h>
 #include <stdbool.h>
+#include <sys/time.h>
 
 #define MASTER 0
-#define MAX_NUMBERS 100
+#define dim 2097152
 
 int pwork = 1;
 int cwork[4];
 
+struct timeval startwtime, endwtime;
+double arr_time;
+
 int main(int argc, char** argv) 
 {
-    int numbers[MAX_NUMBERS];
-    double roots[MAX_NUMBERS];
+    int numbers[dim];
+    double roots[dim];
 
     /* start MPI Process */
     MPI_Init(&argc, &argv);
@@ -26,13 +30,17 @@ int main(int argc, char** argv)
     MPI_Comm_size(MPI_COMM_WORLD, &nthreads);
 
     /* init data for all threads */
-    for (int i = 0; i < MAX_NUMBERS; i++) {
+    for (int i = 0; i < dim; i++) {
         numbers[i] = i;
+    }
+
+    if (rank == MASTER) {
+        gettimeofday(&startwtime, NULL);
     }
 
     /* Producer */
     if (rank == MASTER) {
-        for (int idx = 1; idx < MAX_NUMBERS; idx++) {
+        for (int idx = 1; idx < dim; idx++) {
             /* wait for a worker to become available */
             MPI_Status status;
             double root = 0;
@@ -86,7 +94,14 @@ int main(int argc, char** argv)
     MPI_Barrier(MPI_COMM_WORLD);
 
     if (rank == MASTER) {
-        for (int i = 0; i < MAX_NUMBERS; i++) {
+        gettimeofday(&endwtime, NULL);
+        arr_time = (double)((endwtime.tv_usec - startwtime.tv_usec)/1.0e6 + endwtime.tv_sec - startwtime.tv_sec);
+        printf("Time taken = %f\n", arr_time);
+    }
+    MPI_Barrier(MPI_COMM_WORLD);
+
+    if (rank == MASTER) {
+        for (int i = 0; i < dim; i++) {
             printf("sqrt(%i) = %f\n", numbers[i], roots[i]);
         }
         printf("work done by producer:  %d\n", pwork);

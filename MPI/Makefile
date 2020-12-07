@@ -12,3 +12,4 @@ run:
 .PHONY : clean
 clean :
 	rm -f mpi run.sh.*
+	
