@@ -3,8 +3,9 @@
 #include <math.h>
 #include <omp.h>
 #include <sched.h>
+#include <sys/time.h>
 
-#define DMAX 100
+#define DMAX 2097152
 #define MAXWORK 5
 
 int work[MAXWORK];  // work to be done
@@ -123,8 +124,16 @@ void dowork()
 
 int main(int argc, char **argv)
 { 
+    struct timeval startwtime, endwtime;
+    double arr_time;
+
     int i;
+    gettimeofday(&startwtime, NULL);
     dowork();
+    gettimeofday(&endwtime, NULL);
+    arr_time = (double)((endwtime.tv_usec - startwtime.tv_usec)/1.0e6 + endwtime.tv_sec - startwtime.tv_sec);
+    printf("Time taken = %f\n", arr_time);
+
     FILE* out = fopen("data.out", "w");
     for (i = 0; i < DMAX; i++) {
         fprintf(out, "sqrt(%d): %lf\n", i, roots[i]);

@@ -8,3 +8,7 @@
 
 ## Consumers
 * Fiecare consumator va extrage un element din coada. El va calcula radical din elementul respectiv si va notifica producatorul ca exista un slot liber in coada.
+
+## Timpi
+* 2^20: 0.338087s
+* 2^21: 0.707023s
