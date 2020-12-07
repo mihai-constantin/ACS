@@ -1,8 +1,14 @@
-all: ex1
+CC = gcc
+CFLAGS = -Wall -lm
 
-ex1: ex1.c
-	gcc -fopenmp $? -o $@ -Wall
+all: open-mp
+
+open-mp: open-mp.c
+	$(CC) -fopenmp $? -o $@ $(CFLAGS)
+
+run:
+	./open-mp
 
 .PHNOY: clean
 clean:
-	rm -f ex1
+	rm -f open-mp data.out
