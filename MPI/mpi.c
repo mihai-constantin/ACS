@@ -7,7 +7,6 @@
 #include <sys/time.h>
 
 #define MASTER 0
-#define dim 2097152
 
 int pwork = 1;
 int cwork[4];
@@ -17,8 +16,13 @@ double arr_time;
 
 int main(int argc, char** argv) 
 {
-    int numbers[dim];
-    double roots[dim];
+    if (argc != 2) {
+        printf("Usage: %s <dim>\n", argv[0]);
+        exit(-1);
+    }
+    int dim = atoi(argv[1]);
+    int* data = (int*) malloc(dim * sizeof(int));
+    double* roots = (double*) malloc(dim * sizeof(double));
 
     /* start MPI Process */
     MPI_Init(&argc, &argv);
@@ -31,7 +35,7 @@ int main(int argc, char** argv)
 
     /* init data for all threads */
     for (int i = 0; i < dim; i++) {
-        numbers[i] = i;
+        data[i] = i;
     }
 
     if (rank == MASTER) {
@@ -52,7 +56,7 @@ int main(int argc, char** argv)
             }
 
             pwork++;
-            MPI_Send(&(numbers[idx]), 1, MPI_INT, status.MPI_SOURCE, idx, MPI_COMM_WORLD);
+            MPI_Send(&(data[idx]), 1, MPI_INT, status.MPI_SOURCE, idx, MPI_COMM_WORLD);
         }
 
         /* send termination signal to each rank when they submit their last job */
@@ -102,7 +106,7 @@ int main(int argc, char** argv)
 
     if (rank == MASTER) {
         for (int i = 0; i < dim; i++) {
-            printf("sqrt(%i) = %f\n", numbers[i], roots[i]);
+            printf("sqrt(%i) = %f\n", data[i], roots[i]);
         }
         printf("work done by producer:  %d\n", pwork);
         printf("work done by consumers:\n");

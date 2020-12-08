@@ -7,7 +7,7 @@ mpi: mpi.c
 	$(CC) -o mpi mpi.c $(CFLAGS)
 
 run:
-	qsub -q all.q -cwd ./run.sh
+	qsub -q all.q -cwd ./run.sh $(ARGS)
 
 .PHONY : clean
 clean :
