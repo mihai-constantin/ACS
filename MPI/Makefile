@@ -9,6 +9,9 @@ mpi: mpi.c
 run:
 	qsub -q all.q -cwd ./run.sh $(ARGS)
 
+profile:
+	./profiling.sh $(ARGS)
+
 .PHONY : clean
 clean :
 	rm -f mpi run.sh.*
