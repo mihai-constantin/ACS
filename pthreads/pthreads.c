@@ -10,7 +10,7 @@
 int dim;
 
 int* data;
-double* ans;
+double* roots;
 
 int pwork;
 int *cwork;
@@ -88,7 +88,7 @@ void* consumer(void *var) {
         /* process the work request */
         int x = ptr->number;
         int idx = ptr->idx;
-        ans[idx] = sqrt(x);
+        roots[idx] = sqrt(x);
         cwork[thread_id]++;
 
         /* release memory for work request */
@@ -153,7 +153,7 @@ int main(int argc, char const *argv[])
 
     dim = atoi(argv[1]);
     data = (int*) malloc(dim * sizeof(int));
-    ans = (double*) malloc(dim * sizeof(double));
+    roots = (double*) malloc(dim * sizeof(double));
 
     out = fopen("data.out", "w");
     for (int i = 0; i < dim; i++) {
@@ -167,7 +167,7 @@ int main(int argc, char const *argv[])
     printf("Time taken = %f\n", arr_time);
     
     for (int i = 0; i < dim; i++) {
-        fprintf(out, "sqrt(%d): %lf\n", i, ans[i]);
+        fprintf(out, "sqrt(%d): %lf\n", i, roots[i]);
     }
     fprintf(out, "work done by producer:  %d\n", pwork);
     fprintf(out, "work done by consumers:\n");
