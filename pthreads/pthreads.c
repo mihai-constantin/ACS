@@ -7,9 +7,10 @@
 #include <sys/time.h>
 #include "queue.h"
 
-#define dim 2097152
-int data[dim];
-double ans[dim];
+int dim;
+
+int* data;
+double* ans;
 
 int pwork;
 int *cwork;
@@ -144,6 +145,15 @@ int main(int argc, char const *argv[])
 { 
     struct timeval startwtime, endwtime;
     double arr_time;
+
+    if (argc != 2) {
+        printf("Usage: %s <dim>\n", argv[0]);
+        exit(-1);
+    }
+
+    dim = atoi(argv[1]);
+    data = (int*) malloc(dim * sizeof(int));
+    ans = (double*) malloc(dim * sizeof(double));
 
     out = fopen("data.out", "w");
     for (int i = 0; i < dim; i++) {

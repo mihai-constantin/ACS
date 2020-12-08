@@ -13,7 +13,7 @@ queue.o: queue.c queue.h
 	$(CC) -c queue.c $(CFLAGS)
 
 run:
-	./pthreads
+	./pthreads $(ARGS)
 
 clean:
 	rm -f *.o pthreads data.out
