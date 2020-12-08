@@ -5,19 +5,19 @@
 #include <sched.h>
 #include <sys/time.h>
 
-#define DMAX 2097152
 #define MAXWORK 5
 
 int work[MAXWORK];  // work to be done
 int nitems = 0;  // number of items in the queue
 int nextput = 0;  // producer will place number # at work[nextput]
 int nextget = -1;  // consumer will obtain next # at work[nextget]
-int done = 0;  // value 1 signals producer exceeded DMAX
+int done = 0;  // value 1 signals producer exceeded dim
 int pwork;  // work done by producer
 int *cwork;  // work done by the consumers
 int nthreads;  // number of threads
+int dim;
+double* roots;
 
-double roots[DMAX];
 static int idx = 0;
 
 void next(int *m)
@@ -54,7 +54,7 @@ int getwork()
 {
     int k, get = 0;
     while (!get) {
-        // leave if producer exceeded DMAX and we've used all it produced
+        // leave if producer exceeded dim and we've used all it produced
         if (done && nitems == 0) {
             return -1;
         }
@@ -102,7 +102,7 @@ void dowork()
                 num = idx++;
                 putwork(num);
                 pwork++;
-                if (idx == DMAX) {
+                if (idx == dim) {
                     done = 1;
                     break;
                 }
@@ -127,6 +127,14 @@ int main(int argc, char **argv)
     struct timeval startwtime, endwtime;
     double arr_time;
 
+    if (argc != 2) {
+        printf("Usage: %s <dim>\n", argv[0]);
+        exit(-1);
+    }
+
+    dim = atoi(argv[1]);
+    roots = (double*) malloc(dim * sizeof(double));
+
     int i;
     gettimeofday(&startwtime, NULL);
     dowork();
@@ -135,7 +143,7 @@ int main(int argc, char **argv)
     printf("Time taken = %f\n", arr_time);
 
     FILE* out = fopen("data.out", "w");
-    for (i = 0; i < DMAX; i++) {
+    for (i = 0; i < dim; i++) {
         fprintf(out, "sqrt(%d): %lf\n", i, roots[i]);
     }
 

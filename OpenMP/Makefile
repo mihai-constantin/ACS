@@ -7,7 +7,7 @@ open-mp: open-mp.c
 	$(CC) -fopenmp $? -o $@ $(CFLAGS)
 
 run:
-	./open-mp
+	./open-mp $(ARGS)
 
 .PHNOY: clean
 clean:
