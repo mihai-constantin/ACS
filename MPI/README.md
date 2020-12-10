@@ -8,7 +8,6 @@
 
 ## Rulare
 * Se executa comanda **make**, dupa care **make run ARGS=<dim>**. Rezultatul se va gasi in fisierul *data.out*.  
-* Avand in vedere ca rulam pe fep, vom avea un producator si 3 consumatori. In scriptul *run.sh*, numarul total de thread-uri este setat la 4.
 
 ## Producer
 * Producatorul va insera in coada element cu element. Daca coada este plina, se va astepta pana cand un consumator va extrage un element pentru a se putea insera din nou.

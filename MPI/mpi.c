@@ -9,7 +9,7 @@
 #define MASTER 0
 
 int pwork = 1;
-int cwork[4];
+int cwork[8];
 
 struct timeval startwtime, endwtime;
 double arr_time;
