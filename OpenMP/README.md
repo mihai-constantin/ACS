@@ -15,7 +15,7 @@
 
 ## Timpi
 * S-a folosit scriptul *profiling.sh* pentru a rula programul de mai multe ori si a calcula o medie a timpilor obtinuti.
-    * **rulare**: ./profile.sh *dim*, unde *dim* este exponentul lui 2 pentru dimensiunea datelor de intrare
+    * **rulare**: ./profiling.sh *dim*, unde *dim* este exponentul lui 2 pentru dimensiunea datelor de intrare
 * In urma rularii de un numar semnificativ de ori, s-au obtinut rezultatele de mai jos pentru urmatoarele dimensiuni ale vectorului:
     * 2^20: 0.31577s
     * 2^21: 0.82903s
