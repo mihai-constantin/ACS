@@ -5,6 +5,7 @@
 #include <pthread.h>
 #include <errno.h>
 #include <sys/time.h>
+#include <unistd.h>
 #include "queue.h"
 
 int dim;
@@ -15,7 +16,7 @@ double* roots;
 int pwork;
 int *cwork;
 
-int nth = 4;
+int nth;
 
 FILE *out;
 
@@ -98,8 +99,10 @@ void* consumer(void *var) {
 }  
 
 void process_tasks() {
-    int i, ret, nconsumers = 4, max_queue_len = 5;
-    pthread_t consumers[nconsumers];
+    int i, ret, max_queue_len = 5;
+
+    nth = sysconf(_SC_NPROCESSORS_ONLN);
+    pthread_t consumers[nth];
 
     /* initialize the queue */
     if ( queue_init(&thr_queue, max_queue_len) != 0 ) {
@@ -108,13 +111,13 @@ void process_tasks() {
     }
 
     /* create consumers threads */
-    int thread_id[nconsumers];
-	for(i = 1; i < nconsumers; i++) {
+    int thread_id[nth];
+	for(i = 1; i < nth; i++) {
 		thread_id[i] = i;
     }
-    cwork = (int*) calloc(nconsumers, sizeof(int));
+    cwork = (int*) calloc(nth, sizeof(int));
 
-    for (i = 1; i < nconsumers; i++) {
+    for (i = 1; i < nth; i++) {
         ret = pthread_create(&consumers[i], NULL, consumer, &thread_id[i]);
         if (ret != 0) {
             fprintf(stderr, "error: pthread_create\n");
@@ -132,7 +135,7 @@ void process_tasks() {
     }
 
     /* wait for the consumers to terminate */
-    for (i = 1; i < nconsumers; i++) {
+    for (i = 1; i < nth; i++) {
         ret = pthread_join(consumers[i], NULL);
         if (ret != 0) {
             fprintf(stderr, "error: pthread_join\n");

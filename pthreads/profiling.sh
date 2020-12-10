@@ -1,7 +1,7 @@
 for i in `seq 1 10`; 
 do
   make run ARGS=$((2 ** $1)) >> temp.out
-  sleep 2
+  sleep 5
 done
 
 cat temp.out | grep Time > time.out
