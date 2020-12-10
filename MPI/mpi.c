@@ -28,7 +28,7 @@ int main(int argc, char** argv)
     MPI_Init(&argc, &argv);
 
     int rank, nthreads;
-    /* get the id (rank)*/
+    /* get the id (rank) */
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     /* Get the total number of threads */
     MPI_Comm_size(MPI_COMM_WORLD, &nthreads);
