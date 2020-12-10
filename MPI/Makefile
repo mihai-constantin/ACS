@@ -7,12 +7,9 @@ mpi: mpi.c
 	$(CC) -o mpi mpi.c $(CFLAGS)
 
 run:
-	qsub -q all.q -cwd ./run.sh $(ARGS)
-
-profile:
-	./profiling.sh $(ARGS)
+	mpirun -n 8  ./mpi $(ARGS)
 
 .PHONY : clean
 clean :
-	rm -f mpi run.sh.*
+	rm -f mpi data.out time.out
 	

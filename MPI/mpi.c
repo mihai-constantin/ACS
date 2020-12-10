@@ -13,6 +13,7 @@ int cwork[4];
 
 struct timeval startwtime, endwtime;
 double arr_time;
+FILE* out;
 
 int main(int argc, char** argv) 
 {
@@ -39,6 +40,7 @@ int main(int argc, char** argv)
     }
 
     if (rank == MASTER) {
+        out = fopen("data.out", "w");
         gettimeofday(&startwtime, NULL);
     }
 
@@ -106,7 +108,7 @@ int main(int argc, char** argv)
 
     if (rank == MASTER) {
         for (int i = 0; i < dim; i++) {
-            printf("sqrt(%i) = %f\n", data[i], roots[i]);
+            fprintf(out, "sqrt(%i) = %f\n", data[i], roots[i]);
         }
         printf("work done by producer:  %d\n", pwork);
         printf("work done by consumers:\n");
