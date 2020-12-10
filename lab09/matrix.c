@@ -13,15 +13,15 @@ int main()
     scanf("%d", &nc);
 
     a = (int**) malloc(nl * sizeof(int*));
-    if (!a) {
+    if (a == NULL) {
         printf("malloc failed!");
         exit(-1);
     }
 
     for (i = 0; i < nl; i++) {
         a[i] = (int*) calloc(nc, sizeof(int));
-        if (!a[i]) {
-            printf("malloc failed!");
+        if (a[i] == NULL) {
+            printf("calloc failed!");
             exit(-1);
         }
     }
