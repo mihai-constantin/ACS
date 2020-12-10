@@ -16,4 +16,4 @@ run:
 	./pthreads $(ARGS)
 
 clean:
-	rm -f *.o pthreads data.out
+	rm -f *.o pthreads data.out time.out

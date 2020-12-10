@@ -11,4 +11,4 @@ run:
 
 .PHNOY: clean
 clean:
-	rm -f open-mp data.out
+	rm -f open-mp data.out time.out
