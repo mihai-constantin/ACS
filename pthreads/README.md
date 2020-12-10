@@ -2,6 +2,8 @@
 
 ## Sistem
 * Programul a fost rulat pe un sistem cu 4 core-uri cu hyperthreading.
+    * procesor Intel i7-8665U CPU @ 1.90Ghz 2.11GHz
+    * 32GB RAM
 * Avem asadar, un producator si 7 consumatori la fiecare executie.
 
 ## Rulare
