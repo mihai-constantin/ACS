@@ -10,10 +10,11 @@
 #define MASTER 0
 
 int pwork = 1;
-int cwork[4];
+int cwork[8];
 
 struct timeval startwtime, endwtime;
 double arr_time;
+FILE* out;
 
 int main(int argc, char** argv) 
 {
@@ -21,9 +22,6 @@ int main(int argc, char** argv)
         printf("Usage: %s <dim> <numThreads>\n", argv[0]);
         exit(-1);
     }
-    int dim = atoi(argv[1]);
-    int* data = (int*) malloc(dim * sizeof(int));
-    double* roots = (double*) malloc(dim * sizeof(double));
 
     /* start MPI Process */
     MPI_Init(&argc, &argv);
@@ -34,15 +32,21 @@ int main(int argc, char** argv)
     /* Get the total number of threads */
     MPI_Comm_size(MPI_COMM_WORLD, &numnodes);
 
+    int dim = atoi(argv[1]);
     int numThreads = atoi(argv[2]);
+    int* data = (int*) malloc(dim * sizeof(int));
+    double* roots = (double*) malloc(dim * sizeof(double));
+
     omp_set_num_threads(numThreads);  // OpenMP call to set threads per rank
 
     /* init data for all threads */
+    #pragma omp parallel
     for (int i = 0; i < dim; i++) {
         data[i] = i;
     }
 
     if (rank == MASTER) {
+        out = fopen("data.out", "w");
         gettimeofday(&startwtime, NULL);
     }
 
@@ -110,7 +114,7 @@ int main(int argc, char** argv)
 
     if (rank == MASTER) {
         for (int i = 0; i < dim; i++) {
-            printf("sqrt(%i) = %f\n", data[i], roots[i]);
+            fprintf(out, "sqrt(%i) = %f\n", data[i], roots[i]);
         }
         printf("work done by producer:  %d\n", pwork);
         printf("work done by consumers:\n");
