@@ -52,6 +52,7 @@ int main(int argc, char** argv)
 
     /* Producer */
     if (rank == MASTER) {
+        #pragma omp single
         for (int idx = 1; idx < dim; idx++) {
             /* wait for a worker to become available */
             MPI_Status status;
@@ -68,6 +69,7 @@ int main(int argc, char** argv)
         }
 
         /* send termination signal to each rank when they submit their last job */
+        #pragma omp single
         for (int idx = 0; idx < numnodes-1; idx++) {
             /* wait for a worker to become available */
             MPI_Status status;
