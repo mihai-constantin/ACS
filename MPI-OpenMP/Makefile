@@ -7,7 +7,7 @@ mpi-openmp: mpi-openmp.c
 	$(CC) -o mpi-openmp mpi-openmp.c $(CFLAGS) -fopenmp
 
 run:
-	mpirun -n 8  ./mpi-openmp $(ARGS)
+	mpirun -n 4  ./mpi-openmp $(ARGS)
 
 .PHONY: clean
 clean:
