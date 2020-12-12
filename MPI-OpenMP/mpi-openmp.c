@@ -84,12 +84,13 @@ int main(int argc, char** argv)
             /* send termination signal (tag = 0) */
             MPI_Send(&idx, 1, MPI_INT, status.MPI_SOURCE, 0, MPI_COMM_WORLD);
         }
-    } else { /* Consumer */
+    } else { /* consumer */
         /* announce myself to producer */
         double root = 0;
         MPI_Send(&root, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
         bool terminated = false;
 
+        #pragma omp single
         do {
             /* wait for a job */
             int num = 0;
