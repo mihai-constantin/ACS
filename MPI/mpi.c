@@ -9,7 +9,7 @@
 #define MASTER 0
 
 int pwork = 1;
-int cwork[8];
+int cwork[4];
 
 struct timeval startwtime, endwtime;
 double arr_time;
@@ -115,10 +115,8 @@ int main(int argc, char** argv)
     }
     MPI_Barrier(MPI_COMM_WORLD);
 
-    for (int i = 1; i < nthreads; i++) {
-        if (rank == i) {
-            printf("%d\n", cwork[i]);
-        }
+    if (rank != MASTER) {
+        printf("%d\n", cwork[rank]);
     }
 
     MPI_Finalize();
