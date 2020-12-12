@@ -10,7 +10,7 @@ mpi-pthreads: mpi-pthreads.c
 	$(CC) -o mpi-pthreads mpi-pthreads.c $(CFLAGS) -lpthread
 
 run:
-	mpirun -n 8  ./mpi-pthreads $(ARGS)
+	mpirun -n 4  ./mpi-pthreads $(ARGS)
 
 .PHONY: clean
 clean:

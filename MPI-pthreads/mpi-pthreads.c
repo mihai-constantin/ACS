@@ -10,76 +10,44 @@
 #define MASTER 0
 
 int pwork = 1;
-int cwork[8];
-int rank, nthreads;
-int* data;
-double* roots;
-int dim;
+int cwork[4];
+int rank;
 
 struct timeval startwtime, endwtime;
 double arr_time;
 FILE* out;
 
-void* Work(int Myid) {
-    printf(" Hello World! From Thread:%d On Process: %d. \n", Myid, rank);
-    if (rank == MASTER) {
-        if (Myid == 1) {
-            for (int idx = 1; idx < dim/2; idx++) {
-                /* wait for a worker to become available */
-                MPI_Status status;
-                double root = 0;
-                MPI_Recv(&root, 1, MPI_DOUBLE, MPI_ANY_SOURCE, MPI_ANY_TAG, MPI_COMM_WORLD, &status);
-
-                /* if a root was computed */
-                if (status.MPI_TAG > 0) {
-                    roots[status.MPI_TAG] = root;
-                }
-
-                pwork++;
-                MPI_Send(&(data[idx]), 1, MPI_INT, status.MPI_SOURCE, idx, MPI_COMM_WORLD);
-            }
-        } else if (Myid == 2) {
-             for (int idx = dim/2; idx < dim; idx++) {
-                /* wait for a worker to become available */
-                MPI_Status status;
-                double root = 0;
-                MPI_Recv(&root, 1, MPI_DOUBLE, MPI_ANY_SOURCE, MPI_ANY_TAG, MPI_COMM_WORLD, &status);
-
-                /* if a root was computed */
-                if (status.MPI_TAG > 0) {
-                    roots[status.MPI_TAG] = root;
-                }
-
-                pwork++;
-                MPI_Send(&(data[idx]), 1, MPI_INT, status.MPI_SOURCE, idx, MPI_COMM_WORLD);
-            }
-        }
-    }
-    return NULL;
+void* work(int my_id) {
+    printf("Hello from thread: %d on process: %d\n", my_id, rank);
+    return;
 }
 
 int main(int argc, char** argv) 
 {
-    if (argc != 2) {
-        printf("Usage: %s <dim>\n", argv[0]);
+    if (argc != 3) {
+        printf("Usage: %s <dim> <num_threads_per_process>\n", argv[0]);
         exit(-1);
     }
-    dim = atoi(argv[1]);
-    data = (int*) malloc(dim * sizeof(int));
-    roots = (double*) malloc(dim * sizeof(double));
-
-    pthread_t Thread1, Thread2;
 
     /* start MPI Process */
     MPI_Init(&argc, &argv);
 
+    int numnodes;
     /* get the id (rank) */
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-    /* get the total number of threads */
-    MPI_Comm_size(MPI_COMM_WORLD, &nthreads);
+    /* Get the total number of threads */
+    MPI_Comm_size(MPI_COMM_WORLD, &numnodes);
 
-    pthread_create(&Thread1, NULL, (void *(*) (void *)) Work, (void *) 1);
-	pthread_create(&Thread2, NULL, (void *(*) (void *)) Work, (void *) 2);
+    int dim = atoi(argv[1]);
+    int* data = (int*) malloc(dim * sizeof(int));
+    double* roots = (double*) malloc(dim * sizeof(double));
+    int numThreads = atoi(argv[2]);
+    printf("numThreads: %d\n", numThreads);
+
+    pthread_t consumers[numThreads];
+    for (int i = 0; i < numThreads; i++) {
+        pthread_create(&consumers[i], NULL, (void*(*)(void*)) work, (void *)i);
+    }
 
     /* init data for all threads */
     for (int i = 0; i < dim; i++) {
@@ -91,15 +59,25 @@ int main(int argc, char** argv)
         gettimeofday(&startwtime, NULL);
     }
 
-    /* producer */
+    /* Producer */
     if (rank == MASTER) {
+        for (int idx = 1; idx < dim; idx++) {
+            /* wait for a worker to become available */
+            MPI_Status status;
+            double root = 0;
+            MPI_Recv(&root, 1, MPI_DOUBLE, MPI_ANY_SOURCE, MPI_ANY_TAG, MPI_COMM_WORLD, &status);
 
-        //--------------------------
-        // bariera ???
+            /* if a root was computed */
+            if (status.MPI_TAG > 0) {
+                roots[status.MPI_TAG] = root;
+            }
 
+            pwork++;
+            MPI_Send(&(data[idx]), 1, MPI_INT, status.MPI_SOURCE, idx, MPI_COMM_WORLD);
+        }
 
         /* send termination signal to each rank when they submit their last job */
-        for (int idx = 0; idx < nthreads-1; idx++) {
+        for (int idx = 0; idx < numnodes-1; idx++) {
             /* wait for a worker to become available */
             MPI_Status status;
             double root = 0;
@@ -113,7 +91,7 @@ int main(int argc, char** argv)
             /* send termination signal (tag = 0) */
             MPI_Send(&idx, 1, MPI_INT, status.MPI_SOURCE, 0, MPI_COMM_WORLD);
         }
-    } else { /* consumer */
+    } else { /* Consumer */
         /* announce myself to producer */
         double root = 0;
         MPI_Send(&root, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
@@ -152,14 +130,16 @@ int main(int argc, char** argv)
     }
     MPI_Barrier(MPI_COMM_WORLD);
 
-    for (int i = 1; i < nthreads; i++) {
-        if (rank == i) {
-            printf("%d\n", cwork[i]);
-        }
+    if (rank != MASTER) {
+        printf("%d\n", cwork[rank]);
     }
 
-    pthread_join(Thread1, NULL);
-	pthread_join(Thread2, NULL);
+    for (int i = 0; i < numThreads; i++) {
+        pthread_join(&consumers[i], NULL);
+    }
+    printf("rank: %d ajung aici?\n", rank);
 
     MPI_Finalize();
+
+    return 0;
 }
