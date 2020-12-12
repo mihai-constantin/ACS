@@ -53,10 +53,9 @@ void* Work(int Myid) {
                 pwork++;
                 MPI_Send(&(data[idx]), 1, MPI_INT, status.MPI_SOURCE, idx, MPI_COMM_WORLD);
             }
-
         }
     }
-    return;
+    return NULL;
 }
 
 int main(int argc, char** argv) 
@@ -76,7 +75,7 @@ int main(int argc, char** argv)
 
     /* get the id (rank) */
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-    /* Get the total number of threads */
+    /* get the total number of threads */
     MPI_Comm_size(MPI_COMM_WORLD, &nthreads);
 
     pthread_create(&Thread1, NULL, (void *(*) (void *)) Work, (void *) 1);
@@ -92,7 +91,7 @@ int main(int argc, char** argv)
         gettimeofday(&startwtime, NULL);
     }
 
-    /* Producer */
+    /* producer */
     if (rank == MASTER) {
 
         //--------------------------
@@ -114,7 +113,7 @@ int main(int argc, char** argv)
             /* send termination signal (tag = 0) */
             MPI_Send(&idx, 1, MPI_INT, status.MPI_SOURCE, 0, MPI_COMM_WORLD);
         }
-    } else { /* Consumer */
+    } else { /* consumer */
         /* announce myself to producer */
         double root = 0;
         MPI_Send(&root, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
