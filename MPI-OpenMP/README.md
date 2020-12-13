@@ -1,7 +1,9 @@
 # Varianta single producer multiple consumers implementata cu MPI + OpenMP
 
 ## Sistem
-* Programul a fost rulat pe fep.
+* Programul a fost rulat pe un sistem cu 4 core-uri cu hyperthreading.
+    * procesor Intel i7-8665U CPU @ 1.90Ghz 2.11GHz
+    * 32GB RAM
 * Avem asadar, un producator si 7 consumatori la fiecare executie.
 
 ## Rulare
@@ -16,13 +18,13 @@
 ## Timpi
 * S-a folosit scriptul *profiling.sh* pentru a rula programul de mai multe ori si a calcula o medie a timpilor obtinuti.
     * **rulare**: ./profiling.sh *dim*, unde *dim* este exponentul lui 2 pentru dimensiunea datelor de intrare
-    * fiecare proces(nod) are 2 thread-uri
+    * fiecare proces(nod) are 4 thread-uri
 * In urma rularii de un numar semnificativ de ori, s-au obtinut rezultatele de mai jos pentru urmatoarele dimensiuni ale vectorului:
-    * 2^20: 1.00758s
-    * 2^21: 2.01307s
-    * 2^22: 3.92985s
-    * 2^23: 8.11504s
-    * 2^24: 15.77461s
-    * 2^25: 26.66287s
+    * 2^20: 0.40416s
+    * 2^21: 0.82059s
+    * 2^22: 1.66122s
+    * 2^23: 3.26145s
+    * 2^24: 6.26677s
+    * 2^25: 16.39661s
 * Se observa o usoara imbunatatire fata de varianta MPI.
     
