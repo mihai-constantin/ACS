@@ -7,7 +7,7 @@ mpi: mpi.c
 	$(CC) -o mpi mpi.c $(CFLAGS)
 
 run:
-	mpirun -n 4  ./mpi $(ARGS)
+	mpirun -n 8  ./mpi $(ARGS)
 
 .PHONY : clean
 clean :
