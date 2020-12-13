@@ -1,8 +1,10 @@
 # Varianta single producer multiple consumers implementata cu pthreads POSIX
 
 ## Sistem
-* Programul a fost rulat pe fep.
-* Avem asadar, un producator si 3 consumatori la fiecare executie.
+* Programul a fost rulat pe un sistem cu 4 core-uri cu hyperthreading.
+    * procesor Intel i7-8665U CPU @ 1.90Ghz 2.11GHz
+    * 32GB RAM
+* Avem asadar, un producator si 7 consumatori la fiecare executie.
 
 ## Rulare
 * Se executa comanda **make**, dupa care **make run ARGS=<dim>**, unde dim este dimensiunea datelor de intrare.
@@ -19,10 +21,10 @@
     * **rulare**: ./profiling.sh *dim*, unde *dim* este exponentul lui 2 pentru dimensiunea datelor de intrare
         * **exemplu**: *./profiling.sh 20* va rula scriptul pentru o dimensiune a datelor de intrare egala cu 2^20
 * In urma rularii de un numar semnificativ de ori, s-au obtinut rezultatele de mai jos pentru urmatoarele dimensiuni ale vectorului:
-    * 2^20: 6.83992s
-    * 2^21: 13.70993s
-    * 2^22: 25.70177s
-    * 2^23: 54.54097s
-    * 2^24: 109.20019s
-    * 2^25: 227.28415s
+    * 2^20: 3.60929s
+    * 2^21: 7.19864s
+    * 2^22: 16.45677s
+    * 2^23: 37.22144s
+    * 2^24: 78.00049s
+    * 2^25: 163.40278s
     
