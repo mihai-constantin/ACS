@@ -19,10 +19,10 @@
     * **rulare**: ./profiling.sh *dim*, unde *dim* este exponentul lui 2 pentru dimensiunea datelor de intrare
         * **exemplu**: *./profiling.sh 20* va rula scriptul pentru o dimensiune a datelor de intrare egala cu 2^20
 * In urma rularii de un numar semnificativ de ori, s-au obtinut rezultatele de mai jos pentru urmatoarele dimensiuni ale vectorului:
-    * 2^20: 4.18106s
-    * 2^21: 8.44125s
-    * 2^22: 15.97219s
-    * 2^23: 31.474785s
-    * 2^24: 59.10364s
-    * 2^25: 115.7526s
+    * 2^20: 6.83992s
+    * 2^21: 13.70993s
+    * 2^22: 25.70177s
+    * 2^23: 54.54097s
+    * 2^24: 109.20019s
+    * 2^25: 227.28415s
     

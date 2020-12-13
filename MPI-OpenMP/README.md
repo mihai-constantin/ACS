@@ -18,11 +18,11 @@
     * **rulare**: ./profiling.sh *dim*, unde *dim* este exponentul lui 2 pentru dimensiunea datelor de intrare
     * fiecare proces(nod) are 2 thread-uri
 * In urma rularii de un numar semnificativ de ori, s-au obtinut rezultatele de mai jos pentru urmatoarele dimensiuni ale vectorului:
-    * 2^20: 0.647105s
-    * 2^21: 1.33471s
-    * 2^22: 2.87787s
-    * 2^23: 5.77388s
-    * 2^24: 12.25032s
-    * 2^25: 22.85312s
-* Se observa o usoara imbunatatire fata de varianta MPI. 
+    * 2^20: 1.00758s
+    * 2^21: 2.01307s
+    * 2^22: 3.92985s
+    * 2^23: 8.11504s
+    * 2^24: 15.77461s
+    * 2^25: 26.66287s
+* Se observa o usoara imbunatatire fata de varianta MPI.
     

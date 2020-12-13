@@ -17,10 +17,9 @@
 * S-a folosit scriptul *profiling.sh* pentru a rula programul de mai multe ori si a calcula o medie a timpilor obtinuti.
     * **rulare**: ./profiling.sh *dim*, unde *dim* este exponentul lui 2 pentru dimensiunea datelor de intrare
 * In urma rularii de un numar semnificativ de ori, s-au obtinut rezultatele de mai jos pentru urmatoarele dimensiuni ale vectorului:
-    * 2^20: 0.37156s
-    * 2^21: 0.71266s
-    * 2^22: 1.48114s
-    * 2^23: 2.86709s
-    * 2^24: 5.93488s
-    * 2^25: 13.6408s
-    
+    * 2^20: 0.63105s
+    * 2^21: 1.16664s
+    * 2^22: 2.72258s
+    * 2^23: 5.50615s
+    * 2^24: 10.20978s
+    * 2^25: 20.99815s
