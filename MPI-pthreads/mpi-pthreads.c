@@ -11,15 +11,25 @@
 
 int pwork = 1;
 int cwork[4];
-int rank;
+int rank, dim, numThreads;
+int* data;
+double* roots;
 
 struct timeval startwtime, endwtime;
 double arr_time;
 FILE* out;
 
-void* work(int my_id) {
-    printf("Hello from thread: %d on process: %d\n", my_id, rank);
-    return;
+static long int sum = 0;
+
+void* work(int thread_id) {
+    printf("Hello from thread: %d on process: %d\n", thread_id, rank);
+    int start = thread_id * ceil((double)dim / numThreads);
+	int end = fmin(dim , (thread_id + 1) * ceil((double)dim / numThreads));
+
+    for (int i = start; i < end; i++) {
+        data[i] = i;
+    }
+    return NULL;
 }
 
 int main(int argc, char** argv) 
@@ -38,10 +48,10 @@ int main(int argc, char** argv)
     /* Get the total number of threads */
     MPI_Comm_size(MPI_COMM_WORLD, &numnodes);
 
-    int dim = atoi(argv[1]);
-    int* data = (int*) malloc(dim * sizeof(int));
-    double* roots = (double*) malloc(dim * sizeof(double));
-    int numThreads = atoi(argv[2]);
+    dim = atoi(argv[1]);
+    data = (int*) malloc(dim * sizeof(int));
+    roots = (double*) malloc(dim * sizeof(double));
+    numThreads = atoi(argv[2]);
     printf("numThreads: %d\n", numThreads);
 
     pthread_t consumers[numThreads];
@@ -49,17 +59,21 @@ int main(int argc, char** argv)
         pthread_create(&consumers[i], NULL, (void*(*)(void*)) work, (void *)i);
     }
 
-    /* init data for all threads */
-    for (int i = 0; i < dim; i++) {
-        data[i] = i;
-    }
+    /* init data for all nodes */
+    // for (int i = 0; i < dim; i++) {
+    //     data[i] = i;
+    // }
+
+    // bariera?
+    MPI_Barrier(MPI_COMM_WORLD);
+    printf("aici ar trebuie sa am deja afisate toate hello-urile rank: %d\n", rank);
 
     if (rank == MASTER) {
         out = fopen("data.out", "w");
         gettimeofday(&startwtime, NULL);
     }
 
-    /* Producer */
+    /* producer */
     if (rank == MASTER) {
         for (int idx = 1; idx < dim; idx++) {
             /* wait for a worker to become available */
@@ -71,7 +85,7 @@ int main(int argc, char** argv)
             if (status.MPI_TAG > 0) {
                 roots[status.MPI_TAG] = root;
             }
-
+            
             pwork++;
             MPI_Send(&(data[idx]), 1, MPI_INT, status.MPI_SOURCE, idx, MPI_COMM_WORLD);
         }
@@ -91,7 +105,7 @@ int main(int argc, char** argv)
             /* send termination signal (tag = 0) */
             MPI_Send(&idx, 1, MPI_INT, status.MPI_SOURCE, 0, MPI_COMM_WORLD);
         }
-    } else { /* Consumer */
+    } else { /* consumer */
         /* announce myself to producer */
         double root = 0;
         MPI_Send(&root, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
@@ -107,6 +121,7 @@ int main(int argc, char** argv)
             } else {
                 cwork[rank] += 1;
                 root = sqrt(num);
+                sum += num;
                 MPI_Send(&root, 1, MPI_DOUBLE, 0, status.MPI_TAG, MPI_COMM_WORLD);
             }
         } while (!terminated);
@@ -118,17 +133,13 @@ int main(int argc, char** argv)
         gettimeofday(&endwtime, NULL);
         arr_time = (double)((endwtime.tv_usec - startwtime.tv_usec)/1.0e6 + endwtime.tv_sec - startwtime.tv_sec);
         printf("Time taken = %f\n", arr_time);
-    }
-    MPI_Barrier(MPI_COMM_WORLD);
 
-    if (rank == MASTER) {
         for (int i = 0; i < dim; i++) {
             fprintf(out, "sqrt(%i) = %f\n", data[i], roots[i]);
         }
         printf("work done by producer:  %d\n", pwork);
         printf("work done by consumers:\n");
     }
-    MPI_Barrier(MPI_COMM_WORLD);
 
     if (rank != MASTER) {
         printf("%d\n", cwork[rank]);
@@ -138,6 +149,8 @@ int main(int argc, char** argv)
         pthread_join(&consumers[i], NULL);
     }
     printf("rank: %d ajung aici?\n", rank);
+
+    printf("sum: %ld\n", sum);
 
     MPI_Finalize();
 
