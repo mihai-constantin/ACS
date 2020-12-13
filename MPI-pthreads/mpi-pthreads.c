@@ -10,7 +10,7 @@
 #define MASTER 0
 
 int pwork = 1;
-int cwork[4];
+int cwork[8];
 int rank, dim, numThreads;
 int* data;
 double* roots;
@@ -21,14 +21,43 @@ FILE* out;
 
 static long int sum = 0;
 
-void* work(int thread_id) {
-    printf("Hello from thread: %d on process: %d\n", thread_id, rank);
+pthread_mutex_t mutex;
+
+void* init_data(int thread_id) {
+    // printf("Hello from thread: %d on process: %d\n", thread_id, rank);
     int start = thread_id * ceil((double)dim / numThreads);
 	int end = fmin(dim , (thread_id + 1) * ceil((double)dim / numThreads));
 
     for (int i = start; i < end; i++) {
         data[i] = i;
     }
+    return NULL;
+}
+
+void* work(int thread_id) {
+    int start = fmax(1, thread_id * ceil((double)dim / numThreads));
+	int end = fmin(dim , (thread_id + 1) * ceil((double)dim / numThreads));
+    printf("Salutare from thread: %d on process: %d [%d -> %d]\n", thread_id, rank, start, end);
+
+    // for (int idx = start; idx < end; idx++) {
+    //     /* wait for a worker to become available */
+    //     MPI_Status status;
+    //     double root = 0;
+    //     pthread_mutex_lock(&mutex);
+    //     MPI_Recv(&root, 1, MPI_DOUBLE, MPI_ANY_SOURCE, MPI_ANY_TAG, MPI_COMM_WORLD, &status);
+    //     pthread_mutex_unlock(&mutex);
+
+    //     /* if a root was computed */
+    //     if (status.MPI_TAG > 0) {
+    //         roots[status.MPI_TAG] = root;
+    //     }
+        
+    //     pwork++;
+    //     pthread_mutex_lock(&mutex);
+    //     MPI_Send(&(data[idx]), 1, MPI_INT, status.MPI_SOURCE, idx, MPI_COMM_WORLD);
+    //     pthread_mutex_unlock(&mutex);
+    // }
+
     return NULL;
 }
 
@@ -52,21 +81,19 @@ int main(int argc, char** argv)
     data = (int*) malloc(dim * sizeof(int));
     roots = (double*) malloc(dim * sizeof(double));
     numThreads = atoi(argv[2]);
-    printf("numThreads: %d\n", numThreads);
 
-    pthread_t consumers[numThreads];
+    pthread_t th[numThreads];
     for (int i = 0; i < numThreads; i++) {
-        pthread_create(&consumers[i], NULL, (void*(*)(void*)) work, (void *)i);
+        pthread_create(&th[i], NULL, (void*(*)(void*)) init_data, (void *)i);
     }
 
-    /* init data for all nodes */
-    // for (int i = 0; i < dim; i++) {
-    //     data[i] = i;
-    // }
-
-    // bariera?
-    MPI_Barrier(MPI_COMM_WORLD);
-    printf("aici ar trebuie sa am deja afisate toate hello-urile rank: %d\n", rank);
+    pthread_t master_thread[numThreads];
+    if (rank == MASTER) {
+        pthread_mutex_init(&mutex, NULL);
+        for(int i = 0; i < numThreads; i++) {
+            pthread_create(&master_thread[i], NULL, (void*(*)(void*)) work, (void *)i);
+        }
+    }
 
     if (rank == MASTER) {
         out = fopen("data.out", "w");
@@ -91,7 +118,7 @@ int main(int argc, char** argv)
         }
 
         /* send termination signal to each rank when they submit their last job */
-        for (int idx = 0; idx < numnodes-1; idx++) {
+        for (int idx = 0; idx < numnodes - 1; idx++) {
             /* wait for a worker to become available */
             MPI_Status status;
             double root = 0;
@@ -146,12 +173,17 @@ int main(int argc, char** argv)
     }
 
     for (int i = 0; i < numThreads; i++) {
-        pthread_join(&consumers[i], NULL);
+        pthread_join(&th[i], NULL);
     }
     printf("rank: %d ajung aici?\n", rank);
+    if (rank == MASTER) {
+        pthread_mutex_destroy(&mutex);
+        for (int i = 0; i < numThreads; i++) {
+            pthread_join(&master_thread[i], NULL);
+        }
+    }
 
-    printf("sum: %ld\n", sum);
-
+    // printf("sum: %ld\n", sum);
     MPI_Finalize();
 
     return 0;
