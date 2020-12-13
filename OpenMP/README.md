@@ -1,8 +1,10 @@
 # Varianta single producer multiple consumers implementata cu OpenMP
 
 ## Sistem
-* Programul a fost rulat pe fep.
-* Avem asadar, un producator si 3 consumatori la fiecare executie.
+* Programul a fost rulat pe un sistem cu 4 core-uri cu hyperthreading.
+    * procesor Intel i7-8665U CPU @ 1.90Ghz 2.11GHz
+    * 32GB RAM
+* Avem asadar, un producator si 7 consumatori la fiecare executie.
 
 ## Rulare
 * Se executa comanda **make**, dupa care **make run ARGS=<dim>**. Rezultatul se va gasi in fisierul *data.out*.
@@ -17,9 +19,9 @@
 * S-a folosit scriptul *profiling.sh* pentru a rula programul de mai multe ori si a calcula o medie a timpilor obtinuti.
     * **rulare**: ./profiling.sh *dim*, unde *dim* este exponentul lui 2 pentru dimensiunea datelor de intrare
 * In urma rularii de un numar semnificativ de ori, s-au obtinut rezultatele de mai jos pentru urmatoarele dimensiuni ale vectorului:
-    * 2^20: 0.63105s
-    * 2^21: 1.16664s
-    * 2^22: 2.72258s
-    * 2^23: 5.50615s
-    * 2^24: 10.20978s
-    * 2^25: 20.99815s
+    * 2^20: 0.29317s
+    * 2^21: 0.62330s
+    * 2^22: 1.26392s
+    * 2^23: 2.50559s
+    * 2^24: 5.00413s
+    * 2^25: 11.43295s
