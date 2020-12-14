@@ -15,6 +15,11 @@ int num_processes;
 int *arr;
 int n;
 
+void init() {
+  for (int i = 0; i < n; i++)
+    arr[i] = rand() % n;
+}
+
 int ComparisonFunc(const void * a, const void * b) {
     return ( * (int *)a - * (int *)b );
 }
