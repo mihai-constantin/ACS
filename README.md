@@ -10,3 +10,4 @@
 * Laborator 8 - Pointeri. Abordarea lucrului cu tablouri folosind pointeri.
 * Laborator 9 - Alocarea dinamica a memoriei. Aplicatii folosind tablouri si matrice.
 * Laborator 10 - Prelucrarea sirurilor de caractere. Functii
+* Laborator 11 - Structuri. Uniuni  
