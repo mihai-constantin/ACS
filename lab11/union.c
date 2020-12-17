@@ -10,6 +10,16 @@ typedef struct {
     float temp;
     Condition feels_like;
 } Temperature;
+
+// sizeof (struct) = suma fiecarui memnbru -> int float char -> 4 + 4 + 1 (4) = 12
+// _ _ _ _
+// _ _ _ _
+// _ _ _ _
+typedef struct elem {
+    int x; // 4
+    float y; // 4
+    char c; // 1
+} Elem;
  
 int main() {
  
@@ -27,6 +37,8 @@ int main() {
     tmp->feels_like.Wind_Chill = 65;
     printf("Heat_Index: %c\n", tmp->feels_like.Heat_Index);
     printf("Wind_Chill: %d\n", tmp->feels_like.Wind_Chill);
+
+    printf("sizeof(Elem): %ld\n", sizeof(Elem));
 
     return 0;
 }

@@ -33,26 +33,28 @@ int main()
     s1.n = 5;
     s1.s = strdup(litere);
     s2 = s1;
-    printf("before\n");
-    printf("s1: %d %s\n", s1.n, s1.s);
-    printf("s2: %d %s\n", s2.n, s2.s);
-    s2.s[1] = 'x';
-    printf("after\n");
-    printf("s1: %d %s\n", s1.n, s1.s);
-    printf("s2: %d %s\n", s2.n, s2.s);
-
-    // struct exemplu *p1;
-    // struct exemplu *p2;
-    // p1 = &s1;
-    // p2 = &s2;
+    
     // printf("before\n");
-    // printf("p1: %d %s\n", p1->n, p1->s);
-    // printf("p2: %d %s\n", p2->n, p2->s);
-    // p1->n = 10;
-    // p1->s[2] = 'w';
+    // printf("s1: %d %s\n", s1.n, s1.s);
+    // printf("s2: %d %s\n", s2.n, s2.s);
+    // s2.s[1] = 'x';
+    // s2.n = 10;
     // printf("after\n");
-    // printf("p1: %d %s\n", p1->n, p1->s);
-    // printf("p2: %d %s\n", p2->n, p2->s);
+    // printf("s1: %d %s\n", s1.n, s1.s);
+    // printf("s2: %d %s\n", s2.n, s2.s);
+
+    struct exemplu *p1;
+    struct exemplu *p2;
+    p1 = &s1;
+    p2 = &s2;
+    printf("before\n");
+    printf("p1: %d %s\n", p1->n, p1->s);
+    printf("p2: %d %s\n", p2->n, p2->s);
+    p1->n = 10;
+    p1->s[2] = 'w';
+    printf("after\n");
+    printf("p1: %d %s\n", p1->n, p1->s);
+    printf("p2: %d %s\n", p2->n, p2->s);
 
     return 0;
 }
