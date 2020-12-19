@@ -201,7 +201,7 @@ int main(int argc, char * argv[]) {
     MPI_Comm_rank(MPI_COMM_WORLD, &process_rank);
 
     // Initialize arr for Storing Random Numbers
-    n = (1 << atoi(argv[1])) / num_processes;
+    n = (1 << atoi(argv[1]));
     arr = (int *) malloc(n * sizeof(int));
 
     init();

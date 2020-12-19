@@ -16,9 +16,9 @@ mpirun -np 4 --mca btl_tcp_if_include eth0 ./bitonic_sort_mpi < power of 2 >
 
 ## Timp rulare - testat pe fep
 * In urma rularii de un numar semnificativ de ori, s-au obtinut urmatoarele rezultate:
-    * dimensiune vector: 2^20 | timp mediu de executie: 0.125s | speedup: 10.544
-    * dimensiune vector: 2^21 | timp mediu de executie: 0.234s | speedup: 12.098
-    * dimensiune vector: 2^22 | timp mediu de executie: 0.509s | speedup: 12.145
-    * dimensiune vector: 2^23 | timp mediu de executie: 1.123s | speedup: 11.818
-    * dimensiune vector: 2^24 | timp mediu de executie: 2.218s | speedup: 12.869
-    * dimensiune vector: 2^25 | timp mediu de executie: 4.516s | speedup: 13.596
+    * dimensiune vector: 2^20 | timp mediu de executie: 0.663s | speedup: 1.986
+    * dimensiune vector: 2^21 | timp mediu de executie: 1.282s | speedup: 2.091
+    * dimensiune vector: 2^22 | timp mediu de executie: 2.741s | speedup: 2.255
+    * dimensiune vector: 2^23 | timp mediu de executie: 5.801s | speedup: 2.288
+    * dimensiune vector: 2^24 | timp mediu de executie: 11.726s | speedup: 2.434
+    * dimensiune vector: 2^25 | timp mediu de executie: 25.828s | speedup: 2.377
