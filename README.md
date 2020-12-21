@@ -3,3 +3,4 @@
 * Lab 1 - Introducere R
 * Lab 2 - Colectare Date. Statistici. Probabilitati
 * Lab 3 - Filtrare. Ordonare. Descriere
+* Lab 4 - Inferente Bayesiene
