@@ -11,3 +11,4 @@
 * Laborator 9 - Alocarea dinamica a memoriei. Aplicatii folosind tablouri si matrice.
 * Laborator 10 - Prelucrarea sirurilor de caractere. Functii
 * Laborator 11 - Structuri. Uniuni  
+* Laborator 12 - Operatii cu fisiere
