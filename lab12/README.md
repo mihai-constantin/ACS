@@ -9,7 +9,7 @@
 * fscanf, fprintf
 * fread, fwrite
 
-## Exercitii lab
+## Exercitii warm-up
 * citire din fisier, scriere in fisier text sau binar
 * determinare numar bytes fisier
 
