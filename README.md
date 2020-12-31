@@ -12,3 +12,4 @@
 * Laborator 10 - Prelucrarea sirurilor de caractere. Functii
 * Laborator 11 - Structuri. Uniuni  
 * Laborator 12 - Operatii cu fisiere
+* Laborator 13 - Parametrii liniei de comandă. Preprocesorul. Funcţii cu număr variabil de parametri.
