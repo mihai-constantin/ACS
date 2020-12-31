@@ -4,7 +4,7 @@
 * operatii folosite la preprocesare
     * include 
     * define, undef
-    * if, elif. endif
+    * if, elif, endif
     * pragma, error, line
 * functii cu numar variabil de parametrii
 
