@@ -11,4 +11,14 @@ services:
       - "1883:1883"
       - "9001:9001"
     volumes:
-      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf  
+      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
+
+  # influxdb:
+    # image: influxdb
+    # container_name: "tema3-sprc_influxdb"
+    # ports:
+      # - "8086:8086"
+    # volumes:
+      # - ./influxdb:/var/lib/influxdb
+    # environment:
+      # INFLUXDB_DB: db-sprc
