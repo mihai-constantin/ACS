@@ -13,7 +13,6 @@
     "editable": true,
     "gnetId": null,
     "graphTooltip": 0,
-    "id": 1,
     "links": [],
     "panels": [{
             "aliasColors": {},
@@ -702,7 +701,7 @@
             },
             "id": 4,
             "options": {
-                "frameIndex": 3,
+                "frameIndex": 0,
                 "showHeader": true
             },
             "pluginVersion": "7.3.6",
@@ -1262,6 +1261,12 @@
             "timeFrom": null,
             "timeShift": null,
             "title": "Tabel",
+            "transformations": [{
+                "id": "seriesToColumns",
+                "options": {
+                    "byField": "Time"
+                }
+            }],
             "type": "table"
         }
     ],
@@ -1280,5 +1285,5 @@
     "timezone": "",
     "title": "UPB IoT Data",
     "uid": "h0CNks-Gz",
-    "version": 5
+    "version": 1
 }
