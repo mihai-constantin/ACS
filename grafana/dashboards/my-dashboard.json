@@ -45,8 +45,8 @@
             "fill": 1,
             "fillGradient": 0,
             "gridPos": {
-                "h": 11,
-                "w": 17,
+                "h": 12,
+                "w": 20,
                 "x": 0,
                 "y": 0
             },
@@ -695,9 +695,9 @@
             },
             "gridPos": {
                 "h": 8,
-                "w": 17,
+                "w": 20,
                 "x": 0,
-                "y": 11
+                "y": 12
             },
             "id": 4,
             "options": {
@@ -1278,7 +1278,7 @@
         "list": []
     },
     "time": {
-        "from": "now-15m",
+        "from": "now-30m",
         "to": "now"
     },
     "timepicker": {},
