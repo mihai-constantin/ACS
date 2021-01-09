@@ -14,13 +14,14 @@ def create_data_object(topic, payload):
     data_obj = {}
     data_obj['measurement'] = 'data'
     data_obj['tags'] = {}
-    data_obj['tags']['host'] = 'serverD'
+    data_obj['tags']['location'] = topic[0: topic.find('/')]
+    data_obj['tags']['station'] = topic[topic.find('/') + 1 :]
     data_obj['time'] = payload['timestamp']
     data_obj['fields'] = {}
     for key in payload:
         if key != 'timestamp' and not isinstance(payload[key], str):
             # print(msg.topic.replace('/', '.') + '.' + key, payload[key])
-            data_obj['fields'][topic.replace('/', '.') + '.' + key] = float(payload[key])
+            data_obj['fields'][key] = float(payload[key])
     # print("")
     return data_obj
 
@@ -29,13 +30,12 @@ def on_message(client, userdata, msg):
     payload = msg.payload.decode()
     # convert from str to dict
     payload = json.loads(payload)
-    print('Received a message by topic [' + msg.topic + ']')
-    print('Data timestamp is: ' + payload['timestamp'])
+    # print('Received a message by topic [' + msg.topic + ']')
+    # print('Data timestamp is: ' + payload['timestamp'])
 
     data = []
     data_obj = create_data_object(msg.topic, payload)
-    print('=== DATA ===')
-    print(json.dumps(data_obj, indent = 4, sort_keys = True, default = str))
+    # print(json.dumps(data_obj, indent = 4, sort_keys = True, default = str))
     data.append(data_obj)
     influx_db_client.write_points(data, database='db1', time_precision='s', protocol='json')
 

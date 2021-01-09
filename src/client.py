@@ -6,9 +6,14 @@ import time
 
 import paho.mqtt.client as mqtt
 
-topics = ['UPB'] #, 'UMFCD', 'Mihai', 'Damian', 'Oana']
-stations = ['RPi_1'] #, 'RPi_2', 'RPi_3']
-properties = ['BAT'] #, 'HUMID', 'PRJ', 'TMP', 'AQI', 'RSSI', 'Alarm', 'status', 'timestamp']
+locations = ['UPB', 'UMFCD']
+stations = ['RPi_1', 'RPi_2']
+metrics = ['BAT', 'HUMID', 'TMP', 'AQI', 'RSSI', 'Alarm', 'status', 'timestamp']
+metric_values = {}
+
+def init_metrics():
+  for metric in metrics:
+    metric_values[metric] = random.uniform(25.0, 50.0)
 
 def generate_date(min_year = 2010, max_year = datetime.now().year - 1):
   start = datetime(min_year, 1, 1, 00, 00, 00)
@@ -17,18 +22,21 @@ def generate_date(min_year = 2010, max_year = datetime.now().year - 1):
   return start + (end - start) * random.random()
 
 def create_payload():
-  # generate between 3 to 6 properties indices
-  # indices = random.sample(range(0, len(properties)), randint(3, 6))
-  indices = [0]
+  # generate between 3 to 6 metrics indices
+  indices = random.sample(range(0, len(metrics)), randint(6, 8))
 
   data = {}
   for idx in indices:
-    if properties[idx] == 'status':
-      data[properties[idx]] = 'OK'
-    elif properties[idx] == 'timestamp':
-      data[properties[idx]] = generate_date()
+    if metrics[idx] == 'status':
+      data[metrics[idx]] = 'OK'
+    elif metrics[idx] == 'timestamp':
+      data[metrics[idx]] = generate_date()
     else:
-      data[properties[idx]] = randint(0, 50)
+      val = metric_values[metrics[idx]]
+      percentage = random.uniform(0, 0.01)
+      k = random.randint(0, 1)
+      data[metrics[idx]] = val + val * percentage if k == 0 else val - val * percentage
+      metric_values[metrics[idx]] = data[metrics[idx]]
 
   if not 'timestamp' in data:
     data['timestamp'] = datetime.now() - timedelta(hours = 2)
@@ -37,11 +45,11 @@ def create_payload():
 
 def create_message():
   # generate topic and station
-  idx_topic = randint(0, len(topics) - 1)
+  idx_topic = randint(0, len(locations) - 1)
   idx_station = randint(0, len(stations) - 1)
 
   return {
-    'topic': topics[idx_topic] + "/" + stations[idx_station],
+    'topic': locations[idx_topic] + "/" + stations[idx_station],
     'payload': create_payload()
   }
 
@@ -50,6 +58,9 @@ def on_connect(client, userdata, flags, rc):
 
 def on_message(client, userdata, msg):
   print(msg.topic + "  " + str(msg.payload))
+
+# init values for metrics
+init_metrics()
 
 client = mqtt.Client()
 client.on_connect = on_connect
@@ -65,7 +76,5 @@ while True:
   # print(json.dumps(message, indent = 4, sort_keys = True, default = str))
 
   # send message to broker
-  # print(json.dumps(message['payload']))
   client.publish(message['topic'], message['payload'])
-
-  time.sleep(5)
+  time.sleep(0.1)
