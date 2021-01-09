@@ -3,22 +3,79 @@ version: '3.8'
 services:
   mosquitto:
     image: eclipse-mosquitto
-    container_name: "tema3-sprc_mosquitto"
+    container_name: tema3-sprc_mosquitto
     expose:
-      - "1883"
-      - "9001"
+      - 1883
+      - 9001
     ports:
-      - "1883:1883"
-      - "9001:9001"
+      - 1883:1883
+      - 9001:9001
     volumes:
-      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - ./mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+    networks:
+      - monitor_network
+      
+  grafana:
+    image: grafana/grafana:latest
+    container_name: tema3-sprc_grafana
+    restart: always
+    ports:
+      - 3000:3000
+    networks:
+      - monitor_network
+    volumes:
+      - grafana-volume:/var/lib/grafana
+      # - ./grafana-provisioning/:/etc/grafana/provisioning
+    depends_on:
+      - influxdb
+    environment:
+      GF_SECURITY_ADMIN_USER: asistent
+      GF_SECURITY_ADMIN_PASSWORD: grafanaSPRC2020
 
-  # influxdb:
-    # image: influxdb
-    # container_name: "tema3-sprc_influxdb"
-    # ports:
-      # - "8086:8086"
-    # volumes:
-      # - ./influxdb:/var/lib/influxdb
-    # environment:
-      # INFLUXDB_DB: db-sprc
+  influxdb:
+    image: influxdb:latest
+    container_name: tema3-sprc_influxdb
+    restart: always
+    ports:
+      - 8086:8086
+    networks:
+      - monitor_network
+    volumes:
+      - influxdb-volume:/var/lib/influxdb
+    environment:
+      INFLUXDB_DB: db1
+      INFLUXDB_ADMIN_ENABLED: "true"
+      INFLUXDB_ADMIN_USER: admin
+      INFLUXDB_ADMIN_PASSWORD: admin
+      INFLUXDB_USER: student
+      INFLUX_USER_PASSWORD: student
+
+  # adaptor:
+  #   build: ./
+  #   container_name: tema3-sprc_adaptor
+  #   command: python src/adaptor.py
+  #   # ports:
+  #     # - 3001:3001
+  #   links:
+  #     - mosquitto
+  #     # - influxdb
+  #   networks:
+  #     - monitor_network
+
+  # client:
+  #   build: ./
+  #   container_name: tema3-sprc_client
+  #   command: python src/client.py
+  #   links:
+  #     - mosquitto
+  #   networks:
+  #     - monitor_network
+      
+networks:
+  monitor_network:
+
+volumes:
+  grafana-volume:
+  influxdb-volume:

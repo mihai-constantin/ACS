@@ -2,12 +2,13 @@ import random
 from random import randint
 from datetime import datetime, timedelta
 import json
+import time
 
 import paho.mqtt.client as mqtt
 
-topics = ['UPB', 'UMFCD', 'Mihai', 'Damian', 'Oana']
-stations = ['RPi_1', 'RPi_2', 'RPi_3', 'RPi_4']
-properties = ['BAT', 'HUMID', 'PRJ', 'TMP', 'AQI', 'RSSI', 'Alarm', 'status', 'timestamp']
+topics = ['UPB'] #, 'UMFCD', 'Mihai', 'Damian', 'Oana']
+stations = ['RPi_1'] #, 'RPi_2', 'RPi_3']
+properties = ['BAT'] #, 'HUMID', 'PRJ', 'TMP', 'AQI', 'RSSI', 'Alarm', 'status', 'timestamp']
 
 def generate_date(min_year = 2010, max_year = datetime.now().year - 1):
   start = datetime(min_year, 1, 1, 00, 00, 00)
@@ -17,7 +18,8 @@ def generate_date(min_year = 2010, max_year = datetime.now().year - 1):
 
 def create_payload():
   # generate between 3 to 6 properties indices
-  indices = random.sample(range(0, len(properties)), randint(3, 6))
+  # indices = random.sample(range(0, len(properties)), randint(3, 6))
+  indices = [0]
 
   data = {}
   for idx in indices:
@@ -26,12 +28,11 @@ def create_payload():
     elif properties[idx] == 'timestamp':
       data[properties[idx]] = generate_date()
     else:
-      data[properties[idx]] = randint(0, 1000)
+      data[properties[idx]] = randint(0, 50)
 
   if not 'timestamp' in data:
-    data['timestamp'] = datetime.now()
+    data['timestamp'] = datetime.now() - timedelta(hours = 2)
 
-  # return data
   return json.dumps(data, default = str)
 
 def create_message():
@@ -56,11 +57,15 @@ client.on_message = on_message
 
 # connect to mosquitto broker
 client.connect("localhost", 1883, 60)
+client.loop_start()
 
-message = create_message()
-print('Message sent to broker')
-print(json.dumps(message, indent = 4, sort_keys = True, default = str))
+while True:
+  message = create_message()
+  # print('Message sent to broker')
+  # print(json.dumps(message, indent = 4, sort_keys = True, default = str))
 
-# send message to broker
-print(json.dumps(message['payload']))
-client.publish(message['topic'], message['payload'])
+  # send message to broker
+  # print(json.dumps(message['payload']))
+  client.publish(message['topic'], message['payload'])
+
+  time.sleep(5)
