@@ -18,7 +18,7 @@ services:
       - monitor_network
       
   grafana:
-    image: grafana/grafana:latest
+    build: './grafana'
     container_name: tema3-sprc_grafana
     restart: always
     ports:
@@ -27,7 +27,6 @@ services:
       - monitor_network
     volumes:
       - grafana-volume:/var/lib/grafana
-      # - ./grafana-provisioning/:/etc/grafana/provisioning
     depends_on:
       - influxdb
     environment:

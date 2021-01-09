@@ -1,0 +1,1284 @@
+{
+    "annotations": {
+        "list": [{
+            "builtIn": 1,
+            "datasource": "-- Grafana --",
+            "enable": true,
+            "hide": true,
+            "iconColor": "rgba(0, 211, 255, 1)",
+            "name": "Annotations & Alerts",
+            "type": "dashboard"
+        }]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": 1,
+    "links": [],
+    "panels": [{
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Influx-DB-SPRC",
+            "fieldConfig": {
+                "defaults": {
+                    "custom": {
+                        "align": null,
+                        "filterable": false
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [{
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+                "h": 11,
+                "w": 17,
+                "x": 0,
+                "y": 0
+            },
+            "hiddenSeries": false,
+            "id": 2,
+            "legend": {
+                "avg": false,
+                "current": false,
+                "max": false,
+                "min": false,
+                "show": true,
+                "total": false,
+                "values": false
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "null",
+            "options": {
+                "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.3.6",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [{
+                    "alias": "RPi_1.AQI",
+                    "groupBy": [{
+                            "params": [
+                                "1s"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "none"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "data",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "A",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [{
+                                "params": [
+                                    "AQI"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "mean"
+                            }
+                        ]
+                    ],
+                    "tags": [{
+                            "key": "location",
+                            "operator": "=",
+                            "value": "UPB"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "station",
+                            "operator": "=",
+                            "value": "RPi_1"
+                        }
+                    ]
+                },
+                {
+                    "alias": "RPi_1.Alarm",
+                    "groupBy": [{
+                            "params": [
+                                "1s"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "none"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "data",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "B",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [{
+                                "params": [
+                                    "Alarm"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "mean"
+                            }
+                        ]
+                    ],
+                    "tags": [{
+                            "key": "location",
+                            "operator": "=",
+                            "value": "UPB"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "station",
+                            "operator": "=",
+                            "value": "RPi_1"
+                        }
+                    ]
+                },
+                {
+                    "alias": "RPi_1.BAT",
+                    "groupBy": [{
+                            "params": [
+                                "1s"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "none"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "data",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "C",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [{
+                                "params": [
+                                    "BAT"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "mean"
+                            }
+                        ]
+                    ],
+                    "tags": [{
+                            "key": "location",
+                            "operator": "=",
+                            "value": "UPB"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "station",
+                            "operator": "=",
+                            "value": "RPi_1"
+                        }
+                    ]
+                },
+                {
+                    "alias": "RPi_1.HUMID",
+                    "groupBy": [{
+                            "params": [
+                                "1s"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "none"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "data",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "D",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [{
+                                "params": [
+                                    "HUMID"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "mean"
+                            }
+                        ]
+                    ],
+                    "tags": [{
+                            "key": "location",
+                            "operator": "=",
+                            "value": "UPB"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "station",
+                            "operator": "=",
+                            "value": "RPi_1"
+                        }
+                    ]
+                },
+                {
+                    "alias": "RPi_1.RSSI",
+                    "groupBy": [{
+                            "params": [
+                                "1s"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "none"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "data",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "E",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [{
+                                "params": [
+                                    "RSSI"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "mean"
+                            }
+                        ]
+                    ],
+                    "tags": [{
+                            "key": "location",
+                            "operator": "=",
+                            "value": "UPB"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "station",
+                            "operator": "=",
+                            "value": "RPi_1"
+                        }
+                    ]
+                },
+                {
+                    "alias": "RPi_1.TMP",
+                    "groupBy": [{
+                            "params": [
+                                "1s"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "none"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "data",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "F",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [{
+                                "params": [
+                                    "TMP"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "mean"
+                            }
+                        ]
+                    ],
+                    "tags": [{
+                            "key": "location",
+                            "operator": "=",
+                            "value": "UPB"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "station",
+                            "operator": "=",
+                            "value": "RPi_1"
+                        }
+                    ]
+                },
+                {
+                    "alias": "RPi_2.AQI",
+                    "groupBy": [{
+                            "params": [
+                                "1s"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "none"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "data",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "G",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [{
+                                "params": [
+                                    "AQI"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "mean"
+                            }
+                        ]
+                    ],
+                    "tags": [{
+                            "key": "location",
+                            "operator": "=",
+                            "value": "UPB"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "station",
+                            "operator": "=",
+                            "value": "RPi_2"
+                        }
+                    ]
+                },
+                {
+                    "alias": "RPi_2.Alarm",
+                    "groupBy": [{
+                            "params": [
+                                "1s"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "none"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "data",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "H",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [{
+                                "params": [
+                                    "Alarm"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "mean"
+                            }
+                        ]
+                    ],
+                    "tags": [{
+                            "key": "location",
+                            "operator": "=",
+                            "value": "UPB"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "station",
+                            "operator": "=",
+                            "value": "RPi_2"
+                        }
+                    ]
+                },
+                {
+                    "alias": "RPi_2.BAT",
+                    "groupBy": [{
+                            "params": [
+                                "1s"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "none"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "data",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "I",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [{
+                                "params": [
+                                    "BAT"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "mean"
+                            }
+                        ]
+                    ],
+                    "tags": [{
+                            "key": "location",
+                            "operator": "=",
+                            "value": "UPB"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "station",
+                            "operator": "=",
+                            "value": "RPi_2"
+                        }
+                    ]
+                },
+                {
+                    "alias": "RPi_2.HUMID",
+                    "groupBy": [{
+                            "params": [
+                                "1s"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "none"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "data",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "J",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [{
+                                "params": [
+                                    "HUMID"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "mean"
+                            }
+                        ]
+                    ],
+                    "tags": [{
+                            "key": "location",
+                            "operator": "=",
+                            "value": "UPB"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "station",
+                            "operator": "=",
+                            "value": "RPi_2"
+                        }
+                    ]
+                },
+                {
+                    "alias": "RPi_2.RSSI",
+                    "groupBy": [{
+                            "params": [
+                                "1s"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "none"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "data",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "K",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [{
+                                "params": [
+                                    "RSSI"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "mean"
+                            }
+                        ]
+                    ],
+                    "tags": [{
+                            "key": "location",
+                            "operator": "=",
+                            "value": "UPB"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "station",
+                            "operator": "=",
+                            "value": "RPi_2"
+                        }
+                    ]
+                },
+                {
+                    "alias": "RPi_2.TMP",
+                    "groupBy": [{
+                            "params": [
+                                "1s"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "none"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "data",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "L",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [{
+                                "params": [
+                                    "TMP"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "mean"
+                            }
+                        ]
+                    ],
+                    "tags": [{
+                            "key": "location",
+                            "operator": "=",
+                            "value": "UPB"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "station",
+                            "operator": "=",
+                            "value": "RPi_2"
+                        }
+                    ]
+                }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "Grafic Date",
+            "tooltip": {
+                "shared": true,
+                "sort": 0,
+                "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+                "buckets": null,
+                "mode": "time",
+                "name": null,
+                "show": true,
+                "values": []
+            },
+            "yaxes": [{
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                },
+                {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                }
+            ],
+            "yaxis": {
+                "align": false,
+                "alignLevel": null
+            }
+        },
+        {
+            "datasource": "Influx-DB-SPRC",
+            "fieldConfig": {
+                "defaults": {
+                    "custom": {
+                        "align": null,
+                        "filterable": false
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [{
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 17,
+                "x": 0,
+                "y": 11
+            },
+            "id": 4,
+            "options": {
+                "frameIndex": 3,
+                "showHeader": true
+            },
+            "pluginVersion": "7.3.6",
+            "targets": [{
+                    "alias": "RPi_1.AQI",
+                    "groupBy": [{
+                            "params": [
+                                "1s"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "none"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "data",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "A",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [{
+                                "params": [
+                                    "AQI"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "mean"
+                            }
+                        ]
+                    ],
+                    "tags": [{
+                            "key": "location",
+                            "operator": "=",
+                            "value": "UPB"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "station",
+                            "operator": "=",
+                            "value": "RPi_1"
+                        }
+                    ]
+                },
+                {
+                    "alias": "RPi_1.Alarm",
+                    "groupBy": [{
+                            "params": [
+                                "1s"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "none"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "data",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "B",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [{
+                                "params": [
+                                    "Alarm"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "mean"
+                            }
+                        ]
+                    ],
+                    "tags": [{
+                            "key": "location",
+                            "operator": "=",
+                            "value": "UPB"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "station",
+                            "operator": "=",
+                            "value": "RPi_1"
+                        }
+                    ]
+                },
+                {
+                    "alias": "RPi_1.BAT",
+                    "groupBy": [{
+                            "params": [
+                                "1s"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "none"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "data",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "C",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [{
+                                "params": [
+                                    "BAT"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "mean"
+                            }
+                        ]
+                    ],
+                    "tags": [{
+                            "key": "location",
+                            "operator": "=",
+                            "value": "UPB"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "station",
+                            "operator": "=",
+                            "value": "RPi_1"
+                        }
+                    ]
+                },
+                {
+                    "alias": "RPi_1.HUMID",
+                    "groupBy": [{
+                            "params": [
+                                "1s"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "none"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "data",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "D",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [{
+                                "params": [
+                                    "HUMID"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "mean"
+                            }
+                        ]
+                    ],
+                    "tags": [{
+                            "key": "location",
+                            "operator": "=",
+                            "value": "UPB"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "station",
+                            "operator": "=",
+                            "value": "RPi_1"
+                        }
+                    ]
+                },
+                {
+                    "alias": "RPi_1.RSSI",
+                    "groupBy": [{
+                            "params": [
+                                "1s"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "none"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "data",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "E",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [{
+                                "params": [
+                                    "RSSI"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "mean"
+                            }
+                        ]
+                    ],
+                    "tags": [{
+                            "key": "location",
+                            "operator": "=",
+                            "value": "UPB"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "station",
+                            "operator": "=",
+                            "value": "RPi_1"
+                        }
+                    ]
+                },
+                {
+                    "alias": "RPi_1.TMP",
+                    "groupBy": [{
+                            "params": [
+                                "1s"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "none"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "data",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "F",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [{
+                                "params": [
+                                    "TMP"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "mean"
+                            }
+                        ]
+                    ],
+                    "tags": [{
+                            "key": "location",
+                            "operator": "=",
+                            "value": "UPB"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "station",
+                            "operator": "=",
+                            "value": "RPi_1"
+                        }
+                    ]
+                },
+                {
+                    "alias": "RPi_2.AQI",
+                    "groupBy": [{
+                            "params": [
+                                "1s"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "none"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "data",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "G",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [{
+                                "params": [
+                                    "AQI"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "mean"
+                            }
+                        ]
+                    ],
+                    "tags": [{
+                            "key": "location",
+                            "operator": "=",
+                            "value": "UPB"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "station",
+                            "operator": "=",
+                            "value": "RPi_2"
+                        }
+                    ]
+                },
+                {
+                    "alias": "RPi_2.Alarm",
+                    "groupBy": [{
+                            "params": [
+                                "1s"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "none"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "data",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "H",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [{
+                                "params": [
+                                    "Alarm"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "mean"
+                            }
+                        ]
+                    ],
+                    "tags": [{
+                            "key": "location",
+                            "operator": "=",
+                            "value": "UPB"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "station",
+                            "operator": "=",
+                            "value": "RPi_2"
+                        }
+                    ]
+                },
+                {
+                    "alias": "RPi_2.BAT",
+                    "groupBy": [{
+                            "params": [
+                                "1s"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "none"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "data",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "I",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [{
+                                "params": [
+                                    "BAT"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "mean"
+                            }
+                        ]
+                    ],
+                    "tags": [{
+                            "key": "location",
+                            "operator": "=",
+                            "value": "UPB"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "station",
+                            "operator": "=",
+                            "value": "RPi_2"
+                        }
+                    ]
+                },
+                {
+                    "alias": "RPi_2.HUMID",
+                    "groupBy": [{
+                            "params": [
+                                "1s"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "none"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "data",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "J",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [{
+                                "params": [
+                                    "HUMID"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "mean"
+                            }
+                        ]
+                    ],
+                    "tags": [{
+                            "key": "location",
+                            "operator": "=",
+                            "value": "UPB"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "station",
+                            "operator": "=",
+                            "value": "RPi_2"
+                        }
+                    ]
+                },
+                {
+                    "alias": "RPi_2.RSSI",
+                    "groupBy": [{
+                            "params": [
+                                "1s"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "none"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "data",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "K",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [{
+                                "params": [
+                                    "RSSI"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "mean"
+                            }
+                        ]
+                    ],
+                    "tags": [{
+                            "key": "location",
+                            "operator": "=",
+                            "value": "UPB"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "station",
+                            "operator": "=",
+                            "value": "RPi_2"
+                        }
+                    ]
+                },
+                {
+                    "alias": "RPi_2.TMP",
+                    "groupBy": [{
+                            "params": [
+                                "1s"
+                            ],
+                            "type": "time"
+                        },
+                        {
+                            "params": [
+                                "none"
+                            ],
+                            "type": "fill"
+                        }
+                    ],
+                    "measurement": "data",
+                    "orderByTime": "ASC",
+                    "policy": "default",
+                    "refId": "L",
+                    "resultFormat": "time_series",
+                    "select": [
+                        [{
+                                "params": [
+                                    "TMP"
+                                ],
+                                "type": "field"
+                            },
+                            {
+                                "params": [],
+                                "type": "mean"
+                            }
+                        ]
+                    ],
+                    "tags": [{
+                            "key": "location",
+                            "operator": "=",
+                            "value": "UPB"
+                        },
+                        {
+                            "condition": "AND",
+                            "key": "station",
+                            "operator": "=",
+                            "value": "RPi_2"
+                        }
+                    ]
+                }
+            ],
+            "timeFrom": null,
+            "timeShift": null,
+            "title": "Tabel",
+            "type": "table"
+        }
+    ],
+    "refresh": "30s",
+    "schemaVersion": 26,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+        "list": []
+    },
+    "time": {
+        "from": "now-15m",
+        "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "UPB IoT Data",
+    "uid": "h0CNks-Gz",
+    "version": 5
+}
