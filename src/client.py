@@ -7,7 +7,7 @@ import time
 import paho.mqtt.client as mqtt
 
 locations = ['UPB', 'UMFCD']
-stations = ['RPi_1', 'RPi_2']
+stations = ['RPi_1', 'RPi_2', 'RPi_3']
 metrics = ['BAT', 'HUMID', 'TMP', 'AQI', 'RSSI', 'Alarm', 'status', 'timestamp']
 metric_values = {}
 
