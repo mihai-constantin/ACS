@@ -51,26 +51,23 @@ services:
       INFLUXDB_USER: student
       INFLUX_USER_PASSWORD: student
 
-  # adaptor:
-  #   build: ./
-  #   container_name: tema3-sprc_adaptor
-  #   command: python src/adaptor.py
-  #   # ports:
-  #     # - 3001:3001
-  #   links:
-  #     - mosquitto
-  #     # - influxdb
-  #   networks:
-  #     - monitor_network
+  adaptor:
+    build: './adaptor'
+    container_name: tema3-sprc_adaptor
+    links:
+      - mosquitto
+      - influxdb
+    networks:
+      - monitor_network
 
-  # client:
-  #   build: ./
-  #   container_name: tema3-sprc_client
-  #   command: python src/client.py
-  #   links:
-  #     - mosquitto
-  #   networks:
-  #     - monitor_network
+  client:
+    build: './client'
+    container_name: tema3-sprc_client
+    links:
+      - mosquitto
+      - influxdb
+    networks:
+      - monitor_network
       
 networks:
   monitor_network:

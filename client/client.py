@@ -59,7 +59,7 @@ client.on_connect = on_connect
 client.on_message = on_message
 
 # connect to mosquitto broker
-client.connect("localhost", 1883, 60)
+client.connect("tema3-sprc_mosquitto", 1883, 60)
 client.loop_start()
 
 while True:
@@ -70,7 +70,7 @@ while True:
   idx_location = randint(0, len(locations) - 1)
 
   data = {}
-  data['timestamp'] = datetime.now() - timedelta(hours = 2) if 7 in indices else generate_date()
+  data['timestamp'] = datetime.now() if 7 in indices else generate_date()
   
   for station in stations:
     message = create_message(data, indices, idx_location, station)
@@ -81,6 +81,6 @@ while True:
 
     # send message to broker
     client.publish(message['topic'], message['payload'])
-    time.sleep(0.3)
+    time.sleep(1)
 
-  time.sleep(2)
+  time.sleep(10)
