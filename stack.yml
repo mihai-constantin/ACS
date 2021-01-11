@@ -1,0 +1,77 @@
+version: '3.8'
+
+services:
+  mosquitto:
+    image: eclipse-mosquitto
+    container_name: sprc3_mosquitto
+    ports:
+      - 1883:1883
+      - 9001:9001
+    volumes:
+      - ./mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+    networks:
+      - monitor_network
+      
+  grafana:
+    build: './grafana'
+    container_name: sprc3_grafana
+    image: 127.0.0.1:5000/sprc3
+    restart: always
+    ports:
+      - 3000:3000
+    networks:
+      - monitor_network
+    volumes:
+      - grafana-volume:/var/lib/grafana
+    depends_on:
+      - influxdb
+    environment:
+      GF_SECURITY_ADMIN_USER: asistent
+      GF_SECURITY_ADMIN_PASSWORD: grafanaSPRC2020
+
+  influxdb:
+    image: influxdb:latest
+    container_name: sprc3_influxdb
+    restart: always
+    ports:
+      - 8086:8086
+    networks:
+      - monitor_network
+    volumes:
+      - influxdb-volume:/var/lib/influxdb
+    environment:
+      INFLUXDB_DB: db1
+      INFLUXDB_ADMIN_ENABLED: "true"
+      INFLUXDB_ADMIN_USER: admin
+      INFLUXDB_ADMIN_PASSWORD: admin
+      INFLUXDB_USER: student
+      INFLUX_USER_PASSWORD: student
+
+  adaptor:
+    build: './adaptor'
+    image: adaptor
+    container_name: sprc3_adaptor
+    links:
+      - mosquitto
+      - influxdb
+    networks:
+      - monitor_network
+
+  client:
+    build: './client'
+    image: client
+    container_name: sprc3_client
+    links:
+      - mosquitto
+      - influxdb
+    networks:
+      - monitor_network
+      
+networks:
+  monitor_network:
+
+volumes:
+  grafana-volume:
+  influxdb-volume:
