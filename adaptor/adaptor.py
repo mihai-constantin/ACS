@@ -3,7 +3,7 @@ import logging
 import paho.mqtt.client as mqtt
 from influxdb import InfluxDBClient
 
-influx_db_client = InfluxDBClient(host='tema3-sprc_influxdb_1', port=8086)
+influx_db_client = InfluxDBClient(host='tema3-sprc_influxdb', port=8086)
 influx_db_client.switch_database('db1')
 
 def on_connect(client, userdata, flags, rc):
@@ -42,7 +42,7 @@ client = mqtt.Client()
 client.on_connect = on_connect
 client.on_message = on_message
 
-client.connect("tema3-sprc_mosquitto_1", 1883, 60)
+client.connect("tema3-sprc_mosquitto", 1883, 60)
 
 # client.loop_start()
 client.loop_forever()

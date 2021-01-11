@@ -59,7 +59,7 @@ client.on_connect = on_connect
 client.on_message = on_message
 
 # connect to mosquitto broker
-client.connect("tema3-sprc_mosquitto_1", 1883, 60)
+client.connect("tema3-sprc_mosquitto", 1883, 60)
 client.loop_start()
 
 while True:
