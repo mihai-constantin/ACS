@@ -3,7 +3,6 @@ version: '3.8'
 services:
   mosquitto:
     image: eclipse-mosquitto
-    container_name: sprc3_mosquitto
     ports:
       - 1883:1883
       - 9001:9001
@@ -15,10 +14,7 @@ services:
       - monitor_network
       
   grafana:
-    build: './grafana'
-    container_name: sprc3_grafana
     image: 127.0.0.1:5000/sprc3
-    restart: always
     ports:
       - 3000:3000
     networks:
@@ -33,8 +29,6 @@ services:
 
   influxdb:
     image: influxdb:latest
-    container_name: sprc3_influxdb
-    restart: always
     ports:
       - 8086:8086
     networks:
@@ -50,22 +44,12 @@ services:
       INFLUX_USER_PASSWORD: student
 
   adaptor:
-    build: './adaptor'
     image: adaptor
-    container_name: sprc3_adaptor
-    links:
-      - mosquitto
-      - influxdb
     networks:
       - monitor_network
 
   client:
-    build: './client'
     image: client
-    container_name: sprc3_client
-    links:
-      - mosquitto
-      - influxdb
     networks:
       - monitor_network
       
