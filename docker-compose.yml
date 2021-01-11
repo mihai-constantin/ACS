@@ -3,10 +3,7 @@ version: '3.8'
 services:
   mosquitto:
     image: eclipse-mosquitto
-    container_name: tema3-sprc_mosquitto
-    expose:
-      - 1883
-      - 9001
+    container_name: sprc3_mosquitto
     ports:
       - 1883:1883
       - 9001:9001
@@ -19,7 +16,8 @@ services:
       
   grafana:
     build: './grafana'
-    container_name: tema3-sprc_grafana
+    container_name: sprc3_grafana
+    image: 127.0.0.1:5000/sprc3
     restart: always
     ports:
       - 3000:3000
@@ -35,7 +33,7 @@ services:
 
   influxdb:
     image: influxdb:latest
-    container_name: tema3-sprc_influxdb
+    container_name: sprc3_influxdb
     restart: always
     ports:
       - 8086:8086
@@ -53,7 +51,7 @@ services:
 
   adaptor:
     build: './adaptor'
-    container_name: tema3-sprc_adaptor
+    container_name: sprc3_adaptor
     links:
       - mosquitto
       - influxdb
@@ -62,7 +60,7 @@ services:
 
   client:
     build: './client'
-    container_name: tema3-sprc_client
+    container_name: sprc3_client
     links:
       - mosquitto
       - influxdb

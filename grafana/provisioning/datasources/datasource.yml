@@ -6,6 +6,6 @@ datasources:
     database: db1
     user: student
     password: student
-    url: 'tema3-sprc_influxdb:8086'
+    url: 'sprc3_influxdb:8086'
     isDefault: true
     editable: true
