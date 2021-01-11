@@ -12,11 +12,3 @@ docker-compose down --volumes
 
 # push the generated image to the registry
 docker-compose push
-
-# deploy the stack to the swarm
-docker stack deploy -c stack.yml sprc3
-
-# cleanup
-docker stack rm sprc3
-docker service rm registry
-docker swarm leave --force
