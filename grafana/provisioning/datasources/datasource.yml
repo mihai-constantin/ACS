@@ -4,8 +4,6 @@ datasources:
     type: 'influxdb'
     access: 'proxy'
     database: db1
-    user: student
-    password: student
     url: 'sprc3_influxdb:8086'
     isDefault: true
     editable: true
