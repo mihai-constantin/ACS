@@ -11,45 +11,49 @@ services:
       - ./mosquitto/data:/mosquitto/data
       - ./mosquitto/log:/mosquitto/log
     networks:
-      - monitor_network
+      - broker_adaptor
+      - client_broker
       
   grafana:
-    image: 127.0.0.1:5000/sprc3
+    image: 127.0.0.1:5000/sprc3_grafana
     ports:
       - 80:3000
-    networks:
-      - monitor_network
     volumes:
       - grafana-volume:/var/lib/grafana
-    depends_on:
-      - influxdb
     environment:
       GF_SECURITY_ADMIN_USER: asistent
       GF_SECURITY_ADMIN_PASSWORD: grafanaSPRC2020
+    networks:
+      - influx_grafana
 
   influxdb:
     image: influxdb:latest
     ports:
       - 8086:8086
-    networks:
-      - monitor_network
     volumes:
       - influxdb-volume:/var/lib/influxdb
     environment:
       INFLUXDB_DB: db1
+    networks:
+      - adaptor_influx
+      - influx_grafana
 
   adaptor:
-    image: adaptor
+    image: 127.0.0.1:5000/sprc3_adaptor
     networks:
-      - monitor_network
+      - broker_adaptor
+      - adaptor_influx
 
   client:
-    image: client
+    image: 127.0.0.1:5000/sprc3_client
     networks:
-      - monitor_network
+      - client_broker
       
 networks:
-  monitor_network:
+  broker_adaptor:
+  adaptor_influx:
+  influx_grafana:
+  client_broker:
 
 volumes:
   grafana-volume:
