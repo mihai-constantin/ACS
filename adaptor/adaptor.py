@@ -1,10 +1,15 @@
 import json
-import logging
 import socket
 import time
 
 import paho.mqtt.client as mqtt
 from influxdb import InfluxDBClient
+
+from dotenv import load_dotenv
+load_dotenv()
+
+import os
+DEBUG_DATA_FLOW = os.environ.get("DEBUG_DATA_FLOW")
 
 influx_db_client = InfluxDBClient(host='sprc3_influxdb', port=8086, database = 'db1', timeout = 100)
 
@@ -22,9 +27,11 @@ def create_data_object(topic, payload):
     data_obj['fields'] = {}
     for key in payload:
         if key != 'timestamp' and not isinstance(payload[key], str):
-            print(topic.replace('/', '.') + '.' + key, str(round(payload[key], 2)))
+            if DEBUG_DATA_FLOW == 'true':
+                print(topic.replace('/', '.') + '.' + key, str(round(payload[key], 2)))
             data_obj['fields'][key] = float(payload[key])
-    print("")
+    if DEBUG_DATA_FLOW == 'true':
+        print("")
     return data_obj
 
 def on_message(client, userdata, msg):
@@ -32,8 +39,9 @@ def on_message(client, userdata, msg):
     payload = msg.payload.decode()
     # convert from str to dict
     payload = json.loads(payload)
-    print('Received a message by topic [' + msg.topic + ']')
-    print('Data timestamp is: ' + payload['timestamp'])
+    if DEBUG_DATA_FLOW == 'true':
+        print('Received a message by topic [' + msg.topic + ']')
+        print('Data timestamp is: ' + payload['timestamp'])
 
     data = []
     data_obj = create_data_object(msg.topic, payload)
