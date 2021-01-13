@@ -12,7 +12,7 @@ services:
       - ./mosquitto/log:/mosquitto/log
     networks:
       - broker_adaptor
-      - client_broker
+      # - client_broker
       
   grafana:
     image: 127.0.0.1:5000/sprc3_grafana
@@ -28,8 +28,6 @@ services:
 
   influxdb:
     image: influxdb:latest
-    ports:
-      - 8086:8086
     volumes:
       - influxdb-volume:/var/lib/influxdb
     environment:
@@ -44,16 +42,16 @@ services:
       - broker_adaptor
       - adaptor_influx
 
-  client:
-    image: 127.0.0.1:5000/sprc3_client
-    networks:
-      - client_broker
+  # client:
+  #   image: 127.0.0.1:5000/sprc3_client
+  #   networks:
+  #     - client_broker
       
 networks:
   broker_adaptor:
   adaptor_influx:
   influx_grafana:
-  client_broker:
+  # client_broker:
 
 volumes:
   grafana-volume:

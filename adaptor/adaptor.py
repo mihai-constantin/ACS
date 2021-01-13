@@ -1,10 +1,12 @@
 import json
 import logging
+import socket
+import time
+
 import paho.mqtt.client as mqtt
 from influxdb import InfluxDBClient
 
-influx_db_client = InfluxDBClient(host='sprc3_influxdb', port=8086)
-influx_db_client.switch_database('db1')
+influx_db_client = InfluxDBClient(host='sprc3_influxdb', port=8086, database = 'db1', timeout = 100)
 
 def on_connect(client, userdata, flags, rc):
     print("Connected with result code " + str(rc))
@@ -42,7 +44,14 @@ client = mqtt.Client()
 client.on_connect = on_connect
 client.on_message = on_message
 
-client.connect("sprc3_mosquitto", 1883, 60)
+is_reachable = False
+pingcounter = 0
+while is_reachable is False and pingcounter < 5:
+    try:
+        client.connect("sprc3_mosquitto", 1883, 60)
+        is_reachable = True
+    except socket.gaierror as e:
+        time.sleep(5)
+        pingcounter += 1
 
-# client.loop_start()
 client.loop_forever()

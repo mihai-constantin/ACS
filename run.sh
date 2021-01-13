@@ -9,12 +9,12 @@ docker service ls
 
 # build images
 docker build adaptor/ --tag 127.0.0.1:5000/sprc3_adaptor
-docker build client/ --tag 127.0.0.1:5000/sprc3_client
+# docker build client/ --tag 127.0.0.1:5000/sprc3_client
 docker build grafana/ --tag 127.0.0.1:5000/sprc3_grafana
 
 # push images to registry
 docker push 127.0.0.1:5000/sprc3_adaptor
-docker push 127.0.0.1:5000/sprc3_client
+# docker push 127.0.0.1:5000/sprc3_client
 docker push 127.0.0.1:5000/sprc3_grafana
 
 # deploy app
