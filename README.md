@@ -68,7 +68,7 @@
 ## Observatii
 * setarea timpului in grafana este pentru ultimele 6 ore
   * pentru a se vedea rezultatele cat de cat, trebuie modificat time limit-ul la 5 sau 15 minute
-* toata aplicatie expune doua porturi
+* toata aplicatia expune doua porturi
   * 80, pentru vizualizarea datelor in grafana
   * 1883, pentru conectarea la broker-ul de MQTT
 * serviciile din swarm sunt grupate in retele pentru o comunicare eficienta, asa cum s-a specificat in enuntul temei
