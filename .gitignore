@@ -2,4 +2,3 @@
 .vscode
 mosquitto/data
 mosquitto/log
-*.pdf
