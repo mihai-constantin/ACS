@@ -27,7 +27,7 @@
     ```python
     data['timestamp'] = datetime.now() if 7 in indices else generate_date()
     ```
-  * aceasta modificare din client.py e necesara pentru a vedea datele in grafana (daca lasam cu - timedelta(hours = 2)) le inseram datele in viitor (ori e o problema la timezone la grafana, ori trebuie setat timezone-ul in swarm - nu mi-am dat seama)
+  * aceasta modificare din client.py e necesara pentru a vedea datele in grafana (daca lasam cu - timedelta(hours = 2) inseram datele in viitor; ori e o problema la timezone la grafana, ori trebuie setat timezone-ul in swarm - nu mi-am dat seama)
 * se ruleaza script-ul ./run.sh
 * se acceseaza localhost:80/ pentru grafana cu credentialele de mai sus
 
@@ -42,7 +42,7 @@
 
 ### Clientul
 * implementat in python folosind paho.mqtt
-* se conecteaza la porul 1883 al broker-ului de MQTT de pe localhost
+* se conecteaza la portul 1883 al broker-ului de MQTT de pe localhost
 * publica mesajele create
 * mesajele sunt create random sunt forma unor string-uri de JSON-uri, utilizand urmatoarele liste
   ```python
@@ -68,3 +68,9 @@
 ## Observatii
 * setarea timpului in grafana este pentru ultimele 6 ore
   * pentru a se vedea rezultatele cat de cat, trebuie modificat time limit-ul la 5 sau 15 minute
+* toata aplicatie expune doua porturi
+  * 80, pentru vizualizarea datelor in grafana
+  * 1883, pentru conectarea la broker-ul de MQTT
+* serviciile din swarm sunt grupate in retele pentru o comunicare eficienta, asa cum s-a specificat in enuntul temei
+* inserarea datelor in grafana este in functie de datele pe care le-am oferit in fisierul client.py
+* in urma rularii clientului timp de 6 ore s-au obtinut graficele din directorul graphics
