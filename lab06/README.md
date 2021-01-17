@@ -8,12 +8,13 @@
         * time: 20s - timpul maxim de pastrare a unui continut web
 * am adaugat in clasa *WebCacheEntry* atributul accessNumber care indica numarul total de accesari pentru o pagina web
     * in momentul in care facem getContent sau setContent, atributul se incrementeaza cu 1
-* politica de evazuare din cache este de tip LFU (Least Frequency Used)
+* politica de evacuare din cache este de tip **LFU (Least Frequency Used)**
     * in momentul in care se realizeaza un request, verificam daca este un MISS sau un HIT
-    * daca este un MISS, requestul trebuie adaugat in cache, eliminandu-se cel cu frecventa cea mai mica
-    * daca avem numai HIT- uri la un moment dat, MISS-urile vor reveni in momentul in care timpul de pastrare a paginii in cache expira
+    * daca este un MISS, requestul trebuie adaugat in cache, eliminandu-se request-ul cu frecventa cea mai mica
+    * daca avem numai HIT-uri la un moment dat, MISS-urile vor reveni in momentul in care timpul de pastrare a paginilor din cache vor expira
 * Un exemplu de rulare a programului poate fi observat mai jos
     * la fiecare request afisam tipul acestuia (MISS/HIT), respectiv cum arata cache-ul
+    * daca avem un MISS si nu avem loc in cache pentru noul request, eliminam request-ul cu frecventa minima
 
 ```
 Client started with maxStorageSpace=51200 and maxTimeToKeep=20000
