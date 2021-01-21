@@ -27,8 +27,8 @@ int main(int argc, char const *argv[])
     SWAP(int, x, y);
     printf("[AFTER] x: %d y: %d\n", x, y);
 
-    char *p = strdup("A");
-    char *q = strdup("B");
+    char *p = strdup("Ana");
+    char *q = strdup("Maria");
     printf("[BEFORE] p: %s q: %s\n", p, q);
     SWAP(char*, p, q);
     printf("[AFTER] p: %s q: %s\n", p, q);

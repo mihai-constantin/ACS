@@ -11,13 +11,13 @@ void list_ints(int first, ...) {
     va_list args;
 
     /* initializare lista parametri */
-    va_start(args, first);
+    va_start(args, first); // first <- 128
 
-    int current = first;
+    int current = first; // current <- 128
     while(current >= 0) {
         printf("%d ", current);
         /* accesare parametru urmator */
-        current = va_arg(args, int);
+        current = va_arg(args, int); // current <- 512
     }
     printf("\n");
 
