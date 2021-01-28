@@ -1,0 +1,4 @@
+execve("./my_system", ["./my_system", "ls"], 0x7fff45e2a500 /* 24 vars */) = 0
+clone(child_stack=NULL, flags=CLONE_PARENT_SETTID|SIGCHLD, parent_tidptr=0x7ffce0af8b0c) = 1778
+--- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=1778, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
++++ exited with 0 +++
