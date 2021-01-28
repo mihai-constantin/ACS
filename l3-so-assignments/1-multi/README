@@ -1,0 +1,68 @@
+--------------------------------------------------------
+CONSTANTIN MIHAI - TEMA 1 SO: Multi-platform Development
+--------------------------------------------------------
+
+----------
+Organizare
+----------
+Tema este compusa din cele 2 Makefile-uri (GNUmakefile - Linux si 
+Makefile - Windows), 3 fisiere header (hashTable.h, LinkedList.h, util.h) si un 
+fisier sursa (so-cpp.c).
+
+Pentru a stoca asocierile de tip <cheie, valoare> am folosit o implementare de 
+tip hash table. Aceasta este definita in fisierul hashTable.h. De asemenea, 
+pentru a stoca calea directoarelor in care caut fisierele header am folosit o 
+lista simplu inlantuita, implementata in fisierul LinkedList.h. In header-ul 
+util.h se gasesc 2 functii: startsWith(a, b) - verifica daca string-ul a incepe 
+cu string-ul b, si replace(key, value, buf, new_buf) - inlocuieste aparitiile 
+lui key cu value din buf si noul rezultat este stocat in new_buf.
+
+------------
+Implementare
+------------
+Intregul enunt al temei a fost implementat.
+La inceput, initializez tabela hash. Dupa aceea, parsez argumentele primite
+in linia de comanda in functiile: parseArguments(...) si 
+parseInputAndOutput(...).
+In continuare, functia cpp(...) realizeaza preprocesarea fisierului de intrare 
+(sau stdin) si a fisierelor header incluse, daca acestea exista (se realizeaza 
+apel recursiv pentru a parcurge fisierele header).
+La final, se realizeaza dezalocarea resurselor folosite.
+
+PRO:
+- faptul ca am folost Git si am urmarit mai usor dezvoltarea treptata a temei
+CONTRA:
+- enuntul cam neclar, nu au fost expuse toate cazurile care trebuiau tratate
+
+-----------------
+Compilare. Rulare
+-----------------
+
+Linux: Se foloseste fisierul GNUmakefile. Se vor executa urmatoarele comenzi:
+- din terminal se va executa comanda make, in urma careia se va crea fisierul 
+  executabil so-cpp
+- pentru a loca un test local se executa comanda
+  ./so-cpp [-D <SYMBOL>[=<MAPPING>]] [-I <DIR>] [<INFILE>] [ [-o] <OUTFILE>]
+- se copiaza executabilul in checker/multi si se executa 
+  make -f Makefile.checker pentru a se rula intregul checker 
+
+Windows: Se foloseste fisierul Makefile. Se vor executa urmatoarele comenzi:
+- din Powershell se va executa comanda nmake, in urma careia se va crea 
+  fisierul executabil so-cpp.exe
+- din Cygwin se procedeaza ca mai sus in cazul Linux
+
+------------
+Bibliografie
+------------
+Sursele de inspiratie pentru tema au fost urmatoarele:
+- laborator 1 SO pentru crearea de Makefile
+- laborator HashTable Structuri de Date, Anul 1
+- inlocuirea unui substring intr-un string
+  https://www.geeksforgeeks.org/c-program-replace-word-text-another-given-word/
+
+---
+Git 
+---
+Proiectul se gaseste la adresa:
+https://gitlab.cs.pub.ro/mihai.constantin98/l3-so-assignments.git
+
