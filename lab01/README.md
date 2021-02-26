@@ -1,7 +1,7 @@
 # Laborator 1 - Divide et Impera
-    * merge sort
-    * cautare binara
-    * turnurile din hanoi
+* merge sort
+* cautare binara
+* turnurile din hanoi
 
 ## Exercitii
 1. numarul de aparitii a unui numar x intr-un sir sortat
