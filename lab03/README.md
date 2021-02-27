@@ -7,10 +7,10 @@
 1. Numarul minim de monede cu care se poate forma suma S (avand un numar nelimitat de monede de fiecare tip).
 2. Cel mai lung subsir comun (CMLSC): https://www.infoarena.ro/problema/cmlsc
 
-**Bonus**
+## **Bonus**
 3. Custi: https://www.infoarena.ro/problema/custi
 
-**Extra**
+## **Extra**
 4. Rucsac discret - varianta optima (recurenta vectoriala): https://infoarena.ro/problema/rucsac
 5. Q intrebari de forma: Care este suma din submatricea care are coltul stanga-sus (x1, y1) si coltul dreapta-jos (x2,y2)
 6. Joctv - SSM modificat : https://infoarena.ro/problema/joctv
