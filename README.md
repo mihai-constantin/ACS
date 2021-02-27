@@ -3,3 +3,4 @@
 * Laborator 0 - Introducere si Relaxare
 * Laborator 1 - Divide et Impera
 * Laborator 2 - Greedy
+* Laborator 3 - Programare Dinamica 1
