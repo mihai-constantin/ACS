@@ -4,3 +4,4 @@
 * Laborator 1 - Divide et Impera
 * Laborator 2 - Greedy
 * Laborator 3 - Programare Dinamica 1
+* Laborator 4 - Programare Dinamica 2
