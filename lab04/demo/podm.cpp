@@ -34,8 +34,6 @@ const unsigned long long kInf = std::numeric_limits<unsigned long long>::max();
             // Iteram prin indicii dintre capete, spargand sirul de inmultiri in doua (paranteze).
             for (int k = i; k < j; ++k) {
                 // M_i * ... M_j  = (M_i * .. * M_k) * (M_k+1 *... * M_j)
-                cout << "i: " << i << ", k: " << k << '\n';
-                cout << "k+1: " << k + 1 << " , j: " << j << '\n';
                 unsigned long long new_sol = dp[i][k] + dp[k + 1][j] + 1ULL * d[i - 1] * d[k] * d[j];
                 
                 // actualizam solutia daca este mai buna
