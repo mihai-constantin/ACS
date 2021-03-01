@@ -1,0 +1,129 @@
+CONSTANTIN MIHAI - 336CA
+
+------
+TASK 1
+------
+num_elements = 16
+blockSize = 4
+block_no = 4
+
+Avem 16 elemente in vector. Fiecare block are 4 thread-uri (block_no).
+Deci, primele 4 numere din vector(pozitiile 0..3) vor fi executate de
+thread-urile din block-ul 0, urmatoarele 4 numere de thread-urile din
+block-ul 1 samd (todo4).
+Elementele de pe pozitiile 0, 4, 8, 12 vor fi executate de primul thread 
+din fiecare block; cele de pe pozitiile 1, 5, 9, 13 de al doilea thread
+din fiecare block samd (todo5).
+
+Rezultatul se observa mai jos:
+
+[mihai.constantin98@hpsl-wn02 lab7_skl]$ ./task_1 
+[HOST] You have 2 CUDA-capable GPU(s)
+Device number: 0
+	Device name: Tesla K40m
+	Total global memory: 11996954624
+	Memory Clock Rate(KHz): 745000
+	Memory Bus Width (bits): 384
+Device number: 1
+	Device name: Tesla K40m
+	Total global memory: 11996954624
+	Memory Clock Rate(KHz): 745000
+	Memory Bus Width (bits): 384
+
+[Checking todo 3]
+	Your results: 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 
+	Expected results: 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 
+	Check: OK!
+
+[Checking todo 4]
+	Your results: 0 0 0 0 1 1 1 1 2 2 2 2 3 3 3 3 
+	Expected results: 0 0 0 0 1 1 1 1 2 2 2 2 3 3 3 3 
+	Check: OK!
+
+[Checking todo 5]
+	Your results: 0 1 2 3 0 1 2 3 0 1 2 3 0 1 2 3 
+	Expected results: 0 1 2 3 0 1 2 3 0 1 2 3 0 1 2 3 
+	Check: OK!
+
+-----------------------------
+TASK 2 - Adunarea a 2 vectori
+-----------------------------
+
+num_elements = 1 << 20
+blockSize = 256
+block_no = 4096
+
+Rezultatul adunarii vectorilor a si b se poate observa mai jos:
+
+[mihai.constantin98@hpsl-wn02 lab7_skl]$ ./task_2 
+
+a[i]	b[i]	c[i]	expected
+0.000	0.840	0.840	0.840
+1.000	0.394	1.394	1.394
+2.000	0.783	2.783	2.783
+3.000	0.798	3.798	3.798
+4.000	0.912	4.912	4.912
+5.000	0.198	5.198	5.198
+6.000	0.335	6.335	6.335
+7.000	0.768	7.768	7.768
+8.000	0.278	8.278	8.278
+9.000	0.554	9.554	9.554
+
+Check: OK!
+
+------------------------------------
+TASK 3 - Interschimbarea a 2 vectori
+------------------------------------
+
+a, b - vectorii de interschimbat (BUF_LEN = 32M)
+
+c - vector tampon (BUF_LEN = 2M)
+
+Am folosit functia cudaMemcpy pentru a interschimba bucati de cate 2M din 
+vectorii a si b, folosind vectorul c ca tampon.
+
+Rezultatul pentru primele 10 elemente din vectorii a si b se poate observa
+mai jos:
+
+[mihai.constantin98@hpsl-wn02 lab7_skl]$ ./task_3 
+Before swap:
+a[i]	b[i]
+0	0
+1	1
+2	0
+3	1
+4	0
+5	1
+6	0
+7	1
+8	0
+9	1
+
+After swap:
+a[i]	b[i]
+0	0
+1	1
+0	2
+1	3
+0	4
+1	5
+0	6
+1	7
+0	8
+1	9
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
