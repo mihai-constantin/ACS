@@ -1,0 +1,27 @@
+# Darius-Florentin Neatu <neatudarius@gmail.com>
+# Edited by Stefania Budulan <stefaniabudulan@yahoo.com>
+# Copyright 2018
+
+Rulare:
+	- local:
+		./check.sh
+
+	* sursele + Makefile trebuie sa se afle in directorul curent
+
+Run time error = eroare aparuta in timpul rularii unui test
+TLE = time limit exceeded (s-a depasit limita de timp a testului curent)
+WA = wrong answer (valoarea din fisierul .out difera de cea din .ref)
+
+Timpi de executie problema:
+	- C: _utils/timeout/c.timeout$id
+
+Exemplu debug
+	Rulez `./check.sh` si obtin WA la problema gigel, pe testul 4.
+		Decomentez urmatoarea linie din checker.sh
+			# DEBUG=on
+			(activez DEBUG - by default fisierele de out sunt sterse)
+
+		Ma uit in fisierele:
+		- public_test/gigel/input/4-gigel.in   // ce input am
+		- public_test/gigel/out/4-gigel.out    // ce raspuns gaseste algoritmul meu
+		- public_test/gigel/ref/4-gigel.ref    // care este raspunsul corect (asteptat)

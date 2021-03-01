@@ -1,0 +1,61 @@
+List 0: 
+List 1: 
+List 2: 
+List 3: 
+List 4: 
+List 5: (key333, value306, 44) (key333, value330, 44) (key000, value336, 44) (key333, value336, 44) (key396, value336, 44) (key333, value333, 33) (key000, value033, 22) (key333, value033, 22) (key396, value033, 22) 
+List 6: 
+List 7: 
+List 8: 
+List 0: (key, value, 6) 
+List 0: (key, value1, 1) 
+List 0: (key444, value000, 88) (key444, value777, 77) 
+List 1: 
+List 2: 
+List 3: (key555, value555, 286) (key555, value777, 121) (key555, value333, 77) (key555, value888, 77) (key555, value, 55) 
+List 4: (key222, value000, 77) (key777, value777, 77) (key, value, 55) 
+(key444, value000, 88) (key555, value555, 286) (key222, value000, 77) (key777, value777, 77) 
+(key444, value777, 77) (key555, value333, 77) (key555, value888, 77) (key222, value000, 77) (key777, value777, 77) 
+(key777, value777, 77) 
+List 0: (key444, value000, 88) (key444, value777, 77) 
+List 1: 
+List 2: 
+List 3: (key555, value555, 286) (key555, value777, 121) (key555, value333, 77) (key555, value888, 77) (key555, value, 55) 
+List 4: (key777, value777, 78) (key222, value000, 77) (key, value, 55) 
+(key222, value000, 77) 
+List 0: (key444, value000, 88) (key444, value777, 77) 
+List 1: 
+List 2: 
+List 3: (key555, value555, 286) (key555, value777, 121) (key555, value333, 77) (key555, value888, 77) (key555, value, 55) 
+List 4: (key222, value000, 78) (key777, value777, 78) (key, value, 55) 
+
+
+(key444, value777, 77) (key555, value777, 121) (key777, value777, 78) 
+(key444, value777, 77) (key555, value777, 121) (key777, value777, 78) 
+
+
+List 0: (key444, value000, 88) (key444, value777, 77) 
+List 1: 
+List 2: 
+List 3: (key555, value555, 286) (key555, value777, 121) (key555, value333, 77) (key555, value888, 77) (key555, value, 55) 
+List 4: (key222, value000, 78) (key777, value777, 78) (key, value, 55) 
+List 0: (key444, value777, 77) (key444, value000, 88) 
+List 1: 
+List 2: 
+List 3: (key555, value, 55) (key555, value888, 77) (key555, value333, 77) (key555, value777, 121) (key555, value555, 286) 
+List 4: (key, value, 55) (key777, value777, 78) (key222, value000, 78) 
+List 0: (key444, value000, 88) (key444, value777, 77) 
+List 1: 
+List 2: 
+List 3: (key555, value555, 286) (key555, value777, 121) (key555, value333, 77) (key555, value888, 77) (key555, value, 55) 
+List 4: (key222, value000, 78) (key777, value777, 78) (key, value, 55) 
+List 0: 
+List 1: 
+List 2: 
+List 3: 
+List 4: 
+List 0: 
+List 1: 
+List 2: 
+List 3: 
+List 4: 
