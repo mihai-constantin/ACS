@@ -1,0 +1,61 @@
+Constantin Mihai, 321CD
+
+Tema este organizata sub forma urmatoarei structuri:
+
+1. Pachetul game
+       - contine clasa Match ce extinde clasa GameInput din pachetul main
+       - dintre metodele din clasa Match, amintim: createPlayers(crearea 
+         jucatorilor de fiecare tip in parte), play(simularea efectiva a jocului
+         pe runde), addProfitPerStand(adaugarea profitului pentru fiecare jucator 
+         in urma asset-urilor de pe taraba), printStandings(afisarea clasamentului
+         final)
+
+2. Pachetul main
+	- contine urmatoarele clase:
+		
+		-> Main: trateaza citirea datelor de intrare 
+                              (ID - urile asset-urilor + tipul de jucatori)
+		
+		-> GameInput: contine getteri pentru lista de jucatori, respectiv
+					  pentru cea de asset-uri + metoda de validare a input-ului
+
+		-> Strategy:     enum ce retine tipurile posibile de jucatori(BASIC, 
+					 GREEDY, BRIBED, WIZARD)
+
+		-> Asset:   enum ce retine tipurile posibile pentru asset-uri (APPLE,
+				  CHEESE, BREAD, CHICKEN, SILK, PEPPER, BARREL) + asociaza 
+				  fiecarui asset profitul si penalty-ul corespunzator + retine
+				  tipul acestuia (legal, ilegal) prin campul TYPE, cat si 
+				  frecventa
+
+3. Pachetul player
+	- contine urmatoarele clase:
+		-> Player:   clasa abstracta ce contine atat metode concrete, cat si 
+				   metode abstracte ce vor fi mostenite de catre jucatori
+
+		-> Basic:   clasa jucatorului ce aplica strategia BASIC
+				  extinde clasa abstracta Player
+				  face override la metodele abstracte mostenite din Player
+				  printre acestea amintim: createBag, inspect(situatia in care
+				  este serif), updateBag(pentru jucatorul de tip GREEDY) - nu 
+				  este implementata aici, removeAssetsInHand()
+		
+		-> Greedy: clasa jucatorului ce aplica strategia GREEDY
+				   extinde clasa Basic
+				   face override la metoda inspect din clasa Basic (jucatorul
+				   de tip GREEDY in momentul cand este serif se comporta ca 
+				   un jucator BASIC daca nu ii este oferita mita)
+
+		-> Bribed: clasa jucatorului ce aplica strategia BRIBED
+                                extinde clasa Basic (inspecteaza cand este serif ca un 
+                                jucator BASIC)
+                                face override la metoda createBag() din clasa Basic
+
+		-> Wizard: clasa jucatorului ce aplica strategia WIZARD
+                                 extinde clasa Basic (se comporta ca un jucator de tip BASIC 
+                                 in rolul de comerciant)
+                                 face override la metoda inspect() - va inspecta doar 
+                                 comerciantii care ii ofera mita, deci posibili mincinosi, 
+                                 cu scopul de a-i prinde 
+
+
