@@ -3,3 +3,5 @@ venv
 .DS_Store
 .idea
 out
+dist
+node_modules

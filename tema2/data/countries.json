@@ -1,0 +1,97 @@
+[{
+  "_id": {
+    "$oid": "5fc3978ff0496f006f009e77"
+  },
+  "name": "Portugalia",
+  "latitude": 38.736946,
+  "longitude": -9.142685,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc39795f0496f006f009e79"
+  },
+  "name": "UK",
+  "latitude": 51.509865,
+  "longitude": -0.118092,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc3979af0496f006f009e7b"
+  },
+  "name": "Polonia",
+  "latitude": 52.237049,
+  "longitude": 21.017532,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc3979ef0496f006f009e7d"
+  },
+  "name": "Franta",
+  "latitude": 48.864716,
+  "longitude": 2.349014,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc397a2f0496f006f009e7f"
+  },
+  "name": "Grecia",
+  "latitude": 37.98381,
+  "longitude": 23.727539,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc397a7f0496f006f009e81"
+  },
+  "name": "Austria",
+  "latitude": 48.210033,
+  "longitude": 16.363449,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc397abf0496f006f009e83"
+  },
+  "name": "Elvetia",
+  "latitude": 46.204391,
+  "longitude": 6.143158,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc397b2f0496f006f009e85"
+  },
+  "name": "Germania",
+  "latitude": 52.520008,
+  "longitude": 13.404954,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc397b5f0496f006f009e87"
+  },
+  "name": "Spania",
+  "latitude": 40.416775,
+  "longitude": -3.70379,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc397e6f0496f006f009e89"
+  },
+  "name": "Romania",
+  "latitude": 44.439663,
+  "longitude": 26.096306,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc3f2477143e5114bd3990d"
+  },
+  "name": "Qatar",
+  "latitude": 25.286106,
+  "longitude": 51.534817,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc3fd17e6d33400cd145adc"
+  },
+  "name": "Tanzania",
+  "latitude": -3.065653,
+  "longitude": 37.352013,
+  "__v": 0
+}]
