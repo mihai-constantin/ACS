@@ -1,0 +1,113 @@
+-----------------------------------
+CONSTANTIN MIHAI 336CA - TEMA 3 ASC
+-----------------------------------
+
+Obiectivul temei: implementarea unei structuri de date de tip hashtable
+folosind CUDA.
+
+----------------------------
+Cum s-a implementat solutia?
+----------------------------
+Implementarea temei a pornit de la codul oferit in schelet.
+Fisierele modificate au fost:
+- gpu_hashtable.hpp
+- gpu_hashtable.cu
+
+In fisierul header, am declarat structurile de date folosite in cadrul
+hashtable-ului. Astfel, avem o structura de tip node, care contine 2
+intregi (key si value) si o structura hashtable care contine un vector
+de noduri, si 2 intregi, reprezentand capacitatea curenta a hashtable-ului,
+precum si numarul de perechi inserate la un moment dat (size).
+
+Implementarea se bazeaza pe metoda linear probing: se calculeaza pe baza
+unei functii de hash un index de la care se pleaca pentru a cauta un slot
+liber. Daca nu s-a gasit un slot liber in intervalul [idx, capacity), se
+cauta apoi in intervalul [0, idx). Am folosit functia atomicCAS (atomic
+compare and swap) pentru ca operatiile de citire si scriere la o aceeasi
+adresa sa se realizeze atomic in contextul folosirii thread-urilor.
+
+Functia de hash este implementata similar cu cele din schelet, fiind de 
+forma (a * b) % c, unde b si c sunt doua numere prime.
+
+-----------------------------------------------
+Cum se stochează hashtable în memoria GPU VRAM?
+-----------------------------------------------
+
+In constructor, am initializat structura de tip hashtable, alocand memorie
+pe gpu (vram) pentru un vector de noduri de dimensiune size, folosind 
+cudaMalloc. De asemenea, am initializat vectorul la 0, folosind 
+cudaMemset.
+
+In destructor, am eliberat memoria folosita pe gpu, utilizand cudaFree
+asupra vectorului de noduri din structura Hashtable.
+
+In functia insert, am alocat memorie pe gpu pentru cheile si valorile
+corespunzatoare. Am utilizat functia cudaMemcpy pentru a copia vectorii
+keys si values (de pe host: cpu -> ram) in vectorii device_keys si
+device_values (in device: gpu -> vram). Am executat functia de kernel
+pentru insertia lor, utilizand vectorii de pe device. Schimbarile sunt
+retinute in vectorul nodes (care este alocat tot pe device).
+Dupa apelul de kernel, am eliberat memoria utilizata de device_keys si
+de device_values, folosind cudaFree.
+Inainte de a insera noile perechi de chei si valori, am verificat daca
+este necesara operatia de reshape. Load factor-ul maxim este de 80%.
+
+In functia de reshape, am creat un nou hashtable, avand o capacitate
+noua de numBucketsReshape/0.8, pentru a mentine load factor-ul sub 80%.
+Vectorul de nodes pentru noul hashtable a fost alocat pe gpu si 
+initializat la 0. Functia de kernel copiaza perechile de chei si valori
+din vechiul hashtable in cel nou. Dupa apelul de kernel, se elibereaza
+memoria folosita de vectorul de noduri a vechiului hashtable.
+
+In functia getBatch, am alocat memorie pe gpu pentru device_keys si
+device_values si am copiat valorile de pe host pe device pentru chei.
+Am executat kernelul si dupa am copiat valorile din vram in ram,
+adica de pe device pe host (pentru valorile cheilor). Am returnat
+vectorul de valori, alocat pe host.
+
+------------------------------------------------------
+Output la performanțele obținute și discutie rezultate
+------------------------------------------------------
+
+Chiar daca implementarea folosind linear probing nu este cea mai
+optima, se remarca o imbunatatire semnificativa fata de o varianta
+secventiala. Fiecare thread se ocupa de un element, deci algoritmul
+este puternic paralelizat. Se folosec 1024 de thread-uri per block.
+
+Un timp semnificativ este cauzat insa de copierea datelor de pe 
+host pe device sau invers.
+
+La rularea checker-ului pe coada hp-sl.q se obtine urmatorul rezultat:
+
+[mihai.constantin98@hpsl-wn01 temaCUDA]$ python bench.py 
+-------------- Test T1 --------------
+OK       +10 pts         HASH_BATCH_INSERT, 1000000, 100, 80
+OK       +10 pts         HASH_BATCH_GET, 1000000, inf, 80
+TOTAL    +20 pts
+
+-------------- Test T2 --------------
+OK       +5 pts  HASH_BATCH_INSERT, 2000000, 66.6667, 80
+OK       +5 pts  HASH_BATCH_GET, 2000000, 200, 80
+TOTAL    +10 pts
+
+-------------- Test T3 --------------
+OK       +5 pts  HASH_BATCH_INSERT, 2000000, 66.6667, 80
+OK       +5 pts  HASH_BATCH_INSERT, 2000000, 100, 80
+OK       +5 pts  HASH_BATCH_GET, 2000000, 200, 80
+OK       +5 pts  HASH_BATCH_GET, 2000000, 100, 80
+TOTAL    +20 pts
+
+-------------- Test T4 --------------
+OK       +5 pts  HASH_BATCH_INSERT, 2500000, 125, 80
+OK       +5 pts  HASH_BATCH_INSERT, 2500000, 83.3333, 80
+OK       +5 pts  HASH_BATCH_INSERT, 2500000, 62.5, 80
+OK       +5 pts  HASH_BATCH_INSERT, 2500000, 62.5, 80
+OK       +5 pts  HASH_BATCH_GET, 2500000, 250, 80
+OK       +5 pts  HASH_BATCH_GET, 2500000, 125, 80
+OK       +5 pts  HASH_BATCH_GET, 2500000, 250, 80
+OK       +5 pts  HASH_BATCH_GET, 2500000, 125, 80
+TOTAL    +40 pts
+
+
+TOTAL gpu_hashtable  90/90
+
