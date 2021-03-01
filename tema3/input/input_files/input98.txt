@@ -1,0 +1,4 @@
+captcha98.bmp
+15 167 215
+1 9 2 3 7
+captchaB98.bmp

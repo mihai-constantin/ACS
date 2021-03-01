@@ -1,0 +1,4 @@
+captcha75.bmp
+191 40 222
+6 3 4 0 9
+captchaB75.bmp

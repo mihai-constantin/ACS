@@ -1,0 +1,4 @@
+captcha53.bmp
+223 205 5
+4 9
+captchaB53.bmp

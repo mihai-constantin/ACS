@@ -1,0 +1,4 @@
+captcha74.bmp
+95 0 80
+6 2 3 7
+captchaB74.bmp

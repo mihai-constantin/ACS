@@ -1,0 +1,4 @@
+captcha97.bmp
+249 30 36
+2 5 0 3
+captchaB97.bmp

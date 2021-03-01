@@ -1,0 +1,4 @@
+captcha3.bmp
+74 104 142
+2
+captchaB3.bmp

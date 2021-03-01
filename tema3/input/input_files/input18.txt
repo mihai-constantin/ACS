@@ -1,0 +1,4 @@
+captcha18.bmp
+209 244 119
+5 7 4 9
+captchaB18.bmp

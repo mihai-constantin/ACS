@@ -1,0 +1,4 @@
+captcha38.bmp
+223 199 2
+1 3 2 4 8
+captchaB38.bmp

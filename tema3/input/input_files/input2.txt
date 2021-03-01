@@ -1,0 +1,4 @@
+captcha2.bmp
+39 167 5
+1
+captchaB2.bmp

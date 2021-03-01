@@ -1,0 +1,4 @@
+captcha52.bmp
+45 227 158
+0 7
+captchaB52.bmp

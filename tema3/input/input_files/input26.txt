@@ -1,0 +1,4 @@
+captcha26.bmp
+11 103 172
+7 6 5 0 9 1
+captchaB26.bmp

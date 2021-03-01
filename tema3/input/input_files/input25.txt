@@ -1,0 +1,4 @@
+captcha25.bmp
+91 124 212
+0 8
+captchaB25.bmp

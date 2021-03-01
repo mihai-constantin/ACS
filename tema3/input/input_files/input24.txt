@@ -1,0 +1,4 @@
+captcha24.bmp
+235 132 20
+6 1 0
+captchaB24.bmp

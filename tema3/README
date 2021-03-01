@@ -1,0 +1,91 @@
+CONSTANTIN MIHAI - 311 CD
+
+Folosind scheletul de cod, am citit din fisierul binar urmatoarele structuri:
+
+-> FileHeader (de tip bmp_fileheader)
+-> InfoHeader (de tip bmp_infoheader)
+-> bmp_Image  (de tip unsigned char*)
+
+Am avut grija sa folosesc functia fseek() pentru a ma deplasa la inceputul matricei de pixeli, respectiv pentru a ignora padding-ul.
+Acesta din urma s-a calculat cu formula: InfoHeader.width % 4.
+
+Task_1
+
+Dupa citirea fileheader-ului si a infoheader-ului, le-am scris in fisierul binar de iesire, deoarece acestea nu sufera modificari.
+Citind linie cu linie matricea de pixeli, am verificat daca exista pixeli colorati, caz in care am modificat culoarea acestora, 
+folosind valorile din fisierul de intrare (B, G, R).
+Am scris linie cu linie in fisierul de iesire matricea de pixeli, avand grija sa adaug padding-ul (setat la 0) la finalul fiecarei linii.
+
+Task_2
+
+Dupa citire, am folosit o matrice bmp_matrix[InfoHeader.height][InfoHeader.width] pentru a codifica pixelii. 
+Daca pixelul este colorat, valoarea este 1, si 0 in caz contrar.
+
+In continuare, am codificat fiecare cifra intr-o matrice Matrix_digit[5][5]. 
+Parcurgand matricea bmp_matrix de la dreapta la stanga am verificat daca pixelul este colorat, caz in care am determinat cifra cu 
+ajutorul functiei valid(). La final, setez la 0 pixelii din cifra respectiva, folosind functia write().
+
+In acest moment, avem in output stringul inversat.
+Am citit in fisirul de iesire stringul, dupa care l-am afisat de la dreapta la stanga.
+
+Task_3
+
+Am folosit mai multe matrice pe parcurs pentru a codifica pixelii:
+
+Blue 	[InfoHeader.height] [InfoHeader.width] - valoarea B a pixelului (i, j) din matricea bmp_matrix
+Green 	[InfoHeader.height] [InfoHeader.width] - valoarea G a pixelului (i, j) din matricea bmp_matrix
+Red 	[InfoHeader.height] [InfoHeader.width] - valoarea R a pixelului (i, j) din matricea bmp_matrix
+
+final_Blue	[InfoHeader.height] [InfoHeader.width] - valoarea B a pixelului (i, j) din matricea final_bmp_matrix
+final_Green	[InfoHeader.height] [InfoHeader.width] - valoarea G a pixelului (i, j) din matricea final_bmp_matrix
+final_Red	[InfoHeader.height] [InfoHeader.width] - valoarea R a pixelului (i, j) din matricea final_bmp_matrix
+
+final_bmp_matrix [InfoHeader.height][InfoHeader.width] - codificarea finala a pixelilor dupa eliminarea cifrelor 
+
+De asemenea, am folosit o structura pentru a memora coordonatele coltului stanga sus ale fiecarei cifre din matricea de pixeli:
+
+typedef struct
+{
+     int x;
+     int y;
+}
+element;
+
+
+pos_cif		- memoreaza coordonatele coltului stanga sus ale tuturor cifrelor 
+pos_cif_left	- memoreaza coordonatele coltului stanga sus ale cifrelor ramase dupa eliminare
+
+La final am scris in fisierul de iesire fileheader-ul, infoheader-ul si matricea de pixeli, avand grija ca la finalul
+fiecarei linii sa adaug padding-ul (setat la valoarea 0).
+
+Bonus
+
+Am folosit o structura pentru a codifica luminitele:
+
+typedef struct
+{
+    int x;	-> coordonata de pe axa Ox a unei luminite 
+    int y;	-> coordonata de pe axa Oy a unei luminite
+    int Blue;	-> valoarea B a luminitei
+    int Green;	-> valoarea G a luminitei
+    int Red;	-> valoarea R a luminitei
+}
+element_2;
+
+De asemenea, am folosit matricele bmp_matrix, Blue, Green, Red cu semnificatiile de mai sus.
+
+Am parcurs matricea bmp_matrix si in momentul in care am intalnit un pixel colorat (bmp_matrix[i][j] == 1), i-am determinat noua culoare 
+in functie de luminitele din jurul sau. Pentru a determina daca un pixel din interiorul unei cifre se gaseste sau nu in raza de actiune a 
+unei luminite am folosit functia distance().
+
+La final, am scris in fisierul de iesire fileheader-ul, infoheader-ul si matricea de pixeli bmp_matrix, avand grija ca la finalul fiecarei 
+linii sa adaug padding-ul.
+
+
+
+
+
+
+
+
+

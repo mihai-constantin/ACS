@@ -1,0 +1,4 @@
+captcha5.bmp
+209 184 177
+2 0
+captchaB5.bmp

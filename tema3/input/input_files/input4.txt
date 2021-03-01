@@ -1,0 +1,4 @@
+captcha4.bmp
+61 39 223
+4
+captchaB4.bmp

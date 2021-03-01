@@ -1,0 +1,4 @@
+captcha7.bmp
+243 81 5
+1
+captchaB7.bmp

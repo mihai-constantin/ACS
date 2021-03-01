@@ -1,0 +1,4 @@
+captcha29.bmp
+217 169 74
+3 7 5
+captchaB29.bmp

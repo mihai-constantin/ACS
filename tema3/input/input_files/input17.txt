@@ -1,0 +1,4 @@
+captcha17.bmp
+222 227 185
+0 8 9
+captchaB17.bmp

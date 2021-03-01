@@ -1,0 +1,4 @@
+captcha36.bmp
+42 156 126
+0 1 9 7
+captchaB36.bmp

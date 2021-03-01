@@ -1,0 +1,4 @@
+captcha59.bmp
+186 186 134
+3 9 4
+captchaB59.bmp

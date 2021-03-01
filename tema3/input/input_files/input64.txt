@@ -1,0 +1,4 @@
+captcha64.bmp
+164 86 101
+0 8 6 3
+captchaB64.bmp

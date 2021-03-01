@@ -1,0 +1,4 @@
+captcha55.bmp
+97 97 193
+5 8 3
+captchaB55.bmp

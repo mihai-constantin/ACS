@@ -1,0 +1,4 @@
+captcha79.bmp
+69 227 49
+5 9
+captchaB79.bmp

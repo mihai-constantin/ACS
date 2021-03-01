@@ -1,0 +1,4 @@
+captcha35.bmp
+11 51 3
+3 1 5 9
+captchaB35.bmp

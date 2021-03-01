@@ -1,0 +1,4 @@
+captcha20.bmp
+53 210 84
+7 8 0 3
+captchaB20.bmp
