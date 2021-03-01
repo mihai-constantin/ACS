@@ -1,0 +1,21 @@
+FILE = main_referat
+
+pdf: $(FILE).pdf
+	evince $(FILE).pdf &
+
+cleanall:
+	rm -f *.dvi *.aux *.log  *.out *.bbl *.blg *.toc *.ps $(FILE).pdf	
+
+clean:
+	rm -f $(FILE).dvi $(FILE).aux $(FILE).log 
+
+cleanpdf:
+	rm $(FILE).pdf &
+
+$(FILE).pdf: $(FILE).tex 
+	pdflatex $(FILE)
+	pdflatex $(FILE)
+	bibtex $(FILE)
+	pdflatex $(FILE)
+
+.KEEP_STATE:

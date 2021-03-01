@@ -1,0 +1,1109 @@
+\documentclass[titlepage, a4paper,12pt]{article}
+
+% cod folosit din arhiva: line 7 -> line 77
+
+\usepackage{tikz}
+\usepackage[siunitx]{circuitikz}
+\usetikzlibrary{calc}    
+\tikzset{
+  dim above/.style={to path={\pgfextra{
+        \pgfinterruptpath
+        \draw[>=latex,|<->|] let
+        \p1=($(\tikztostart)!2mm!90:(\tikztotarget)$),
+        \p2=($(\tikztotarget)!2mm!-90:(\tikztostart)$)
+        in(\p1) -- (\p2) node[pos=.5,sloped,above]{#1};
+        \endpgfinterruptpath
+      }(\tikztostart) -- (\tikztotarget) \tikztonodes
+    }
+  },
+  dim below/.style={to path={\pgfextra{
+        \pgfinterruptpath
+        \draw[>=latex,|<->|] let 
+        \p1=($(\tikztostart)!2mm!90:(\tikztotarget)$),
+        \p2=($(\tikztotarget)!2mm!-90:(\tikztostart)$)
+        in (\p1) -- (\p2) node[pos=.5,sloped,below]{#1};
+        \endpgfinterruptpath
+      }(\tikztostart) -- (\tikztotarget) \tikztonodes
+    }
+  },
+}
+
+\usepackage{graphicx}
+\graphicspath{ {images/} } % director pentru imaginile pe care le inserez in document
+\usepackage[romanian]{babel}
+\usepackage[unicode]{hyperref} 
+\usepackage{amsmath,epsfig,pifont,calc,pifont,pstricks}
+\usepackage{rom} 						 % pentru a scrie cu diacritice in limba romana	
+\usepackage{color}
+\usepackage{listings}
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+\lstset{language=Matlab,%
+    %basicstyle=\color{red},
+    breaklines=true,%
+    morekeywords={matlab2tikz},
+    keywordstyle=\color{blue},%
+    morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+    identifierstyle=\color{black},%
+    stringstyle=\color{mylilas},
+    commentstyle=\color{mygreen},%
+    showstringspaces=false,%without this there will be a symbol in the places where there is a space
+    numbers=left,%
+    numberstyle={\tiny \color{black}},% size of the numbers
+    numbersep=9pt, % this defines how far the numbers are from the text
+    emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+    %emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
+
+%%% setari ale paginii
+%indentarea la inceput de paragraf
+\setlength{\parindent}{3ex}
+
+%dimensiunea textului pe pagina
+\setlength{\voffset}{-2cm}
+\setlength{\textheight}{23cm}  
+\setlength{\textwidth}{16cm}
+\setlength{\topmargin}{1cm}
+\setlength{\headsep}{1cm}
+\setlength{\headheight}{15pt}
+\renewcommand{\baselinestretch}{1.2}
+\newcommand{\myindent}{\hspace*{3ex}}
+%\renewcommand{\baselinestretch}{1}
+
+%margini
+\setlength{\oddsidemargin}{0.5cm}
+\setlength{\evensidemargin}{-0.3cm}
+%\raggedright
+\raggedbottom
+
+\usepackage{extarrows}
+\usepackage{multicol} % scriere pe mai multe coloane
+\usepackage{siunitx} % sist international de mas
+ 
+\usepackage[nottoc]{tocbibind}
+
+\newcommand\spatiu[1][0.2cm]{\hspace*{#1}} % tab
+\newcommand\tab[1][0.7cm]{\hspace*{#1}} % tab
+\newcommand\TAB[1][1.2cm]{\hspace*{#1}} % TAB
+
+\renewcommand\tablename{Tabelul}  % altfel scrie "Tabela"
+%\renewcommand\bibname{Referin'te}  % altfel scrie "Bibliografie" si acum referintele includ si pagini web
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Tema 2 - BE}
+\rhead{Constantin Mihai - 311 CD}
+
+\rfoot{\centering\thepage} % setare nr pagina centru
+
+\title{\line(1,0){350}\\ \Huge Bazele electrotehnicii \\ 
+\huge Tema 2 \\
+\line(1,0){350}
+}
+\author{{\em \Large Constantin Mihai} \\
+\large 311 CD \\ \\
+{\large Facultatea de Automatic\u{a} \c{s}i Calculatoare} \\
+\large \texttt{mihai.constantin98@gmail.com} 
+}
+\date{\today}
+
+\begin{document}
+
+\hbadness=1000000
+
+\maketitle
+
+\input{romanianCircuitSymbols.tex}
+
+\tableofcontents
+
+\newpage
+
+\section*{Enun\c{t}}
+
+\paragraph{1. Rezolvarea circuitelor de c.a.} \mbox{} 
+
+'In problema de circuit (f'ar'a surse comandate) pe care a'ti inventat-o la tema 1
+
+a) \begin{itemize}
+  \item Ad'auga'ti 'in serie cu un rezistor $R_1>0$ o bobin'a cu inductivitatea $L=x*100/\pi\spatiu\mathrm{mH}$, unde $x$ este egal'a numeric cu $R_1$.
+  \item Ad'auga'ti 'in paralel cu un rezistor $R_2>0$ un condensator cu capacitatea $C=y*100/\pi \spatiu\mu\mathrm{F}$, unde $y$ este egal'a numeric cu $R_2$.
+  \item Considera'ti $f=50\spatiu\mathrm{Hz}$.
+  \item Schimba'ti toate sursele independente 'in surse sinusoidale, cu frecven't'a $f$ 'si expresia $x(t)=X\sqrt{2}sin(\omega t+\varphi)$, unde $X$ este valoarea pe care o avusese sursa 'in c.c., iar pentru $\varphi$ alege'ti valori diferite din mul'timea $\big\{0,\pm\pi/2,\pm\pi/4\big\}$.
+  \item Desena'ti reprezentarea 'in complex a circuitului.
+  \item Aplica'ti aceea'si metod'a de rezolvare pe care a'ti folosit-o la tema 1 'si scrie'ti sistemul de ecua'tii de rezolvat 'in complex.
+  \item Scrie'ti un mic program Matlab/Octave pentru rezolvarea acestei probleme.
+\end{itemize}
+
+b) Completa'ti codul cu instruc'tiuni pentru verificarea bilan'tului de puteri 'in complex. \\ \par
+
+c) Ilustra'ti trecerea 'in timp a m'arimilor complexe pentru una din m'arimile ob'tinute.
+
+\paragraph{2. Rezolvarea circuitelor 'in regim tranzitoriu} \mbox{}
+
+'In problema de circuit (f'ar'a surse comandate) pe care a'ti inventat-o la tema 1
+
+a) \begin{itemize}
+  \item Ad'auga'ti 'in serie cu un rezistor $R_1>0$ o bobin'a cu inductivitatea $L=x*100/\pi\spatiu\mathrm{mH}$, unde $x$ este egal'a numeric cu $R_1$ (pute'ti p'astra aceea'si bobin'a ca la punctul 1).
+  \item Ad'auga'ti 'in paralel cu un rezistor $R_2>0$ un condensator cu capacitatea $C=y*100/\pi \spatiu\mu\mathrm{F}$, unde $y$ este egal'a numeric cu $R_2$ (pute'ti p'astra acela'si condensator ca la punctul 1).
+  \item Presupune'ti c'a la momentul $t=0$ apare un "defect" 'si se rupe o latur'a din circuit, alta dec\^at cea pe care a'ti 'inseriat bobina sau cea cu care a'ti conectat 'in paralel condensatorul.
+  \item Desena'ti schema 'in opera'tional a circuitului.
+  \item Scrie'ti sistemul de rezolvat 'si rezolva'ti-l simbolic 'intr-un mediu potrivit (Matlab, Octave).
+\end{itemize}
+
+b) Analiza'ti starea final'a 'si verifica'ti teoremele valorilor ini'tiale 'si finale. \\ \par
+
+c) Calcula'ti expresia instantanee a uneia dintre cele dou'a variabile de stare 'si reprezenta'ti-o grafic.
+
+\paragraph{3. Calculul 'si reprezentarea unui c\^amp electric} \mbox{}
+
+\begin{itemize}
+  \item Alege'ti o distribu'tie de sarcin'a care s'a depind'a numai de raz'a 'intr-un sistem de coordonate sferic.
+    \[   
+\rho(r, \theta, \phi) = 
+     \begin{cases}
+       \text{$f(r)$, $r \in \big[0,a\big]$} \\
+       \text{0, $r>a$} \\
+     \end{cases}
+\]
+
+Alege'ti expresia $f(r)$ cum dori'ti 'in afar'a de o func'tie constant'a.
+
+\end{itemize}
+
+a) Calcula'ti vectorul induc'tiei electrice $\overline{D}$, folosind legea fluxului magnetic. \par
+b) Reprezenta'ti spectrul lui $\overline{D}$. \par
+c) Reprezenta'ti echivalori ale $\mid\overline{D}\mid$.
+
+\newpage
+
+\section{Rezolvarea circuitelor de c.a.}
+
+\subsection{Subpunctul a)} \mbox{}
+
+Am folosit circuitul inventat la tema 1, la care am ad'augat o bobin'a 'in serie cu rezistorul $R_1$ 'si un condensator 'in paralel cu rezistorul $R_4$. Circuitul nou format este reprezentat 'in Fig.~\ref{fig:circuit1}.
+
+Valorile elementelor de circuit sunt:
+
+\begin{multicols}{3}
+
+\begin{equation}
+\left\{
+\begin{array}{ccl}
+R_1 & = & 6\Omega \\
+R_2 & = & 2\Omega\\
+R_3 & = & 1\Omega \\
+R_4 & = & 1\Omega
+\end{array}  
+\right. \nonumber % marcarea inchiderii - falsa; blocarea numerotarii
+\end{equation}
+
+\columnbreak
+
+\begin{equation}
+\left\{
+\begin{array}{ccl}
+J_1 & = & \SI{-6}{\ampere} \\
+J_2 & = & \SI{2}{\ampere} \\
+J_3 & = & \SI{3}{\ampere}
+\end{array}  
+\right. \nonumber % marcarea inchiderii - falsa; blocarea numerotarii
+\end{equation}
+
+\columnbreak
+
+\begin{equation}
+\left\{
+\begin{array}{ccl}
+E_1 & = & \SI{-2}{\volt} \\
+E_2 & = & \SI{4}{\volt}
+\end{array}  
+\right. \nonumber % marcarea inchiderii - falsa; blocarea numerotarii
+\end{equation}
+
+\end{multicols}
+
+% Circuitul
+
+\begin{figure} [ht]
+    \begin{center}
+
+    \begin{circuitikz}[scale=1.2,european resistors,american inductors]
+    
+    \draw[black, thick]
+    % coarborele
+    (-2,2) to [romanianCurrentSource, l=${J_3}$] (2,2)
+    (-2,-2) to [romanianCurrentSource, l=${J_2}$] (2,-2)
+    (-2,-2) to [romanianCurrentSource, l=${J_1}$] (0,0)
+    (-2, 2) -- (-6,2) to [R, l=${R_1}$] (-6,-2) to [L, l_=${L=600/\pi\spatiu\mathrm{mH}}$] (-2,-2)
+    
+    (2,2) -- (3.5,2) to [R, l=${R_4}$] (3.5,-2) -- (2,-2)
+    
+    (3.5,2) -- (5,2) to[C, l=${C=100/\pi\spatiu\mathrm{\mu H}}$] (5,-2) -- (3.5,-2)
+    
+    %nodurile
+    (-2,2.3) node{(1)}
+    (2,2.3) node{(2)}
+    (0,0.4) node{(3)}
+    (-2,-2.3) node{(4)}
+    (2,-2.3) node{(5)};
+    
+    \draw[red, thick]
+    %elementele de cicuit de pe arbore
+    (-2,2) to [R, l=\color{black}${R_2}$, *-*] (-2,-2)
+    (0,0) to [R, l=\color{black}${R_3}$, *-*] (2,2)
+    (-2,2) to [romanianVoltageSource, l=\color{black}$E_1$] (0,0)
+    (2,2) to [romanianVoltageSource, l=\color{black}$E_2$, -*] (2,-2)
+    
+    ;\end{circuitikz}
+ \caption{Graful circuitului.}
+   \label{fig:circuit1}
+   \end{center}
+\end{figure}
+
+Am calculat valoarea inductivit'a'tii $L$ 'si a capacit'a'tii $C$:
+
+\begin{equation}
+\left\{
+\begin{array}{ccl}
+L & = & \frac{R_1 * 100}{\pi} \spatiu mH = \frac{600}{\pi} \spatiu mH \\
+C & = & \frac{R_4 * 100}{\pi} \spatiu \mu F = \frac{100}{\pi} \spatiu \mu F
+\end{array}  
+\right. \nonumber % marcarea inchiderii - falsa; blocarea numerotarii
+\end{equation} \\
+
+Deoarece valoarea frecven'tei $f$ este egal'a cu $50 \spatiu \mathrm{Hz} \Rightarrow \omega = 2\pi f=100\pi$
+
+\newpage
+
+Am trecut m'arimile 'in regim sinusoidal 'si am ob'tinut urm'atoarele rezultate:
+
+% SIC
+
+\begin{equation}
+\left\{
+\begin{array}{ccl}
+j_1(t) & = & -6\sqrt{2}sin(100\pi t - \frac{\pi}{2}) = -6e^{-\frac{j\pi}{2}} = -6[cos({-\frac{\pi}{2}}) + jsin({-\frac{\pi}{2}})] = 6j \\ \\
+j_2(t) & = & 2\sqrt{2}sin(100\pi t + \frac{\pi}{4}) = 2e^{\frac{j\pi}{4}} = 2[cos({\frac{\pi}{4}}) + jsin({\frac{\pi}{4}})] = \sqrt{2}(1 + j) \\ \\
+j_3(t) & = & 3\sqrt{2}sin(100\pi t - \frac{\pi}{4}) = 3e^{-\frac{j\pi}{4}} = 3[cos({-\frac{\pi}{4}}) + jsin({-\frac{\pi}{4}})] = \frac{3\sqrt{2}}{2}(1 - j)
+\end{array}  
+\right. \nonumber % marcarea inchiderii - falsa; blocarea numerotarii
+\end{equation}
+
+% SIT
+\begin{equation}
+\left\{
+\begin{array}{ccl}
+e_1(t) & = & -2\sqrt{2}sin(100\pi t + 0) = -2e^{j*0} = -2 \\ \\
+e_2(t) & = & 4\sqrt{2}sin(100\pi t + \frac{\pi}{2}) = 4e^{\frac{j\pi}{2}} = 4[cos({\frac{\pi}{2}}) + jsin({\frac{\pi}{2}})] = 4j
+\end{array}  
+\right. \nonumber % marcarea inchiderii - falsa; blocarea numerotarii
+\end{equation}
+
+% R
+
+\begin{equation}
+\left\{
+\begin{array}{ccl}
+\underline{z_{R_1}} & = & R_1 = 6\Omega \\
+\underline{z_{R_2}} & = & R_2 = 2\Omega\\
+\underline{z_{R_3}} & = & R_3 = 1\Omega \\
+\underline{z_{R_4}} & = & R_4 = 1\Omega
+\end{array}  
+\right. \nonumber % marcarea inchiderii - falsa; blocarea numerotarii
+\end{equation}
+
+% z_L & z_C
+
+\begin{equation}
+\left\{
+\begin{array}{ccl}
+\underline{z_{L}} & = & j\omega L = 60j \\
+\underline{z_{C}} & = & -\frac{j}{\omega C} = -100j
+\end{array}  
+\right. \nonumber % marcarea inchiderii - falsa; blocarea numerotarii
+\end{equation} \\
+
+Reprezentarea 'in complex a circuitului este realizat'a 'in Fig.~\ref{fig:circuit2}.
+
+% Circuitul
+
+\begin{figure} [ht]
+    \begin{center}
+
+    \begin{circuitikz}[scale=1.2,european resistors,american inductors]
+    
+    \draw[black, thick]
+    % coarborele
+    (-2,2) to [romanianCurrentSource, l=${j_3(t)}$] (2,2)
+    (-2,-2) to [romanianCurrentSource, l=${j_2(t)}$] (2,-2)
+    (-2,-2) to [romanianCurrentSource, l=${j_1(t)}$] (0,0)
+    (-2, 2) -- (-6,2) to [R, l=${z_{R_1}}$] (-6,-2) to [R, l_=${z_L}$] (-2,-2)
+    
+    (2,2) -- (3.5,2) to [R, l=${z_{R_4}}$] (3.5,-2) -- (2,-2)
+    
+    (3.5,2) -- (5,2) to[R, l=${z_C}$] (5,-2) -- (3.5,-2)
+    
+    %nodurile
+    (-2,2.3) node{(1)}
+    (2,2.3) node{(2)}
+    (0,0.4) node{(3)}
+    (-2,-2.3) node{(4)}
+    (2,-2.3) node{(5)};
+    
+    \draw[red, thick]
+    %elementele de cicuit de pe arbore
+    (-2,2) to [R, l=\color{black}${z_{R_2}}$, *-*] (-2,-2)
+    (0,0) to [R, l=\color{black}${z_{R_3}}$, *-*] (2,2)
+    (-2,2) to [romanianVoltageSource, l=\color{black}$e_1(t)$] (0,0)
+    (2,2) to [romanianVoltageSource, l=\color{black}$e_2(t)$, -*] (2,-2)
+    
+    ;\end{circuitikz}
+ \caption{Circuitul 'in complex.}
+   \label{fig:circuit2}
+   \end{center}
+\end{figure} 
+
+\newpage
+
+{\Large
+$z_s=z_{R_1} + z_L=6+60j$ \\
+
+$z_{p_1}=\frac{z_s*z_{R_2}}{z_s+z_{R_2}}=\frac{(6+60j)*2}{8+60j}=\frac{456+15j}{229}$ \\
+
+$z_{p_2}=\frac{z_{R_4}*z_C}{z_{R_4}+z_C}=\frac{-100j}{1-100j} = \frac{10^4-100j}{10^4+1}$ \\
+}
+
+Circuitul devine:
+
+% Circuitul
+
+\begin{figure} [ht]
+    \begin{center}
+
+    \begin{circuitikz}[scale=2,european resistors,american inductors]
+    
+    \draw[black, thick]
+    % coarborele
+    (-2,2) to [romanianCurrentSource, l=${j_3(t)}$] (2,2)
+    (-2,-2) to [romanianCurrentSource, l=${j_2(t)}$, *-] (2,-2)
+    (-2,-2) to [romanianCurrentSource, l=${j_1(t)}$] (0,0)
+    
+    
+    (2,2) -- (3.5,2) to [R, l=${z_{p_2}}$] (3.5,-2) -- (2,-2)
+    
+    %(3.5,2) -- (5,2) to[R, l=${z_C}$] (5,-2) -- (3.5,-2)
+    
+    %nodurile
+    (-2,2.3) node{(1)}
+    (2,2.3) node{(2)}
+    (0,0.4) node{(3)}
+    (-2,-2.3) node{(4)}
+    (2,-2.3) node{(5)};
+    
+    \draw[red, thick]
+    %elementele de cicuit de pe arbore
+    (-2,2) to [R, l_=\color{black}${z_{p_1}}$, *-*] (-2,-2)
+    (0,0) to [R, l=\color{black}${z_{R_3}}$, *-*] (2,2)
+    (-2,2) to [romanianVoltageSource, l=\color{black}$e_1(t)$, *-] (0,0)
+    (2,2) to [romanianVoltageSource, l=\color{black}$e_2(t)$, -*] (2,-2)
+    
+    ;\end{circuitikz}
+ \caption{Circuitul 'in complex.}
+   \label{fig:circuit3}
+   \end{center}
+\end{figure} 
+
+\newpage
+
+Am aplicat metoda \textit{\textbf{Kirchhoff+}}. Topologia circuitului este:
+
+\begin{equation}
+\left\{
+\begin{array}{ccl} % c - centrat, l - aliniat la stanga
+N & = &5 \tab noduri \\
+L & = & 8 \tab laturi
+\end{array}  
+\right. \nonumber % marcarea inchiderii - falsa; blocarea numerotarii
+\end{equation}\\
+
+Graful intensit'a'tilor este reprezentat 'in Fig.~\ref{fig:circuit4}.
+
+% GI
+
+\begin{figure} [ht]
+    \begin{center}
+
+    \begin{circuitikz}[scale=1.35,european resistors,american inductors]
+    
+    \draw[black, thick]
+    % coarborele
+    (-2,2) to [short, i=$i_3$] (2,2)
+    (-2,-2) to [short, i=$i_2$, *-] (2,-2)
+    (-2,-2) to [short, i=$i_1$] (0,0)
+    
+    (2,2) -- (3.5,2) to [short, i<=$i_8$] (3.5,-2) -- (2,-2)
+    
+    %nodurile
+    (-2,2.3) node{(1)}
+    (2,2.3) node{(2)}
+    (0,0.4) node{(3)}
+    (-2,-2.3) node{(4)}
+    (2,-2.3) node{(5)};
+    
+    \draw[red, thick]
+    %elementele de cicuit de pe arbore
+    (-2,2) to [short, i=$i_4$, color = red, *-*] (-2,-2)
+    (0,0) to [short, i=$i_6$, color = red, *-*] (2,2)
+    (-2,2) to [short, i=$i_5$, color = red, *-] (0,0)
+    (2,-2) to [short, i=$i_7$, color = red, *-] (2, 2)
+    
+    ;\end{circuitikz}
+ \caption{Graful de intensit'a'ti.}
+   \label{fig:circuit4}
+   \end{center}
+\end{figure} 
+
+Graful tensiunilor este reprezentat 'in Fig.~\ref{fig:circuit5}.
+
+%GU
+
+\begin{figure} [ht]
+    \begin{center}
+
+    \begin{circuitikz}[scale=1.35,european resistors,american inductors]
+    
+    \draw[black, thick]
+    % coarborele
+    (-2,2) to [short, v=$u_3$] (2,2)
+    (-2,-2) to [short, v=$u_2$, *-] (2,-2)
+    (-2,-2) to [short, v=$u_1$] (0,0)
+    
+    (2,2) -- (3.5,2) to [short, v=$u_8$] (3.5,-2) -- (2,-2)
+    
+    %nodurile
+    (-2,2.3) node{(1)}
+    (2,2.3) node{(2)}
+    (0,0.4) node{(3)}
+    (-2,-2.3) node{(4)}
+    (2,-2.3) node{(5)};
+    
+    \draw[red, thick]
+    %elementele de cicuit de pe arbore
+    (-2,2) to [short, v<=$u_4$, color = red, *-*] (-2,-2)
+    (0,0) to [short, v=$u_6$, color = red, *-*] (2,2)
+    (-2,2) to [short, v=$u_5$, color = red, *-] (0,0)
+    (2,2) to [short, v=$u_7$, color = red, -*] (2,-2)
+    
+    ;\end{circuitikz}
+ \caption{Graful de tensiuni.}
+   \label{fig:circuit5}
+   \end{center}
+\end{figure}
+
+\newpage
+
+Aplic\^{a}nd legea II a lui Kirchhoff pe fiecare bucl'a din sistemul fundamental, au rezultat $L-N+1 = 4$ ecua'tii din care am aflat tensiunile de pe coarde:
+
+\begin{equation}
+\left\{
+\begin{array}{ccl}
+i_4z_{p_1} + u_1 & = & -e_1(t) \\
+i_6z_{R_3}-u_3 & = & e_1(t) \\
+-i_6z_{R_3}+i_4z_{p_1}+u_2 & = & -e_1(t)-e_2(t) \\
+i_8z_{p_2} & = & e_2(t)
+\end{array}  
+\right. \nonumber % marcarea inchiderii - falsa; blocarea numerotarii
+\end{equation}
+
+Folosind nota'tia standard pentru un sistem de ecua'tii algebrice liniare $\textbf{\textit{Ax=b}}$, am ob'tinut urm'atoarea egalitate:
+
+\[ \left( \begin{array}{ccccc}
+z_{p_2} & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1
+\end{array} \right)
+%
+\left( \begin{array}{c}
+i_8 \\
+u_ 1\\
+u_2 \\
+u_3
+\end{array} \right)
+=
+\left( \begin{array}{c}
+e_2(t) \\
+-i_4z_{p_1}-e_1(t) \\
+i_6z_{R_3}-i_4z_{p_1}-e_1(t)-e_2(t) \\
+i_6z_{R_3}-e_1(t)
+\end{array} \right),
+\]
+unde matricea coeficien'tilor A are dimensiunea $(4\times4)$, iar vectorul necunoscutelor 'si cel al termenilor liberi au dimensiunea $(4\times1)$.\newline
+
+Solu'tia sistemului este:
+\begin{equation}
+\left\{
+\begin{array}{ccl}
+i_8 & = & -0.04 +  4j \\
+u_1 & = & -0.33043 - 14.85631j \\
+u_2 & = & -3.86596 - 18.14920j \\
+u_3 & = & -1.53553 +  0.70711j
+\end{array}  
+\right. \nonumber % marcarea inchiderii - falsa; blocarea numerotarii
+\end{equation}
+
+\begin{center}
+\includegraphics[width=15cm]{kirchhoff.png}
+\end{center}
+
+Valorile intensit'a'tilor din circuit sunt:
+
+\begin{equation}
+\left\{
+\begin{array}{ccl}
+\underline{i_1} & = & j_1(t) = 6j \\
+\underline{i_2} & = & j_2(t) = \sqrt{2}(1+j) \\
+\underline{i_3} & = & j_3(t) = \frac{3\sqrt{2}}{2}(1-j)\\
+\underline{i_4} & = & i_1 + i_2 = \sqrt{2} + j(6+\sqrt{2}) \\
+\underline{i_5} & = & -i_3 - i_4 = -\frac{5\sqrt{2}}{2} + j(\frac{\sqrt{2}}{2}-6) \\
+\underline{i_6} & = & i_1 + i_5 = -\frac{5\sqrt{2}}{2} + j\frac{\sqrt{2}}{2} \\
+\underline{i_7} & = & i_2-i_8 = \sqrt{2}(1+j) - i_8 = 1.4542 - 2.5858j\\
+\underline{i_8} & = & -0.04 +  4j
+\end{array}  
+\right. \nonumber % marcarea inchiderii - falsa; blocarea numerotarii
+\end{equation} \\
+
+Valorile tensiunilor din circuit sunt:
+
+\begin{equation}
+\left\{
+\begin{array}{ccl}
+\underline{u_1} & = & -0.33043 - 14.85631j \\
+\underline{u_2} & = & -3.86596 - 18.14920j \\
+\underline{u_3} & = & -1.53553 +  0.70711j \\
+\underline{u_4} & = & u_1 - u_5 = -2.3304 - 14.8563j \\
+\underline{u_5} & = & -e_1(t) = 2 \\
+\underline{u_6} & = & u_3 - u_5 = -3.53553 + 0.70711j \\
+\underline{u_7} & = & -e_2(t) = -4j \\
+\underline{u_8} & = & u_7 = -4j
+\end{array}  
+\right. \nonumber % marcarea inchiderii - falsa; blocarea numerotarii
+\end{equation} 
+
+Trec toate valorile din complex 'in scriere sinusoidal'a, cu ajutorul unei functii Octave.
+
+\begin{center}
+\includegraphics[width=15cm]{sin.png}
+\end{center}
+
+
+\newpage
+
+
+\subsection{Subpunctul b)} \mbox{}
+
+'In continuare, am realizat \textbf{bilan'tul de puteri} pentru a verifica faptul c'a am calculat corect elementele de circuit.
+
+$$\underline{S_{gen}}=\sum_{k=1}^{n_{SIT}} \underline{E_k}*\underline{I_k}' + \sum_{k=1}^{n_{SIC}}\underline{U_{g_k}}*\underline{J_k}'$$
+$$\underline{S_{cons}}=\sum_{k=1}^{n_{z}} \underline{z_k} * \mid \underline{I_k} \mid ^2 $$
+
+Calculul puterilor a fost determinat cu ajutorul unei func'tii Octave.
+
+\begin{center}
+\includegraphics[width=10cm]{puteri.png}
+\end{center}
+
+\subsection{Subpunctul c)} \mbox{}
+
+Am trasat graficul ce prezint'a evolu'tia 'in timp a parametrului $j_2(t)$.
+
+\begin{center}
+\includegraphics[width=12cm]{grafic.png}
+\end{center}
+
+
+\section{Rezolvarea circuitelor 'in regim tranzitoriu}
+
+\subsection{Subpunctul a)} \mbox{}
+
+Am folosit circuitul inventat la tema 1, la care am ad'augat o bobin'a 'in serie cu rezistorul $R_1$ 'si un condensator 'in paralel cu rezistorul $R_4$. Circuitul nou format este reprezentat 'in Fig.~\ref{fig:circuit6}.
+
+% Circuitul
+
+\begin{figure} [ht]
+    \begin{center}
+
+    \begin{circuitikz}[scale=1.2,european resistors,american inductors]
+    
+    \draw[black, thick]
+    % coarborele
+    (-2,2) to [romanianCurrentSource, l=${J_3}$] (2,2)
+    (-2,-2) to [romanianCurrentSource, l=${J_2}$] (2,-2)
+    (-2,-2) to [romanianCurrentSource, l=${J_1}$] (0,0)
+    (-2, 2) -- (-6,2) to [R, l=${R_1}$] (-6,-2) to [L, l_=${L=600/\pi\spatiu\mathrm{mH}}$] (-2,-2)
+    
+    (2,2) -- (3.5,2) to [R, l=${R_4}$] (3.5,-2) -- (2,-2)
+    
+    (3.5,2) -- (5,2) to[C, l=${C=100/\pi\spatiu\mathrm{\mu H}}$] (5,-2) -- (3.5,-2)
+    
+    %nodurile
+    (-2,2.3) node{(1)}
+    (2,2.3) node{(2)}
+    (0,0.4) node{(3)}
+    (-2,-2.3) node{(4)}
+    (2,-2.3) node{(5)};
+    
+    \draw[red, thick]
+    %elementele de cicuit de pe arbore
+    (-2,2) to [R, l=\color{black}${R_2}$, *-*] (-2,-2)
+    (0,0) to [R, l=\color{black}${R_3}$, *-*] (2,2)
+    (-2,2) to [romanianVoltageSource, l=\color{black}$E_1$] (0,0)
+    (2,2) to [romanianVoltageSource, l=\color{black}$E_2$, -*] (2,-2)
+    
+    ;\end{circuitikz}
+ \caption{Graful circuitului.}
+   \label{fig:circuit6}
+   \end{center}
+\end{figure}
+
+Am calculat valoarea inductivit'a'tii $L$ 'si a capacit'a'tii $C$:
+
+\begin{equation}
+\left\{
+\begin{array}{ccl}
+L & = & \frac{R_1 * 100}{\pi} \spatiu mH = \frac{600}{\pi} \spatiu mH \\
+C & = & \frac{R_4 * 100}{\pi} \spatiu \mu F = \frac{100}{\pi} \spatiu \mu F
+\end{array}  
+\right. \nonumber % marcarea inchiderii - falsa; blocarea numerotarii
+\end{equation} \\
+
+Am considerat c'a la momentul $t=0$ apare un defect 'in circuit 'si se rupe latura ce con'tine sursa ideal'a de tensiune $E_2$. \\
+
+La $t=0_-$, circuitul este 'in curent continuu. Bobina se comport'a ca un conductor perfect ($R\rightarrow0$), 'in timp ce condensatorul ca un izolator perfect ($R\rightarrow\infty$). Latura nu este 'inc'a rupt'a. Circuitul la $t=0_-$ este ilustrat 'in Fig.~\ref{fig:circuit7}.
+
+Circuitul este identic cu cel de la tema 1, de unde rezult'a:
+
+\begin{equation}
+\left\{
+\begin{array}{ccl}
+u_{C_{(0_-)}} & = & \SI{4}{\volt} \\
+i_{L_{(0_-)}} & = & \SI{1}{\ampere}
+\end{array}  
+\right. \nonumber % marcarea inchiderii - falsa; blocarea numerotarii
+\end{equation}
+
+% Circuitul
+
+\begin{figure} [ht]
+    \begin{center}
+
+    \begin{circuitikz}[scale=1.2,european resistors,american inductors]
+    
+    \draw[black, thick]
+    % coarborele
+    (-2,2) to [romanianCurrentSource, l=${J_3}$] (2,2)
+    (-2,-2) to [romanianCurrentSource, l=${J_2}$] (2,-2)
+    (-2,-2) to [romanianCurrentSource, l=${J_1}$] (0,0)
+    (-2, 2) -- (-6,2) to [R, l=${R_1}$] (-6,-2) to [short, i<=$i_{L_{(0_-)}}$] (-2,-2)
+    
+    (2,2) -- (3.5,2) to [R, l=${R_4}$] (3.5,-2) -- (2,-2)
+    
+    (3.5,2) -- (5,2) -- (5, 0.5)
+    (5, -0.5) -- (5,-2) -- (3.5,-2)
+    
+    (5, 0.5) to [open, v^<=$u_{C_{(0_-)}}$,*-*] (5, -0.5)
+    
+    %nodurile
+    (-2,2.3) node{(1)}
+    (2,2.3) node{(2)}
+    (0,0.4) node{(3)}
+    (-2,-2.3) node{(4)}
+    (2,-2.3) node{(5)};
+    
+    \draw[red, thick]
+    %elementele de cicuit de pe arbore
+    (-2,2) to [R, l=\color{black}${R_2}$, *-*] (-2,-2)
+    (0,0) to [R, l=\color{black}${R_3}$, *-*] (2,2)
+    (-2,2) to [romanianVoltageSource, l=\color{black}$E_1$] (0,0)
+    (2,2) to [romanianVoltageSource, l=\color{black}$E_2$, -*] (2,-2)
+    
+    ;\end{circuitikz}
+ \caption{Graful circuitului la $t=0_-$}
+   \label{fig:circuit7}
+   \end{center}
+\end{figure}
+
+La $t \rightarrow \infty$, circuitul este 'in curent continuu. Precum la $t=0_-$, bobina se comport'a ca un conductor perfect ($R\rightarrow0$), iar condensatorul ca un izolator perfect ($R\rightarrow\infty$). Latura ce con'tine sursa $E_2$ este rupt'a. Graful circuitului la $t \rightarrow \infty$ este reprezentat 'in Fig.~\ref{fig:circuit9}.
+
+% Circuitul
+
+\begin{figure} [ht]
+    \begin{center}
+
+    \begin{circuitikz}[scale=1.2,european resistors,american inductors]
+    
+    \draw[black, thick]
+    % coarborele
+    (-2,2) to [romanianCurrentSource, l=${J_3}$] (2,2)
+    (-2,-2) to [romanianCurrentSource, l=${J_2}$] (2,-2)
+    (-2,-2) to [romanianCurrentSource, l=${J_1}$] (0,0)
+    (-2, 2) -- (-6,2) to [R, l=${R_1}$] (-6,-2) to [short, i<=$i_{L_{\infty}}$] (-2,-2)
+    
+    (2,2) -- (3.5,2) -- (3.5, 0.5) to [open, v^<=$u_{C_{\infty}}$,*-*] (3.5, -0.5) -- (3.5,-2) -- (2,-2)
+    
+    %nodurile
+    (-2,2.3) node{(1)}
+    (2,2.3) node{(2)}
+    (0,0.4) node{(3)}
+    (-2,-2.3) node{(4)}
+    (2,-2.3) node{(5)};
+    
+    \draw[red, thick]
+    %elementele de cicuit de pe arbore
+    (-2,2) to [R, l=\color{black}${R_2}$, *-*] (-2,-2)
+    (0,0) to [R, l=\color{black}${R_3}$, *-*] (2,2)
+    (-2,2) to [romanianVoltageSource, l=\color{black}$E_1$] (0,0)
+    %(2,2) to [romanianVoltageSource, l=\color{black}$E_2$, -*] (2,-2)
+    (2,2) to [R, l=\color{black}${R_4}$] (2,-2)
+    
+    ;\end{circuitikz}
+ \caption{Graful circuitului la $t \rightarrow \infty$}
+   \label{fig:circuit9}
+   \end{center}
+\end{figure}
+
+\newpage
+
+Pentru a calcula valorile intensit'a'tilor 'si tensiunilor la $t \rightarrow \infty$ am folosit simulatorul Spice.
+
+\includegraphics[width=2.5cm]{netlist_t_inf.PNG} \TAB
+\includegraphics[width=7.5cm]{result_netlist_t_inf.PNG} \\
+
+Graful de intensit'a'ti 'si de tensiuni sunt reprezentate 'in Fig.~\ref{fig:circuit10}, resprectiv 'in Fig.~\ref{fig:circuit11}.
+
+% Circuitul
+
+\begin{figure} [ht]
+    \begin{center}
+
+    \begin{circuitikz}[scale=1,european resistors,american inductors]
+    
+    \draw[black, thick]
+    % coarborele
+    (-2,2) to [short, i>=\SI{3}{\ampere}] (2,2)
+    (-2,-2) to [short, i>=\SI{2}{\ampere}] (2,-2)
+    (-2,-2) to [short, i<=\SI{6}{\ampere}] (0,0)
+    (-2, 2) -- (-6,2) -- (-6,-2) to [short, i<=\SI{1}{\ampere}] (-2,-2)
+    
+    %(2,2) -- (3.5,2) -- (3.5, 0.5) to [open, v^<=$u_{C_{\infty}}$,*-*] (3.5, -0.5) -- (3.5,-2) -- (2,-2)
+    
+    %nodurile
+    (-2,2.3) node{(1)}
+    (2,2.3) node{(2)}
+    (0,0.4) node{(3)}
+    (-2,-2.3) node{(4)}
+    (2,-2.3) node{(0)};
+    
+    \draw[red, thick]
+    %elementele de cicuit de pe arbore
+    (-2,2) to [short, i<=\color{black}\SI{3}{\ampere}, *-*] (-2,-2)
+    (0,0) to [short, i<=\color{black}\SI{5}{\ampere}, *-*] (2,2)
+    (-2,2) to [short, i>=\color{black}\SI{1}{\ampere}] (0,0)
+    %(2,2) to [romanianVoltageSource, l=\color{black}$E_2$, -*] (2,-2)
+    (2,2) to [short, i<=\color{black}\SI{2}{\ampere}] (2,-2)
+    
+    ;\end{circuitikz}
+ \caption{Graful intensit'a'tilor la $t \rightarrow \infty$}
+   \label{fig:circuit10}
+   \end{center}
+\end{figure}
+
+% Circuitul
+
+\begin{figure} [ht]
+    \begin{center}
+
+    \begin{circuitikz}[scale=1,european resistors,american inductors]
+    
+    \draw[black, thick]
+    % coarborele
+    (-2,2) to [short, v=\SI{-3}{\volt}, *-*] (2,2)
+    (-2,-2) to [short, v^<=\SI{-1}{\volt}, *-*] (2,-2)
+    (-2,-2) to [short, v<=\SI{-8}{\volt}, *-*] (0,0)
+    (-2, 2) -- (-6,2) -- (-6,-2) -- (-2,-2)
+    
+    (-2,2) to [short, v<=\color{black}\SI{6}{\volt}, color = black, *-*] (-2,-2)
+    
+    %nodurile
+    (-2,2.3) node{(1)}
+    (2,2.3) node{(2)}
+    (0,0.4) node{(3)}
+    (-2,-2.3) node{(4)}
+    (2,-2.3) node{(0)};
+    
+    \draw[red, thick]
+    %elementele de cicuit de pe arbore
+    (-2,2) to [short, v^<=\SI{6}{\volt}, color = red, *-*] (-2,-2)
+    (0,0) to [short, v^<=\SI{5}{\volt}, color = red, *-*] (2,2)
+    (-2,2) to [short, v^>=\SI{2}{\volt}, color = red, *-*] (0,0)
+    %(2,2) to [romanianVoltageSource, l=\color{black}$E_2$, -*] (2,-2)
+    (2,2) to [short, v>=\SI{-2}{\volt}, color = red, *-*] (2,-2)
+    
+    ;\end{circuitikz}
+ \caption{Graful tensiunilor la $t \rightarrow \infty$}
+   \label{fig:circuit11}
+   \end{center}
+\end{figure}
+
+Rezult'a urm'atoarele valori pentru parametri c'auta'ti:
+
+\begin{equation}
+\left\{
+\begin{array}{ccl}
+u_{C_{\infty}} & = & \SI{2}{\volt} \\
+i_{L_{\infty}} & = & \SI{1}{\ampere}
+\end{array}  
+\right. \nonumber % marcarea inchiderii - falsa; blocarea numerotarii
+\end{equation} \\
+
+La $t=0_+$, latura este rupt'a. Reprezentarea circuitului 'in opera'tional este ilustrat'a 'in Fig.~\ref{fig:circuit8}.
+
+% Circuitul
+
+\begin{figure} [ht]
+    \begin{center}
+
+    \begin{circuitikz}[scale=1.2,european resistors,american inductors]
+    
+    \draw[black, thick]
+    % coarborele
+    (-2,2) to [romanianCurrentSource, l=${J_3}$] (2,2)
+    (-2,-2) to [romanianCurrentSource, l=${J_2}$] (2,-2)
+    (-2,-2) to [romanianCurrentSource, l=${J_1}$] (0,0)
+    (-2, 2) -- (-6,2) to [R, l=${R_1 + z_L(s)}$] (-6,-2)
+    
+    (-2,-2) to [romanianVoltageSource, l=\color{black}$E_L(s)$] (-6,-2)
+    
+    (2,2) -- (6,2) to [romanianVoltageSource, l=\color{black}$E_C(s)$] (6,-2) to [R, l=${z_C(s)}$] (2,-2)
+    
+    %nodurile
+    (-2,2.3) node{(1)}
+    (2,2.3) node{(2)}
+    (0,0.4) node{(3)}
+    (-2,-2.3) node{(4)}
+    (2,-2.3) node{(5)};
+    
+    \draw[red, thick]
+    %elementele de cicuit de pe arbore
+    (-2,2) to [R, l=\color{black}${R_2}$, *-*] (-2,-2)
+    (0,0) to [R, l=\color{black}${R_3}$, *-*] (2,2)
+    (-2,2) to [romanianVoltageSource, l=\color{black}$E_1$] (0,0)
+    %(2,2) to [romanianVoltageSource, l=\color{black}$E_2$, -*] (2,-2)
+    (2,2) to [R, l=\color{black}${R_4}$] (2,-2)
+    
+    ;\end{circuitikz}
+ \caption{Reprezentarea circuitului 'in opera'tional.}
+   \label{fig:circuit8}
+   \end{center}
+\end{figure}
+
+Parametri bobin'a:
+
+\begin{equation}
+\left\{
+\begin{array}{ccl}
+z_L(s) & = & s*L = s * \frac{600 * 10^{-3}}{\pi}= \frac{0.6s}{\pi} \\
+E_L(s) & = & L * i_{L_{(0_-)}} = \frac{600 * 10^{-3}}{\pi} * 1 = \frac{0.6}{\pi}
+\end{array}  
+\right. \nonumber % marcarea inchiderii - falsa; blocarea numerotarii
+\end{equation} \\
+
+Parametri condensator:
+
+\begin{equation}
+\left\{
+\begin{array}{ccl}
+z_C(s) & = & \frac{1}{sC} = \frac{1}{s * \frac{100 * 10^{-6}}{\pi}}= \frac{10^{4}\pi}{s} \\
+E_C(s) & = & \frac{u_{C_{(0_-)}}}{s} = \frac{4}{s}
+\end{array}  
+\right. \nonumber % marcarea inchiderii - falsa; blocarea numerotarii
+\end{equation} \\
+
+Am aplicat metoda Kirchhoff pentru a determina intensit'a'tile de pe laturile care nu sunt de tip SIC 'si tensiunile de pe laturile de tip SIC.
+
+Folosind nota'tia standard pentru un sistem de ecua'tii algebrice liniare $\textbf{\textit{Ax=b}}$, am ob'tinut urm'atoarea egalitate:
+
+\[ \left( \begin{array}{ccccccccc}
+1 & 1 & 0 & 0 & 0 & -1 & 0 & 0 & 0 \\
+0 & 0 & 1 & 1 & 1 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & -1 & 1 & 0 & 0 & 0 \\
+1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+4 + \frac{3s}{5\pi} & -2 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 2 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 \\
+0 & 0 & 1 & 0 & -1 & 0 & 1 & 1 & 0 \\
+0 & 0 & -1 & \frac{10000\pi}{s} & 0 & 0 & 0 & 0 & 0 
+\end{array} \right)
+%
+\left( \begin{array}{c}
+I_1(s) \\
+I_2(s) \\
+I_6(s) \\
+I_7(s) \\
+I_8(s) \\
+I_9(s) \\
+U_1(s) \\
+U_2(s) \\
+U_3(s)
+\end{array} \right)
+=
+\left( \begin{array}{c}
+\frac{3}{s} \\
+\frac{-3}{s} \\
+\frac{6}{s} \\
+\frac{4}{s} \\
+\frac{0.6}{\pi} \\
+\frac{-2}{s} \\
+\frac{-2}{s} \\
+0 \\
+-\frac{4}{s} \\
+\end{array} \right),
+\]
+unde matricea coeficien'tilor A are dimensiunea $(9\times9)$, iar vectorul necunoscutelor 'si cel al termenilor liberi au dimensiunea $(9\times1)$.\newline
+
+\begin{center}
+\includegraphics[width=6cm]{syms1.png}
+\end{center}
+
+\begin{center}
+\includegraphics[width=15cm]{syms2.png}
+\end{center}
+
+\subsection{Subpunctul b)} \mbox{}
+
+Cu ajutorul unui cod Octave, am verificat daca este respectat'a teorema valorilor ini'tiale 'si finale. Valorile ini'tiale se determin'a la $t \rightarrow 0$, iar cele finale la $t \rightarrow \infty$. \\
+
+\includegraphics[width=4cm]{val_init_val_final.png}
+
+Din poza de mai sus se poate observa c'a sistemul urm'ator este verificat:
+
+\begin{equation}
+\left\{
+\begin{array}{ccl}
+i_{L_{(0_-)}} & = & \SI{1}{\ampere} \\
+u_{C_{(0_-)}} & = & \SI{4}{\volt} \\
+i_{L_{\infty}} & = & \SI{1}{\ampere} \\
+u_{C_{\infty}} & = & \SI{2}{\volt}
+\end{array}  
+\right. \nonumber % marcarea inchiderii - falsa; blocarea numerotarii
+\end{equation} \\
+
+\subsection{Subpunctul c)} \mbox{}
+
+Am calculat expresia instantanee a variabilei $I_L(s)$ 'si am reprezentat-o grafic.
+
+\begin{center}
+\includegraphics[width=9cm]{expresie.png}
+\end{center}
+
+\begin{center}
+\includegraphics[width=15cm]{grafic_laplace.png}
+\end{center}
+
+\section{Calculul 'si reprezentarea unui c\^amp electric} \mbox{}
+
+\subsection{Subpunctul a)} \mbox{}
+
+Am ales func'tia $f(r)=r^3+7$. Distribu'tia de sarcin'a devine:
+
+\[   
+\rho(r, \theta, \phi) = 
+     \begin{cases}
+       \text{$r^3+7$, $r \in \big[0,a\big]$} \\
+       \text{0, $r>a$} \\
+     \end{cases}
+\]\\
+
+Calculez vectorul induc'tiei electrice $\overline{D}$ folosind legea fluxului electric. \par
+Am considerat o sfer'a $\Sigma$ de raz'a $a$. 
+\newpage
+{\large
+$\psi_{\Sigma} = q_{D_{\Sigma}}$ \\
+
+$\int_{\Sigma}\overline{D}\cdot\overline{dA} = \int_{D_{\Sigma}} \rho dV$ \\
+
+$\int_{\Sigma}\overline{D}\cdot\overline{dA} = D \int_{\Sigma}dA = D \cdot 4\pi r^2$\\
+
+Tratez dou'a cazuri:
+
+1) $r \in \big[0,a\big]$
+
+$q_{D_{\Sigma}} = \int_{D_{\Sigma}} \rho dV = \int_{0}^{r}(t^3+7)4\pi t^2 dt = 4\pi \int_{0}^{r}(t^5+7t^2)dt = 4\pi (\frac{r^6}{6} + \frac{7r^3}{3})$ \\
+
+2) $r > a$
+
+$q_{D_{\Sigma}} = \int_{D_{\Sigma}} \rho dV = \int_{0}^{a}(r^3+7)4\pi r^2 dr = 4\pi \int_{0}^{a}(r^5+7r^2)dr = 4\pi (\frac{a^6}{6} + \frac{7a^3}{3})$ \\
+
+$D(r) = \frac{q_{D_{\Sigma}}}{4\pi r^2}$
+
+\[   
+D(r) = 
+     \begin{cases}
+       \text{$\frac{r^4}{6} + \frac{7r}{3}$, $r \in \big[0,a\big]$} \\
+       \text{$\frac{1}{r^2}(\frac{a^6}{6} + \frac{7a^3}{3})$, $r>a$} \\
+     \end{cases}
+\]}
+
+\subsection{Subpunctul b)} \mbox{}
+Am reprezentat spectrul lui $\overline{D}$.
+
+\begin{center}
+\includegraphics[width=10cm]{spectru.png}
+\end{center}
+
+\subsection{Subpunctul c)} \mbox{}
+Am reprezentat echivalori ale lui $\mid\overline{D}\mid$.
+
+\begin{center}
+\includegraphics[width=12cm]{echivalori.png}
+\end{center}
+
+Codul aferent exerci'tiului 3 poate fi observat mai jos. \\
+
+\includegraphics[width=5cm]{camp.png} \TAB
+\includegraphics[width=7.5cm]{functie.png} \\
+
+\newpage
+
+\section{Redactarea \^{i}n \LaTeX} \mbox{}
+
+Tema a fost realizat'a \^{i}n \LaTeX, un editor text de \^{i}nalt'a performan't'a. Mai jos, se poate observa un fragment de cod utilizat pentru generarea acestui fi'sier PDF. \\
+
+\begin{center}
+\includegraphics[width=15cm]{latex.png}
+\end{center}
+
+\newpage
+
+%Bibliografie
+
+\begin{thebibliography}{9}
+\bibitem{latexcompanion} 
+Daniel Ioan,
+\textit{Circuite electrice rezistive - breviare teoretice 'si probleme}, 
+\\\texttt{http://www.lmn.pub.ro/daniel/culegere.pdf}, 2000.
+ 
+\bibitem{einstein} 
+G. Ciuprina, A. Gheorghe, M. Popescu, D. Niculae, A.S. Lup, R. B'arbulescu, D. Ioan,
+\textit{Modelarea 'si simularea circuitelor electrice. 'Indrumar de laborator}, \\
+\texttt{http://cs.curs.pub.ro/2017/course/view.php?id=50}
+ 
+\bibitem{knuthwebsite} 
+Gabriela Ciuprina,
+\textit{Template pentru redactarea rapoartelor \^{i}n LaTeX (v4)}, \\
+\texttt{http://cs.curs.pub.ro/2017/course/view.php?id=50}
+\end{thebibliography}
+
+\end{document}

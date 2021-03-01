@@ -1,0 +1,172 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%% main_referat.tex %%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Fisier exemplu pentru studenti 
+% util in vederea redactarii de rapoarte si teme de casa
+%
+% Ultima editare: 6.04.2018, 
+%                 Gabriela Ciuprina, gabriela.ciuprina@upb.ro
+% 
+% Daca aveti sugestii de imbunatatire - nu ezitati sa mi le semnalati          
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\documentclass[12pt,twoside]{article}  % daca lucrati la o lucrare mai ampla, atunci folositi report sau book in loc de article
+                                       % in cazul report sau book, prima comanda de sectionare este chapter, nu section
+\usepackage{tikz}
+\usepackage[siunitx]{circuitikz}
+\usetikzlibrary{calc}    
+\tikzset{
+  dim above/.style={to path={\pgfextra{
+        \pgfinterruptpath
+        \draw[>=latex,|<->|] let
+        \p1=($(\tikztostart)!2mm!90:(\tikztotarget)$),
+        \p2=($(\tikztotarget)!2mm!-90:(\tikztostart)$)
+        in(\p1) -- (\p2) node[pos=.5,sloped,above]{#1};
+        \endpgfinterruptpath
+      }(\tikztostart) -- (\tikztotarget) \tikztonodes
+    }
+  },
+  dim below/.style={to path={\pgfextra{
+        \pgfinterruptpath
+        \draw[>=latex,|<->|] let 
+        \p1=($(\tikztostart)!2mm!90:(\tikztotarget)$),
+        \p2=($(\tikztotarget)!2mm!-90:(\tikztostart)$)
+        in (\p1) -- (\p2) node[pos=.5,sloped,below]{#1};
+        \endpgfinterruptpath
+      }(\tikztostart) -- (\tikztotarget) \tikztonodes
+    }
+  },
+}
+
+%\usepackage{media9}
+%\usepackage{animate}
+
+\usepackage{graphicx}																		
+\usepackage[romanian]{babel}
+\usepackage[unicode]{hyperref} 
+\usepackage{amsmath,epsfig,pifont,calc,pifont,pstricks}
+\usepackage{rom} 						 % pentru a scrie cu diacritice in limba romana	
+\usepackage{color}
+\usepackage{listings}
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+\lstset{language=Matlab,%
+    %basicstyle=\color{red},
+    breaklines=true,%
+    morekeywords={matlab2tikz},
+    keywordstyle=\color{blue},%
+    morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+    identifierstyle=\color{black},%
+    stringstyle=\color{mylilas},
+    commentstyle=\color{mygreen},%
+    showstringspaces=false,%without this there will be a symbol in the places where there is a space
+    numbers=left,%
+    numberstyle={\tiny \color{black}},% size of the numbers
+    numbersep=9pt, % this defines how far the numbers are from the text
+    emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+    %emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
+
+	
+
+%%% setari ale paginii
+%indentarea la inceput de paragraf
+\setlength{\parindent}{3ex}
+
+%dimensiunea textului pe pagina
+\setlength{\voffset}{-2cm}
+\setlength{\textheight}{23cm}  
+\setlength{\textwidth}{16cm}
+\setlength{\topmargin}{0cm}
+\setlength{\headsep}{1cm}
+\renewcommand{\baselinestretch}{1.2}
+\newcommand{\myindent}{\hspace*{3ex}}
+%\renewcommand{\baselinestretch}{1}
+
+%margini
+\setlength{\oddsidemargin}{0.5cm}
+\setlength{\evensidemargin}{-0.3cm}
+%\raggedright
+\raggedbottom
+
+%% begin preambul - macro-uri definite de autor
+\newcommand{\D}{\mathrm{d}}	% va fi folosita in mediul matematic, pentru diferentiala d
+\newcommand{\I}{\mathrm{i}}	% va fi folosita in mediul matematic, pentru unitatea imaginara
+\newcommand{\eul}{\mathrm{e}}	% numarul lui Euler
+\newcommand{\vect}[1]{\mathbf{#1}}	% comanda cu un argument, pentru scrierea vectorilor cu lidere aldine, drepte
+                                    % comanda \vec a LaTeX pune sageti deasupra.
+																										
+\newcommand{\reale}{\mbox{${\scriptstyle \rm I\!R}$}}  % multimea numerelor reale
+\newcommand{\complexe}{\mbox{${\scriptstyle \rm I\!\!\!\!C}$}}
+\newcommand{\rationale}{\mbox{${\scriptstyle \rm I\!\!\!\!Q}$}}
+\newcommand{\naturale}{\mbox{${\scriptstyle \rm I\!\!N}$}}
+\newcommand{\intregi}{\mbox{${\scriptstyle \rm Z\!\!\!Z}$}}
+
+
+%% end preambul
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\title{Titlu raport/tem'a\\
+{\small - la disciplina *** - }}
+\author{{\em Prenume Nume} \\
+ Grupa, Facultate, Universitate \\
+adresa de email}
+\date{\today}  % sau puneti data explicit - va ramane fixata
+
+
+\maketitle
+
+\input{symbols/romanianCircuitSymbols.tex}
+
+\paragraph{Abstract}
+Acest document 'si pachetul de fi'siere asociat sunt utile studen'tilor care doresc s'a 'i'si tehnoredacteze rapoartele de cercetare, referatele de laborator sau temele de cas'a 'in \LaTeX. El este rezultatul compil'arii fi'sierelor surs'a pe care le g'asi'ti la adresa
+{\href{http://www.lmn.pub.ro/~gabriela/LatexTemplate4Students}{http://www.lmn.pub.ro/$\sim$gabriela/LatexTemplate4Students}}. Simultan cu citirea lui, trebuie s'a urm'ari'ti 'si con'tinutul fi'sierelor surs'a, 'in care au fost comentate c\^ateva detalii utile. Urm'ari'ti 'in acest document doar indica'tiile de redactare 'si exemplele. Acest document nu are niciun fel de con'tinut 'stiin'tific.
+Dac'a ave'ti 'intreb'ari sau sugestii de 'imbun'at'a'tire a acestei machete, sunte'ti ruga'ti s'a le semnala'ti la
+\texttt{gabriela.ciuprina@upb.ro}. 
+
+Detalii despre \LaTeX\ g'asi'ti pe net, pute'ti 'incepe de la 
+{\href{http://www.latex-project.org/}{http://www.latex-project.org/}}.
+
+Este bine ca orice raport s'a aib'a un abstract de aproximativ 10 r\^anduri din care s'a se 'in'teleag'a ce con'tine documentul 'si care este contribu'tia cea mai important'a adus'a.
+
+
+%%% Odata ce v-ati definit fisierul principal, incluzand preambulul si macro-urile, nu trebuie decat sa va concentrati pe fond
+%%% Succes la scris!
+
+\vspace*{3cm}
+{\color{blue}
+\em
+\hfill "Writing is thinking. To write well is to think clearly. That$'$s why it$'$s so hard."  % din cauza lui rom.sty care a modificat ' pentru diacritice
+
+\hfill ― David McCullough
+}
+
+% generarea automata a cuprinsului
+\newpage  % cuprinsul pus pe pagina noua
+\tableofcontents
+\newpage  % continutul propriu-zis sa inceapa pe pagina noua
+
+\renewcommand\tablename{Tabelul}  % altfel scrie "Tabela"
+\renewcommand\bibname{Referin'te}  % altfel scrie "Bibliografie" si acum referintele includ si pagini web
+
+%%%%%%%%% continutul propriu zis al lucrarii
+\input{tex_files/cuprins}  % fisierul principal nu include textul propriu-zis al documentului
+
+\newpage % bibliografia sa inceapa pe pagina noua
+
+%%%%%%%%% bibliografie
+%\bibliographystyle{plain}   % in ordinea citarii, fisier de stil al distributiei standard Latex
+\bibliographystyle{plainrom} % in ordinea citarii dar apare cuvanul "si" in loc de "and" intre autori - vedeti fisierul plainrom.bst
+%\bibliographystyle{alpha}  % referinte sortate in ordine alfabetica, cu etichete alfanumerica - util pentru rapoarte mari
+\addcontentsline{toc}{section}{Bibliografie}  % adauga linia "Bibliografie" la table of contents
+\bibliography{referinte_exemplu}  % in pachetul de fisiere exista fisierul referinte_exemplu.bib
+
+\newpage
+\begin{appendix}
+\input{tex_files/anexe}
+\end{appendix}
+
+\end{document}

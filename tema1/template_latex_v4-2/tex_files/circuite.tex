@@ -1,0 +1,49 @@
+\subsubsection{Circuite electrice}
+
+Pute'ti desena circuite cu ajutorul pachetul circuitiks,
+disponibil la\\ \href{https://www.ctan.org/pkg/circuitikz}{https://www.ctan.org/pkg/circuitikz}
+
+'In Fig.\ref{fig:circuit1} ave'ti un exemplu de astfel de schem'a, 'in care sunt folosite simboluri IEEE.
+\begin{figure}[b]
+\begin{center}
+ \begin{circuitikz}[scale=1.4,american]\draw
+ (0,0) to[C, l=10<\micro\farad>] (0,2) -- (0,3)
+ to[R, l=2.2<\kilo\ohm>] (4,3) -- (4,2);
+ \draw (4,0) to[L, l_=12<\milli\henry>, i<_=$i_1$] (4,2);
+ \draw (4,0) -- (0,0)
+ (4,2) { to[D*, *-*, color=red] (2,0) }
+ (0,2) to[R, l=1<\kilo\ohm>, *-] (2,2)
+ to[V, i_=$i_2$,v^=$e(t)$] (4,2)
+ (2,0) to[I, l=$j(t)$, -*] (2,2)
+  ;\end{circuitikz}
+  \caption{Circuit realizat cu circuitiks, simboluri "americane".}
+  \label{fig:circuit1}
+  \end{center}
+  \end{figure}
+
+Dac'a dori'ti s'a folosi'ti simboluri ca 'in c'ar'tile clasice scrise 'in limba
+rom\^an'a, atunci pute'ti adauga pachetului circuitiks simbolurile create de Adrian Pop,
+disponibile la
+\href{https://github.com/PopAdi/circuitikz-romanian-symbols}{https://github.com/PopAdi/circuitikz-romanian-symbols}.
+
+Acela'si circuit, desenat cu astfel de simboluri, este cel din
+Fig.\ref{fig:circuit2}.
+
+\begin{figure}
+\begin{center}
+\begin{circuitikz}[scale=1.4,european resistors,american inductors]\draw
+(0,0) to[C, l=10<\micro\farad>] (0,2) -- (0,3)
+to[R, l=2.2<\kilo\ohm>] (4,3) -- (4,2);
+\draw (4,0) to[L, l_=12<\milli\henry>, i<_=$i_1$,v^=$u_1$] (4,2);
+\draw (4,0) -- (0,0)
+(4,2) { to[D*, *-*, color=red] (2,0) }
+(0,2) to[R, l=1<\kilo\ohm>, *-] (2,2)
+to[romanianVoltageSource, i_=$i_2$,v^=$e(t)$] (4,2)
+(2,0) to[romanianCurrentSource, l=$j(t)$, -*] (2,2)
+ ;\end{circuitikz}
+ \caption{Circuit realizat cu circuitiks, simboluri utilizate 'in c'ar'ti clasice 'in limba rom\^an'a.}
+   \label{fig:circuit2}
+   \end{center}
+   \end{figure}
+
+ 
