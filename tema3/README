@@ -81,11 +81,3 @@ unei luminite am folosit functia distance().
 La final, am scris in fisierul de iesire fileheader-ul, infoheader-ul si matricea de pixeli bmp_matrix, avand grija ca la finalul fiecarei 
 linii sa adaug padding-ul.
 
-
-
-
-
-
-
-
-

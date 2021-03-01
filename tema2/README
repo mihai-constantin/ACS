@@ -47,15 +47,3 @@ Am implementat si cele doua functii de la BONUS astfel:
 1. ALLOCALIGNED - similara functiei ALLOC. Singura diferenta a constat in faptul ca am cautat zonele in arena din align in align. O data zona gasita, am procedat ca la ALLOC.
 
 2. REALLOC - am alocat dinamic un vector copy in care am memorat octetii din sectiune de date a blocului caruia ulterior i-am dat FREE. In continuare, am folosit functiile FREE si ALLOC descrise mai sus. La final, am copiat in Arena octetii din vechiul bloc si am eliberat zona de memorie ocupata de vectorul copy, cu ajutorul functiei free din biblioteca stdlib.h .
-
-
-
-
-
-
-
-
-
-
-
-
