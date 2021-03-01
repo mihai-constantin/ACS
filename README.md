@@ -5,7 +5,7 @@
 * Laborator 2 - Protocol de transfer start-stop unidirectional
 * Laborator 3 - Protocol de transfer start-stop unidirectional cu detectie de erori de 1 bit
 * Laborator 4 - Protocol de transfer start-stop unidirectional + fereastra glisanta
-* Laborator 5 - vanished
+* Laborator 5 - vanished 🤷🏻‍♂️
 * Laborator 6 - Client Server UDP
 * Laborator 7 - Client Srver TCP
 * Laborator 8 - Multiplexare TCP
