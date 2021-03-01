@@ -1,0 +1,59 @@
+----------------------------------
+Tema 1 - Protocoale de comunicatie
+----------------------------------
+PROTOCOL CU FEREASTRA GLISANTA
+----------------------------------
+Constantin Mihai - 321CD
+----------------------------------
+
+Am implementat un protocol cu fereastra glisanta (selective repeat) pentru
+a transmite eficient pachete la nivelul legaturii de date.
+Acesta retransmite doar pachetul corupt sau pierdut, spre deosebire de metoda
+"Go Back N" care trimite toate pachetele din momentul in care apare corupere
+sau pierdere.
+
+Initial, trimit un singur pachet care contine informatiile legate de 
+dimensiunea fisierului si numele acestuia. Dupa acest moment, are loc
+trimiterea efectiva in functia send_file.
+Prima data trimit o rafala de pachete, pana cand numarul acestora a ajuns la 
+window_size. Dupa, voi continua trimiterea pachetelor atata timp mai am ceva 
+de trimis sau inca nu am ajuns la timeout.
+De asemenea, retrimiterea pachetului se realizeaza in momentul in care am
+primit un NACK.
+
+Structura proprie msg2 pe care am trimis-o in cadrul campului payload al 
+structurii msg are urmatoarea forma:
+
+typedef struct {
+    int idx;
+    char check_sum;
+    char payload[MSG2SIZE];
+} msg2;
+
+unde MSG2SIZE = 1395
+
+sizeof(msg2) = 1400 bytes. Am folosit #pragma pack(1) pentru a avea urmatoarea
+forma a structurii de mai sus
+
+	   |   1   |
+
+| 		idx(1) 	    |
+| 		idx(2) 		|
+| 		idx(3) 	    |
+| 		idx(4) 	   	|
+| 	 check_sum(1)	|
+| payload(MSG2SIZE) |
+
+Indexul este folosit pentru reordonarea pachetelor, check_sum este checksum-ul
+calculat pe baza functiei checksum() din fisierul header "implementare.h" care
+face xor pe fiecare byte din payload, si payload-ul care reprezinta mesajul
+efectiv de trimis.
+
+Pentru pachetele pierdute, receiver-ul va trimite catre sender NACK, iar acesta
+din urma va fi capabil sa caute in buffer pachetul pentru care a primit NACK.
+
+Pentru reordonare, avem in receiver un char* packages_received in care tin
+evidenta indecsilor pachetelor primite.
+
+Afisarea este la final si are loc dupa ce receiver-ul a primit toate pachetele.
+
