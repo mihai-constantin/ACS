@@ -16,3 +16,5 @@
 * Laborator 11 - Flux maxim
 
 ## Teme
+* Tema 1 - Greedy. Dinamica
+* Tema 2 - Pierduta in neant 🤔
