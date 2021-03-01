@@ -1,0 +1,9 @@
+apiVersion: 1
+datasources:
+  - name: 'Influx-DB-SPRC'
+    type: 'influxdb'
+    access: 'proxy'
+    database: db1
+    url: 'sprc3_influxdb:8086'
+    isDefault: true
+    editable: true

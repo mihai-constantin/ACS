@@ -5,3 +5,5 @@ venv
 out
 dist
 node_modules
+mosquitto/data
+mosquitto/log
