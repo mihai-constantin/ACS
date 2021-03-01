@@ -1,0 +1,10 @@
+
+Rulare cu OMP_NUM_THREADS = 4
+
+[mihai.constantin98@fep7-1 ex_pdf]$ ./variables 
+Master thread id: 0
+Thread id: 0
+Thread id: 1
+Thread id: 2
+Thread id: 3
+[0] 2 3 3

@@ -1,0 +1,3 @@
+Rulare OMP_NUM_THREADS = 4
+[mihai.constantin98@fep7-1 ex_pdf]$ ./ex2 
+Sum=10000000, duration=1.16017

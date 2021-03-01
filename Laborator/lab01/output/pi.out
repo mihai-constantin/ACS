@@ -1,0 +1,14 @@
+[mihai.constantin98@fep7-1 lab01]$ ./pi 
+The computed value of pi is 3.141593
+
+[mihai.constantin98@fep7-1 lab01]$ ./pi2 
+The computed value of pi is 3.141593
+
+[mihai.constantin98@fep7-1 lab01]$ ./pi3 
+The computed value of pi is 3.141561
+
+[mihai.constantin98@fep7-1 lab01]$ ./pi4 
+The computed value of pi is 3.141593
+
+[mihai.constantin98@fep7-1 lab01]$ ./pi5 
+The computed value of pi is 3.141593

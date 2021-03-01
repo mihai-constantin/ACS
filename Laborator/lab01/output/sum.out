@@ -1,0 +1,7 @@
+Rulare OMP_NUM_THREADS = 4
+[mihai.constantin98@fep7-1 ex_pdf]$ ./sum
+Thread id: 2
+Thread id: 3
+Thread id: 1
+Thread id: 0
+[0]: 6

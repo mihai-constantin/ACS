@@ -1,0 +1,17 @@
+Rulare OMP_NUM_THREADS = 4
+[mihai.constantin98@fep7-1 ex_pdf]$ export OMP_NUM_THREADS=4
+[mihai.constantin98@fep7-1 ex_pdf]$ ./ex1-1 
+Hello openmp from thread = 1/4
+Hello openmp from thread = 3/4
+Hello openmp from thread = 2/4
+Hello openmp from thread = 0/4
+
+Rulare OMP_NUM_THREADS = 6
+[mihai.constantin98@fep7-1 ex_pdf]$ export OMP_NUM_THREADS=6
+[mihai.constantin98@fep7-1 ex_pdf]$ ./ex1-1 
+Hello openmp from thread = 4/6
+Hello openmp from thread = 0/6
+Hello openmp from thread = 1/6
+Hello openmp from thread = 5/6
+Hello openmp from thread = 3/6
+Hello openmp from thread = 2/6

@@ -1,0 +1,22 @@
+MPI task 0 has started...  Initialized array sum = 210.000000
+numtasks= 10  chunksize= 2  leftover= 1
+Sent 2 elements to task 1 offset= 3
+Sent 2 elements to task 2 offset= 5
+Sent 2 elements to task 3 offset= 7
+MPI task 1 has started...  Task 1 mysum = 7.000000
+MPI task 2 has started...  Task 2 mysum = 11.000000
+MPI task 3 has started...  Task 3 mysum = 15.000000
+MPI task 4 has started...  Task 4 mysum = 19.000000
+Sent 2 elements to task 4 offset= 9
+Sent 2 elements to task 5 offset= 11
+Sent 2 elements to task 6 offset= 13
+Sent 2 elements to task 7 offset= 15
+Sent 2 elements to task 8 offset= 17
+MPI task 5 has started...  Task 5 mysum = 23.000000
+MPI task 6 has started...  Task 6 mysum = 27.000000
+Sent 2 elements to task 9 offset= 19
+Task 0 mysum = 3.000000
+MPI task 7 has started...  Task 7 mysum = 31.000000
+MPI task 8 has started...  Task 8 mysum = 35.000000
+MPI task 9 has started...  Task 9 mysum = 39.000000
+*** Final sum= 210.000000 ***
