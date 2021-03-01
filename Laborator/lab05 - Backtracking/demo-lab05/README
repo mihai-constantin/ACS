@@ -1,0 +1,3 @@
+Fisierele trebuie compilate cu flag-ul -std=c++11.
+Pentru problema soricelului am adaugat niste teste care fac diferenta
+intre cele doua abordari prezentate in laborator.
