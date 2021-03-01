@@ -1,0 +1,200 @@
+-----------------------------------
+CONSTANTIN MIHAI 336CA - TEMA 2 ASC
+-----------------------------------
+
+Se cere sa se calculeze rezultatul operatiei C = B * A^t + A^2 * B, unde 
+A este o matrice superior triunghiulara si B o matrice oarecare. Ambele matrice
+sunt patratice, avand dimensiunea N.
+
+In continuare voi prezenta cele 5 metode de rezolvare a operatiei de mai sus.
+
+----
+Blas
+----
+Varianta care foloseste functii din BLAS Atlas pentru realizarea operatiilor
+de inmultire de matrice este cea mai eficienta din punct de vedere al timpului.
+Deoarece A este o matrice superior triunghiulara, am folosit functia 
+cblas_dtrmm pentru eficientizarea operatiilor de inmultire.
+Functia copy(int N, double *A) care primeste o matrice de dimensiune N si 
+intoarce o copie a sa este folosita pentru a retine rezultatele intermediare
+ale functiei cblas_dtrmm. Adunarea matricelor este facuta "de mana" prin 
+folosirea functiei add_matrix(int N, double *A, double *B), care intoarce
+rezultatul operatiei A + B.
+
+Pentru inputul primit in schelet, se obtin timpi aproximativi egali cu valorile
+de mai jos.
+
+./tema2_blas
+Run=./tema2_blas: N=400: Time=0.052470
+Run=./tema2_blas: N=800: Time=0.245601
+Run=./tema2_blas: N=1200: Time=0.666825
+
+---------------------
+Varianta neoptimizata
+---------------------
+Varianta foloseste inmultirile normale de matrice, fara vreun artificiu pentru
+a optimiza timpul. Inmultirile se realizeaza tinand cont ca matricea A este
+superior triunghiulara. Astfel distingem mai multe cazuri:
+- matrix_multiplication1: inmultim o matrice oarecare cu o matrice inferior 
+  triunghiulara. Rezultatul este o matrice oarecare
+- matrix_multiplication2: inmultim o matrice superior triunghiulara cu o alta 
+  superior triunghiulara. Rezultatul este o matrice superior triunghiulara
+- matrix_multiplication3: inmultim o matrice superior triunghiulara cu o 
+  matrice oarecare. Rezultatul este o matrice oarecare
+
+Adunarea rezultatelor intermediare se realizeaza in matrix_multiplication2.
+Cand facem ultima inmultire, adunam direct rezultatul de la B * A^t.
+
+Pentru inputul primit in schelet, se obtin timpi aproximativi egali cu valorile
+de mai jos.
+
+./tema2_neopt input
+Run=./tema2_neopt: N=400: Time=0.678910
+Run=./tema2_neopt: N=800: Time=5.122041
+Run=./tema2_neopt: N=1200: Time=16.821159
+
+---------------------------------------
+Varianta neoptimizata, compilata cu -O3
+---------------------------------------
+Aceasta este o varianta imbunatatita obtinuta prin compilarea codului de la 
+varianta neopt cu flag-ul -O3.
+
+Performanta acestei variante din punct de vedere temporal este mai buna decat 
+varianta neopt cu aproximativ 75% si fata de varianta opt_m cu aproximativ 15%.
+
+Pentru inputul primit in schelet, se obtin timpi aproximativi egali cu valorile
+de mai jos.
+
+./tema2_opt_f input
+Run=./tema2_opt_f: N=400: Time=0.170387
+Run=./tema2_opt_f: N=800: Time=0.960442
+Run=./tema2_opt_f: N=1200: Time=3.082857
+
+-------------------------------------------
+Varianta neoptimizata, compilata cu flaguri
+-------------------------------------------
+Aceasta este o variantă imbunatatita obtinuta prin compilarea codului de la 
+varianta neopt cu flag-ul -O3 si alte flag-uri de optimizare specifice.
+
+Flagurile de optimizare folosite sunt:
+-fassociative-math: permite reasocieri intre operanzii aflati in expresii in 
+ virgula mobila. Optiunea trebuie folosita impreuna cu -fno-signed-zeros si 
+ cu -fno-trapping-math, deoarece poate produce rezultate incorecte in urma 
+ reordonarilor operanzilor.
+
+-fno-signed-zeros: permite optimizari pentru aritmetica in virgula mobila,
+ ignorand semnul lui 0. Aceasta optiune implica faptul ca semnul unui rezultat
+ egal cu 0 este irelevant. Acest flag este important, deoarece am ignorat 
+ inmultirile cu 0 in mare parte, datorita faptului ca matricea A este superior
+ triunghiulara
+
+-fno-trapping-math: compileaza codul, presupunand ca operatiile in virgula
+ mobila nu genereaza exceptii (impartire la 0, overflow, underflow, rezultate 
+ inexacte sau operatii invalide)
+
+Fata de varianta opt_f, obtinem un boost de performanta din punct de vedere
+al timpului de pana la 17%.
+
+Pentru inputul primit in schelet, se obtin timpi aproximativi egali cu valorile
+de mai jos.
+
+./tema2_opt_f_extra
+Run=./tema2_opt_f_extra: N=400: Time=0.126952
+Run=./tema2_opt_f_extra: N=800: Time=0.770048
+Run=./tema2_opt_f_extra: N=1200: Time=2.365352
+
+---------------------------
+Varianta optimizata (opt_m)
+---------------------------
+Aceasta varianta are aceeasi complexitate cu cea din varianta neopt, dar are
+permormante mai bune din punct de vedere temporal.
+Precum in varianta neoptimizata, in functie de tipurile de matrice pe care le
+inmultim, apelam functia corespunzatoare (matrix_multiplication[1/2/3]).
+La fel, adunarea rezultatelor intermediare se realizeaza in 
+matrix_multiplication2. Cand facem ultima inmultire, adunam direct rezultatul 
+de la B * A^t.
+
+Optimizarile fata de varianta neopt sunt:
+- o prima optimizare a fost observarea faptului ca C[i][j] este o constanta
+  in cadrul ciclului interior k. Astfel, am folosit o variabila suma in care
+  calculez suma, iar la finalul for-ului modific valoarea lui C[i][j] in suma.
+- folosirea cuvantului cheie register (in acest fel compilatorul va avea grija
+  ca variabila sa fie tinuta intr-un registru, permitand astfel o utilizare
+  optima a acestei resurse)
+- renuntarea la accesele vectoriale prin dereferentiere, utilizand in acest
+  scop pointeri. Practic, se calculeaza "de mana" adresa in cadrul vectorului,
+  exact in modul in care ar face-o compilatorul. De exemplu, pentru a trece cu
+  o pozitie mai la dreapta pe aceeasi linie, pointer-ul se va incrementa cu 1;
+  daca se doreste accesarea elementului de pe aceeasi coloana, dar de pe linia
+  urmatoare, pointer-ul se va incrementa cu N (dimensiunea unei linii din 
+  matrice) 
+
+Folosind aceste optimizari, obtinem un boost de performanta de 60%-70% fata de 
+varianta neoptimizata.
+
+Pentru inputul primit in schelet, se obtin timpi aproximativi egali cu valorile
+de mai jos.
+
+./tema2_opt_m input
+Run=./tema2_opt_m: N=400: Time=0.137858
+Run=./tema2_opt_m: N=800: Time=1.123199
+Run=./tema2_opt_m: N=1200: Time=3.670453
+<<< Bonus=20p >>>
+
+------------------
+Explicatii grafice
+------------------
+
+Am realizat 12 grafice care surprind performantele celor 5 metode una fata de
+cealalta. De asemenea, am realizat inca 5 grafice pentru fiecare metoda in parte
+care surprinde modul in care timpul de executie creste odata cu cresterea
+dimnesiunii N a matricelor.
+
+Valorile pentru realizarea graficelor sunt prezentare mai jos. Prima valoare
+este dimensiunea matricei, a doua valoare este seed-ul folosit la generarea 
+datelor, a treia valoare este calea catre fisierul de iesire ce contine 
+matricea rezultat.
+
+400 123 out1
+500 234 out2
+600 354 out3
+700 394 out4
+800 456 out5
+900 495 out6
+1000 598 out7
+1100 621 out8
+1200 789 out9
+1300 823 out10
+1400 942 out11
+1500 912 out12
+
+Timpii obtinuti in urma rularilor se observa in grafice/timpi_grafice.png
+
+Din punct de vedere al performantei temporale, avem urmatorul clasament:
+1. blas 		    - aproximativ cu 70% mai buna decat varianta opt_f_extra
+2. opt_f_extra 	- aproximativ cu 17% mai buna decat varianta opt_f
+3. opt_f 		    - aproximativ cu 22% mai buna decat varianta opt_m
+4. opt_m 		    - aproximativ cu 70% mai buna decat varianta neopt
+5. neopt
+
+Varianta opt_m este mai rapida decat varianta neopt cu 70%, deci folosirea
+pointerilor si accesul direct la memorie prin intermediul acestora este mai
+rapid. De asemenea, folosirea cuvantului cheie register permite o optimizare
+optima a resurselor.
+
+Varianta opt_f este compilata cu flag-ul -O3, care optimizeaza cat se poate
+de mult performanta codului.
+
+Varianta opr_f_extra foloseste flag-uri suplimentare care actioneaza asupra
+operatiilor matematice efectuate, sporind eficienta cu pana la 17% fata de
+varianta in care se foloseste doar flag-ul -O3.
+
+Varianta blas este cea mai eficienta, deoarece foloseste functii specializate
+pentru lucrul cu operatii cu matrice triunghiulare.
+
+In directorul ref din arhiva sunt cele 3 fisiere de output descarcate de pe fep.
+
+Resursele folosite in realizarea temei au fost:
+- laboratorul 5 ASC, Tehnici de Optimizare de Cod – Inmultirea Matricelor
+- documentatia de BLAS Atlas
+
