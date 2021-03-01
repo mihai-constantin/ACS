@@ -1,0 +1,1 @@
+function [S] = polynom(a, b, x, m)n = length(x);s = zeros(1, n);for i = 1 : n  sum = 0;  for k = 1 : m - 1    sum = sum + a(k+1)*cos((k+1)*x(i)) + b(k+1)*sin((k+1)*x(i));  endfor  S(i) = (a(1) + a(m + 1)*cos(m*x(i))) / 2 + sum;endforendfunction

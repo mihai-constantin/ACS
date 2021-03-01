@@ -1,0 +1,1 @@
+function [dimensiune] = prob4(fisier)  dimensiune = dir(fisier).bytes;endfunction

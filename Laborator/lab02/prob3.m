@@ -1,0 +1,1 @@
+function [x] = prob3(A, b)  [n, n] = size(A);    [L, U] = prob1(A);    y = SIT(L, b);    x = SST(U, y);endfunction
