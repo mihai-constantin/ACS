@@ -1,0 +1,67 @@
+CONSTANTIN MIHAI - 321CD
+
+Task 1 - XOR între doua siruri de octeti
+
+Am memorat in registrul eax adresa de inceput a string-ului criptat si in
+registrul ebx adresa de inceput a cheii de decriptare.
+Am iterat byte cu byte prin string pana la intalnirea terminatorului de sir,
+facand xor intre fiecare byte din string, respectiv cheie.
+Inainte de inceputul iteratiei, am dat push la adresa de inceput a string-ului, 
+pentru a nu o pierde. 
+La final, am dat pop eax pentru a restaura adresa de inceput a sirului.
+
+Task 2 - Rolling XOR
+
+Am memorat in registrul eax adresa de inceput a string-ului criptat si am pus
+pe stiva adresa pentru a nu o pierde.
+Am iterat byte cu byte prin string si am facut xor intre byte-ul curent si 
+rezultatul precedent (xor intre toti octetii precedenti).
+La final, am dat pop eax pentru a restaura adresa de inceput a sirului.
+
+Task 3 - XOR între două siruri reprezentate prin caractere hexazecimale
+
+Am memorat in registrul eax adresa de inceput a string-ului criptat si in
+registrul ebx adresa de inceput a cheii de decriptare.
+Am iterat atat prin string, cat si prin cheie, realizand urmatoarele operatii:
+- am luat cate 2 octeti
+- am verificat daca valoarea reprezentata de fiecare byte este cifra sau litera
+- am realizat scaderile corespunzatoare (pentru litera am scazut 87 si pentru
+cifra 48), consultand un tabel cu valori ASCII
+- am shiftat la stanga cu 4 pozitii primul caracter, iar rezultatul l-am adunat
+cu al doilea caracter
+- am updatat string-ul, respectiv cheia
+
+La final, am apelat functia de la task-ul 1 pentru a decripta mesajul.
+
+Task 4 - Decodificarea unui sir în reprezentare base32
+
+Am memorat in registrul eax adresa de inceput a string-ului criptat si am pus
+pe stiva adresa pentru a nu o pierde.
+Am iterat byte cu byte prin string si am verificat daca valoarea reprezentata
+de fiecare byte este litera mare sau cifra. Am efectuat scaderile necesare
+pentru a obtine codificarea base32 (daca byte-ul este litera scad 65, iar daca
+este cifra scad 24). Am updatat string-ul, punand la final terminatorul de sir.
+In continuare, am parcurs sirul pe bucati de cate 8 octeti, pentru a forma cei
+5 bytes echivalenti din sirul decriptat. Am realizat shiftari la dreapta sau la
+stanga, precum si adunari pentru a decodifica mesajul.
+
+Task 5 - Bruteforce pe XOR cu cheie de un octet
+
+Am memorat in registrul edx adresa de inceput a string-ului criptat si am pus
+pe stiva adresa pentru a nu o pierde.
+Am incercat succesiv cheile de la 0x00 la 0xFF si am decodificat mesajul cu 
+cheia curenta. In continuare am verificat daca sirul decriptat contine mesajul 
+'force'. Daca da, ma opresc, afisez mesajul si cheia. Daca nu, incrementez 
+cheia, nu inainte de a aduce string-ul la forma initiala.
+
+Task 6 - Vigenere Cipher
+
+Am memorat in registrul eax adresa de inceput a string-ului criptat si in
+registrul ebx adresa de inceput a cheii de decriptare.
+Am iterat byte cu byte atat prin string, cat si prin cheie. Am verificat daca 
+caracterul curent din string este litera. Daca da, efectuez transformarea de 
+rotatie si incrementez indicele din cheie. Daca am ajuns la finalul cheii, dar 
+nu am terminat de parcurs sirul, ma intorc la inceputul cheii. De fiecare data, 
+am avut grija ca prin transformarea de rotatie sa nu ma duc in stanga 
+caracterului 'a', ci sa ma reintorc la caracterul 'z'.
+
