@@ -1,0 +1,3 @@
+X starts at 0
+X ends at 3
+X step is 1
