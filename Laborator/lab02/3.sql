@@ -1,0 +1,1 @@
+SELECT nume, functie, data_angajarii, salariu from angajati WHERE data_angajarii > '31-DEC-2019' AND data_angajarii < '1-JAN-2021';

@@ -1,0 +1,13 @@
+-- SELECT
+-- 	d.den_dep,
+-- 	a.nume,
+-- 	a.salariu,
+-- 	g.grad
+-- FROM
+-- 	angajati a
+-- 	FULL OUTER JOIN grila_salariu g
+-- 		ON a.salariu * 2 BETWEEN g.nivel_inferior AND g.nivel_superior
+-- 	FULL OUTER JOIN departamente d
+-- 		ON d.id_dep = a.id_dep
+-- ORDER BY
+-- 	d.den_dep, a.nume, g.grad;

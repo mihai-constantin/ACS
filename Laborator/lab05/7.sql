@@ -1,0 +1,26 @@
+-- SELECT 
+-- 	d.id_dep,
+-- 	d.den_dep,
+-- 	a.nume,
+-- 	a.functie
+-- FROM
+-- 	departamente d,
+-- 	angajati a
+-- WHERE
+-- 	d.id_dep = a.id_dep(+)
+-- ORDER BY
+-- 	a.id_dep;
+
+
+-- metoda 2
+-- SELECT 
+-- 	d.id_dep,
+-- 	d.den_dep,
+-- 	a.nume,
+-- 	a.functie
+-- FROM
+-- 	departamente d
+-- 	LEFT OUTER JOIN angajati a
+-- 		ON d.id_dep = a.id_dep
+-- ORDER BY
+-- 	a.id_dep;
