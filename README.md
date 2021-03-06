@@ -16,3 +16,4 @@ PROIECT: 2p
 * Laborator 2 - Greedy
 * Laborator 3 - Programare Dinamica 1
 * Laborator 4 - Programare Dinamica 2
+* Laborator 5 - Backtracking
