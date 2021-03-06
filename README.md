@@ -1,11 +1,11 @@
 # Laborator PA 2020-2021
 
-PUNCTAJ - 11p
-EXAMEN - 4p
+PUNCTAJ - 11p\
+EXAMEN - 4p\
 PARCURS - 7p
 
-TEME: 2 x 1.25 = 2.5p
-TESTE PRACTICE: 2 x 1.25 = 2.5p
+TEME: 2 x 1.25 = 2.5p\
+TESTE PRACTICE: 2 x 1.25 = 2.5p\
 PROIECT: 2p
 
 * Laborator 0 - Introducere si Relaxare
