@@ -10,3 +10,4 @@
 4. Generare de siruri
 
 ## **Extra**
+5. [Immortal](https://www.infoarena.ro/problema/immortal)
