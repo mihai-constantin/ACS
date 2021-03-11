@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 using namespace std;
 
 /* deoarece numerele sunt sterse din domeniu odata ce sunt folosite, solutia

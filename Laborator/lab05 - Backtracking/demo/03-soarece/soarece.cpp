@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <fstream>
+#include <vector>
 using namespace std;
 
 bool check(vector<pair<int, int>>& solution) {

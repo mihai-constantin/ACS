@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <fstream>
+#include <vector>
 using namespace std;
 
 bool check(vector<std::pair<int, int>>& solution, int walls[100][100]) {

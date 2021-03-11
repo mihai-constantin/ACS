@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <unordered_set>
 using namespace std;
 
 bool check(vector<int>& solution) {
