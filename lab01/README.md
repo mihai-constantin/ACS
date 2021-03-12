@@ -65,3 +65,10 @@
   * docker container run --name c2 -d --mount source=test,target=/test alpine sh -c 'ping 8.8.8.8 > /test/ping.txt'
 * bind mounts
   * docker container run --name c3 -d -it --mount type=bind,source="$(pwd)"/testidp/,target=/testidp2 alpine
+
+## Exercitii
+1. Comenzi de baza pentru imaginea busybox
+2. Creare imagine pe baza de Dockerfile
+    * docker build -t my-app .
+    * docker container run -p 12345:8080 my-app
+3. 
