@@ -59,4 +59,9 @@
 * conectare la reteaua bridge creata anterior a containerelor c1 si c2
   * docker network connect c1-c2-bridge c1
   * docker network connect c1-c2-bridge c2
-  
+
+## Volume si bind mounts
+* name volumes
+  * docker container run --name c2 -d --mount source=test,target=/test alpine sh -c 'ping 8.8.8.8 > /test/ping.txt'
+* bind mounts
+  * docker container run --name c3 -d -it --mount type=bind,source="$(pwd)"/testidp/,target=/testidp2 alpine
