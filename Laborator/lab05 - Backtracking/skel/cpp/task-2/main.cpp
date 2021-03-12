@@ -24,8 +24,8 @@ private:
 		all.push_back(sol);
 
 		for(int i = submultime[p - 1] + 1; i <= n; i++) {
-				submultime[p] = i; 
-				bkt(p + 1, all, submultime);
+            submultime[p] = i; 
+            bkt(p + 1, all, submultime);
 		}
 	}
 
@@ -39,7 +39,7 @@ private:
         //     all.push_back(submultime);
 
         vector<int> submultime(n);
-		bkt(1, all, submultime);
+        bkt(1, all, submultime);
 
 		return all;
     }
