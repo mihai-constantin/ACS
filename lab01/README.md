@@ -71,4 +71,38 @@
 2. Creare imagine pe baza de Dockerfile
     * docker build -t my-app .
     * docker container run -p 12345:8080 my-app
-3. 
+3. Aplicatie de adaugare de carti intr-o biblioteca
+    ```
+    Creare container pentru baza de date : laborator1-db
+
+    docker network create -d bridge laborator1-db-network \
+    docker volume create laborator1-db-persistent-volume \ 
+    docker run -d \
+    -it \
+    --name laborator1-db \
+    --mount type=bind,source="$(pwd)"/init-db.sql,target=/docker-entrypoint-initdb.d/init-db.sql \
+    --mount source=laborator1-db-persistent-volume,target=/var/lib/postgresql/data \
+    --network laborator1-db-network \
+    --env POSTGRES_USER=admin \
+    --env POSTGRES_PASSWORD=admin \
+    --env POSTGRES_DB=books \
+    postgres:latest
+    ```
+
+    ```
+    Creare container pentru aplicatie : laborator1-api
+
+    docker build -t api-laborator-1-image . \
+    docker run -d \
+    -it \
+    --name laborator1-api \
+    --network laborator1-db-network \
+    -p 5555:80 \
+    --env PGUSER=admin \
+    --env PGPASSWORD=admin \
+    --env PGDATABASE=books \
+    --env PGHOST=laborator1-db \
+    --env PGPORT=5432 \
+    <hash-api-laborator-1-image>
+    ```
+    
