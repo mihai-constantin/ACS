@@ -1,2 +1,4 @@
 # IDP
-IDP 2020-2021
+
+## Laborator
+* Laborator 1 - Docker
