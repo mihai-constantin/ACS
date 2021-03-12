@@ -35,3 +35,28 @@
 * docker tag my-app mihaiconstantin98/idp:demo : creare alias pentru imaginea my-app
 * docker push mihaiconstantin09/idp:demo : publicare imagine pe Docker Hub
 * docker container run -p 8888:5000 mihaiconstantin98/idp:demo : rulare imagine 
+
+## Build automat aplicatie (linkare cu GitHub)
+* in momentul in care se da push pe master, se ruleaza automat un build pe DockerHub
+* se creaza o noua imagine cu tag-ul latest
+
+## Networking
+* bridge - permite comunicatia doar dintre containere aflate pe aceeasi masina Docker
+* overlay - permite comunicatia dintre doua containere care ruleaza pe masini Docker diferite
+* host
+* macvlan
+* none
+
+### Comenzi
+* creare containere
+  * docker container run --name c1 -d -it alpine
+  * docker container run --name c2 -d -it alpine 
+* deconectare de la reteaua by default bridge
+  * docker network disconnect bridge c1
+  * docker network disconnect bridge c2
+* creare retea de tip bridge
+  * docker network create -d bridge c1-c2-bridge
+* conectare la reteaua bridge creata anterior a containerelor c1 si c2
+  * docker network connect c1-c2-bridge c1
+  * docker network connect c1-c2-bridge c2
+  
