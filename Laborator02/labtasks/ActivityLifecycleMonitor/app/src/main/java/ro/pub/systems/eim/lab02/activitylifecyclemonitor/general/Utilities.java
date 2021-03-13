@@ -26,6 +26,7 @@ public class Utilities {
             xmlPullParser.setInput(inputStream, null);
             List<Credential> credentials = parseXml(xmlPullParser);
             for (Credential credential: credentials) {
+                Log.d(Constants.TAG, credential.toString());
                 Log.i(Constants.TAG, "credential.getUsername(): " + credential.getUsername() + " credential.getPassword(): " + credential.getPassword());
                 if (credential.getUsername().equals(username) && credential.getPassword().equals(password)) {
                     return true;
