@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">ActivityLifecycleMonitor</string>
+    <string name="icon_image_view_content_description">This is the application icon.</string>
+    <string name="introduce_yourself">Introduce yourself</string>\
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="remember_me_checkbox">Remember me</string>
+    <string name="ok_button_content">OK</string>
+    <string name="cancel_button_content">Cancel</string>
+    <string name="authentication_success">The authentication process was successful</string>
+    <string name="authentication_fail">The authentication process failed!</string>
+    <string name="dismiss_button_content">Dismiss</string>
+    <string name="empty"></string>
+</resources>
