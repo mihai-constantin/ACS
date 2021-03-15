@@ -68,20 +68,20 @@ public class LifecycleMonitorActivity extends AppCompatActivity {
             Log.d(Constants.TAG, "onCreate() method was invoked without a previous state");
         } else {
             Log.d(Constants.TAG, "onCreate() method was invoked with a previous state");
-        }
 
-        EditText usernameEditText = (EditText) findViewById(R.id.username_edit_text);
-        EditText passwordEditText = (EditText) findViewById(R.id.password_edit_text);
-        CheckBox checkBox = (CheckBox) findViewById(R.id.remember_me_checkbox);
+            EditText usernameEditText = (EditText) findViewById(R.id.username_edit_text);
+            EditText passwordEditText = (EditText) findViewById(R.id.password_edit_text);
+            CheckBox checkBox = (CheckBox) findViewById(R.id.remember_me_checkbox);
 
-        if ((savedInstanceState != null) && (savedInstanceState.getString(Constants.USERNAME_EDIT_TEXT) != null)) {
-            usernameEditText.setText(savedInstanceState.getString(Constants.USERNAME_EDIT_TEXT));
-        }
-        if ((savedInstanceState != null) && (savedInstanceState.getString(Constants.PASSWORD_EDIT_TEXT) != null)) {
-            passwordEditText.setText(savedInstanceState.getString(Constants.PASSWORD_EDIT_TEXT));
-        }
-        if ((savedInstanceState != null) && (savedInstanceState.getString(Constants.REMEMBER_ME_CHECKBOX) != null)) {
-            checkBox.setChecked(savedInstanceState.getBoolean(Constants.REMEMBER_ME_CHECKBOX));
+            if (savedInstanceState.getString(Constants.USERNAME_EDIT_TEXT) != null) {
+                usernameEditText.setText(savedInstanceState.getString(Constants.USERNAME_EDIT_TEXT));
+            }
+            if (savedInstanceState.getString(Constants.PASSWORD_EDIT_TEXT) != null) {
+                passwordEditText.setText(savedInstanceState.getString(Constants.PASSWORD_EDIT_TEXT));
+            }
+            if (savedInstanceState.getBoolean(Constants.REMEMBER_ME_CHECKBOX)) {
+                checkBox.setChecked(savedInstanceState.getBoolean(Constants.REMEMBER_ME_CHECKBOX));
+            }
         }
     }
 
@@ -123,7 +123,7 @@ public class LifecycleMonitorActivity extends AppCompatActivity {
         EditText passwordEditText = (EditText) findViewById(R.id.password_edit_text);
         CheckBox checkBox = (CheckBox) findViewById(R.id.remember_me_checkbox);
 
-        if (checkBox.isChecked()) {
+        if (checkBox.isChecked()) { // salvam doar daca avem butonul de check bifat
             outState.putString(Constants.USERNAME_EDIT_TEXT, usernameEditText.getText().toString());
             outState.putString(Constants.PASSWORD_EDIT_TEXT, passwordEditText.getText().toString());
             outState.putBoolean(Constants.REMEMBER_ME_CHECKBOX, checkBox.isChecked());
