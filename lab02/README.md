@@ -19,7 +19,7 @@ docker-compose rm -s -v                    # cu -s se opresc toate containerele 
 ## Exercitii
 1. Docker compose pentru api de carti de la lab 01
 2. Adaugare serviciu de adminer pentru baza de date 
-  docker-compose -f docker-compose-full.yml up --build
+    * docker-compose -f docker-compose-full.yml up --build
 3. Secrete. Spargere docker-compose in 2 parti
-  * docker-compose -f docker-compose.yml -f docker-compose-secrets.yml up --build
+    * docker-compose -f docker-compose.yml -f docker-compose-secrets.yml up --build
   
