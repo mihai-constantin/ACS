@@ -10,3 +10,6 @@
   * ciclul de viata al unei activitati
   * filtre pentru LogCat
   
+* Laborator 3 - Proiectarea Interfețelor Grafice
+  * realizare interfata grafica simpla pentru formarea unui numar de telefon
+    
