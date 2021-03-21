@@ -17,15 +17,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:columnCount="3"
-        android:rowCount="6">
+        android:columnCount="5"
+        android:rowCount="3">
 
         <ImageButton
             android:id="@+id/backspaceImageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/backspace"
-            android:layout_row="0"
+            android:layout_row="2"
             android:layout_column="2"
             android:padding="@dimen/space_16"
             android:layout_margin="@dimen/space_4"
@@ -34,8 +34,8 @@
         <Button
             android:id="@+id/button0"
             android:text="0"
-            android:layout_row="4"
-            android:layout_column="1"
+            android:layout_row="1"
+            android:layout_column="4"
             android:padding="@dimen/space_16"
             android:layout_margin="@dimen/space_4"
             android:layout_gravity="center"/>
@@ -43,7 +43,7 @@
         <Button
             android:id="@+id/button1"
             android:text="1"
-            android:layout_row="1"
+            android:layout_row="0"
             android:layout_column="0"
             android:padding="@dimen/space_16"
             android:layout_margin="@dimen/space_4"
@@ -52,7 +52,7 @@
         <Button
             android:id="@+id/button2"
             android:text="2"
-            android:layout_row="1"
+            android:layout_row="0"
             android:layout_column="1"
             android:padding="@dimen/space_16"
             android:layout_margin="@dimen/space_4"
@@ -61,7 +61,7 @@
         <Button
             android:id="@+id/button3"
             android:text="3"
-            android:layout_row="1"
+            android:layout_row="0"
             android:layout_column="2"
             android:padding="@dimen/space_16"
             android:layout_margin="@dimen/space_4"
@@ -70,8 +70,8 @@
         <Button
             android:id="@+id/button4"
             android:text="4"
-            android:layout_row="2"
-            android:layout_column="0"
+            android:layout_row="0"
+            android:layout_column="3"
             android:padding="@dimen/space_16"
             android:layout_margin="@dimen/space_4"
             android:layout_gravity="center"/>
@@ -79,8 +79,8 @@
         <Button
             android:id="@+id/button5"
             android:text="5"
-            android:layout_row="2"
-            android:layout_column="1"
+            android:layout_row="0"
+            android:layout_column="4"
             android:padding="@dimen/space_16"
             android:layout_margin="@dimen/space_4"
             android:layout_gravity="center"/>
@@ -88,8 +88,8 @@
         <Button
             android:id="@+id/button6"
             android:text="6"
-            android:layout_row="2"
-            android:layout_column="2"
+            android:layout_row="1"
+            android:layout_column="0"
             android:padding="@dimen/space_16"
             android:layout_margin="@dimen/space_4"
             android:layout_gravity="center"/>
@@ -97,8 +97,8 @@
         <Button
             android:id="@+id/button7"
             android:text="7"
-            android:layout_row="3"
-            android:layout_column="0"
+            android:layout_row="1"
+            android:layout_column="1"
             android:padding="@dimen/space_16"
             android:layout_margin="@dimen/space_4"
             android:layout_gravity="center"/>
@@ -106,8 +106,8 @@
         <Button
             android:id="@+id/button8"
             android:text="8"
-            android:layout_row="3"
-            android:layout_column="1"
+            android:layout_row="1"
+            android:layout_column="2"
             android:padding="@dimen/space_16"
             android:layout_margin="@dimen/space_4"
             android:layout_gravity="center"/>
@@ -115,8 +115,8 @@
         <Button
             android:id="@+id/button9"
             android:text="9"
-            android:layout_row="3"
-            android:layout_column="2"
+            android:layout_row="1"
+            android:layout_column="3"
             android:padding="@dimen/space_16"
             android:layout_margin="@dimen/space_4"
             android:layout_gravity="center"/>
@@ -124,8 +124,8 @@
         <Button
             android:id="@+id/button_star"
             android:text="*"
-            android:layout_row="4"
-            android:layout_column="0"
+            android:layout_row="2"
+            android:layout_column="1"
             android:padding="@dimen/space_16"
             android:layout_margin="@dimen/space_4"
             android:layout_gravity="center"/>
@@ -133,8 +133,8 @@
         <Button
             android:id="@+id/button_hash"
             android:text="#"
-            android:layout_row="4"
-            android:layout_column="2"
+            android:layout_row="2"
+            android:layout_column="3"
             android:padding="@dimen/space_16"
             android:layout_margin="@dimen/space_4"
             android:layout_gravity="center"/>
@@ -144,7 +144,7 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:src="@drawable/call"
-            android:layout_row="5"
+            android:layout_row="2"
             android:layout_column="0"
             android:padding="@dimen/space_16"
             android:layout_margin="@dimen/space_4"
@@ -155,8 +155,8 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:src="@drawable/hangup"
-            android:layout_row="5"
-            android:layout_column="2"
+            android:layout_row="2"
+            android:layout_column="4"
             android:padding="@dimen/space_16"
             android:layout_margin="@dimen/space_4"
             android:layout_gravity="center"/>
