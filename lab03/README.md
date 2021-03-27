@@ -89,4 +89,5 @@ docker secret create user-secret secrets/lab3-user-secret.txt
 docker secret create password-secret secrets/lab3-password-secret.txt 
 ```
 
-![Cluster](skel/cluster.png "Cluster")
+<img src="skel/cluster.png" alt="drawing" width="400" height="1000" />
+
