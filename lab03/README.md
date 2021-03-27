@@ -59,3 +59,34 @@ docker-machine scp -r database myvm1:.
 docker stack deploy -c docker-swarm.yml lab3
 docker stack ps lab3
 ```
+
+2. Exercitiul cu books-api mai complex
+
+```bash
+# publicare imagini in registrul public
+docker tag skel_books-service mihaiconstantin98/idp:lab3-books-service
+docker push  mihaiconstantin98/idp:lab3-books-service
+
+docker tag skel_gateway  mihaiconstantin98/idp:lab3-gateway-service 
+docker push  mihaiconstantin98/idp:lab3-gateway-service 
+
+docker tag skel_io-service mihaiconstantin98/idp:lab3-io-service
+docker push mihaiconstantin98/idp:lab3-io-service
+
+# deploy pe cluster
+
+# vm1
+docker swarm init --advertise-addr <eth1-interface-addr>
+# vm2
+docker swarm join ...
+# vm1
+docker node ls
+docker stack deploy -c docker-compose-swarm.yml lab3
+docker stack ps lab3
+
+# secrets
+docker secret create user-secret secrets/lab3-user-secret.txt
+docker secret create password-secret secrets/lab3-password-secret.txt 
+```
+
+![Cluster](cluster.png "Cluster")
