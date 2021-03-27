@@ -89,4 +89,4 @@ docker secret create user-secret secrets/lab3-user-secret.txt
 docker secret create password-secret secrets/lab3-password-secret.txt 
 ```
 
-![Cluster](cluster.png "Cluster")
+![Cluster](skel/cluster.png "Cluster")
