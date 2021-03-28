@@ -13,3 +13,5 @@
 * Laborator 3 - Proiectarea Interfețelor Grafice
   * realizare interfata grafica simpla pentru formarea unui numar de telefon
     
+* Laborator 4 - Structura unei Aplicatii
+  * lucrul cu intentii
