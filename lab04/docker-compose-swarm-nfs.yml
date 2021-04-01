@@ -1,0 +1,134 @@
+version: "3.8"
+
+services:
+  gateway:
+    image: mihaiconstantin98/idp:lab3-gateway-service
+    environment:
+      BOOKS_SERVICE_API_ROUTE: books-service/api
+      NODE_ENV: development
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: 50M
+      restart_policy:
+        condition: on-failure
+      placement:
+        max_replicas_per_node: 2
+      update_config:
+        parallelism: 2
+        order: start-first
+      rollback_config:
+        parallelism: 2
+        order: stop-first
+    ports:
+      - "3000:80"
+    networks:
+      - laborator3-gateway
+
+  books-service:
+    image: mihaiconstantin98/idp:lab3-books-service
+    environment:
+      IO_SERVICE_API_ROUTE: io-service/api
+      NODE_ENV: development
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: 50M
+      restart_policy:
+        condition: on-failure
+      placement:
+        max_replicas_per_node: 2
+      update_config:
+        order: start-first
+      rollback_config:
+        order: stop-first
+    networks: 
+      - laborator3-gateway
+      - laborator3-books-io
+    
+  io-service:
+    image:  mihaiconstantin98/idp:lab3-io-service
+    environment:
+      PGUSER: admin
+      PGPASSWORD: admin
+      PGHOST: db
+      PGPORT: 5432
+      PGDATABASE: books
+      NODE_ENV: development
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: 50M
+      restart_policy:
+        condition: on-failure
+      placement:
+        max_replicas_per_node: 2
+      update_config:
+        order: start-first
+      rollback_config:
+        order: stop-first
+    networks:
+      - laborator3-books-io
+      - laborator3-io-db
+
+  db:
+    image: postgres:12
+    environment:
+      POSTGRES_DB: books
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    deploy:
+      placement:
+        constraints:
+          - "node.role==manager"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+      - db-config:/docker-entrypoint-initdb.d
+    networks:
+      - laborator3-io-db
+      - laborator3-db-adminer
+
+  adminer:
+    image: adminer
+    ports:
+      - "8080:8080"
+    networks:
+      - laborator3-db-adminer
+
+  visualizer:
+    image: dockersamples/visualizer:stable
+    ports:
+      - "8081:8080"
+    deploy:
+      placement:
+        constraints:
+          - "node.role==manager"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
+volumes:
+  db-data:
+    driver: local
+    driver_opts:
+      type: nfs4
+      o: "addr=192.168.99.1,rw"
+      device: ":/database/data"
+
+  db-config:
+    driver: local
+    driver_opts:
+      type: nfs4
+      o: "addr=192.168.99.1,rw"
+      device: ":/database/config"
+
+networks:
+  laborator3-gateway:
+  laborator3-books-io:
+  laborator3-io-db:
+  laborator3-db-adminer:
