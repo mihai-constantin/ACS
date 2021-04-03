@@ -58,14 +58,14 @@ volumes:
     driver: local
     driver_opts:
       type: nfs4
-      o: "addr=192.168.1.138,rw"
-      device: ":/Users/mihai/idp-lab4/database/data"
+      o: "addr=192.168.99.1,rw"
+      device: ":/database/data"
   db-config:
     driver: local
     driver_opts:
       type: nfs4
-      o: "addr=192.168.1.138,rw"
-      device: ":/Users/mihai/idp-lab4/database/config"
+      o: "addr=192.168.99.1,rw"
+      device: ":/database/config"
 
 networks:
   laborator3-gateway:
