@@ -1,0 +1,74 @@
+version: "3.8"
+
+services:
+  gateway:
+    image: mihaiconstantin98/idp:lab3-gateway-service
+    environment:
+      BOOKS_SERVICE_API_ROUTE: books-service/api
+      NODE_ENV: development
+    ports:
+      - "3000:80"
+    networks:
+      - laborator3-gateway
+
+  books-service:
+    image: mihaiconstantin98/idp:lab3-books-service
+    environment:
+      IO_SERVICE_API_ROUTE: io-service/api
+      NODE_ENV: development
+    networks: 
+      - laborator3-gateway
+      - laborator3-books-io
+    
+  io-service:
+    image: mihaiconstantin98/idp:lab3-io-service
+    environment:
+      PGUSER: admin
+      PGPASSWORD: admin
+      PGHOST: db
+      PGPORT: 5432
+      PGDATABASE: books
+      NODE_ENV: development
+    networks:
+      - laborator3-books-io
+      - laborator3-io-db
+
+  db:
+    image: postgres:12
+    environment:
+      POSTGRES_DB: books
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    volumes:
+      - db-config:/docker-entrypoint-initdb.d
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - laborator3-io-db
+      - laborator3-db-adminer
+
+  adminer:
+    image: adminer
+    ports:
+      - "8081:8080"
+    networks:
+      - laborator3-db-adminer
+
+volumes:
+  db-data:
+    driver: local
+    driver_opts:
+      type: nfs4
+      o: "addr=192.168.1.138,rw"
+      device: ":/Users/mihai/idp-lab4/database/data"
+  db-config:
+    driver: local
+    driver_opts:
+      type: nfs4
+      o: "addr=192.168.1.138,rw"
+      device: ":/Users/mihai/idp-lab4/database/config"
+
+networks:
+  laborator3-gateway:
+  laborator3-books-io:
+  laborator3-io-db:
+  laborator3-db-adminer:
