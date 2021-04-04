@@ -16,6 +16,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <receiver android:name=".view.StartedServiceBroadcastReceiver">
+            <intent-filter>
+                <action android:name="ro.pub.cs.systems.eim.lab05.startedservice.string"/>
+                <action android:name="ro.pub.cs.systems.eim.lab05.startedservice.integer"/>
+                <action android:name="ro.pub.cs.systems.eim.lab05.startedservice.arraylist"/>
+            </intent-filter>
+
+
+        </receiver>
     </application>
 
 </manifest>

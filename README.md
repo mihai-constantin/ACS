@@ -14,4 +14,8 @@
   * realizare interfata grafica simpla pentru formarea unui numar de telefon
     
 * Laborator 4 - Structura unei Aplicatii
-  * lucrul cu intentii
+  * intentii
+
+* Laborator 5 - Structura unei Aplicatii
+  * servicii
+  
