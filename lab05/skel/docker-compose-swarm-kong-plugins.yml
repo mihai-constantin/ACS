@@ -1,0 +1,154 @@
+version: "3.8"
+
+services:
+  books-service:
+    image: mihaiconstantin98/idp:lab3-books-service
+    environment:
+      IO_SERVICE_API_ROUTE: io-service/api
+      NODE_ENV: development
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: 50M
+      restart_policy:
+        condition: on-failure
+      placement:
+        max_replicas_per_node: 1
+      update_config:
+        order: start-first
+      rollback_config:
+        order: stop-first
+    networks: 
+      - laborator5-books-io
+      - internal
+    
+  io-service:
+    image:  mihaiconstantin98/idp:lab3-io-service
+    environment:
+      PGUSER: admin
+      PGPASSWORD: admin
+      PGHOST: db
+      PGPORT: 5432
+      PGDATABASE: books
+      NODE_ENV: development
+    deploy:
+      replicas: 3
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: 50M
+      restart_policy:
+        condition: on-failure
+      placement:
+        max_replicas_per_node: 2
+      update_config:
+        order: start-first
+      rollback_config:
+        order: stop-first
+    networks:
+      - laborator5-books-io
+      - laborator5-io-db
+
+  db:
+    image: postgres:12
+    environment:
+      POSTGRES_DB: books
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    deploy:
+      placement:
+        constraints:
+          - "node.role==manager"
+    volumes:
+      - laborator5-db-persistent-volume:/var/lib/postgresql/data
+      - "${PWD}/database/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql"
+    networks:
+      - laborator5-io-db
+      - laborator5-db-adminer
+
+  adminer:
+    image: adminer
+    ports:
+      - "8080:8080"
+    networks:
+      - laborator5-db-adminer
+      - internal
+
+  visualizer:
+    image: dockersamples/visualizer:stable
+    ports:
+      - "8081:8080"
+    deploy:
+      placement:
+        constraints:
+          - "node.role==manager"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
+  kong:
+    image: kong:latest
+    volumes:
+      - ./kong:/usr/local/kong/declarative
+    environment:
+      KONG_DATABASE: 'off'
+      KONG_DECLARATIVE_CONFIG: /usr/local/kong/declarative/kong-plugins.yml
+      KONG_PROXY_ACCESS_LOG: /dev/stdout
+      KONG_ADMIN_ACCESS_LOG: /dev/stdout
+      KONG_PROXY_ERROR_LOG: /dev/stderr
+      KONG_ADMIN_ERROR_LOG: /dev/stderr
+      KONG_ADMIN_LISTEN: 0.0.0.0:8001, 0.0.0.0:8444 ssl
+    ports:
+      - 80:8000
+      - 443:8443
+      - 8001:8001
+      - 8444:8444
+    deploy:
+      placement:
+        constraints:
+          - "node.role==manager"
+    networks:
+      - internal
+      - logging
+
+  grafana:
+    image: grafana/grafana:latest
+    volumes:
+      - grafana-volume:/var/lib/grafana
+    ports:
+      - 3000:3000
+    depends_on:
+      - prometheus
+    deploy:
+      placement:
+        constraints:
+          - "node.role==manager"
+    networks:
+      - logging
+  
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus/config.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - 9090:9090
+    depends_on:
+      - kong
+    deploy:
+      placement:
+        constraints:
+          - "node.role==manager"
+    networks:
+      - logging
+
+volumes:
+  laborator5-db-persistent-volume:
+  grafana-volume:
+
+networks:
+  internal:
+  laborator5-books-io:
+  laborator5-io-db:
+  laborator5-db-adminer:
+  logging:
