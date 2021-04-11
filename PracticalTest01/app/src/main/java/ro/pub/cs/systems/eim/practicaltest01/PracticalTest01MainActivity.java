@@ -1,8 +1,10 @@
 package ro.pub.cs.systems.eim.practicaltest01;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,7 +25,7 @@ public class PracticalTest01MainActivity extends AppCompatActivity {
 
             Button press_me_button = findViewById(R.id.press_me_button);
             Button press_me_too_button = findViewById(R.id.press_me_too_button);
-
+            Button navigate_to_second_activity = findViewById(R.id.navigate_to_second_activity_button);
 
             press_me_button.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -46,12 +48,22 @@ public class PracticalTest01MainActivity extends AppCompatActivity {
                 }
             });
 
+            navigate_to_second_activity.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    EditText press_me_edit_text = findViewById(R.id.press_me_edit_text);
+                    EditText press_me_too_edit_text = findViewById(R.id.press_me_too_edit_text);
+
+                    Intent intent = new Intent("ro.pub.cs.systems.eim.practicaltest01.intent.action.PracticalTest01SecondaryActivity");
+                    Integer counter1 = Integer.valueOf(press_me_edit_text.getText().toString());
+                    Integer counter2 = Integer.valueOf(press_me_too_edit_text.getText().toString());
+                    intent.putExtra("ro.pub.cs.systems.eim.practicaltest01.COUNTER_KEY", String.valueOf(counter1 + counter2));
+                    startActivityForResult(intent, Constants.PRACTICAL_TEST_01_MAIN_ACTIVITY_REQUEST_CODE);
+                }
+            });
+
         }
     }
-
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +118,18 @@ public class PracticalTest01MainActivity extends AppCompatActivity {
         }
         if (savedInstanceState.getString(Constants.PRESS_ME_TOO_EDIT_TEXT) != null) {
             press_me_too_edit_text.setText(savedInstanceState.getString(Constants.PRESS_ME_TOO_EDIT_TEXT));
+        }
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == Activity.RESULT_OK) {
+            Toast.makeText(this, "OK button was pressed [" + resultCode+ "]", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, "CANCEL button was pressed [" + resultCode+ "]", Toast.LENGTH_LONG).show();
         }
 
     }

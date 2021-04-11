@@ -9,7 +9,7 @@
 
 
     <Button
-        android:id="@+id/show_addition_filds_button"
+        android:id="@+id/navigate_to_second_activity_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"

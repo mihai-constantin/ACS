@@ -6,4 +6,6 @@ public class Constants {
 
     final public static String PRESS_ME_EDIT_TEXT   = "press_me_edit_text";
     final public static String PRESS_ME_TOO_EDIT_TEXT   = "press_me_too_edit_text";
+
+    final public static int PRACTICAL_TEST_01_MAIN_ACTIVITY_REQUEST_CODE = 2;
 }
