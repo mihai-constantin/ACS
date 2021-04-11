@@ -26,6 +26,10 @@
         </intent-filter>
         </activity>
 
+        <service
+            android:name=".service.PracticalTest01Service"
+            android:exported="true"/>
+
     </application>
 
 </manifest>
