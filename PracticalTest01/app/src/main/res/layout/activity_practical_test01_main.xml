@@ -1,18 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".PracticalTest01MainActivity">
 
-    <TextView
+
+    <Button
+        android:id="@+id/show_addition_filds_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_gravity="end"
+        android:text="@string/navigate_to_second_activity" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:columnCount="2"
+        android:rowCount="2">
+
+
+        <EditText
+            android:id="@+id/press_me_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:text="0"
+            android:inputType="none"/>
+
+        <EditText
+            android:id="@+id/press_me_too_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:text="0"
+            android:inputType="none"/>
+
+        <Button
+            android:id="@+id/press_me_button"
+            android:text="PRESS ME!"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:padding="@dimen/space_16"
+            android:layout_margin="@dimen/space_4"
+            android:layout_gravity="center"/>
+
+        <Button
+            android:id="@+id/press_me_too_button"
+            android:text="PRESS ME, TOO!"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:padding="@dimen/space_16"
+            android:layout_margin="@dimen/space_4"
+            android:layout_gravity="center"/>
+
+
+    </GridLayout>
+
+</LinearLayout>
