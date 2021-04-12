@@ -1,8 +1,11 @@
 package ro.pub.cs.systems.eim.practicaltest01var03;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,6 +29,7 @@ public class PracticalTest01Var03MainActivity extends AppCompatActivity {
 
             Button plus_button = findViewById(R.id.plus_button);
             Button minus_button = findViewById(R.id.minus_button);
+            Button navigate_to_second_activity = findViewById(R.id.navigate_to_second_activity_button);
 
             plus_button.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -63,6 +67,15 @@ public class PracticalTest01Var03MainActivity extends AppCompatActivity {
                 }
             });
 
+            navigate_to_second_activity.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    TextView result_text_view = findViewById(R.id.result_text_view);
+                    Intent intent = new Intent("ro.pub.cs.systems.eim.practicaltest01var03.intent.action.PracticalTest01Var03SecondaryActivity");
+                    intent.putExtra("ro.pub.cs.systems.eim.practicaltest01var03.RESULT_TEXT_VIEW", result_text_view.getText().toString());
+                    startActivityForResult(intent, Constants.PRACTICAL_TEST_01_VAR_03_MAIN_ACTIVITY_REQUEST_CODE);
+                }
+            });
         }
     }
 
@@ -133,4 +146,17 @@ public class PracticalTest01Var03MainActivity extends AppCompatActivity {
             result_text_view.setText(savedInstanceState.getString(Constants.RESULT_TEXT_VIEW));
         }
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == Activity.RESULT_OK) {
+            Toast.makeText(this, "Correct button was pressed [" + resultCode+ "]", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, "Incorrect button was pressed [" + resultCode+ "]", Toast.LENGTH_LONG).show();
+        }
+
+    }
+
 }

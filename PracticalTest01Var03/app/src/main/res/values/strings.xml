@@ -5,4 +5,7 @@
     <string name="plus">+</string>
     <string name="plus_error">Plus Error!</string>
     <string name="minus_error">Minus error!</string>
+    <string name="correct">correct</string>
+    <string name="incorrect">incorrect</string>
+    <string name="result">Result Error!</string>
 </resources>
