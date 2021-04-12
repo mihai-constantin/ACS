@@ -3,4 +3,6 @@
     <string name="navigate_to_second_activity">navigate to secondary activity</string>
     <string name="minus">-</string>
     <string name="plus">+</string>
+    <string name="plus_error">Plus Error!</string>
+    <string name="minus_error">Minus error!</string>
 </resources>
