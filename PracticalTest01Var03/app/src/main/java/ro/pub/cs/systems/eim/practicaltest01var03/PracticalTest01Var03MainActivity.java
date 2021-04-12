@@ -1,8 +1,10 @@
 package ro.pub.cs.systems.eim.practicaltest01var03;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -77,6 +79,58 @@ public class PracticalTest01Var03MainActivity extends AppCompatActivity {
         plus_button.setOnClickListener(mViewClickListener);
         minus_button.setOnClickListener(mViewClickListener);
 
+        // save values for edit texts
+        if (savedInstanceState == null) {
+            Log.d(Constants.TAG, "onCreate() method was invoked without a previous state");
+        } else {
+            Log.d(Constants.TAG, "onCreate() method was invoked with a previous state");
 
+            EditText first_number_edit_text = findViewById(R.id.edit_text_first_number);
+            EditText second_number_edit_text = findViewById(R.id.edit_text_second_number);
+            TextView result_text_view = findViewById(R.id.result_text_view);
+
+            if (savedInstanceState.getString(Constants.FIRST_NUMBER_EDIT_TEXT) != null) {
+                first_number_edit_text.setText(savedInstanceState.getString(Constants.FIRST_NUMBER_EDIT_TEXT));
+            }
+            if (savedInstanceState.getString(Constants.SECOND_NUMBER_EDIT_TEXT) != null) {
+                second_number_edit_text.setText(savedInstanceState.getString(Constants.SECOND_NUMBER_EDIT_TEXT));
+            }
+            if (savedInstanceState.getString(Constants.RESULT_TEXT_VIEW) != null) {
+                result_text_view.setText(savedInstanceState.getString(Constants.RESULT_TEXT_VIEW));
+            }
+        }
+
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        EditText first_number_edit_text = findViewById(R.id.edit_text_first_number);
+        EditText second_number_edit_text = findViewById(R.id.edit_text_second_number);
+        TextView result_text_view = findViewById(R.id.result_text_view);
+
+        outState.putString(Constants.FIRST_NUMBER_EDIT_TEXT, first_number_edit_text.getText().toString());
+        outState.putString(Constants.SECOND_NUMBER_EDIT_TEXT, second_number_edit_text.getText().toString());
+        outState.putString(Constants.RESULT_TEXT_VIEW, result_text_view.getText().toString());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        EditText first_number_edit_text = findViewById(R.id.edit_text_first_number);
+        EditText second_number_edit_text = findViewById(R.id.edit_text_second_number);
+        TextView result_text_view = findViewById(R.id.result_text_view);
+
+        if (savedInstanceState.getString(Constants.FIRST_NUMBER_EDIT_TEXT) != null) {
+            first_number_edit_text.setText(savedInstanceState.getString(Constants.FIRST_NUMBER_EDIT_TEXT));
+        }
+        if (savedInstanceState.getString(Constants.SECOND_NUMBER_EDIT_TEXT) != null) {
+            second_number_edit_text.setText(savedInstanceState.getString(Constants.SECOND_NUMBER_EDIT_TEXT));
+        }
+        if (savedInstanceState.getString(Constants.RESULT_TEXT_VIEW) != null) {
+            result_text_view.setText(savedInstanceState.getString(Constants.RESULT_TEXT_VIEW));
+        }
     }
 }
