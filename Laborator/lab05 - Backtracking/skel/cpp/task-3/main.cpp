@@ -39,7 +39,6 @@ private:
                 }
             }
         }
-
         return false;
     }
 
@@ -61,13 +60,7 @@ private:
         // ---X-
         // se va reprezenta prin sol[1..5] = {1, 3, 5, 2, 4}.
 
-
         bkt(1, n, sol);
-
-        for (int i = 1; i < sol.size(); i++) {
-            cout << sol[i] << " ";
-        }
-        cout << '\n';
 
         return sol;
     }

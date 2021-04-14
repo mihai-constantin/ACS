@@ -20,13 +20,13 @@ private:
     }
 
     void bkt(int p, vector<vector<int> > &all, vector<int> &submultime) {
-	vector<int> sol(submultime.begin() + 1, submultime.begin() + p);
-	all.push_back(sol);
+        vector<int> sol(submultime.begin() + 1, submultime.begin() + p);
+        all.push_back(sol);
 
-	for(int i = submultime[p - 1] + 1; i <= n; i++) {
-    	    submultime[p] = i; 
+        for(int i = submultime[p - 1] + 1; i <= n; i++) {
+            submultime[p] = i; 
             bkt(p + 1, all, submultime);
-	}
+        }
     }
 
     vector<vector<int> > get_result() {
@@ -40,7 +40,7 @@ private:
 
         vector<int> submultime(n);
         bkt(1, all, submultime);
-	return all;
+	    return all;
     }
 
     void print_output(const vector<vector<int>>& result) {

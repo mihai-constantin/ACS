@@ -20,13 +20,9 @@ private:
         fin.close();
     }
 
-    void printSolution(vector<int> solution, vector<vector<int> > &all) {
-        all.push_back(solution);
-    }
-
     void bkt(int step, int stop, vector<int> &domain, vector<int> &solution, unordered_set<int> &visited, vector<vector<int> > &all) {
         if (step == stop) {
-            printSolution(solution, all);
+            all.push_back(solution);
             return;
         }
 
@@ -58,7 +54,6 @@ private:
         }
 
         bkt(0, k, domain, solution, visited, all);
-        
         return all;
     }
 
