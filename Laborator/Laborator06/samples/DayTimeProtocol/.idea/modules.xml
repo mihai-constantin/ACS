@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/DayTimeProtocol.iml" filepath="$PROJECT_DIR$/DayTimeProtocol.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/DayTimeProtocol.iml" filepath="$PROJECT_DIR$/.idea/modules/DayTimeProtocol.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/DayTimeProtocol.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/DayTimeProtocol.app.iml" />
     </modules>
   </component>
 </project>
