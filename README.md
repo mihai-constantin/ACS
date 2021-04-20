@@ -17,3 +17,4 @@ PROIECT: 2p
 * Laborator 3 - Programare Dinamica 1
 * Laborator 4 - Programare Dinamica 2
 * Laborator 5 - Backtracking
+* Laborator 6 - Minimax
