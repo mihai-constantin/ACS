@@ -13,9 +13,9 @@ docker service ls
 
 * JWT Token. Prometheus + Grafana
 ```bash
-docker stack deploy -c docker stack deploy -c docker-compose-swarm-kong-plugins.yml lab05
+docker stack deploy -c docker-compose-swarm-kong-plugins.yml lab05
 ```
-  * vizualizare json kong: ip:8081
+  * vizualizare json kong: ip:8001
   * prometheus: ip:9090
   * grafana: ip:3000
     * importare [dashboard](https://grafana.com/grafana/dashboards/7424) kong

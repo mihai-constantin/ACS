@@ -6,3 +6,4 @@
 * Laborator 3 - Docker Swarm
 * Laborator 4 - Persistenta in Docker Swarm
 * Laborator 5 - API Gateway. Kong
+* Laborator 6 - Portainer. CI/CD
