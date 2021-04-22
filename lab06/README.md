@@ -18,4 +18,4 @@ docker stack deploy -c portainer.yml portainer
 
 * Dashboard Portainer: docker-machine-ip:9000
 
-<img src="skel/portainer.png" alt="drawing" />
+<img src="portainer.png" alt="drawing" />
