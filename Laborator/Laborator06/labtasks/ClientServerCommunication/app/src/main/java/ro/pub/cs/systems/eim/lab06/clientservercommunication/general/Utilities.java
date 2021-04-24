@@ -15,5 +15,4 @@ public class Utilities {
     public static PrintWriter getWriter(Socket socket) throws IOException {
         return new PrintWriter(socket.getOutputStream(), true);
     }
-
 }

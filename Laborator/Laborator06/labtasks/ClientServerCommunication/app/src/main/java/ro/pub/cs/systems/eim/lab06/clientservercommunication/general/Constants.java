@@ -11,5 +11,4 @@ public interface Constants {
     public final static boolean DEBUG = true;
 
     public final static String TAG = "Client Server Comm";
-
 }
