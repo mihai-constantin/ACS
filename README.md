@@ -18,4 +18,6 @@
 
 * Laborator 5 - Structura unei Aplicatii
   * servicii
+
+* Laborator 6 - Comunicatia prin socketi in Android
   
