@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/OCWCoursesDisplayer.iml" filepath="$PROJECT_DIR$/OCWCoursesDisplayer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/httpclient-4.4.1.2/httpclient-4.4.1.2.iml" filepath="$PROJECT_DIR$/httpclient-4.4.1.2/httpclient-4.4.1.2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jsoup-1.10.2/jsoup-1.10.2.iml" filepath="$PROJECT_DIR$/jsoup-1.10.2/jsoup-1.10.2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/volley/volley.iml" filepath="$PROJECT_DIR$/volley/volley.iml" />
+    </modules>
+  </component>
+</project>
