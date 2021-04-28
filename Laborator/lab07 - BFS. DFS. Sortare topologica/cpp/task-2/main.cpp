@@ -66,6 +66,11 @@ private:
             }
         }
 
+        // for (int i = 0; i < topsort.size(); i++) {
+        //     cout << topsort[i] << " ";
+        // }
+        // cout << '\n';
+
         return topsort;
     }
 

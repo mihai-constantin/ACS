@@ -68,9 +68,7 @@ private:
             if (d[i] == NMAX) {
                 d[i] = -1;
             }
-            cout << d[i] << " ";
         }
-        cout << '\n';
 
         return d;
     }
