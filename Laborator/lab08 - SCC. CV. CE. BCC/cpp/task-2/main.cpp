@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <fstream>
+#include <vector>
 using namespace std;
 
 class Task {
@@ -19,6 +21,13 @@ private:
     // exemplu: daca adj[node] = {..., neigh, ...} => exista arcul (node, neigh)
     vector<int> adj[NMAX];
 
+    vector<int> idx;
+    vector<int> lowlink;
+    vector<int> visited;
+    vector<int> parent;
+    vector<int> ap;
+    int indecs;
+
     void read_input() {
         ifstream fin("in");
         fin >> n >> m;
@@ -30,6 +39,37 @@ private:
         fin.close();
     }
 
+    void tarjan(int x) {
+        int i, y, children;
+
+        children = 0;
+        idx[x] = lowlink[x] = indecs++;
+        visited[x] = 1;
+
+        // parcurg vecinii y ai lui x
+        for (int i = 0; i < adj[x].size(); i++) {
+            y = adj[x][i];
+
+            if (!visited[y]) {
+                children++;
+                parent[y] = x;
+                tarjan(y);
+
+                lowlink[x] = min(lowlink[x], lowlink[y]);
+
+                if (parent[x] == -1 && children > 1) {
+                    ap[x] = 1;
+                }
+
+                if (parent[x] != -1 && lowlink[y] >= idx[x]) {
+                    ap[x] = 1;
+                }
+            } else if (parent[x] != y) {
+                lowlink[x] = min(lowlink[x], idx[y]);
+            }
+        }
+    }
+
     vector<int> get_result() {
         //
         // TODO: Gasiti toate nodurile critice ale grafului neorientat stocat cu liste de adiacenta in adj.
@@ -39,6 +79,31 @@ private:
         //
 
         vector<int> all_cvs;
+
+        idx.resize(n + 1);
+        lowlink.resize(n + 1);
+
+        ap.resize(n + 1);
+        ap.assign(n + 1, 0);
+
+        parent.resize(n  + 1);
+        parent.assign(n + 1, -1);
+
+        visited.resize(n + 1);
+        visited.assign(n + 1, 0);
+
+        for (int i = 1; i <= n; i++) {
+            if (!visited[i]) {
+                tarjan(i);
+            }
+        }
+
+        for (int i = 1; i <= n; i++) {
+            if (ap[i]) {
+                all_cvs.push_back(i);
+            }
+        }
+
         return all_cvs;
     }
 
