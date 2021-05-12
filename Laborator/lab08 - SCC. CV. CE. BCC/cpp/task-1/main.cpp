@@ -1,4 +1,7 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <stack>
 using namespace std;
 
 class Task {
@@ -19,6 +22,14 @@ private:
     // exemplu: daca adj[node] = {..., neigh, ...} => exista arcul (node, neigh)
     vector<int> adj[NMAX];
 
+    vector<int> idx;
+    vector<int> lowlink;
+    vector<int> in_stack;
+    stack<int> S;
+    int indecs;
+
+    vector<int> comp;
+
     void read_input() {
         ifstream fin("in");
         fin >> n >> m;
@@ -27,6 +38,39 @@ private:
             adj[x].push_back(y); // arc (x, y)
         }
         fin.close();
+    }
+
+    void tarjan(vector< vector<int> > &sol, int x) {
+        int i, y, node;
+
+        idx[x] = lowlink[x] = indecs++;
+        S.push(x);
+        in_stack[x] = 1;
+
+        // parcurg vecinii y ai lui x
+        for (i = 0; i < adj[x].size(); i++) {
+            y = adj[x][i];
+
+            if (idx[y] == -1) {
+                tarjan(sol, y);
+                lowlink[x] = min(lowlink[x], lowlink[y]);
+            } else if (in_stack[y]) {
+                lowlink[x] = min(lowlink[x], lowlink[y]);
+            }
+        }
+
+        // x radacina pentru CTC
+        if (idx[x] == lowlink[x]) {
+            comp.clear();
+            do {
+                node = S.top();
+                comp.push_back(node);
+                S.pop();
+                in_stack[node] = 0;
+            } while(node != x);
+
+            sol.push_back(comp);
+        }
     }
 
     vector<vector<int>> get_result() {
@@ -41,6 +85,21 @@ private:
         //
 
         vector<vector<int>> all_sccs;
+
+        idx.resize(n + 1);
+        idx.assign(n + 1, -1);
+        
+        lowlink.resize(n + 1);
+
+        in_stack.resize(n + 1);
+        in_stack.assign(n + 1, 0);
+
+        for (int i = 1; i <= n; i++) {
+            if (idx[i] == -1) {
+                tarjan(all_sccs, i);
+            }
+        }
+
         return all_sccs;
     }
 
