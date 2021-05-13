@@ -1,4 +1,9 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <stack>
+#include <cmath>
+#include <set>
 using namespace std;
 
 class Task {
@@ -32,6 +37,14 @@ private:
     // exemplu: daca adj[node] = {..., neigh, ...} => exista arcul (node, neigh)
     vector<int> adj[NMAX];
 
+    vector<int> idx;
+    vector<int> lowlink;
+    stack <Edge> stk;
+
+    set<int> con;
+    
+    int indecs;
+
     void read_input() {
         ifstream fin("in");
         fin >> n >> m;
@@ -42,6 +55,38 @@ private:
         }
         fin.close();
     }
+
+    void tarjan(vector<vector<int>> &all_bccs, int x) {
+        int i, y;
+
+        idx[x] = lowlink[x] = indecs++;
+
+        // parcurgem vecinii y ai lui x
+        for (i = 0; i < adj[x].size(); i++) {
+            y = adj[x][i];
+
+            if (idx[y] == -1) {
+                stk.push(Edge(x, y));
+                tarjan(all_bccs, y);
+                lowlink[x] = min(lowlink[x], lowlink[y]);
+                if (lowlink[y] >= idx[x]) {
+                    con.clear();
+                    int tx, ty;
+                    do {
+                        tx = stk.top().x;
+                        ty = stk.top().y;
+                        stk.pop();
+                        con.insert(tx);
+                        con.insert(ty);
+                    } while (tx != x || ty != y);
+                    vector<int> _con{con.begin(), con.end()};
+                    all_bccs.push_back(_con);
+                }
+            } else {
+                lowlink[x] = min(lowlink[x], idx[y]);
+            }
+        }
+	}
 
     vector<vector<int>> get_result() {
         //
@@ -55,6 +100,18 @@ private:
         //
 
         vector<vector<int>> all_bccs;
+
+        idx.resize(n + 1);
+        idx.assign(n + 1, -1);
+
+        lowlink.resize(n + 1);
+
+        for (int i = 1; i <= n; i++) {
+            if (idx[i] == -1) {
+                tarjan(all_bccs, i);
+            }
+        }
+
         return all_bccs;
     }
 
