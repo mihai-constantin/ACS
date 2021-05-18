@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <fstream>
+#include <queue>
 using namespace std;
 
 // numarul maxim de noduri
@@ -49,8 +51,54 @@ private:
         // In cazul in care exista ciclu de cost negativ, returnati un vector gol:
         //     return {};
         //
+        int i, x, y, cost;
 
-        vector<int> d(n + 1, 0);
+        vector<int> d(n + 1, INF);
+        vector<int> visited(n + 1, 0);
+        vector<int> pred(n + 1, -1);
+        vector<int> inQueue(n + 1, 0);
+        queue<int> q;
+
+        // introduc in coada nodul de start
+        q.push(source);
+        inQueue[source] = 1;
+        d[source] = 0;
+        visited[source] = 1;
+
+        while(!q.empty()) {
+            x = q.front();
+            q.pop();
+            inQueue[x] = 0;
+
+            // parcurg vecinii y ai lui x
+            for(i = 0; i < adj[x].size(); i++) {
+                y = adj[x][i].first;
+                cost = adj[x][i].second;
+
+                if (d[y] > d[x] + cost) {
+                    d[y] = d[x] + cost;
+                    pred[y] = x;
+
+                    if (!inQueue[y]) {
+                        q.push(y);
+                        inQueue[y] = 1;
+                        visited[y]++;
+                    }
+
+                    if (visited[y] == n) {
+                        // ciclu de cost negativ
+                        return vector<int>();
+                    }
+                }
+            }
+        }
+
+        for (i = 1; i <= n; i++) {
+            if (d[i] == INF) {
+                d[i] = -1;
+            }
+        }
+
         return d;
     }
 
