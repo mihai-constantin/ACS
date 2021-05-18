@@ -20,3 +20,4 @@ PROIECT: 2p
 * Laborator 6 - Minimax
 * Laborator 7 - Parcurgerea grafurilor 1. BFS. DFS. Sortare topologica
 * Laborator 8 - Parcurgerea grafurilor 2. SCC. CV. CE. BCC.
+* Laborator 9 - Drumuri minime
