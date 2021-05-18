@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <fstream>
 using namespace std;
 
 // numarul maxim de noduri
@@ -28,7 +29,7 @@ private:
         fin >> n;
         for (int x = 1; x <= n; x++) {
             for (int y = 1; y <= n; y++) {
-                fin >> w[x][y];
+                fin >> d[x][y];
             }
         }
         fin.close();
@@ -51,6 +52,18 @@ private:
         //     d[x][y] = 0 daca nu exista drum intre x si y.
         //          * implicit: d[x][x] = 0 (distanta de la un nod la el insusi).
         //
+
+        int k, i, j;
+
+        for (k = 1; k <= n; k++) {
+            for (i = 1; i <= n; i++) {
+                for (j = 1; j <= n; j++) {
+                    if ( (d[i][j] > d[i][k] + d[k][j] || !d[i][j]) && i != j && d[i][k] && d[k][j]) {
+                        d[i][j] = d[i][k] + d[k][j];
+                    }
+                }
+            }
+        }
     }
 
     void print_output() {
