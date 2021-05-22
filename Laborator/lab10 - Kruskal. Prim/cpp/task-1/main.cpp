@@ -1,4 +1,10 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <fstream>
+#include <algorithm>
+#include <utility>
+#include <set>
+#include <tuple>
+#include <vector>
 using namespace std;
 
 // numarul maxim de noduri
@@ -68,6 +74,10 @@ private:
         fin.close();
     }
 
+    static bool cmp(tuple<int, int, int> edge1, tuple<int, int, int> edge2) {
+        return get<2>(edge1) < get<2>(edge2);
+    }
+
     int get_result() {
         //
         // TODO: Calculati costul minim al unui arbore de acoperire
@@ -94,7 +104,21 @@ private:
         // dj.reunion(x, y);
         //
 
-        return 0;
+        DisjointSet dj(n);
+
+        int cost = 0;
+        sort(edges.begin(), edges.end(), cmp);
+        for (int i = 0; i < edges.size(); i++) {
+            int x = dj.find_root(get<0>(edges[i]));
+            int y = dj.find_root(get<1>(edges[i]));
+
+            if (x != y) {
+                dj.merge_forests(x, y);
+                cost += get<2>(edges[i]);
+            }
+        }
+
+        return cost;
     }
 
     void print_output(int result) {
