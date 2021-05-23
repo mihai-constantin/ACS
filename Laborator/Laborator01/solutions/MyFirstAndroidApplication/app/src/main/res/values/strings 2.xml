@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">My First Android Application</string>
+    <string name="action_settings">Settings</string>
+    <string name="icon_image_view_content_description">This is the application icon.</string>
+    <string name="introduce_yourself_text_view_content">Introduce yourself</string>
+    <string name="submit_button_content">Submit</string>
+    <string name="gretting_text_view_content">Welcome to the EIM laboratory, xxx!</string>
+</resources>
