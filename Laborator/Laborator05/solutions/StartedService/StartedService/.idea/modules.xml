@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD:Laborator/Laborator05/solutions/StartedService/StartedService/.idea/modules.xml
       <module fileurl="file://$PROJECT_DIR$/StartedService.iml" filepath="$PROJECT_DIR$/StartedService.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/WebPageKeywordSearch.iml" filepath="$PROJECT_DIR$/WebPageKeywordSearch.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/WebPageKeywordSearch.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/WebPageKeywordSearch.app.iml" />
+>>>>>>> Laborator07/master:samples/WebPageKeywordSearch/.idea/modules.xml
     </modules>
   </component>
 </project>
