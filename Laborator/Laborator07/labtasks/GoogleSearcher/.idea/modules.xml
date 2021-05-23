@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/GoogleSearcher.iml" filepath="$PROJECT_DIR$/GoogleSearcher.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/httpclient-4.4.1.2/httpclient-4.4.1.2.iml" filepath="$PROJECT_DIR$/httpclient-4.4.1.2/httpclient-4.4.1.2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/GoogleSearcher.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/GoogleSearcher.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/httpclient-4.4.1.2/GoogleSearcher.httpclient-4.4.1.2.iml" filepath="$PROJECT_DIR$/.idea/modules/httpclient-4.4.1.2/GoogleSearcher.httpclient-4.4.1.2.iml" />
     </modules>
   </component>
 </project>
