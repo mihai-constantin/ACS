@@ -1,6 +1,0 @@
-<resources>
-    <string name="app_name">Web Page Keyword Search</string>
-    <string name="web_page_address">Web Page Address</string>
-    <string name="keyword">Keyword</string>
-    <string name="display_results">Display Results</string>
-</resources>
