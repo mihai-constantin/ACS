@@ -20,4 +20,6 @@
   * servicii
 
 * Laborator 6 - Comunicatia prin socketi in Android
+
+* Laborator 7 - Invocarea de servicii Web prin protocolul HTTP
   
