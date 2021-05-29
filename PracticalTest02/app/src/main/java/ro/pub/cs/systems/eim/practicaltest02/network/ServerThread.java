@@ -21,9 +21,9 @@ public class ServerThread extends Thread {
     public ServerThread(int port) {
         this.port = port;
         try {
-            this.serverSocket = new ServerSocket(this.port);
+            this.serverSocket = new ServerSocket(port);
         } catch (IOException ioException) {
-            Log.e(Constants.TAG, "An exception has occurred: " + ioException.getMessage());
+            Log.e(Constants.TAG, "An exception has occurred: " + ioException.getMessage() + " port: " + port);
             if (Constants.DEBUG) {
                 ioException.printStackTrace();
             }
