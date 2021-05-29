@@ -8,6 +8,10 @@ public class Constants {
     final public static String WEB_SERVICE_API_KEY = "pdsd";
     final public static String WEB_SERVICE_ADDRESS = "http://api.geonames.org/earthquakesJSON";
 
+    final public static String EMPTY_STRING = "";
+
+    final public static String EARTHQUAKE = "earthquakes";
+
     // json response
     final public static String ID = "eqid";
     final public static String MAGNITUDE = "magnitude";
@@ -16,5 +20,7 @@ public class Constants {
     final public static String DATETIME = "datetime";
     final public static String DEPTH = "depth";
     final public static String LAT = "lat";
+
+    final public static String ALL = "all";
 
 }
