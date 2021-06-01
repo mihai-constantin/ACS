@@ -1,4 +1,9 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <fstream>
+#include <cmath>
+#include <vector>
+#include <queue>
+#include <climits>
 using namespace std;
 
 // numarul maxim de noduri
@@ -17,9 +22,13 @@ private:
 
     // adj[i] = lista de adiacenta a nodului i
     vector<int> adj[NMAX];
+    vector<int> visited;
+    vector<int> parent;
+    queue<int> q;
 
     // cap[i][j] = capacitatea arcului i -> j
     int cap[NMAX][NMAX];
+    int F[NMAX][NMAX];
 
     void read_input() {
         ifstream fin("in");
@@ -39,6 +48,57 @@ private:
         fin.close();
     }
 
+    void clear(queue<int> &q) {
+        queue<int> empty;
+        swap(q, empty);
+    }
+
+    bool bfs() {
+        int i, x, y;
+
+        clear(q);
+
+        visited.resize(n + 1);
+        visited.assign(n + 1, 0);
+
+        parent.resize(n + 1);
+        parent.assign(n + 1, -1);
+
+        visited[1] = 1;
+        q.push(1);
+
+        while(!q.empty()) {
+            x = q.front();
+            q.pop();
+
+            // parcurg vecinii y ai lui x
+            for (i = 0; i < adj[x].size(); i++) {
+                y = adj[x][i];
+
+                if (cap[x][y] != F[x][y] && !visited[y]) {
+                    visited[y] = 1;
+                    parent[y] = x;
+                    q.push(y);
+                    if (y == n) {
+                        return 1;
+                    }
+                }
+            }
+        }
+
+        return 0;
+    }
+
+    void print_flux() {
+        cout << "===    F   ===\n";
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n; j++) {
+                cout << F[i][j] << " ";
+            }
+            cout << '\n';
+        }
+    }
+
     int get_result() {
         //
         // TODO: Calculati fluxul maxim pe graful orientat dat.
@@ -50,7 +110,38 @@ private:
         // De exemplu, un arc (x, y) de capacitate c va fi tinut astfel:
         // cap[x][y] = c, adj[x] contine y, adj[y] contine x.
         //
-        int max_flow = 0;
+        int max_flow = 0, fmin, node;
+
+        // print_flux();
+        // cout << "===    cap   ===\n";
+        // for (int i = 1; i <= n; i++) {
+        //     for (int j = 1; j <= n; j++) {
+        //         cout << cap[i][j] << " ";
+        //     }
+        //     cout << '\n';
+        // }
+
+        while(bfs()) {
+            fmin = INT_MAX;
+
+            node = n;
+            while (node != 1) {
+                fmin = min(fmin, cap[parent[node]][node] - F[parent[node]][node]);
+                node = parent[node];
+            }
+
+            node = n;
+            while (node != 1) {
+                F[parent[node]][node] += fmin;
+                F[node][parent[node]] -= fmin;
+                node = parent[node];
+            }
+
+            max_flow += fmin;
+
+            // print_flux();
+            // cout << "max_flow: " << max_flow << '\n';
+        }
 
         return max_flow;
     }

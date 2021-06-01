@@ -22,3 +22,4 @@ PROIECT: 2p
 * Laborator 8 - Parcurgerea grafurilor 2. SCC. CV. CE. BCC.
 * Laborator 9 - Drumuri minime. Dijkstra. Bellman–Ford. Floyd-Warshall
 * Laborator 10 - Arbori Minimi de Acoperire. Kruskal. Prim
+* Laborator 11 - Flux maxim
