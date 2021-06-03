@@ -90,8 +90,8 @@ public class CommunicationThread extends Thread {
                 String eur_rate = eur.getString(Constants.RATE);
 
                 bitInformation = new BITInformation(
-                        usd_rate,
-                        eur_rate);
+                        eur_rate,
+                        usd_rate);
                 serverThread.setData(currency, bitInformation);
             }
 
@@ -99,8 +99,15 @@ public class CommunicationThread extends Thread {
                 Log.e(Constants.TAG, "[COMMUNICATION THREAD] Weather Forecast Information is null!");
                 return;
             }
+            String result = "";
 
-            String result = bitInformation.toString();
+            if (currency.equals(Constants.EUR)) {
+                result = bitInformation.getEUR();
+            } else if (currency.equals(Constants.USD)) {
+                result = bitInformation.getUSD();
+            } else {
+                result = bitInformation.toString();
+            }
             // write to socket
             printWriter.println(result);
             printWriter.flush();
