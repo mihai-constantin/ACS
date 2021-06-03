@@ -1,4 +1,4 @@
-package ro.pub.cs.systems.eim.practicaltest02.view;
+package ro.pub.cs.systems.eim.practicaltest02.view.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
