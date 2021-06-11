@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">PracticalTest02</string>
+    <string name="server">SERVER</string>
+    <string name="client">CLIENT</string>
+    <string-array name="information_types">
+        <item>eqid</item>
+        <item>magnitude</item>
+        <item>lng</item>
+        <item>src</item>
+        <item>datetime</item>
+        <item>depth</item>
+        <item>lat</item>
+        <item>all</item>
+    </string-array>
+</resources>
