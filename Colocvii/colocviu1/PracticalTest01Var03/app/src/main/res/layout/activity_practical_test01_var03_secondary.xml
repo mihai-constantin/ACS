@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".PracticalTest01Var03SecondaryActivity">
+
+
+    <TextView
+        android:id="@+id/result_text_view_second_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:inputType="none"
+        android:layout_gravity="center"/>
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:columnCount="2"
+        android:rowCount="1">
+
+        <Button
+            android:id="@+id/correct_button"
+            android:text="@string/correct"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:padding="8dp"
+            android:layout_margin="4dp"
+            android:layout_gravity="center"/>
+
+        <Button
+            android:id="@+id/incorrect_button"
+            android:text="@string/incorrect"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:padding="8dp"
+            android:layout_margin="4dp"
+            android:layout_gravity="center"/>
+
+    </GridLayout>
+
+</LinearLayout>

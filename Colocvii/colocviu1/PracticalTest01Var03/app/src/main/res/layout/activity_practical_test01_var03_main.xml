@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".PracticalTest01Var03MainActivity">
+
+    <EditText
+        android:id="@+id/edit_text_first_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:inputType="text"
+        android:saveEnabled="false"/>
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:columnCount="2"
+        android:rowCount="1">
+
+        <Button
+            android:id="@+id/plus_button"
+            android:text="@string/plus"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:padding="@dimen/space_16"
+            android:layout_margin="@dimen/space_4"
+            android:layout_gravity="center"/>
+
+        <Button
+            android:id="@+id/minus_button"
+            android:text="@string/minus"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:padding="@dimen/space_16"
+            android:layout_margin="@dimen/space_4"
+            android:layout_gravity="center"/>
+
+    </GridLayout>
+
+
+    <EditText
+        android:id="@+id/edit_text_second_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:saveEnabled="false"
+        android:inputType="text" />
+
+    <TextView
+        android:id="@+id/result_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="none"
+        android:saveEnabled="false"/>
+
+    <Button
+        android:id="@+id/navigate_to_second_activity_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/navigate_to_second_activity" />
+
+</LinearLayout>
