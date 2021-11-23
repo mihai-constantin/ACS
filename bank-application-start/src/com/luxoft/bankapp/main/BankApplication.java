@@ -1,6 +1,9 @@
 package com.luxoft.bankapp.main;
 
 import com.luxoft.bankapp.domain.*;
+import com.luxoft.bankapp.domain.report.BankReport;
+import com.luxoft.bankapp.domain.report.BankReportStreams;
+import com.luxoft.bankapp.domain.report.IBankReport;
 import com.luxoft.bankapp.exceptions.ClientExistsException;
 import com.luxoft.bankapp.exceptions.NotEnoughFundsException;
 import com.luxoft.bankapp.exceptions.OverdraftLimitExceededException;
@@ -93,8 +96,22 @@ public class BankApplication {
 	}
 
 	private static void printStatistics() {
-		BankReport bankReport = new BankReport();
-		bankReport.printReport(bank);
+		printReport(new BankReport());
+
+		System.out.println();
+		System.out.println();
+
+		printReport(new BankReportStreams());
 	}
 
+	public static void printReport(IBankReport report) {
+		System.out.println("numberOfClients: " + report.getNumberOfClients(bank));
+		System.out.println("numberOfAccounts: " + report.getNumberOfAccounts(bank));
+		System.out.println("clientsSorted: " + report.getClientsSorted(bank));
+		System.out.println("totalSumInAccounts: " + report.getTotalSumInAccounts(bank));
+		System.out.println("accountsSortedBySum: " + report.getAccountsSortedBySum(bank));
+		System.out.println("bankCreditSum: " + report.getBankCreditSum(bank));
+		System.out.println("customerAccounts: " + report.getCustomerAccounts(bank));
+		System.out.println("clientsByCity: " + report.getClientsByCity(bank));
+	}
 }

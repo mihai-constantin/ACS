@@ -1,8 +1,17 @@
-package com.luxoft.bankapp.domain;
+package com.luxoft.bankapp.domain.report;
+
+import com.luxoft.bankapp.domain.Account;
+import com.luxoft.bankapp.domain.Bank;
+import com.luxoft.bankapp.domain.CheckingAccount;
+import com.luxoft.bankapp.domain.Client;
 
 import java.util.*;
 
-public class BankReport {
+public class BankReport implements IBankReport {
+
+    public BankReport() {
+        System.out.println("--- Bank Report ---");
+    }
 
     public int getNumberOfClients(Bank bank) {
         return bank.getClients().size();
@@ -75,17 +84,4 @@ public class BankReport {
         }
         return map;
     }
-
-    public void printReport(Bank bank) {
-        System.out.println("--- Bank Report ---");
-        System.out.println("numberOfClients: " + getNumberOfClients(bank));
-        System.out.println("numberOfAccounts: " + getNumberOfAccounts(bank));
-        System.out.println("clientsSorted: " + getClientsSorted(bank));
-        System.out.println("totalSumInAccounts: " + getTotalSumInAccounts(bank));
-        System.out.println("accountsSortedBySum: " + getAccountsSortedBySum(bank));
-        System.out.println("bankCreditSum: " + getBankCreditSum(bank));
-        System.out.println("customerAccounts: " + getCustomerAccounts(bank));
-        System.out.println("clientsByCity: " + getClientsByCity(bank));
-    }
-
 }
