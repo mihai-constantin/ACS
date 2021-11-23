@@ -82,7 +82,6 @@ public class BankApplication {
 		} catch(ClientExistsException e) {
 			System.out.format("Cannot add an already existing client: %s%n", client1);
 		}
-
 	}
 	
 	private static void printBalance() {

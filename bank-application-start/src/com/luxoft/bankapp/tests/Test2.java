@@ -33,6 +33,5 @@ public class Test2 {
 		assertEquals(2, bank.getEmailedClients());
 		assertEquals(2, bank.getDebuggedClients());
 	}
-
 }
 
