@@ -1,5 +1,7 @@
 package com.luxoft.bankapp.domain;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 public class Client {
@@ -8,6 +10,8 @@ public class Client {
 	private Gender gender;
 	private String city;
 	private Set<Account> accounts = new LinkedHashSet<>();
+
+	private LocalDate birthday;
 
 	public Client(String name, Gender gender) {
 		this.name = name;
@@ -20,16 +24,18 @@ public class Client {
 		this.city = city;
 	}
 
+	public Client(String name, Gender gender, LocalDate birthday) {
+		this.name = name;
+		this.gender = gender;
+		this.birthday = birthday;
+	}
+
 	public void addAccount(final Account account) {
 		accounts.add(account);
 	}
 	
 	public String getName() {
 		return name;
-	}
-	
-	public Gender getGender() {
-		return gender;
 	}
 	
 	public Set<Account> getAccounts() {
@@ -43,7 +49,24 @@ public class Client {
 			return name;
 		}
 	}
-	
+
+	public LocalDate getBirthday() {
+		return birthday;
+	}
+
+	public int getBirthdayMonth() {
+		return birthday.getMonth().getValue();
+	}
+
+	public long daysUntilBirthday() {
+		LocalDate today = LocalDate.now();
+		long daysInBetween = ChronoUnit.DAYS.between(today, LocalDate.of(today.getYear(), birthday.getMonth(), birthday.getDayOfMonth()));
+		if (daysInBetween < 0) {
+			daysInBetween = 365 + daysInBetween;
+		}
+		return daysInBetween;
+	}
+
 	@Override
 	public String toString() {
 		return getClientGreeting();
