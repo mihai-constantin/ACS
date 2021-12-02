@@ -1,11 +1,13 @@
 package com.luxoft.bankapp.domain;
 
+import com.luxoft.bankapp.annotations.ActiveRecordEntity;
 import com.luxoft.bankapp.exceptions.NotEnoughFundsException;
 import com.luxoft.bankapp.exceptions.OverdraftLimitExceededException;
 
+@ActiveRecordEntity(tableName = "CHECKING_ACCOUNT", columnKeyName = "id")
 public class CheckingAccount extends AbstractAccount {
 	
-	private double overdraft;
+	private final double overdraft;
 
 	public CheckingAccount(int id, double balance, double overdraft) {
 		super(id, balance);

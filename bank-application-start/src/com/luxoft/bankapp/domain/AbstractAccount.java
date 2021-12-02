@@ -1,8 +1,9 @@
 package com.luxoft.bankapp.domain;
 
+import com.luxoft.bankapp.annotations.ActiveRecord;
 import com.luxoft.bankapp.exceptions.NotEnoughFundsException;
 
-public abstract class AbstractAccount implements Account {
+public abstract class AbstractAccount extends ActiveRecord implements Account {
 	
 	private int id;
 	protected double balance;

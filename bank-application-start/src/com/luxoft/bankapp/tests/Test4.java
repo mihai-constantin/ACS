@@ -13,7 +13,6 @@ import java.util.*;
 import static org.junit.Assert.assertEquals;
 
 public class Test4 {
-
     @Test
     public void testBankReport() throws ClientExistsException, NotEnoughFundsException {
         Bank bank = new Bank();
