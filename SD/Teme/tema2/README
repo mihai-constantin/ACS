@@ -1,0 +1,58 @@
+CONSTANTIN MIHAI - 311CD
+
+Cerinta 1
+
+Am implementat in fisierul AVLTree.h urmatoarele functii:
+
+1. createTree: Am alocat memorie pentru un arbore nou, setand radacina acestuia la NULL, size-ul la 0, si toate functiile din structura.
+
+2. createTreeNode: Am alocat memorie pentru un nod nou. Am setat legaturile la NULL, height-ul la 1 si toate functiile aferente.
+
+3. isEmpty: Daca arborele este vid sau daca radacina acestuia este NULL, functia returneaza 1. Altfel, returneaza 0.
+
+4. search: Parcurg arborele ca pe un BST, alegand fie subarborele stang, fie subarborele drept in functie de valoarea din nodul curent. 
+
+5. minimum: Valoarea minima din arbore se obtine mergand pe subarborele stang al fiecarui nod din AVL.
+
+6. maximum: Valoarea maxima din arbore se obtine mergand pe subarborele drept al fiecarui nod din AVL.
+
+7. successor: Daca exista subarborele drept pentru nodul x, succesorul este dat de valoarea minima din acest subarbore. 
+Daca acesta nu exista, ma voi deplasa pe parinti pana cand nodul devine fiu stanga pentru parinte. In acest fel, ne asiguram ca 
+valoarea parintelui, adica a succesorului, este mai mare decat cea a nodului in cauza.
+
+8. predecessor: Daca exista subarbore stang pentru nodul x, predecesorul este dat de valoarea maxima din acest subarbore.
+Daca acesta nu exista, ma voi deplasa pe parinti pana cand nodul devine fiu dreapta pentru parinte. In acest fel, ne asiguram ca
+valoarea parintelui, adica a predecesorului, este mai mica decat cea a nodului in cauza.
+
+9. avlRotateLeft: Efectuez o rotatie stanga, modificand legaturile dintre noduri astfel incat arborele sa redevina echilibrat.
+La final, actualizez inaltimile nodurilor din arbore.
+
+10. avlRotateRight: Efectuez o rotatie dreapta, modificand legaturile dintre noduri astfel incat arborele sa redevina echilibrat.
+La final, actualizez inaltimile nodurilor din arbore.
+
+11. avlGetBalance: Calculeaza pentru un nod x diferenta dintre inaltimea subarborelui stang si inaltimea subarborelui drept.
+
+12. avlFixUp: Tratez cele 4 cazuri intalnite la reechilibrarea arborelui: stanga-stanga, stanga-dreapta, dreapta-dreapta, dreapta-stanga.
+Pentru fiecare caz, efectuez rotirile necesare pentru ca arborele sa redevina echilibrat.
+
+13. insert: In prima etapa, realizez inserarea ca la BST. Dupa ce am inserat nodul, reechilibrez arborele daca este necesar. Daca elementul
+pe care doresc sa-l inserez este deja in arbore, il adaug la finalul listei dublu inlantuite, actualizand legaturile din lista.
+
+14. delete: Daca elementul contine duplicate, elimin ultimul element din lista dublu inlantuita. Daca nu, sterg nodul din arbore, modificand
+legaturile dintre nodurile aferente, reechilibrand arborele.
+
+Cerinta 2
+
+Am implementat un multi-dictionar folosind cuvintele si indecsii acestora din fisierul text.txt. Am folosit functia strtok pentru a selecta
+fiecare cuvant din fisierul dat si apoi am introdus un nou nod in arbore. Nodul are ca elem cuvantul propriu-zis, iar ca info indexul din fisier.
+
+
+Cerinta 3
+
+Am format o structura de tipul Range* , in care am inserat toate cuvintele (nodurile) care incep cu string-ul q. Pentru a parcurge elementele din arbore,
+am folosit functia InOrder, iar pentru a selecta cuvintele cu proprietatea de mai sus am folosit functia valid.
+
+Cerinta 4
+
+La fel ca la cerinta anterioara, am creat o structura de tipul Range* , in care am inserat cuvintele (nodurile) care se incadreaza intr-un anumit interval.
+Folosind functia InOrder2, am parcurg toate cuvintele din arbore si am selectat cu ajutorul functiei valid2 acele cuvinte care apartin intervalului [q, p].

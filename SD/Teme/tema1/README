@@ -1,0 +1,112 @@
+CONSTANTIN MIHAI - 311 CD
+
+1. Dictionary* createDictionary(int N)
+
+Folosind functia malloc, am alocat memorie pentru intreg dictionarul si pentru toate listele din el.
+Am setat la NULL fiecare lista din dictionar, deoarece la inceput nu contin niciun element.
+Daca alocarea nu a reusit, am eliberat memoria alocata pana in acel moment si am intors NULL.
+
+2. void addElement(Dictionary *dictionary, char *key, char *value, int frequency)
+
+La inceput, am determinat lista in care trebuie sa adaug tuplul (key, value, frequency), retinand valoarea in variabila r.
+Am alocat memorie pentru un nod in care sa retin valorile tuplului.
+
+Daca lista este vida, dictionary -> lists[r] = node.
+Daca nu, am gasit urmatoarele cazuri:
+- am verificat daca in lista exista un tuplu cu aceeasi valoare pentru key si value, caz in care am adaugat la parametrul
+  frequency al tuplului deja existent valoarea frequency
+- daca nu exista un asemenea tuplu, voi adauga in lista elementul:
+	-> daca lista contine deja N elemente, sterg ultimul tuplu cu ajutorul functiei removeElement(dictionary, key, value)
+	-> daca lista este vida, dictionary -> lists[r] = node
+	-> daca nu, am adaugat tuplul la finalul listei
+	-> verific daca in dictionar sunt > 2 * N elemente, caz in care sterg ultimul tuplu din fiecare lista
+
+- am grija ca de fiecare data inainte de eliminarea unui element, lista sa contina elementele in ordinea dorita
+- ma folosesc de functia sortare(dictionary) pentru a avea in fiecare lista elementele in ordinea impusa
+
+3. void removeElement(Dictionary *dictionary, char *key, char *value)
+
+Parcurg fiecare lista din dictionar, pentru a cauta tuplul pe care trebuie sa il elimin.
+Daca elementul exista in dictionar, tratez urmatoarele cazuri:
+ - elementul pe care trebuie sa il elimin este primul din lista
+	-> daca lista contine un singur element, lista devine vida
+	-> daca nu, actualizez legaturile in celulele vecine
+
+- elementul este in interiorul listei
+	-> parcurg lista pana intalnesc tuplul pe care doresc sa il elimin
+	-> actualizez legaturile in celulele vecine
+
+De fiecare data dupa eliminare, am grija sa eliberez memoria pe care o ocupa tuplul.
+
+4. void printDictionary(FILE *f, Dictionary *dictionary)
+
+Daca dictionarul este nenul, parcurg fiecare lista din interiorul sau, afisand fiecare tuplul din cadrul acesteia.
+
+5. ListNode* get(Dictionary *dictionary, char *key)
+
+Initializez o lista dublu inlantuita necirculara la NULL: ListNode* list = NULL
+
+Daca dictionarul este nenul, parcurg fiecare lista din cadrul acestuia si verific daca tuplul are cheia key, caz in care:
+- aloc memorie pentru un nod in care retin datele tuplului curent din lista
+- incrementez frequency cu 1
+- adaug nodul in lista
+
+La final, sortez dictionarul (elementele gasite au frequency incrementat cu 1 -> ordinea elementelor din cadrul listelor 
+resprective se poate schimba).
+
+6. void printValue(FILE *f, Dictionary *dictionary , char *value)
+
+Daca dictionarul este nenul, parcurg fiecare lista din cadrul acestuia si afisez toate tuplurile care au valoarea value.
+
+7. void printFrequency(FILE *f, Dictionary *dictionary , int frequency)
+
+Daca dictionarul este nenul, parcurg fiecare lista din cadrul acestuia si afisez toate tuplurile cu frecventa frequency.
+
+8. ListNode* unionValues(Dictionary *dictionary, char *value)
+
+Initializez o lista dublu inlantuita necirculara la NULL: ListNode* list = NULL
+
+Daca dictionarul este nenul, parcurg fiecare lista din cadrul acestuia si verific daca tuplul are valoarea value, caz in care:
+- aloc memorie pentru un nod in care retin datele tuplului curent din lista
+- adaug nodul in lista
+
+9. ListNode* unionMaxFrequencies(Dictionary *dictionary)
+
+Initializez o lista dublu inlantuita necirculara la NULL: ListNode* list = NULL
+
+Daca dictionarul este nenul, parcurg fiecare lista din cadrul acestuia si determin cu ajutorul functiei MaxFrequency(List)
+care este frecventa maxima dintr-o lista.
+
+In continuare, parcurg elementele listei si verific daca frecventa tuplului curent este maxima, caz in care:
+- aloc memorie pentru un nod in care sa retin datele tuplului
+- adaug nodul in lista
+
+10. Dictionary* reverseLists(Dictionary *dictionary)
+
+Creez un dictionar cu dictionary -> N liste : Dictionary* reverse_dictionary = createDictionary(dictionary -> N)
+
+Parcurg listele din dictionar de la coada la cap si adaug elementele in noul dictionar cu ajutorul functiei 
+addElement2(reverse_dictionary, key, value, frequency).
+
+11. void printList(FILE *f, ListNode *list)
+
+Afisez o lista dublu inlantuita necirculara.
+
+12. void freeDictionary(Dictionary *dictionary)
+
+Eliberez toata memoria alocata de un dictionar:
+- parcurg fiecare lista din cadrul acestuia si elimin fiecare element: free(node)
+- la final, eliberez memoria alocata de liste (free(dictionary -> lists)) si de intreg dictionarul (free(dictionary))
+
+13. void freeList(ListNode *list)
+
+Eliberez memoria alocata de o lista dublu inlantuita necirculara. 
+Parcurg lista si elimin fiecare element: free(node). La final, eliberez intreaga lista: free(list).
+
+14. void sortare(Dictionary* dictionary) - sorteaza elementele din lista conform criteriilor impuse
+
+Parcurg fiecare lista din dictionar si daca lista este nenula, adaug tuplurile in vectorul v.
+Sortez vectorul v, cu ajutorul functiei qsort().
+Copiez in dictionar vectorul v care in acest moment contine tuplurile in ordinea corecta.
+Eliberez memoria ocupata de vectorul v.
+

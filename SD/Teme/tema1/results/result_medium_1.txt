@@ -1,0 +1,22 @@
+List 0: 
+List 1: 
+List 2: (key1, value1, 20) (key1, value2, 20) (key1, value3, 20) (key1, value5, 20) 
+List 3: 
+List 0: 
+List 1: 
+List 2: (key1, value0, 20) (key1, value1, 20) (key1, value3, 20) 
+List 3: 
+
+(key1, value0, 20) (key1, value1, 20) (key1, value3, 20) 
+(key1, value0, 21) 
+
+(key1, value0, 21) (key1, value1, 21) (key1, value3, 21) 
+(key1, value1, 41) 
+List 0: 
+List 1: 
+List 2: (key1, value1, 41) (key1, value0, 21) (key1, value3, 21) 
+List 3: 
+List 0: 
+List 1: 
+List 2: (key1, value3, 21) (key1, value0, 21) (key1, value1, 41) 
+List 3: 

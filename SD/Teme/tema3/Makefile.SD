@@ -1,0 +1,9 @@
+# Makegfile intern folosit de checker
+
+all: build_verif
+
+build_verif:
+	g++ -Wall -lm -O3 ${ONLINE_JUDGE} _utils/verif.cpp -o verif
+
+clean:
+	rm -f verif

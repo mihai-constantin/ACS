@@ -1,0 +1,56 @@
+List 0: (key3, value7, 20) (key3, value8, 20) 
+List 1: (key0, value1, 20) (key0, value2, 20) 
+List 2: (key1, value3, 20) (key1, value4, 20) 
+List 3: (key2, value5, 20) (key2, value6, 20) 
+List 0: 
+List 1: (key0, value1, 20) (key4, value1, 20) (key8, value1, 20) 
+List 2: (key1, value3, 40) (key9, value3, 20) 
+List 3: 
+List 0: 
+List 1: (key8, value1, 21) (key0, value1, 20) (key4, value1, 20) 
+List 2: (key1, value3, 40) (key9, value3, 20) 
+List 3: 
+List 0: 
+List 1: (key0, value1, 21) (key8, value1, 21) (key4, value1, 20) 
+List 2: (key1, value3, 40) (key9, value3, 20) 
+List 3: 
+List 0: 
+List 1: (key0, value1, 21) (key4, value1, 21) (key8, value1, 21) 
+List 2: (key1, value3, 40) (key9, value3, 20) 
+List 3: 
+List 0: 
+List 1: (key0, value1, 21) (key4, value1, 21) (key8, value1, 21) 
+List 2: (key1, value3, 41) (key9, value3, 20) 
+List 3: 
+List 0: 
+List 1: (key0, value1, 21) (key4, value1, 21) (key8, value1, 21) 
+List 2: (key1, value3, 42) (key9, value3, 20) 
+List 3: 
+(key0, value1, 21) (key4, value1, 21) (key8, value1, 21) (key1, value3, 42) 
+List 0: 
+List 1: (key0, value1, 21) (key4, value1, 21) (key8, value1, 21) 
+List 2: (key1, value3, 42) (key9, value3, 42) 
+List 3: 
+List 0: 
+List 1: (key0, value1, 21) (key4, value1, 21) (key8, value1, 21) 
+List 2: (key9, value3, 44) (key1, value3, 43) 
+List 3: 
+List 0: 
+List 1: (key0, value1, 21) (key4, value1, 21) (key8, value1, 21) 
+List 2: (key1, value3, 44) (key9, value3, 44) 
+List 3: 
+List 0: 
+List 1: (key0, value1, 21) (key4, value1, 21) (key8, value1, 21) 
+List 2: (key1, value3, 45) (key9, value3, 44) 
+List 3: 
+(key1, value3, 45) (key9, value3, 44) 
+(key1, value3, 45) (key9, value3, 44) 
+(key4, value1, 24) 
+List 0: 
+List 1: (key4, value1, 24) (key0, value1, 21) (key8, value1, 21) (key0, value0, 3) 
+List 2: (key1, value3, 45) (key9, value3, 44) 
+List 3: 
+List 0: 
+List 1: (key4, value1, 24) (key0, value1, 22) (key8, value1, 21) (key0, value0, 4) 
+List 2: (key1, value3, 45) (key9, value3, 44) 
+List 3: 

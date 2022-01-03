@@ -1,0 +1,19 @@
+CONSTANTIN MIHAI - 311CD
+
+Am memorat graful sub forma de liste de adiacenta, din motive de eficienta.
+
+Pentru fiecare test in parte, am considerat urmatorii pasi:
+- am citit numarul de noduri, numarul de muchii si costul aferent unui drum, respectiv unei scoli
+- am alocat memorie pentru o structura de tip TGraph
+- am citit fiecare muchie in parte si am adaugat in graf atat muchia (x, y), cat si muchia (y, x)
+- am alocat un vector visited care marcheaza daca un nod a fost sau nu vizitat
+- cu ajutorul algoritmului DFS am aflat numarul de componente conexe
+
+Pentru determinarea costului minim am considerat urmatoarele cazuri:
+- daca costul unui drum este mai mare sau egal decat costul unei scoli, nu are rost sa repar drumuri, 
+deci voi construi cate o scoala in fiecare nod
+- daca costul unui drum este mai mic decat costul unei scoli, voi construi cate o scoala in fiecare 
+componenta conexa si voi repara (numberofNodes - numberofComponents) drumuri
+In acest fel, se asigura conectivitate intre toate nodurile unei componente conexe.
+
+Pentru fiecare test in parte, eliberez memoria folosita (structura de tip TGraph si vectorul visited).
