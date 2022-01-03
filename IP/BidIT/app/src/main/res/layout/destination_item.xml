@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/space_16">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space_4"
+        android:layout_marginTop="@dimen/space_16"
+        app:cardCornerRadius="@dimen/space_8">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageview_product"
+                android:layout_width="160dp"
+                android:layout_height="@dimen/space_128"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/no_image_selected" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="189dp" />
+
+            <TextView
+                android:id="@+id/textview_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_8"
+                android:layout_marginStart="@dimen/space_8"
+                android:layout_marginTop="@dimen/space_8"
+                android:text="@string/name"
+                android:gravity="center_horizontal"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toTopOf="@+id/imageview_product" />
+
+            <TextView
+                android:id="@+id/textview_color_and_weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_8"
+                android:layout_marginStart="@dimen/space_8"
+                android:layout_marginTop="4dp"
+                android:text="@string/color_weight"
+                android:gravity="center_horizontal"
+                android:textAlignment="center"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/textview_name" />
+
+            <ToggleButton
+                android:id="@+id/button_favorite"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginRight="@dimen/space_4"
+                android:layout_marginEnd="@dimen/space_4"
+                android:layout_marginBottom="@dimen/space_4"
+                android:background="@drawable/ic_favorite_border_black_24dp"
+                android:checked="false"
+                android:clickable="true"
+                android:focusable="true"
+                android:text=""
+                android:textOff=""
+                android:textOn=""
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <ToggleButton
+                android:id="@+id/button_favorite_full"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginRight="@dimen/space_4"
+                android:layout_marginEnd="@dimen/space_4"
+                android:layout_marginBottom="@dimen/space_4"
+                android:background="@drawable/ic_favorite_red_full_24dp"
+                android:checked="false"
+                android:clickable="true"
+                android:focusable="true"
+                android:text=""
+                android:textOff=""
+                android:textOn=""
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/textview_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_8"
+                android:layout_marginStart="@dimen/space_8"
+                android:layout_marginTop="4dp"
+                android:text="@string/price"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/textview_color_and_weight" />
+
+       </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".login.EditProfileActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="232dp">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:toolbarId="@+id/toolbar"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:contentScrim="?attr/colorPrimary">
+
+                <ImageView
+                    android:id="@+id/update_imageView"
+                    android:layout_marginTop="@dimen/space_16"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:gravity="center_vertical"
+                    android:src="@drawable/avatar"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_width="match_parent">
+                </androidx.appcompat.widget.Toolbar>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <TextView
+            android:id="@+id/textViewProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/create_profile"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <TextView
+            android:id="@+id/TextViewName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/name"
+            android:textColor="@color/colorPrimaryDark"/>
+
+        <EditText
+            android:id="@+id/EditTextName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName|textCapSentences"
+            android:hint="@string/enter_your_name"/>
+
+        <TextView
+            android:id="@+id/TextViewSurName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/surname"
+            android:textColor="@color/colorPrimaryDark"/>
+        <EditText
+            android:id="@+id/EditTextSurname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName|textCapSentences"
+            android:hint="@string/enter_your_surname"/>
+
+        <TextView
+            android:id="@+id/TextViewPhoneNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/phone_number"
+            android:textColor="@color/colorPrimaryDark"/>
+        <EditText
+            android:id="@+id/EditTextPhoneNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/enter_your_phone_number"
+            android:inputType="number"/>
+
+        <TextView
+            android:id="@+id/TextViewEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/e_mail"
+            android:textColor="@color/colorPrimaryDark"/>
+        <TextView
+            android:id="@+id/textViewEmailAdress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:hint="Enter your email address"
+            android:textColor="@color/colorPrimaryDark"/>
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/save"
+            android:id="@+id/btnSaveButton"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/colorPrimaryDark"/>
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

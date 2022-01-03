@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".accountInfo.GetInfoActivity">
+
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:id="@+id/imageViewUser"
+        android:layout_width="182dp"
+        android:layout_height="182dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/space_64"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingTop="@dimen/space_32" />
+
+    <TextView
+        android:id="@+id/textViewProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/profile"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="24sp"/>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2">
+        <ImageView
+            android:id="@+id/imageViewName"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/baseline_account_circle_black_24dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="1dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"/>
+        <TextView
+            android:id="@+id/textViewUserName"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="1dp"
+            android:text="@string/name"
+            android:textSize="20sp"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2">
+        <ImageView
+            android:id="@+id/imageViewPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/baseline_phone_black_24dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="1dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"/>
+        <TextView
+            android:id="@+id/textViewPhoneNo"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="1dp"
+            android:text="@string/dies"
+            android:textSize="20sp"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2">
+        <ImageView
+            android:id="@+id/imageViewMail"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/baseline_email_black_24dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="1dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"/>
+        <TextView
+            android:id="@+id/textViewEmailUser"
+            android:layout_width="377dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="1dp"
+            android:text="@string/mail_address"
+            android:textSize="20sp"/>
+    </TableRow>
+
+</LinearLayout>

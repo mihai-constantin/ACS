@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/space_16"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/edittext_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_8"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/edittext_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_8"
+        android:hint="@string/password"
+        android:inputType="textPassword"/>
+
+    <CheckBox
+        android:id="@+id/checkbox_accept"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_8"
+        android:text="@string/accept" />
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_8"
+        android:background="@color/colorPrimary"
+        android:onClick="recyclerViewOnClick"
+        android:text="@string/sign_up"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/loginMessage"
+        android:layout_marginTop="@dimen/space_16"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="#323846"
+        android:onClick="loginMessageOnClick"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="@string/already_a_member" />
+
+    <TextView
+        android:layout_marginTop="@dimen/space_16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/or"
+        android:textColor="@color/black"
+        android:textSize="@dimen/medium_text"/>
+
+    <com.google.android.gms.common.SignInButton
+        android:layout_marginTop="@dimen/space_16"
+        android:id="@+id/sign_in_button"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:colorScheme="dark" />
+
+    <Button
+        android:id="@+id/forgotPasswordButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_8"
+        android:background="@color/colorPrimary"
+        android:onClick="recyclerViewOnClick"
+        android:text="Forgot password?"
+        android:textColor="@android:color/white" />
+
+
+</LinearLayout>
