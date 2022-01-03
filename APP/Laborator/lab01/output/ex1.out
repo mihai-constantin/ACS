@@ -1,0 +1,17 @@
+Rulare cu OMP_NUM_THREADS = 4
+[mihai.constantin98@fep7-1 ex_pdf]$ export OMP_NUM_THREADS=4
+[mihai.constantin98@fep7-1 ex_pdf]$ ./ex1 
+Hello openmp
+Hello openmp
+Hello openmp
+Hello openmp
+
+Rulare OMP_NUM_THREADS = 6
+[mihai.constantin98@fep7-1 ex_pdf]$ export OMP_NUM_THREADS=6
+[mihai.constantin98@fep7-1 ex_pdf]$ ./ex1 
+Hello openmp
+Hello openmp
+Hello openmp
+Hello openmp
+Hello openmp
+Hello openmp
