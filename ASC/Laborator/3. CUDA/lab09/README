@@ -1,0 +1,40 @@
+Laborator 9 ASC
+
+------
+Task 1
+------
+In functia compute_UnifiedMem am folosit memorie unificata, folosind functia
+cudaMallocManaged, in timp ce in metoda compute_NoUnifiedMem am folosit
+alocare normala, utilizand cudaMalloc pentru alocare de memorie pe device
+si cudaMemcpy pentru copierea de date de pe device pe host sau invers.
+Dezalocarea de memorie in ambele cazuri se realizeaza folosind cudaFree.
+
+Folosind nvprof, observam ca GPU-ul este folosit numai pentru functia 
+kernel_compute in varianta unificata, in timp ce in varianta normala, acesta 
+este folosit si pentru copierea de date de pe device pe host sau invers. 
+Astfel, economisim timp de rulare pe GPU in varianta unificata.
+
+------
+Task 2
+------
+Am completat functiile kernel_no_atomics, kernel_partial_atomics si 
+kernel_full_atomic. Folosind nvprof, observam timpii medii de rulare pe GPU.
+- kernel_no_atomics:        7.40482s
+- kernel_partial_atomics:   4.3202ms
+- kernel_full_atomic:       1.6638ms
+
+------
+Task 3
+------
+Am folosit functia atomicExch pentru a plasa elemente in zonele libere din
+vectorul database.
+
+------
+Task 4
+------
+Am folosit paralelismul dinamic pentru a lansa in executie functia worker
+pentru fiecare thread in parte. Astfel, numarul de elemente al vectorului 
+va fi egal cu numarul de thread-uri ce calculeaza sumele, rezultatul
+fiind memorat la indexul fiecarui thread. 
+
+In folderul demo se gasesc imagini cu rularile task-urilor.

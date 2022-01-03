@@ -1,0 +1,236 @@
+Caracteristici masina virtuala SO
+
+Intel(R) Core(TM) i5-7267U CPU @ 3.10GHz
+
+L1 cache 32K
+L2 cache 256K
+L3 cache 4M
+
+dimensiune linie de cache 64 bytes
+
+RAM = 512M
+
+Exercitiu 1
+
+a.
+
+Programul ruleaza in general daca vectorul are o dimensiune mai mica de 2^32,
+adica mai mica decat imaginea procesului in memorie.
+
+Sectiunea bss are dimensiunea aproximativ egala cu numarul de bytes ai 
+vectorului (avem cativa bytes in plus pentru alinierea datelor?)
+Elementele sunt parcurse in ordine -> miss rate extrem de mic ata la L1 si la
+L3 (L, respectiv LL din comanda de mai jos).
+
+Output pentru o dimensiune de 10M de elemente este redat mai jos.
+
+$ valgrind --tool=cachegrind ./task1a 10000000
+
+==1838== Cachegrind, a cache and branch-prediction profiler
+==1838== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote et al.
+==1838== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==1838== Command: ./task1a 10000000
+==1838== 
+--1838-- warning: L3 cache found, using its data for the LL simulation.
+sizeof: 3
+viteza maxima este: 221.126663
+==1838== 
+==1838== I   refs:      1,898,269,344
+==1838== I1  misses:            1,262
+==1838== LLi misses:            1,248
+==1838== I1  miss rate:          0.00%
+==1838== LLi miss rate:          0.00%
+==1838== 
+==1838== D   refs:        870,064,529  (600,051,246 rd   + 270,013,283 wr)
+==1838== D1  misses:          941,013  (    471,553 rd   +     469,460 wr)
+==1838== LLd misses:          940,378  (    470,998 rd   +     469,380 wr)
+==1838== D1  miss rate:           0.1% (        0.1%     +         0.2%  )
+==1838== LLd miss rate:           0.1% (        0.1%     +         0.2%  )
+==1838== 
+==1838== LL refs:             942,275  (    472,815 rd   +     469,460 wr)
+==1838== LL misses:           941,626  (    472,246 rd   +     469,380 wr)
+==1838== LL miss rate:            0.0% (        0.0%     +         0.2%  )
+
+b.
+Numarul maxim de elemente ale vectorului in cazul in care il alocam pe stiva
+este egal cu 8M/sizeof(struct particle) ~ 2 500 000 elemente.
+Sunt mult mai putine miss-uri fata de subpunctul anterior, deoarece doar stiva
+va fi deja in cache-ul de date cand il vom parcurge (ajunge aici de la 
+declarare, cand se realizeaza un acces la memorie).
+
+Output pentru o dimensiune de 2500000 de elemente este redat mai jos.
+
+$ valgrind --tool=cachegrind ./task1b 2500000
+
+==1980== Cachegrind, a cache and branch-prediction profiler
+==1980== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote et al.
+==1980== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==1980== Command: ./task1b 2500000
+==1980== 
+--1980-- warning: L3 cache found, using its data for the LL simulation.
+viteza maxima este: 221.126663
+==1980== 
+==1980== I   refs:      474,720,409
+==1980== I1  misses:          1,235
+==1980== LLi misses:          1,224
+==1980== I1  miss rate:        0.00%
+==1980== LLi miss rate:        0.00%
+==1980== 
+==1980== D   refs:      217,564,882  (150,051,551 rd   + 67,513,331 wr)
+==1980== D1  misses:        237,927  (    120,042 rd   +    117,885 wr)
+==1980== LLd misses:        237,539  (    119,712 rd   +    117,827 wr)
+==1980== D1  miss rate:         0.1% (        0.1%     +        0.2%  )
+==1980== LLd miss rate:         0.1% (        0.1%     +        0.2%  )
+==1980== 
+==1980== LL refs:           239,162  (    121,277 rd   +    117,885 wr)
+==1980== LL misses:         238,763  (    120,936 rd   +    117,827 wr)
+==1980== LL miss rate:          0.0% (        0.0%     +        0.2%  )
+
+c.
+Numarul maxim de elemente este aproximativ 512M (cat ii permite memoria 
+virtuala).
+
+Exercitiul 2
+
+a. Varianta liniarizata
+
+Numarul de miss-uri este minim -> timp de executie mai mic.
+
+Outputul pentru o dimensiune n = 10^4 este redat mai jos.
+
+$ valgrind --tool=cachegrind ./task2 10000
+
+==2169== Cachegrind, a cache and branch-prediction profiler
+==2169== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote et al.
+==2169== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==2169== Command: ./task2 10000
+==2169== 
+--2169-- warning: L3 cache found, using its data for the LL simulation.
+viteza maxima este: 109.119202
+==2169== 
+==2169== I   refs:      20,268,700,495
+==2169== I1  misses:             1,267
+==2169== LLi misses:             1,252
+==2169== I1  miss rate:           0.00%
+==2169== LLi miss rate:           0.00%
+==2169== 
+==2169== D   refs:       8,637,565,299  (6,018,801,835 rd   + 2,618,763,464 wr)
+==2169== D1  misses:        14,065,963  (    9,377,783 rd   +     4,688,180 wr)
+==2169== LLd misses:        14,065,386  (    9,377,266 rd   +     4,688,120 wr)
+==2169== D1  miss rate:            0.2% (          0.2%     +           0.2%  )
+==2169== LLd miss rate:            0.2% (          0.2%     +           0.2%  )
+==2169== 
+==2169== LL refs:           14,067,230  (    9,379,050 rd   +     4,688,180 wr)
+==2169== LL misses:         14,066,638  (    9,378,518 rd   +     4,688,120 wr)
+==2169== LL miss rate:             0.0% (          0.0%     +           0.2%  )
+
+b. Varianta normala
+
+In cazul in care parcurgem matricea normal, linie cu linie, numarul de miss-uri
+va fi usor mai mare decat in varianta precedenta.
+
+Outputul pentru o dimensiune n = 10^4 este redat mai jos.
+
+$ valgrind --tool=cachegrind ./task2_mat 10000
+
+==2269== Cachegrind, a cache and branch-prediction profiler
+==2269== Copyright (C) 2002-2017, and GNU GPL'd, by Nicholas Nethercote et al.
+==2269== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==2269== Command: ./task2_mat 10000
+==2269== 
+--2269-- warning: L3 cache found, using its data for the LL simulation.
+==2269== brk segment overflow in thread #1: can't grow to 0x4a4c000
+==2269== (see section Limitations in user manual)
+==2269== NOTE: further instances of this message will not be shown
+viteza maxima este: 109.119202
+==2269== 
+==2269== I   refs:      20,271,033,769
+==2269== I1  misses:             1,315
+==2269== LLi misses:             1,301
+==2269== I1  miss rate:           0.00%
+==2269== LLi miss rate:           0.00%
+==2269== 
+==2269== D   refs:       8,638,302,594  (6,019,189,818 rd   + 2,619,112,776 wr)
+==2269== D1  misses:        14,098,425  (    9,395,921 rd   +     4,702,504 wr)
+==2269== LLd misses:        14,088,319  (    9,386,013 rd   +     4,702,306 wr)
+==2269== D1  miss rate:            0.2% (          0.2%     +           0.2%  )
+==2269== LLd miss rate:            0.2% (          0.2%     +           0.2%  )
+==2269== 
+==2269== LL refs:           14,099,740  (    9,397,236 rd   +     4,702,504 wr)
+==2269== LL misses:         14,089,620  (    9,387,314 rd   +     4,702,306 wr)
+==2269== LL miss rate:             0.0% (          0.0%     +           0.2%  )
+
+
+Exercitiul 3
+
+Cu -O0
+
+Compilatorul reordoneaza variabilele i, l, a, b pentru aliniere in ordinea
+dimensiunii.
+
+i1: 0x7ffc774f4c64
+l1: 0x7ffc774f4c78
+a1: 0x7ffc774f4cb0
+b1: 0x7ffc774f4d00
+i2: 0x7ffc774f4c68
+i3: 0x7ffc774f4c6c
+i4: 0x7ffc774f4c70
+i5: 0x7ffc774f4c74
+l2: 0x7ffc774f4c80
+l3: 0x7ffc774f4c88
+l4: 0x7ffc774f4c90
+l5: 0x7ffc774f4c98
+a2: 0x7ffc774f4cc0
+a3: 0x7ffc774f4cd0
+a4: 0x7ffc774f4ce0
+a5: 0x7ffc774f4cf0
+b2: 0x7ffc774f4d20
+b3: 0x7ffc774f4d40
+b4: 0x7ffc774f4d60
+b5: 0x7ffc774f4d80
+sizeof(a): 16
+sizeof(b): 24
+aux_vect: 0x55b78d80c670
+vect:     0x55b78d80c680
+
+Cu -O3
+
+Acelasi comportament.
+
+i1: 0x7ffff589e9b4
+l1: 0x7ffff589e9c8
+a1: 0x7ffff589e9f0
+b1: 0x7ffff589ea40
+i2: 0x7ffff589e9b8
+i3: 0x7ffff589e9bc
+i4: 0x7ffff589e9c0
+i5: 0x7ffff589e9c4
+l2: 0x7ffff589e9d0
+l3: 0x7ffff589e9d8
+l4: 0x7ffff589e9e0
+l5: 0x7ffff589e9e8
+a2: 0x7ffff589ea00
+a3: 0x7ffff589ea10
+a4: 0x7ffff589ea20
+a5: 0x7ffff589ea30
+b2: 0x7ffff589ea60
+b3: 0x7ffff589ea80
+b4: 0x7ffff589eaa0
+b5: 0x7ffff589eac0
+sizeof(a): 16
+sizeof(b): 24
+aux_vect: 0x5642a284b670
+vect:     0x5642a284b680
+
+Exercitiul 4
+
+Graficele sunt in arhiva si se numesc task4_L1.png si task4_L2.png.
+
+In primul grafic se observa aplatizarea la un nivel aproximativ de 32K (fix
+cat are nivelul L1 de cache). 
+In al doilea grafic se observa aplatizare de la 256K (asta arata mai dubios, nu
+am inteles de ce).
+
+Exercitiul 5
+
+Curba se aplatizeaza la 64K, dimensiunea liniei de cache.

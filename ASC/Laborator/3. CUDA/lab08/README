@@ -1,0 +1,43 @@
+CONSTANTIN MIHAI - 336CA
+
+------
+Task 1
+------
+Am executat 10000 de operatii intr-un kernel.
+Numarul de GFLOPS variaza in intervalul 300-330.
+
+Rezultatul la o rulare se poate observa mai jos:
+
+[mihai.constantin98@hpsl-wn01 lab8_skl]$ ./task_gflops 
+seconds: 0.528
+GFLOPS: 317.692
+
+------
+Task 2
+------
+Task 2.1 - inmultire normala
+Task 2.2 - inmultire folosind Blocked Matrix Multiplication
+
+Rezultatul la o rulare se poate observa mai jos:
+
+[mihai.constantin98@hpsl-wn01 lab8_skl]$ ./matrix_multiplication 
+Timing simple implementation... done.
+Timing optimized implementation... done.
+Matrix size: 1024x1024
+Tile size: 16x16
+Throughput of simple kernel: 97.345 GFLOPS
+Throughput of optimized kernel: 285.099 GFLOPS
+Performance improvement: 2.92875x
+
+------------------
+Task 3 - Profiling
+------------------
+Utilizand nvvp se observa ca din timpul total 25% este petrecut in kernelul
+matrix_multiply, respectiv 75% in matrix_multiply_simple, lucru observat si
+prin valoarea speed-up-ului (2.92).
+
+Utilizand nvprof se observa acelasi raport (1:3) intre cele doua metode.
+Se observa un timp mediu pentru fiecare metoda:
+- 22.079ms pentru matrix_multiply_simple
+- 7.5274ms pentru matrix_multiply
+
