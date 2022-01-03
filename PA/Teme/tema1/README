@@ -1,0 +1,124 @@
+---------------------------------
+Tema 1 - Proiectarea Algoritmilor
+---------------------------------
+CONSTANTIN MIHAI - 321CD
+------------------------
+
+----------
+Problema 1
+----------
+Am folosit tehnica de programare Greedy, fiecare jucator alegand maximul
+din vector la fiecare pas. Practic la momentul de timp i, jucatorul doreste
+sa-si maximizeze castigul, astfel alege elementul maxim dintre numerele ramase 
+in vector.
+In implementare, am folosit un max heap pentru a accesa elementul maxim in
+timp constant: priorityQueue.top(). Fiecare inserare a unui numar, cat si 
+reconstructia heap-ului dupa eliminarea elementului maxim dureaza O(log(n)). 
+Asadar, complexitatea timp a algoritmului este O(n * log(n)), deoarece initial 
+am citit fiecare element al vectorului si l-am inserat in heap.
+
+----------
+Problema 2
+----------
+Problema 2 se foloseste de implementarea anterioara pe cazul de baza. Tehnica
+folosita este programarea dinamica. Singura diferenta fata de problema 
+precedenta este eliminarea unui numar K de elemente inainte de inceputul 
+jocului de catre Tuzgu.
+Ca structura auxiliara in rezolvarea problemei, ne vom folosi de o matrice
+d[N][K], unde N reprezinta numarul de numere din vectorul initial si K este
+numarul de elemente pe care Tuzgu le elimina inainte de inceputul jocului.
+
+Dinamica este: d[i][j] = diferenta maxima pe care o poate obtine Tuzgu folosind
+cele mai mari i numere din v, eliminand j numere dintre ele.
+Pe cazul de baza, avem d[i][0] = diferenta maxima pe care o poate obtine Tuzgu
+folosind cele mai mari i numere din v. Practic, nu eliminam niciun numar, deci
+cazul de baza se reduce la rezolvarea primei probleme.
+Recurenta pentru cazul general este:
+d[i][j] = max(d[i - 1][j - 1], d[i - 1][j] - v[i]), daca (i - j) este par
+d[i][j] = max(d[i - 1][j - 1], d[i - 1][j] + v[i]), daca (i - j) este impar
+Evident, solutia se gaseste in d[N][K].
+
+In continuare, voi explica formulele de recurenta de mai sus. Sa presupunem ca
+suntem la pasul i si vrem sa eliminam j elemente din vector. Diferenta dintre
+i si j este para, deci daca vom elimina j elemente din cele mai mari (i - 1)
+numere din vector, vom ramane cu (i - j - 1) numere de ales. 
+Deoarece (i - j - 1) este impar, dupa alegerea tuturor numerelor, urmatoarea
+mutare va fi cea a Ritzei. Eliminand deja j elemente din cele (i - 1) numere,
+Ritza va alege elementul de pe pozitia i, deci diferenta maxima va scadea cu 
+v[i]. Asadar avem un posibil scor: d[i - 1][j] - v[i]. Daca alegem sa eliminam
+elementul de pe pozitia i, vom obtine un al doilea candidat pentru d[i][j]:
+d[i - 1][j - 1], adica elimin din primele (i - 1) elemente (j - 1), si al 
+j-ulea este chiar v[i]. Obtinem recurenta pentru cazul (i - j) par, ca fiind
+maximul dintre cele doua rezultate de mai sus: 
+d[i][j] = max(d[i - 1][j - 1], d[i - 1][j] - v[i]).
+Analog, pentru (i - j) impar.
+
+Complexitatea timp este O(N * K), necesara pentru formarea matricei.
+
+----------
+Problema 3
+----------
+Problema 3 este similara cu prima cu exceptia faptului ca jucatorii pot elimina 
+numere doar de la inceputul sau sfarsitul vectorului de elemente. De data
+aceasta, o abordare Greedy ce presupune eliminarea maximului la fiecare pas
+nu aduce si o solutie optima. Asadar, abordarea necesara este programarea
+dinamica.
+Ca la problema 2, vom folosi o matrice auxiliara in care vom memora rezultatele
+partiale. Abordarea este similara celei de la problema parantezarii optime de
+matrice (PODM).
+
+Definim d[i][j] ca fiind scorul maxim pe care il poate obtine Tuzgu folosind
+elementele din intervalul [i, j].
+Cazurile de baza sunt urmatoarele:
+d[i][i] = v[i] (singurul numar din intervalul [i, i] este v[i], asadar Tuzgu va 
+avea doar optiunea alegerii acestui element)
+d[i][i + 1] = max(v[i], v[i + 1]) - pentru un interval de lungime 2, Tuzgu va
+alege numarul mai mare
+
+Formula de recurenta pentru cazul general este:
+d[i][j] = max(v[i] + min(d[i + 1][j - 1], d[i + 2][j]), 
+			v[j] + min(d[i][j - 2], d[i + 1][j - 1]))
+
+Complexitatea timp este O(N^2) pentru formarea matricei, iar cea spatiala este
+tot O(N^2), necesara pentru memorarea matricei.
+
+----------
+Problema 4
+----------
+
+Problema 4 cere determinarea numarului de siruri de lungime N cu proprietatea
+ca elementele din vector sunt distincte, au valori in intervalul [1, V], iar
+diferenta maxima de scor dintre Tuzgu si Ritza este egala cu K. 
+Consideram un sir de numere de lungime N sortat descrescator. Deoarece numerele
+sunt distincte, diferenta dintre oricare 2 elemente consecutive din sir va fi
+mai mare ca 0.
+Formam [N / 2] perechi de diferente. Acestea trebuie sa dea suma K.
+Pentru a lucra cu numere din intervalul [0, V - 1] scadem [N / 2] din K si vom
+cauta toate modurile in care putem scrie suma K - [N / 2] ca suma de [N / 2]
+numere.
+
+Avem urmatoarea dinamica de ordin 2:
+d[i][j] = numarul de moduri in care putem scrie suma j ca suma de i numere
+
+Cazurile de baza sunt:
+d[i][0] = 1 (toate numerele sunt 0)
+d[1][j] = 1 (suma este fix numarul j)
+
+Recurenta pe cazul general este:
+d[i][j] = d[i][j - 1] + d[i - 1][j]
+
+Rezultatul se va gasi in d[[N / 2]][K - [N / 2]]. Fie acesta notat cu res1.
+
+Similar, intre oricare doua diferente pot aparea gap-uri. Vom aplica aceeasi
+dinamica, numai ca vom cauta numarul de moduri in care putem scrie cel mult
+suma j ca suma de i numere. Fie acest resultat notat cu res2.
+
+Deoarece ordinea elementelor conteaza, rezultatul final va fi egal cu produsul
+dintre res1, res2 si factorial(N).
+
+In cazul in care N este impar, se observa ca numarul gap-urilor este mai mic 
+cu 1.
+
+Complexitate temporala: O(N/2 * (K - N/2) + N/2 * (V - K - N/2)), pentru
+formarea efectiva a matricelor.
+
