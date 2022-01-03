@@ -1,0 +1,8 @@
+rec_2m 2 500 5000
+rec_2m.mat 16+192 200/mV 12 0 -102 4873 0 ECG I
+rec_2m.mat 16+192 200/mV 12 0 14 1186 0 ECG I filtered
+# Age: 21
+# Sex: female
+# ECG date: 15.03.2005
+#Creator: wfdb2mat
+#Source: record ecgiddb/Person_08/rec_2
