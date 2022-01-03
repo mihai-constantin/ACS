@@ -1,0 +1,127 @@
+[{
+  "_id": {
+    "$oid": "5fc3a5833b320801fea7a984"
+  },
+  "name": "Varsovia",
+  "latitude": 52.237049,
+  "longitude": 21.017532,
+  "country_id": "5fc3979af0496f006f009e7b",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc3a5a33b320801fea7a986"
+  },
+  "name": "Hamburg",
+  "latitude": 53.551086,
+  "longitude": 9.993682,
+  "country_id": "5fc397b2f0496f006f009e85",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc3a5b63b320801fea7a988"
+  },
+  "name": "Munich",
+  "latitude": 48.137154,
+  "longitude": 11.576124,
+  "country_id": "5fc397b2f0496f006f009e85",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc3a5be3b320801fea7a98a"
+  },
+  "name": "Berlin",
+  "latitude": 52.520008,
+  "longitude": 13.404954,
+  "country_id": "5fc397b2f0496f006f009e85",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc3a5cf3b320801fea7a98c"
+  },
+  "name": "Seville",
+  "latitude": 37.392529,
+  "longitude": -5.994072,
+  "country_id": "5fc397b5f0496f006f009e87",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc3a5d63b320801fea7a98e"
+  },
+  "name": "Zaragoza",
+  "latitude": 41.649693,
+  "longitude": -0.887712,
+  "country_id": "5fc397b5f0496f006f009e87",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc3a5db3b320801fea7a990"
+  },
+  "name": "Barcelona",
+  "latitude": 41.390205,
+  "longitude": 2.154007,
+  "country_id": "5fc397b5f0496f006f009e87",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc3a5e03b320801fea7a992"
+  },
+  "name": "Madrid",
+  "latitude": 40.416775,
+  "longitude": -3.70379,
+  "country_id": "5fc397b5f0496f006f009e87",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc3a5e73b320801fea7a994"
+  },
+  "name": "Constanta",
+  "latitude": 44.179249,
+  "longitude": 28.64994,
+  "country_id": "5fc397e6f0496f006f009e89",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc3a5ef3b320801fea7a996"
+  },
+  "name": "Craiova",
+  "latitude": 44.319305,
+  "longitude": 23.800678,
+  "country_id": "5fc397e6f0496f006f009e89",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc3a5f53b320801fea7a998"
+  },
+  "name": "Iasi",
+  "latitude": 47.151726,
+  "longitude": 27.587914,
+  "country_id": "5fc397e6f0496f006f009e89",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc3a5fa3b320801fea7a99a"
+  },
+  "name": "Cluj",
+  "latitude": 46.770439,
+  "longitude": 23.591423,
+  "country_id": "5fc397e6f0496f006f009e89",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc40538fa87280100efe80c"
+  },
+  "name": "Bucuresti",
+  "latitude": 44.439663,
+  "longitude": 26.096306,
+  "country_id": "5fc397e6f0496f006f009e89",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fc5055fb5155a09e438ee82"
+  },
+  "name": "oras fantoma",
+  "latitude": 44.439663,
+  "longitude": 20,
+  "country_id": "5fc397e6f0496f006f009e89",
+  "__v": 0
+}]
