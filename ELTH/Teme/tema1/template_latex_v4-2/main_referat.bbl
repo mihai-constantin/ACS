@@ -1,0 +1,31 @@
+\begin{thebibliography}{1}
+
+\bibitem{ciuprina:atee11}
+G.~Ciuprina \c{s}i D.~Ioan.
+\newblock Efficient modeling of homogenous layers in high frequency integrated
+  circuits.
+\newblock \^{I}n {\em Proc. Int. Symposium on, Advanced Topics in Electrical
+  Engineering.\/}, pp. 1--6. Bucharest, Romania, 2011.
+
+\bibitem{golub:96}
+Gene Golub \c{s}i Charles van Loan.
+\newblock {\em Matrix Computations\/}.
+\newblock The Johns Hopkins University Press, 1996.
+
+\bibitem{Cormen:90}
+T.H.~Cormen \and C.E. Leiserson~\and R.R.~Rivest.
+\newblock {\em Introduction to algorithms\/}.
+\newblock MIT Press and McGraw-Hill, 1990.
+\newblock
+  \href{http://www.cs.dartmouth.edu/~thc/CLRS3e/}{http://www.cs.dartmouth.edu/~thc/CLRS3e/}.
+
+\bibitem{Shewchuk:94}
+J.R. Shewchuk.
+\newblock An introduction to the conjugate gradient method without the
+  agonizing pain.
+\newblock Rap. tehn., School of Computer Science, Carnegie Mellon University,
+  Pittsburgh, 1994.
+\newblock
+  \href{http://www.cs.cmu.edu/~quake-papers/painless-conjugate-gradient.pdf}{http://www.cs.cmu.edu/~quake-papers/painless-conjugate-gradient.pdf}.
+
+\end{thebibliography}

@@ -1,0 +1,22 @@
+\select@language {romanian}
+\contentsline {paragraph}{Abstract}{1}{section*.1}
+\contentsline {section}{\numberline {1}Redactarea \^{\i }n \LaTeX . C\^ateva sfaturi generale}{3}{section.1}
+\contentsline {subsection}{\numberline {1.1}Structurarea documentului}{3}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}C\^ateva detalii}{3}{subsection.1.2}
+\contentsline {subsubsection}{\numberline {1.2.1}Ecua\c {t}ii}{3}{subsubsection.1.2.1}
+\contentsline {subsubsection}{\numberline {1.2.2}Figuri}{5}{subsubsection.1.2.2}
+\contentsline {subsubsection}{\numberline {1.2.3}Tabele}{6}{subsubsection.1.2.3}
+\contentsline {subsubsection}{\numberline {1.2.4}Liste}{7}{subsubsection.1.2.4}
+\contentsline {subsubsection}{\numberline {1.2.5}Anima\c {t}ii}{8}{subsubsection.1.2.5}
+\contentsline {subsubsection}{\numberline {1.2.6}Circuite electrice}{8}{subsubsection.1.2.6}
+\contentsline {section}{\numberline {2}Alte exemple \c {s}i idei}{9}{section.2}
+\contentsline {subsection}{\numberline {2.1}Pagina de titlu}{9}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Pseudocoduri}{9}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Prezent\u {a}ri}{9}{subsection.2.3}
+\contentsline {section}{\numberline {3}Fi\c {s}iere .bib. Bibtex.}{10}{section.3}
+\contentsline {section}{\numberline {4}Informa\c {t}ii de detaliu}{11}{section.4}
+\contentsline {section}{\numberline {5}Cum trebuie s\u {a} arate un raport \c {s}tiin\c {t}ific}{11}{section.5}
+\contentsline {section}{\numberline {6}Concluzii}{11}{section.6}
+\contentsline {section}{Bibliografie}{12}{section*.3}
+\contentsline {section}{\numberline {A}Preambul folosit pentru generarea acestui document}{13}{appendix.A}
+\contentsline {section}{\numberline {B}Cod Matlab}{14}{appendix.B}

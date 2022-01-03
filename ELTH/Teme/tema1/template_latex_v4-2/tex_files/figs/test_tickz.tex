@@ -1,0 +1,32 @@
+  \begin{tikzpicture}
+
+\draw[thick,-latex] (0,0,0) -- (4,0,0) node[anchor=north east]{$y$};
+\draw[thick,-latex] (0,0,0) -- (0,7.5,0) node[anchor=north west]{$z$};
+\draw[thick,-latex] (0,0,0) -- (0,0,5) node[anchor=south]{$x$};
+\filldraw (0,6,0) circle (1.75pt) node[left,font=\small]{$P(0,0,b)$};
+
+\fill[top color=gray!50!black,bottom color=blue!10,middle color=gray,shading=axis,opacity=0.25] (0,0) circle (2cm and 0.5cm);
+\fill[left color=gray!50!black,right color=blue!50!black,middle color=gray!50,shading=axis,opacity=0.25] (2,0) -- (2,4) arc (360:180:2cm and 0.5cm) -- (-2,0) arc (180:360:2cm and 0.5cm);
+\fill[top color=blue!90!,bottom color=blue!2,middle color=blue!30,shading=axis,opacity=0.25] (0,4) circle (2cm and 0.5cm);
+\draw (-2,4) -- (-2,0) arc (180:360:2cm and 0.5cm) -- (2,4) ++ (-2,0) circle (2cm and 0.5cm);
+\draw[densely dashed] (-2,0) arc (180:0:2cm and 0.5cm);
+
+\draw[densely dashed] (-2,2.8) arc (180:0:2cm and 0.5cm);
+\draw[densely dashed] (-2,2.6) arc (180:0:2cm and 0.5cm);
+\draw[thick] (-2,2.8) arc (180:360:2cm and 0.5cm);
+\draw[thick] (-2,2.6) arc (180:360:2cm and 0.5cm);
+\draw[thick, orange] (2,2.6) -- (3,2.6);
+\draw[thick, orange] (2,2.8) -- (3,2.8);
+\draw[thick,-latex] (2.8,4) -- (2.8,2.8);
+\draw[thick,-latex] (2.8,1.6) -- (2.8,2.6);
+\draw[thick,latex-] (2.8,0) -- (2.8,1.2) node[above] {$z$};
+\draw [dashed] (0,6)--(3,6);
+\draw[thick,latex-] (2.8,6) -- (2.8,4.5)node[below]{$b-z$};
+\node at (3.5,2.7) [anchor=east]{$dz$};
+\node at (2,1.5) [anchor=east]{$\rho_v\ (C/m^3)$};
+\draw (-2,0) to[dim above=$L$,color=orange] (-2,4) ;
+
+\coordinate (vec1) at (30:1);
+\draw[-latex,thick] (0,0) -- (vec1)node[midway,sloped, above, inner sep=1] {$a$};
+\draw[ultra thick,-latex,blue] (0,6,0) -- (0,7,0) node[right] {$\mathbf{E}$};
+     \end{tikzpicture}  

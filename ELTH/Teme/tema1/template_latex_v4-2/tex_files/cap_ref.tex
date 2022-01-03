@@ -1,0 +1,104 @@
+\section{Alte exemple 'si idei}
+
+Un rezultat interesant este dat de
+\begin{equation}
+\label{eq:camp}
+\vect{E}(\vect{r}) = \vect{E}_0 \eul^{\I\vect{k}\cdot\vect{r}},  %\vect, \eul si \I au fost definiti in preambul
+\end{equation}
+unde $\vect{E}$ este intensitatea c\^ampului electric, $\vect{r}$ este vectorul de pozi'tie, $\vect{k}$ este num'arul de und'a vectorial, iar
+$\vect{E}_0$ este intensitatea c\^ampului electric 'in origine.
+
+Observa'ti cum sunt puse semnele de punctua'tie 'in toat'a fraza anterioar'a.
+
+\subsection{Pagina de titlu}
+
+Dac'a folosi'ti stilul {\tt report} 'si nu stilul {\tt article} ca 'in acest document\footnote{Pentru rapoarte mai mari cum sunt cele de licen't'a sau de dizerta'tie, atunci stilul {\tt report} este mai potrivit. Pentru teme de cas'a 'si rapoarte scurte, atunci este mai potricit stiul {\tt article}.}, atunci titlul este scris separat pe prima pagina. 
+'In acest caz pute'ti realiza o prim'a pagin'a cu un aspect mai frumos, iar machete pentru astfel de prime pagini 
+g'asi'ti de exemplu la \\  % fortare la rand nou pentru ca link-ul e prea mare si iese din pagina
+\href{http://www.latextemplates.com/cat/title-pages}{http://www.latextemplates.com/cat/title-pages}.
+
+\subsection{Pseudocoduri}
+
+Dac'a ave'ti de scris pseudocoduri, pute'ti proceda cum este descris de exemplu la \\
+\href{http://en.wikibooks.org/wiki/LaTeX/Algorithms}{http://en.wikibooks.org/wiki/LaTeX/Algorithms}.
+
+
+\subsection{Prezent'ari}
+
+Dup'a ce a'ti scris un raport 'in \LaTeX\, evident c'a prezentarea se face natural tot 'in \LaTeX\, numai c'a trebuie s'a folosi'ti un stil potrivit.
+
+Un exemplu posibil este stilul \texttt{beamer}, detalii g'asi'ti aici \\
+\href{http://en.wikipedia.org/wiki/Beamer_(LaTeX)}{http://en.wikipedia.org/wiki/Beamer\_(LaTeX)}.
+
+Iat'a dou'a exemple, realizate cu dou'a stiluri implicite ale pachetului \texttt{beamer}. 
+
+\href{http://an.lmn.pub.ro/slides2014/AN_Erori_2014.pdf}{http://an.lmn.pub.ro/slides2014/AN\_Erori\_2014.pdf}
+
+\href{http://an.lmn.pub.ro/slides2014/AN_MetodeDirecte_2_2014.pdf}{http://an.lmn.pub.ro/slides2014/AN\_MetodeDirecte\_2\_2014.pdf}
+
+
+\section{Fi'siere .bib. Bibtex.}
+
+Organiza'ti-v'a referin'tele 'in fi'siere \texttt{.bib}, iar referin'tele crea'ti-le
+cu comanda \verb \cite. Folosi'ti \texttt{bibtex} pentru generarea automat'a a referin'telor.
+
+Cit'arile se fac 'in text, 'in stilul urm'ator.
+
+Dou'a c'ar'ti celebre sunt \cite{golub:96,Cormen:90}, iar un raport excelent este \cite{Shewchuk:94}. Referin'ta \cite{ciuprina:atee11}
+este un articol de conferin't'a. Pentru lucr'ari care au un num'ar mare de referin'te se recomand'a folosirea stilului \texttt{alpha} 'si nu
+\texttt{plain}.
+
+De multe ori, dac'a o lucrare pe care vre'ti s'a o cita'ti o g'asi'ti pe internet, s-ar putea s'a g'asi'ti 'si liniile de text necesare unei intr'ari bibliografice pentru \texttt{bibtex}. Mergeti de exemplu la
+\href{http://ieeexplore.ieee.org/Xplore/home.jsp}{http://ieeexplore.ieee.org/Xplore/home.jsp}, alegeti un articol oarecare, de exemplu
+\href{http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=6842585}{http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=6842585}  'si apoi observa'ti c'a pute'ti alege {\tt Download} apoi {\tt Citations}, apoi {\tt Bibtex}. Rezultatul este
+\begin{small}
+\begin{verbatim}
+@ARTICLE{6842585, 
+author={Han Hu and Yonggang Wen and Tat-Seng Chua and Xuelong Li}, 
+journal={Access, IEEE}, 
+title={Toward Scalable Systems for Big Data Analytics: A Technology Tutorial}, 
+year={2014}, 
+month={}, 
+volume={2}, 
+pages={652-687}, 
+ISSN={2169-3536},}
+\end{verbatim}
+\end{small}
+
+Alternativ, pute'ti scrie bibliografia 'intr-un fi'sier, 'intre 
+\begin{verbatim}
+\begin{thebiliography}
+.....
+\end{thebibliography}
+\end{verbatim}
+'In acest caz nu ave'ti niciun fel de flexibilitate 'in organizarea
+'si formatarea referin'telor. 
+
+\section{Informa'tii de detaliu}
+
+Informa'tiile de detaliu se pun 'in anexe. De exemplu, 'in anexa \ref{sec:preambul} g'asiti preambulul folosit pentru generarea acestui document, iar 'in anexa \ref{sec:codMatlab} g'asi'ti un cod Matlab.
+
+\section{Cum trebuie s'a arate un raport 'stiin'tific}
+
+Este bine s'a citi'ti sfaturi despre cum trebui redactate rapoartele 'stiin'tifice. Iat'a doar un exemplu
+\href{http://writing.wisc.edu/Handbook/ScienceReport.html}{http://writing.wisc.edu/Handbook/ScienceReport.html}
+dar desigur pute'ti g'asi 'si altele.
+
+Iat'a de exemplu lucr'ari de dizerta'tie (prima este din USA, cealalta din Turcia):\\
+\href{https://www.mri.psu.edu/faculty/stm/Student theses/A. Dogan.pdf}{https://www.mri.psu.edu/faculty/stm/Student\%20theses/A.\%20Dogan.pdf}\\
+\href{http://etd.lib.metu.edu.tr/upload/1124676/index.pdf}{http://etd.lib.metu.edu.tr/upload/1124676/index.pdf}
+
+\section{Concluzii} 
+
+'Intotdeauna 'incheia'ti cu un paragraf special dedicat concluziilor.
+
+
+\section*{Mul'tumiri}  % steluta inseamna faptul ca aceasta sectiune nu va aparea la cuprins
+
+'In cazul 'in care raportul reprezint'a o lucrare mai ampl'a sau un articol 'stiin'tific, nu uita'ti s'a mul'tumi'ti pentru sprijinul financiar sau spiritual pe care l-a'ti primit. Pentru o lucrare de tip articol mul'tumirile se pun la sf\^ar'sit, ca aici. La o lucrare mai ampl'a, de tip raport, mul'tumirile se scriu la 'inceput, pe o pagin'a separat'a, 'inainte de cuprins.
+
+Autoarea acestui document 'si a pachetului de fi'siere asociat lui mul'tume'ste urm'atorilor studen'ti\footnote{Lista este deschis'a $\ddot\smile$.} care au sugerat corec'tii 'si 'imbun'at'a'tiri: Adrian Pop, Adina Budriga, Denisa Sandu, Radu Stoichi'toiu, R'azvan Chi'tu, Darius Nea'tu, Daniel-Andrei Barbu.
+
+
+
+
