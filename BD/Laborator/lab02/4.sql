@@ -1,0 +1,1 @@
+SELECT nume, functie, data_angajarii, salariu, comision from angajati WHERE comision is null or comision=0;

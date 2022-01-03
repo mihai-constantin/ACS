@@ -1,0 +1,1 @@
+SELECT nume, functie, data_angajarii, salariu from angajati WHERE data_angajarii BETWEEN '1-JAN-2020' AND '31-DEC-2020';

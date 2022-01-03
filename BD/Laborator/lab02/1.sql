@@ -1,0 +1,1 @@
+SELECT nume, functie, data_angajarii, salariu from angajati WHERE data_angajarii like '%-20'; 
