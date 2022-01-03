@@ -1,2 +1,3 @@
-# ACS
-Automatica si Calculatoare 2017-2021
+# ACS Resources
+
+> "With great power comes great responsibility" - Uncle Ben
