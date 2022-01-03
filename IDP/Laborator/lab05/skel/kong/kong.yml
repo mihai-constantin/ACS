@@ -1,0 +1,40 @@
+_format_version: "2.1"
+
+services:
+  - name: books-service
+    url: http://books-service/api
+    routes:
+      - name: books-service-route
+        paths: 
+          - /api/books
+          
+  - name: adminer
+    url: http://adminer:8080
+    routes:
+      - name: adminer-service
+        paths:
+          - /adminer
+
+consumers:
+  - username: lab-student
+  - username: mihai
+
+plugins:
+  - name: key-auth
+    service: books-service
+  - name: acl
+    service: books-service
+    config:
+      allow:
+        - moby-lab-group
+
+keyauth_credentials:
+  - consumer: lab-student
+    key: lab-student
+  - consumer: mihai
+    key: mihai
+
+acls:
+  - consumer: lab-student
+    group: moby-lab-group
+    

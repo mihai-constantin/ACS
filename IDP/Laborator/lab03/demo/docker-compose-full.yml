@@ -1,0 +1,46 @@
+version: "3.8"
+
+services:
+  laborator2-api:
+    image: mihaiconstantin98/idp:lab2-api
+    environment:
+      PGUSER: admin
+      PGPASSWORD: admin
+      PGDATABASE: books
+      PGHOST: laborator2-db
+      PGPORT: 5432
+    ports:
+      - "5555:80"
+    networks:
+      - laborator2-db-network
+    depends_on:
+      - laborator2-db
+
+  laborator2-db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: books
+    volumes:
+      - laborator2-db-persistent-volume:/var/lib/postgresql/data
+      - "${PWD}/database/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql"
+    networks: 
+      - laborator2-db-network
+      - laborator2-adminer-network
+    
+  laborator2-adminer:
+    image: adminer
+    ports:
+      - "8080:8080"
+    networks:
+      - laborator2-adminer-network
+    depends_on:
+      - laborator2-db
+
+volumes:
+  laborator2-db-persistent-volume:
+
+networks:
+  laborator2-db-network:
+  laborator2-adminer-network:
