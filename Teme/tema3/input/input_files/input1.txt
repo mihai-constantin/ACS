@@ -1,0 +1,4 @@
+captcha1.bmp
+163 151 162
+
+captchaB1.bmp

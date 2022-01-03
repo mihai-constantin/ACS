@@ -1,0 +1,4 @@
+captcha21.bmp
+157 141 120
+7 4 0 8 6
+captchaB21.bmp

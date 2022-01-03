@@ -1,0 +1,4 @@
+captcha9.bmp
+69 106 67
+1 9 8 3
+captchaB9.bmp

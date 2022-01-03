@@ -1,0 +1,4 @@
+captcha94.bmp
+237 47 83
+4 1 9 7
+captchaB94.bmp

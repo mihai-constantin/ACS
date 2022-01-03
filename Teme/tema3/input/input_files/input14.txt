@@ -1,0 +1,4 @@
+captcha14.bmp
+235 108 124
+3 5 2 7
+captchaB14.bmp

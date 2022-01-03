@@ -1,0 +1,4 @@
+captcha71.bmp
+186 188 37
+5 9 7
+captchaB71.bmp

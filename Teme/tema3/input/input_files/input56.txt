@@ -1,0 +1,4 @@
+captcha56.bmp
+230 84 239
+2 1 9 8
+captchaB56.bmp

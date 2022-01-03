@@ -1,0 +1,4 @@
+captcha48.bmp
+34 244 34
+1 9 5
+captchaB48.bmp

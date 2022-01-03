@@ -1,0 +1,4 @@
+captcha13.bmp
+8 106 12
+8 4 0
+captchaB13.bmp

@@ -1,0 +1,4 @@
+captcha34.bmp
+35 157 231
+3 8 1 7 0
+captchaB34.bmp

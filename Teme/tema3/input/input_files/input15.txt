@@ -1,0 +1,4 @@
+captcha15.bmp
+36 154 228
+7 9 6 1 2 5
+captchaB15.bmp
