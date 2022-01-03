@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">PracticalTest02</string>
+    <string name="server">SERVER</string>
+    <string name="client">CLIENT</string>
+</resources>

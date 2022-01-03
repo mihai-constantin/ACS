@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.PracticalTest02MainActivity">
+
+   <TextView
+       android:id="@+id/serverTextView"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="@string/server"
+       android:textStyle="bold"
+       android:gravity="center"/>
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:columnCount="2"
+        android:rowCount="1">
+
+        <EditText
+            android:id="@+id/portServerEditText"
+            android:hint="Port"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_margin="@dimen/space_16"
+            android:layout_gravity="center"/>
+
+        <Button
+            android:id="@+id/connectServerButton"
+            android:text="connect"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_margin="@dimen/space_16"
+            android:layout_gravity="center"/>
+
+    </GridLayout>
+
+    <TextView
+        android:id="@+id/clientTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/client"
+        android:textStyle="bold"
+        android:gravity="center"/>
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:columnCount="2"
+        android:rowCount="2">
+
+        <EditText
+            android:id="@+id/addressClientEditText"
+            android:hint="Address"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_margin="@dimen/space_16"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/portClientEditText"
+            android:hint="Port"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_margin="@dimen/space_16"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/cityClientEditText"
+            android:hint="City"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_margin="@dimen/space_16"
+            android:layout_gravity="center"/>
+
+        <Button
+            android:id="@+id/getWeatherClientButton"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/space_16"
+            android:text="Get Weather" />
+
+    </GridLayout>
+
+    <Spinner
+        android:id="@+id/information_type_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/information_types"
+        android:layout_gravity="center"/>
+
+<!--    Server Response -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/weather_forecast_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="10"/>
+
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Client Server Communication</string>
+    <string name="server">SERVER</string>
+    <string name="client">CLIENT</string>
+    <string name="message_from_server">Message from Server</string>
+    <string name="server_address">Server Address</string>
+    <string name="server_port">Server Port</string>
+    <string name="display_message">Display Message</string>
+</resources>

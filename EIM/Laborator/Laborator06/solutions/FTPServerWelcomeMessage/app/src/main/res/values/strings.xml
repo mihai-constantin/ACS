@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">FTPServerWelcomeMessage</string>
+    <string name="ftp_server_address">FTP Server Address</string>
+    <string name="display_welcome_message">Display Welcome Message</string>
+</resources>

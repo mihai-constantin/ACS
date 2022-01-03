@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/PheasantGame.iml" filepath="$PROJECT_DIR$/.idea/modules/PheasantGame.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/PheasantGame.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/PheasantGame.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/httpclient-4.4.1.2/PheasantGame.httpclient-4.4.1.2.iml" filepath="$PROJECT_DIR$/.idea/modules/httpclient-4.4.1.2/PheasantGame.httpclient-4.4.1.2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/jsoup-1.10.2/PheasantGame.jsoup-1.10.2.iml" filepath="$PROJECT_DIR$/.idea/modules/jsoup-1.10.2/PheasantGame.jsoup-1.10.2.iml" />
+    </modules>
+  </component>
+</project>

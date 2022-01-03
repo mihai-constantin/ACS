@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Earthquake Lister</string>
+    <string name="north">North</string>
+    <string name="south">South</string>
+    <string name="east">East</string>
+    <string name="west">West</string>
+    <string name="show_results">Show Results</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="magnitude">Magnitude</string>
+    <string name="depth">Depth</string>
+    <string name="source">Source</string>
+    <string name="date_and_time">Date &amp; Time</string>
+</resources>
