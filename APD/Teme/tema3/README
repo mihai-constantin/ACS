@@ -1,0 +1,70 @@
+CONSTANTIN MIHAI - 336CA
+
+----------------------------------------------
+Tema 3 APD - Procesare de imagini folosind MPI
+----------------------------------------------
+
+-------
+Testare
+-------
+$ make
+$ mpirun -np N tema3 image_in.pnm image_out.pnm filter1 filter2 ... filterX
+
+Exemple:
+$ make
+$ mpirun -np 2 tema3 darth-vader.pgm darth-vader_out.pgm emboss
+
+Se citeste imaginea ./input/PGM/darth-vader.pgm pe care este aplicat filtrul
+emboss si se creeaza imaginea ./output/PGM/darth-vader_out.pgm. Se folosesc 
+2 procese.
+
+$ python3 compare.py ref/pgm/darth-vader-emboss.pgm output/PGM/darth-vader_out.pgm
+
+Script-ul pus la dispozitie de echipa de APD, care testeaza daca cele doua
+imagini date ca argumente sunt egale. Marja de eroare este egala cu 2.
+
+$ ./cmp.sh ref/pgm/darth-vader-emboss.pgm output/PGM/darth-vader_out.pgm diff.pgm
+
+Comanda compara fisierul de ref si cel de output, formand imaginea diff.pgm 
+(imagine aproape alba - diferenta dintre cele doua imagini comparate).
+
+In folderul output, am pastrat imaginile rezultate in urma aplicarii filtrelor
+blur smooth sharpen emboss mean blur smooth sharpen emboss mean asupra
+imaginilor de input.
+
+------------------
+Idee de rezolvare
+------------------
+Modificarea unui pixel pe baza unui filtru este o operatie independenta, deci
+se pot realiza astfel de operatii in paralel. 
+
+Pentru fiecare proces, am alocat o bucata din matrice pentru care am calculat 
+valorile noi ale pixelilor. Fiecare proces va calcula pixelii de pe liniile din 
+intervalul [st, dr), unde st = rank * ceil((double)height / nProcesses),
+dr = fmin(height , (rank + 1) * ceil((double)height / nProcesses)).
+Astfel, fiecare proces va cunoaste noile valori ale pixelilor din zona proprie.
+
+Fiecare proces diferit de procesul MASTER, va trimite catre acesta valorile noi
+ale pixelilor. Dupa care, procesul MASTER va face broadcast catre toate 
+celelalte procese pentru ca noua matrice de pixeli (rezultata in urma aplicarii
+primului filtru) sa fie cunoscuta de catre toate celelalte procese. 
+Astfel, va fi posibila aplicarea filtrelor multiple.
+
+Filtrele au fost definite in fisierul helper.h.
+
+--------------------
+Timpi. Scalabilitate
+--------------------
+Programul a fost rulat pe un MacBook Pro 13, 2017, 3.1 GHz Dual-Core Intel Core i5.
+
+Am rulat cu ajutorul script-ului time_check.sh comportamentul algoritmului 
+paralelizat pe cea mai mare imagine alb-negru, respectiv pe cea mai mare imagine 
+color. S-au obtinut urmatorii timpi medii, in functie de numarul de procese:
+
+- rorschach.pgm: 13.2s (1 proces), 7.1s (2 procese), 5.9s (3 procese), 
+				 4.8s (4 procese)
+
+- landscape.pnm: 36.6s (1 proces), 19.2s (2 procese), 15.4s (3 procese),
+				 11.5s (4 procese)
+
+Se poate observa ca programul scaleaza in functie de numarul de procese aplicate.
