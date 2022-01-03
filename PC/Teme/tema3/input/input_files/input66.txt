@@ -1,0 +1,4 @@
+captcha66.bmp
+221 158 223
+0 2 6
+captchaB66.bmp

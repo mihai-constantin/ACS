@@ -1,0 +1,49 @@
+CONSTANTIN MIHAI - 311CD
+
+Am folosit un vector declarat global, reprezentand arena (unsigned char *Arena). De asemenea, vectorul empty (int *empty) ne indica la orice moment de timp daca octetul de pe pozitia i din arena este ocupat. Mai exact, empty[i] == 0 ne spune ca octetul de pe pozitia i este liber, in timp ce empty[i] != 0 ne indica faptul ca octetul este ocupat.
+
+Folosind scheletul de cod din arhiva, am implementat urmatoarele functii:
+1. INITIALIZE - initializeaza atat vectorul Arena, cat si empty la 0, folosind functia calloc. Variabila START_BLOC, care indica pozitia primului octet ocupat din arena, se initializeaza la 0. 
+
+2. FINALIZE - elibereaza vectorii Arena si empty, cu ajutorul functiei free din biblioteca stdlib.h.
+
+3. DUMP - afiseaza intreaga harta a memoriei. Daca N (numarul de octeti ai Arenei) este pozitiv vom afisa indicele primului bloc. In continuare, parcurgem arena cu un for si afisam cate 16 octeti pe fiecare linie. Daca N nu este un multiplu de 16, vom afisa la final un '\n'.
+
+4. ALLOC - cauta in arena (de la stanga la dreapta) o zona continua de dimensiune (12 + size) octeti. Daca aceasta zona nu exista, se va afisa 0.
+Daca zona exista (ok == true), vom trata 3 cazuri:
+a) zona este primul bloc din arena
+
+Vom cauta urmatorul bloc din arena. Daca acesta exista, vom modifica primul intreg din zona de gestiune a primului bloc cu indicele blocului gasit. Daca blocul urmator nu exista, vom modifica doar al treilea intreg din zona de gestiune al blocului, reprezentand lungimea sectiunii de date (size octeti).
+
+b) zona este ultimul bloc din arena
+	
+Vom cauta blocul precedent din arena si vom efectua urmatoarele modificari:
+- al doilea intreg din zona de gestiune al ultimului bloc va indica catre pozitia primului octet din blocul precedent
+- al treilea intreg din arena va retine dimensiunea sectiunii de date al ultimului bloc (size octeti)
+- primul intreg din zona de gestiune al blocului precedent va indica catre pozitia primului octet apartinand ultimului bloc (variabila ind_start)
+
+c) zona are 2 blocuri vecine
+
+In acest caz, vom efectua modificari asupra 3 blocuri (blocul precedent, blocul curent si cel urmator), astfel:
+- primul intreg din zona de gestiune al blocului curent va indica catre pozitia primului octet din blocul urmator
+- al doilea intreg din zona de gestiune al blocului curent va indica catre pozitia primului octet din blocul precedent
+- al treilea intreg din zona de gestiune al blocului curent va retine numarul de octeti ai sectiunii de date (size)
+- primul intreg din zona de gestiune al blocului precedent, cat si cel de-al doilea intreg din zona de gestiune al blocului urmator vor indica catre pozitia  primului octet din blocul curent (ind_start)
+	
+Toate aceste modificari vor fi realizate cu ajutorul functiei write, care va "imparti" numarul primit ca argument in 4 octeti.
+
+5. FREE
+Verific daca dau FREE pe primul bloc din Arena, caz in care variabila START_BLOC va deveni indicele de start al blocului urmator. De asemenea, al doilea intreg din zona de gestiune al blocului va fi setat la 0.
+In cazul in care dam FREE unui bloc cu 2 vecini, vom efectua urmatoarele modificari:
+- primul intreg din zona de gestiune al blocului precedent va indica catre pozitia primului octet al blocului urmator (fata de blocul care se elibereaza)
+- al doilea intreg din zona de gestiune al blocului urmator va indica catre pozitia primului octet al blocului precedent 
+
+La final, vom seta toti octetii corespunzatori blocului caruia i-am aplicat operatia FREE la 0.
+
+6. FILL - seteaza octetii sectiunilor de date corespunzatoare blocurilor din arena la valoarea value, incepand cu pozitia index.
+Variabila length retine lungimea sectiunii de date a blocului curent din Arena. In momentul in care am setat toti octetii din blocul curent vom trece la blocul urmator. Ne vom opri cand vor fi setati size octeti sau cand am setat si octetii ultimului bloc din Arena.
+
+Am implementat si cele doua functii de la BONUS astfel:
+1. ALLOCALIGNED - similara functiei ALLOC. Singura diferenta a constat in faptul ca am cautat zonele in arena din align in align. O data zona gasita, am procedat ca la ALLOC.
+
+2. REALLOC - am alocat dinamic un vector copy in care am memorat octetii din sectiune de date a blocului caruia ulterior i-am dat FREE. In continuare, am folosit functiile FREE si ALLOC descrise mai sus. La final, am copiat in Arena octetii din vechiul bloc si am eliberat zona de memorie ocupata de vectorul copy, cu ajutorul functiei free din biblioteca stdlib.h .

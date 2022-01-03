@@ -1,0 +1,16 @@
+CONSTANTIN MIHAI - 311 CD
+
+TASK 1
+
+Folosim o variabila nr, care va retine numarul de caractere ' ' ce trebuie afisate pe linia curenta. Initial, nr va fi egal cu 0 (linia 1 nu contine niciun caracter ' '). De asemenea, variabila c va retine caracterul curent ( ' ' sau caracterul C) ce trebuie afisat. La fiecare pas i, variabila nr va fi incrementata cu o unitate.
+
+TASK 2 
+
+Tabla de joc curenta se va afisa cu ajutorul functiei print_matrix. Daca ne aflam pe margine (linia 0 / N + 1, respectiv coloana 0 / M + 1) vom afisa '*'. In momentul in care vom ajunge la pozitia personajului (x, y) vom decide ce caracter afisam ('^', '<', 'v', '>') cu ajutorul instructiunii switch. In rest, afisam caracterul ' '.
+La fiecare mutare a utilizatorului, afisam o noua tabla. Verificam de fiecare data daca ne putem deplasa pe pozitia dorita (functia valid ne spune daca suntem in interiorul tablei de joc). In momentul in care care citim caracterul 'q', jocul se termina. O alta posibilitate de terminare a jocului este in momentul in care personajul ajunge in pozitia de coordonate (N, M), caz in care afisam mesajul "GAME COMPLETED".
+
+TASK 3
+
+Vom folosi 9 variabile, reprezentand coordonatele obstacolelor, respectiv tipul lor ('f' - obstacol fix sau 'm' - obstacol mobil). Initializam coordonatele cu -1, iar tipul acestora cu '0'. In functie de valoarea lui P (1, 2, 3) vom citi 3, 6 sau 9 variabile. Avem grija ca de fiecare data sa citim si caracterul ENTER.
+Functia print_matrix va afisa tabla curenta. Pe langa situatiile descrise la TASK - ul 2, vom afisa 'x' daca pe pozitia respectiva se va afla un obstacol. In functia solve, vom citi mutarea curenta ('w' = sus, 'a' = stânga, 's' = jos, 'd' = dreapta) si vom verifica daca putem merge pe pozitia respectiva. De asemenea, la fiecare doua ture vom modifica pozitia obstacolelor mobile. Functia distance calculeaza valoarea functiei  | x_personaj - x_obstacol | + | y_personaj - y_obstacol |, iar functia mv_obs determina noile coordonate ale obstacolelor, minimizand functia de mai sus. 
+In plus, functia GAME ne spune daca personajul si un obstacol ocupa intr-un moment de timp aceeasi pozitie, caz in care jocul se termina (vom afisa "GAME OVER"). Altfel, jocul va continua pana in momentul in care personajul va ajunge in coltul din dreapta jos a tablei de joc (caz in care vom afisa "GAME COMPLETED") sau cand se va citi caracterul 'q'.

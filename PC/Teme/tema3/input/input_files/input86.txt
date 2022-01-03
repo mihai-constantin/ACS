@@ -1,0 +1,4 @@
+captcha86.bmp
+55 245 71
+
+captchaB86.bmp

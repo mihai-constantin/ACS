@@ -1,0 +1,4 @@
+captcha28.bmp
+39 148 112
+9 8 4
+captchaB28.bmp

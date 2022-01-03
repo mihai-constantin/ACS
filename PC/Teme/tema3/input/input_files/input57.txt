@@ -1,0 +1,4 @@
+captcha57.bmp
+96 240 170
+0 9
+captchaB57.bmp

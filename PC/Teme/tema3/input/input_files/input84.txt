@@ -1,0 +1,4 @@
+captcha84.bmp
+38 208 197
+3 6
+captchaB84.bmp

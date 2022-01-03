@@ -1,0 +1,4 @@
+captcha22.bmp
+149 87 229
+3 2 7 5
+captchaB22.bmp

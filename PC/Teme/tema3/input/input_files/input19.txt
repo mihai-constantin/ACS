@@ -1,0 +1,4 @@
+captcha19.bmp
+52 67 26
+4 2 6 3
+captchaB19.bmp

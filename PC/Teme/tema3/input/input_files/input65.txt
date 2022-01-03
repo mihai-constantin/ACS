@@ -1,0 +1,4 @@
+captcha65.bmp
+204 70 104
+
+captchaB65.bmp

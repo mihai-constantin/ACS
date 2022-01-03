@@ -1,0 +1,4 @@
+captcha37.bmp
+3 47 238
+2 5 6
+captchaB37.bmp

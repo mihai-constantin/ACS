@@ -1,0 +1,4 @@
+captcha61.bmp
+120 125 50
+4 7 3 2 5 0
+captchaB61.bmp

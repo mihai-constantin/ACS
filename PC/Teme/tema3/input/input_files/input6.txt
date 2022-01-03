@@ -1,0 +1,4 @@
+captcha6.bmp
+52 221 76
+1
+captchaB6.bmp

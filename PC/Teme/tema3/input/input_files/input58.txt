@@ -1,0 +1,4 @@
+captcha58.bmp
+104 130 218
+0 1 4 6 9
+captchaB58.bmp

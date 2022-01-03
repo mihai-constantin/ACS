@@ -1,0 +1,4 @@
+captcha30.bmp
+31 201 151
+7 4 8 1 6 0
+captchaB30.bmp

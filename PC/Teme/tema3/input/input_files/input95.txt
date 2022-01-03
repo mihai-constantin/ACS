@@ -1,0 +1,4 @@
+captcha95.bmp
+153 227 81
+5 1 3 7
+captchaB95.bmp
