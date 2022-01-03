@@ -1,0 +1,174 @@
+CONSTANTIN MIHAI - 321CD
+
+mystery1() - functie ce calculeaza lungimea unui string
+@string: adresa de inceput a sirului
+
+Functia are un singur argument, adresa de inceput a string-ului, stocata
+in registrul edi. La fiecare iteratie, luam cate un byte din edi si il punem
+in registrul bl. Testam daca am ajuns la finalul string-ului (gasirea unui 
+byte "0x00"), caz in care iesim din functie. Daca nu, incrementam adresa lui 
+edi, respectiv lungimea sirului (stocata in registrul eax). Returnam valoarea
+retinuta in registrul eax, adica lungimea string-ului primit ca parametru.
+Testat in GDB, avand ca input adresa string-ului "xyz", dupa apelul functiei
+ajungem sa avem in registrul eax 3.
+
+prototip: int strlen(char *str)
+
+mystery2() - functie ce calculeaza pozitia la care se gaseste un anumit
+			 caracter intr-un sir, daca acesta exista
+@string: adresa de inceput a sirului
+@character: adresa caracterului pe care il cautam in string
+
+Functia are doua argumente, adresa de inceput a string-ului si adresa
+caracterului pe care il cautam in sir. Initial, determinam lungimea sirului cu
+ajutorul functiei mystery1, salvand valoarea in registrul ecx. In registrul edi
+memoram adresa de inceput a string-ului, iar in registrul dl luam adresa
+caracterului pe care il cautam. Comparam caracterul curent din string cu
+caracterul cautat. Daca caracterele sunt diferite, se incrementeaza pozitia din
+string, respectiv registrul eax. In momentul in care se ajunge in string la un
+caracter egal cu cel cautat, se verifica daca lungimea string-ului este egala
+cu 0, caz in care se returneaza un cod de eroare. Altfel, se returneaza valoarea
+din registrul eax, adica pozitia la care s-a gasit prima apartie a caracterului
+cautat in string. De remarcat faptul ca, functia are un bug: daca caracterul
+cautat nu se gaseste in string, functia va intra intr-o bucla infinita.
+Testat in GDB, se pare ca avand drept input adresa string-ului "xyzt" si
+caracterul "z", dupa apelul functiei valoarea din registrul eax este 2.
+
+prototip:  int search_chr(char *str, char c)
+
+mystery3() - functia ce compara primele n caractere a doua string-uri
+@string: adresa de inceput a primului sir de caractere
+@string: adresa de inceput a celui de-al doilea sir de caractere
+@integer: numarul n de caractere ce vor fi comparate
+
+Functia are trei argumente, adresele de inceput ale celor doua string-uri,
+respectiv numarul n de caractere ce vor fi comparate. Se itereaza
+prin cele doua siruri caracter cu caracter, iar in situatia in care doua
+caractere aflate pe aceeasi pozitie din cele doua string-uri nu sunt egale, se
+returneaza 1. Daca caracterele de pe aceeasi pozitie sunt egale, se
+incrementeaza pozitia din ambele siruri. La fiecare iteratie se decrementeaza
+registrul ecx. La finalul buclei, se returneaza 0, deoarece daca nu s-a 
+returnat pana in acel moment 1, inseamna ca cele doua siruri au primele 
+n caractere egale.
+Testat in GDB, se pare ca avand drept input adresele string-urilor "ana" si
+"anx", iar numarul n de caractere egal cu 2, dupa apelul functiei valoarea din 
+registrul eax este 0. Daca n este 3, valoarea din eax devine 1.
+
+prototip: bool strncmp(char *str1, char *str2, size_t n)
+
+mystery4() - functie ce copiaza primele n caractere dintr-un string in altul
+@string: adresa de inceput a primului sir de caractere
+@string: adresa de inceput a celui de-al doilea sir de caractere
+@integer: numarul n de caractere ce vor fi copiate din al doilea sir in primul
+
+Functia are trei argumente, adresele de inceput ale celor doua string-uri,
+respectiv numarul n de caractere ce vor fi copiate. Se itereaza prin cele doua
+string-uri pana cand se copiaza n caractere din arg_4 in arg_0. La fiecare
+iteratie, se retine in registrul dl cate un byte din arg_4 si se copiaza in
+arg_0. Se incrementeaza pozitia ambelor siruri.
+Testat in GDB, se pare ca avand drept input adresele string-urilor "abc" si
+"def", respectiv numarul n de caractere egal cu 2, dupa apelul functiei
+la adresa de inceput a primului sir, se va gasi "dec".
+
+prototip: void strncpy(char *dest, const char *src, size_t n)
+
+mystery5() - functie ce verifica daca parametrul primit este cifra
+@character: adresa de inceput a parametrului
+
+Functia returneaza 1, in situatia in care continutul memorat in registrul al
+este cifra, iar 0 altfel. Initial, se compara valoarea din registrul al cu
+30h (0), iar daca aceasta este mai mica, se returneaza 0. Altfel, se compara
+valoarea din al cu 39h (9), iar daca aceasta este mai mare, se returneaza 0.
+La final, se returneaza 1.
+Testat in GDB, se pare ca avand drept input adresa string-ului "9", dupa
+apelul functiei, valoarea din registrul eax este 1.
+
+prototip: bool isDigit(char c)
+
+mystery6() - functie ce inverseaza un string pe stiva
+@string: adresa de inceput a sirului
+
+Functia are un singur argument, adresa de inceput a string-ului stocata in
+registrul edi. Apelam functia mystery1 pentru a determina lungimea sirului.
+Memoram in registrul ecx aceasta valoare. Alocam pe stiva ecx bytes.
+Parcurgem sirul primit ca argument byte cu byte de la dreapta la stanga,
+punand pe stiva fiecare byte. Registrul ebx pointeaza la inceputul sirului
+inversat, in timp ce edi pointeaza la inceputul sirului original. 
+In acest moment, vom apela functia mystery4 ce va suprascrie primii eax 
+(lungimea sirului) bytes din string. Practic, se realizeaza o suprascriere 
+pe stiva a sirului initial cu string-ului inversat.
+Testat in GDB, se pare ca avand drept input adresa string-ului "abc", dupa
+apelul functiei la adresa la care incepe string-ul se va gasi "cba".
+
+prototip: void strrev(char *str)
+
+mystery7() - functie care primeste un string si returneaza conversia in decimal
+			 in cazul in care fiecare caracter este cifra
+@string: adresa de inceput a sirului
+
+Functia are un singur argument, adresa de inceput a string-ului, retinuta
+in registrul eax. Functia foloseste si o variabila locala, situata la adresa
+ebp - 4, ce va retine conversia in decimal a sirului primit ca parametru.
+Se initializeaza variabila locala cu 0. Se determina lungimea sirului si se 
+retine valoarea in registrul ecx, cu ajutorul functiei mystery1. De asemenea,
+apelam functia mystery6 pentru a inversa sirul initial. De exemplu, daca
+string-ul era "123", acum avem pe stiva la aceeasi adresa sirul "321".
+Se parcurge tot sirul de la dreapta la stanga byte cu byte si se verifica
+daca contine si alte caractere in afara de cifre, caz in care se returneaza
+un cod de eroare. Daca caracterul curent este cifra, se continua cu formarea
+numarului retinut in variabila locala. Practic, pentru fiecare byte se scade
+30h (48) pentru a se obtine valoarea ca cifra si apoi se adauga la numarul
+curent: nr = nr * 10 + cif. La final, daca nu am intalnit niciun caracter
+diferit de [0-9], conversia string-ului original se va gasi la adresa ebp-4.
+Testat in GDB, se pare ca avand drept input adresa string-ului "123", dupa
+apelul functiei in variabila locala situata la adresa ebp - 4, se afla numarul
+7b (123).
+
+prototip: void convert(char* str)
+
+mystery8() - functie care determina daca primele n caractere ale unui 
+			 string reprezinta un subsir in alt sir
+@string: adresa de inceput a sirului in care caut subsirul
+@string: adresa de inceput a subsirului
+@integer: numarul de caractere din subsir pe care le caut in primul sir
+
+Functia primeste ca argumente adresele de inceput a doua string-uri, respectiv
+un numar n, reprezentand numarul de caractere din al doilea sir ce vor fi
+comparate. Initial, se verifica daca valoarea parametrului 3 este egala cu 0,
+caz in care in registrul eax punem 0, iar functia se termina (practic nu avem
+ce cauta in primul sir). Daca valoarea parametrului 3 este nenula, atunci vom
+parcurge byte cu byte cele doua string-uri, incrementand cele doua variabile
+locale. De remarcat faptul ca la intalnirea caracterului '\n', functia se 
+termina.
+Testat in GDB, se pare ca avand drept input adresele string-urilor 
+"xyz" si "xy", respectiv valoarea 2, dupa apelul functiei ajungem sa avem in 
+registrul eax valoarea 1. Daca inputul ar fi fost reprezentat de adresele 
+string-urilor "xyz" si "xz", valoarea din eax ar fi fost 0.
+
+prototip: bool search_substring(char *s1, char *s2, int n)
+
+mystery9() - functie ce cauta un subsir intr-un string intre doua pozitii date
+@string: adresa de inceput a sirului in care caut subsirul
+@integer: pozitia de start de la care caut subsirul in sir
+@integer: pozitia de final din sirul mare la care ma opresc din cautare
+@string: adresa de inceput a subsirului
+
+Functia primeste 4 argumente, anume adresele de inceput ale celor doua 
+string-uri (cel in care caut si cel cautat), respectiv limita superiora si 
+inferioara din fisier. Aceste limite reprezinta practic pozitiile de start si 
+de finish din string-ul in care facem cautarea. Ne vom folosi de functia 
+mystery8 pentru a verifica daca linia curenta contine un subsir, caz in care o 
+vom afisa cu ajutorul functiei print_line. Incrementand cele trei variabilele 
+locale, vom parcurge string-ul intre pozitiile dorite.
+Testand in GDB, pentru un input de forma: "abc dfh sa\n askj fas fa\n 
+sf fal fas\n saf fa fa", cu pozitiile 11 si 33 si subsirul "as", functia a
+afisat "askj fas fa\n sf fal fas", in timp ce pentru pozitiile 11 si 30,
+output-ul este "askj fas fa\n".
+
+prototip: void fgrep(char* s1, int start, int finish, char* s2)
+
+Programul in ansamblul sau simuleaza functionalitatea functiei fgrep, anume
+cauta pattern-uri intr-un file(string) intre o limita superioara si una 
+inferioara, anume pozitiile de start si de finish din string in care se
+efectueaza cautarea. Daca obtinem match pe o anumita linie, o afisam.
+
