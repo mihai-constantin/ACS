@@ -1,3 +1,0 @@
-X starts at -2
-X ends at 3
-X step is 0.1
