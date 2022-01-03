@@ -1,0 +1,1 @@
+function [a b] = FFT(x, y)m = length(x) / 2;for k = 0 : m   sum = 0;  for j = 1 : 2 * m    sum = sum + y(j) * cos(k * x(j));  endfor    a(k + 1) = sum / m;  endforfor k = 1 : m - 1  sum = 0;  for j = 1 : 2 * m    sum = sum + y(j) * sin(k * x(j));  endfor    b(k) = sum / m;endforendfunction

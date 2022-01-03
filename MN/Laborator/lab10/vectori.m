@@ -1,0 +1,1 @@
+x1 = linspace(-pi, pi, 100);y1 = x1.^3 + 2.*x1.^2-5.*x1;[a b] = FFT(x1, y1);x = linspace(-pi, pi, 100);y = x.^3 + 2.*x.^2-5.*x;S = polynom(a, b, x, 3);plot(x, S, x, y);

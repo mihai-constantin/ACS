@@ -1,0 +1,1 @@
+function [s] = sample(v)  n = length(v);    s = 0;  for i = 1 : n    s += v(i)^2;  endfor    s = sqrt(s);endfunction

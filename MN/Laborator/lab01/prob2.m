@@ -1,0 +1,1 @@
+function [s] = prob2(var = input('Introduceti variabila: '))  s = 0;    for idx = 1 : 2 : var - 1    s += idx;  endfor   endfunction

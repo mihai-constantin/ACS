@@ -1,0 +1,1 @@
+function [s] = problema2(var = input('Introduceti variabila: '))  s = 0;  i = 1;    while i < var    s += i;    i += 2;      endwhileendfunction

@@ -1,0 +1,1 @@
+function x = solJacobi(A, b, x0, tol, maxiter)[n n] = size(A);x = x0;for k = 1 : maxiterpred = x;for i = 1 : n  % calculez x(i)    suma = 0;  for j = 1 : n     if j ~= i    suma = suma + A(i, j) * pred(j);   endif     endfor    x(i) = (b(i) - suma) / A(i, i);    %disp(x(i));  endfor%disp('');endforendfunction

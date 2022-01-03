@@ -1,0 +1,2 @@
+% functia returneaza cea mai apropiata valoare proprie fata de val + vectorul propriu asociat + nr iteratiifunction [lambda y k] = MPI(A, val, max, tol)[n n] = size(A); % dimensiune matricey = rand(n, 1); %initializare random vector yfor k = 1 : max    z = (A - val * eye(n)) \ y;
+  y = z / norm(z);  lambda = y' * A * y;    val = lambda; %iterarea catului Rayleigh    %conditie de iesire  t = A * y - lambda * y;    if norm(t) < tol    return;  endifendforendfunction
