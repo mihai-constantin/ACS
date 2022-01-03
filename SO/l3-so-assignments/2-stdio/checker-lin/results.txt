@@ -1,0 +1,10 @@
+./so_stdio.c:391: WARNING:BRACES: braces {} are not necessary for any arm of this statement
+./so_stdio.c:379: ERROR:ELSE_AFTER_BRACE: else should follow close brace '}'
+./so_stdio.c:429: WARNING:LINE_SPACING: Missing a blank line after declarations
+./so_stdio.c:434: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+./so_stdio.c:360: ERROR:SPACING: space required before the open parenthesis '('
+./so_stdio.c:364: ERROR:SWITCH_CASE_INDENT_LEVEL: switch and case should be at the same indent
+./so_stdio.c:373: ERROR:TRAILING_WHITESPACE: trailing whitespace
+00) Sources check...........................................failed  [ 0/95]
+01) Test fopen arguments....................................passed  [02/95]
+02) Test fgetc..............................................passed  [02/95]
