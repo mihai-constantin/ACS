@@ -37,7 +37,7 @@ public class Test1 {
 		checkingAccount.withdraw(1150.0);
 		assertEquals(2, checkingAccount.getId());
 		assertEquals(-50, checkingAccount.balance, 0);
-		assertEquals(100, checkingAccount.overdraft, 0);
+		assertEquals(100, checkingAccount.getOverdraft(), 0);
 		assertEquals(50, checkingAccount.maximumAmountToWithdraw(), 0);
 	}
 	

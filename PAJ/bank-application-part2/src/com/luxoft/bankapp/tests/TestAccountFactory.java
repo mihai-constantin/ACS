@@ -10,14 +10,14 @@ import static org.junit.Assert.assertEquals;
 public class TestAccountFactory {
 
     @Test
-    public void testCheckingAccount() {
-        AbstractAccount account = AccountFactory.newAccount(AccountType.CHECKING, 1, 100);
-        assertEquals("CheckingAccount", account.getClass().getSimpleName());
-    }
-
-    @Test
     public void testSavingAccount() {
         AbstractAccount account = AccountFactory.newAccount(AccountType.SAVING, 1, 100);
         assertEquals("SavingAccount", account.getClass().getSimpleName());
+    }
+
+    @Test
+    public void testCheckingAccount() {
+        AbstractAccount account = AccountFactory.newAccount(AccountType.CHECKING, 1, 100);
+        assertEquals("CheckingAccount", account.getClass().getSimpleName());
     }
 }

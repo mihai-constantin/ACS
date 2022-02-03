@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Params {
-	private Map<String, String> parametersMap = new HashMap<>();
+	private final Map<String, String> parametersMap = new HashMap<>();
 
 	public Params(String[] parameters) {
 		for (String param : parameters) {

@@ -15,7 +15,7 @@ public class Test8 {
 		BankEmployee richard = new BankEmployee("Richard", department, 1000);
 		BankEmployee bob = new BankEmployee("Bob", department, 1000);
 		department.setManager(richard);
-		assertEquals(bob.getDepartment().getManager().name, "Richard");
+		assertEquals(bob.getDepartment().getManager().getName(), "Richard");
 	}
 
 }
